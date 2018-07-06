@@ -22,11 +22,17 @@ const observer = new Observer();
 
 const field = document.querySelector('.text');
 const counter = document.querySelector('.counter');
+const lCounter = document.querySelector('.l-counter');
+
+const getWordsCount = text => 
+  text ? text.trim().split(/\s+/).length : 0;  
+
+const getLettersCount = text => 
+  text ? text.trim().split('').length : 0;  
 
 observer.subscribe(text => {
-  counter.textContent = text ? 
-    text.trim().split(/\s+/).length 
-    : 0;  
+  counter.textContent = getWordsCount(text);
+  lCounter.textContent = getLettersCount(text);
 });
 
 field.addEventListener('keyup', evt => {
