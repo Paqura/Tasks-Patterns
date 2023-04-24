@@ -1,0 +1,8 @@
+{
+  "name": "pts_global",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:CSSSR/pts_global.git",
+  "author": "Evgeny Chirko <evgeny.chirko@csssr.com>",
+  "license": "MIT"
+}
