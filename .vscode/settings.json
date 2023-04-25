@@ -1,0 +1,12 @@
+{
+    "eslint.format.enable": true,
+    "javascript.preferences.importModuleSpecifier": "relative",
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "eslint.workingDirectories": [
+        "frontend",
+        "admin"
+    ],
+    "stylelint.configBasedir": "frontend",
+    "stylefmt.configBasedir": "frontend",
+    "stylefmt.useStylelintConfigOverrides": true,
+}
