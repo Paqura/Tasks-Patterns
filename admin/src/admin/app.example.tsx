@@ -30,7 +30,6 @@ export default {
     ],
   },
   bootstrap(app) {
-    const a = "12312";
     console.log(app);
   },
 };

@@ -2,10 +2,29 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import { GetServerSideProps } from 'next'
 
 const inter = Inter({ subsets: ["latin"] })
 
-export default function Home() {
+export type ServerSideProps = { testValue: string };
+
+
+export const getServerSideProps: GetServerSideProps<ServerSideProps> = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_ADMIN_API_URL}/api/config`)
+  const data = (await response.json()).data.attributes;
+
+  return {
+    props: {
+      testValue: data.title,
+    },
+  }
+}
+
+
+type Props = ServerSideProps;
+
+export default function Home(props: Props) {
+  console.log('props', props)
   return (
     <>
       <Head>
@@ -17,8 +36,8 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
+            Title from strapi:&nbsp;
+            <code className={styles.code}>{props.testValue}</code>
           </p>
           <div>
             <a

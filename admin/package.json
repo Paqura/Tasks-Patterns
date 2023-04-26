@@ -6,7 +6,7 @@
   "scripts": {
     "start": "strapi start",
     "build": "strapi build",
-    "develop:database": "docker-compose -f ./databse/docker-compose.yml up",
+    "develop:database": "docker-compose -f ./database/docker-compose.yml up",
     "develop:strapi": "strapi develop"
   },
   "devDependencies": {},
