@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "nav_panels",
+  "info": {
+    "singularName": "nav-panel",
+    "pluralName": "nav-panels",
+    "displayName": "NavPanel"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "logoName": {
+      "type": "string"
+    }
+  }
+}
