@@ -5,8 +5,8 @@
     "node": true,
     "jest": true
   },
-  "extends": ["next/core-web-vitals"],
-  "parser": "@typescript-eslint/parser",
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
+  // "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
