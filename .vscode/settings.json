@@ -1,7 +1,14 @@
 {
   "eslint.format.enable": true,
   "stylelint.configBasedir": "frontend",
-  "stylefmt.configBasedir": "frontend",
-  "stylefmt.useStylelintConfigOverrides": true,
-  "eslint.workingDirectories": ["frontend", "admin"]
+  "eslint.workingDirectories": ["frontend", "admin"],
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.snippet": ["css", "less", "postcss", "scss"],
+  "stylelint.validate": ["css", "less", "postcss", "scss"],
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true
+  }
 }
