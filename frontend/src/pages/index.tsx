@@ -1,24 +1,22 @@
-import { Response } from '@admin/general-schemas'
+import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
 import { HomePage } from '@/components/HomePage'
-import { adminClient } from '@/utils/adminApi'
+import { fetchConfig } from '@/utils/adminApi'
 
-export type ServerSideProps = { testValue: string }
+export type TServerSideProps = { config?: GetAttributesValues<'api::config.config'> }
 
-export const getServerSideProps: GetServerSideProps<ServerSideProps> = async () => {
-    const response = await adminClient.get<Response<'api::config.config'>>(`/api/config`)
-    const resp: Response<'api::config.config'> = response.data
-    const data = resp.data?.attributes
+export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
+    const data = await fetchConfig()
     return {
         props: {
-            testValue: data?.title || '',
+            config: data,
         },
     }
 }
 
-type Props = ServerSideProps
+type TProps = TServerSideProps
 
-export default function Home(props: Props) {
-    return <HomePage title={props.testValue} />
+export default function Home(props: TProps) {
+    return <HomePage seo={props.config?.seo || {}} />
 }

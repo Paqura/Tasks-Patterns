@@ -1,6 +1,7 @@
 {
-    "eslint.format.enable": true,
-    "stylelint.configBasedir": "frontend",
-    "stylefmt.configBasedir": "frontend",
-    "stylefmt.useStylelintConfigOverrides": true,
+  "eslint.format.enable": true,
+  "stylelint.configBasedir": "frontend",
+  "stylefmt.configBasedir": "frontend",
+  "stylefmt.useStylelintConfigOverrides": true,
+  "eslint.workingDirectories": ["frontend", "admin"]
 }

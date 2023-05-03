@@ -1,14 +1,13 @@
-import { PageLayout } from '@/components/PageLayout'
+import { PageLayout, TSeo } from '@/components/PageLayout'
 
-export type HomePageProps = {
-    title: string
+export type THomePageProps = {
+    seo: TSeo
 }
 
-export const HomePage: React.FC<HomePageProps> = (props) => {
+export const HomePage: React.FC<THomePageProps> = (props) => {
     return (
-        <PageLayout>
+        <PageLayout seo={props.seo}>
             <h1>The Main page</h1>
-            <h2>{props.title}</h2>
         </PageLayout>
     )
 }

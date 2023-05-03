@@ -90,7 +90,7 @@ type GetAllowedAttributesKey<T extends utils.SchemaUID> = GetAttributes<T> exten
 
 // Custom GetAttributesValues implementation which includes specific
 // content API logic (sanitation, custom value resolvers, etc...)
-type GetAttributesValues<T extends utils.SchemaUID> = {
+export type GetAttributesValues<T extends utils.SchemaUID> = {
   [key in GetAllowedAttributesKey<T>]?: GetValue<T, key>;
 };
 

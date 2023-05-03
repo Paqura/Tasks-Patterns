@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_share_seos",
+  "info": {
+    "displayName": "Seo",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "PT Security"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
