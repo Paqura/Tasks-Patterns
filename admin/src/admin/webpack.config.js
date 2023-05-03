@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 module.exports = (config, webpack) => {
@@ -13,6 +14,9 @@ module.exports = (config, webpack) => {
       ...config.resolve?.fallback,
       util: require.resolve('util/')
     }
-  }
-  return config
-}
+  };
+
+  config.plugins.push(new MonacoWebpackPlugin());
+
+  return config;
+};
