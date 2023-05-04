@@ -1,0 +1,13 @@
+version: 1-alpha.1
+
+releases:
+  pts-global-admin:
+    name: PTS Global Admin
+    autodeploy-on: default
+    chart: oci://quay.csssr.cloud/charts/pts-global-admin@~1.0.0
+    slack:
+      - C056AM9FMB6
+    builds:
+      - workflow: build-docker-image-admin.yaml
+        values:
+          image.tag: build-{{ .Build.RunID }}

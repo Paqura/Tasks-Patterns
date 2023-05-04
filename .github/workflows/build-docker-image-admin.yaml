@@ -1,0 +1,29 @@
+name: Build docker image
+on:
+  workflow_dispatch:
+    inputs:
+      kuberta_system:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: docker://quay.csssr.cloud/csssr/kuberta-init-workflow:v1
+
+      - name: Download CSSSR actions
+        uses: actions/checkout@v2
+        with:
+          repository: CSSSR/actions
+          ssh-key: ${{ secrets.DOWNLOAD_ACTIONS_SSH_KEY }}
+          path: actions
+
+      - name: Build and push docker image
+        uses: ./actions/build-docker-image/v1beta1
+        with:
+          context: ./admin
+          file: ./admin/Dockerfile
+          image: quay.csssr.cloud/pts-global/admin:build-${{ github.run_id }}
+          username: pts-global+github_actions
+          password: ${{ secrets.QUAY_PASSWORD }}
