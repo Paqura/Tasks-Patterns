@@ -1,0 +1,58 @@
+@font-face {
+    font-family: "TT Positive";
+    src: local("TT Positive"), local("TTPositive-Regular"), url("/fonts/TT_Positive_Regular.ttf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "TT Positive";
+    src: local("TT Positive DemiBold"), local("TTPositive-DemiBold"),
+        url("/fonts/TT_Positive_DemiBold.ttf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "TT Positive";
+    src: local("TT Positive Bold"), local("TTPositive-Bold"), url("/fonts/TT_Positive_Bold.ttf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "TT Positive";
+    src: local("TT Positive Italic"), local("TTPositive-Italic"), url("/fonts/TT_Positive_Italic.ttf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "TT Positive";
+    src: local("TT Positive DemiBold Italic"), local("TTPositive-DemiBold-Italic"),
+        url("/fonts/TT_Positive_DemiBold_Italic.ttf") format("opentype");
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "TT Positive";
+    src: local("TT Positive Bold Italic"), local("TTPositive-Bold-Italic"),
+        url("/fonts/TT_Positive_Bold_Italic.ttf") format("opentype");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Biform";
+    src: local("Biform"), url("/fonts/biform_regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}

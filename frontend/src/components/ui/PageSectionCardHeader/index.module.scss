@@ -1,0 +1,15 @@
+@import "../../../styles/media.scss";
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 40px;
+}
+
+.text {
+    grid-column: 5 / span 6;
+}
+
+.description {
+    margin-top: 32px;
+}
