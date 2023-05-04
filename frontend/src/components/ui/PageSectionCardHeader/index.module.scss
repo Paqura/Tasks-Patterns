@@ -4,6 +4,10 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: 40px;
+
+    @include media_breakpoint_mobile {
+        display: block;
+    }
 }
 
 .text {
@@ -12,4 +16,8 @@
 
 .description {
     margin-top: 32px;
+
+    @include media_breakpoint_mobile {
+        margin-top: 16px;
+    }
 }
