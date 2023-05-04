@@ -1,0 +1,85 @@
+@import "../../../styles/media.scss";
+
+.sectionCard {
+    padding: 80px 120px;
+    box-sizing: border-box;
+    border-radius: 16px;
+
+    @include media_breakpoint_normal_desktop {
+        padding: 60px 40px;
+    }
+
+    @include media_breakpoint_mobile {
+        padding: 20px 16px 32px;
+    }
+}
+
+.sectionCard_mode_light {
+    background-color: var(--color-light-gray-ui);
+
+    &__heading-1-theme {
+        color: var(--color-black-ui);
+    }
+    &__heading-2-theme {
+        color: var(--color-gray-6x);
+    }
+    &__heading-3-theme {
+        color: var(--color-black-ui);
+    }
+
+    &_text-pL-theme {
+        color: var(--color-black-ui);
+    }
+    &_text-pM-theme {
+        color: var(--color-black-ui);
+    }
+    &_text-pS-theme {
+        color: var(--color-black-ui);
+    }
+    &_text_pHeadl-ne-theme {
+        color: var(--color-black-ui);
+    }
+    &_text_postscr-pt-theme {
+        color: var(--color-black-ui);
+    }
+    &_text_qu-te-theme {
+        color: var(--color-black-ui);
+    }
+}
+
+.sectionCard_mode_dark {
+    background-color: var(--color-black-ui);
+
+    &__heading-1-theme {
+        color: var(--color-white);
+    }
+    &__heading-2-theme {
+        color: var(--color-gray-6x);
+    }
+    &__heading-3-theme {
+        color: var(--color-white);
+    }
+
+    &__text-pL-theme {
+        color: var(--color-white)
+    }
+    &__text-pM-theme {
+        color: var(--color-white)
+    }
+    &__text-pS-theme {
+        color: var(--color-red-ui)
+    }
+    &__text-pHeadline-theme {
+        color: var(--color-white)
+    }
+    &__text-postscript-theme {
+        color: var(--color-white)
+    }
+    &__text-quote-theme {
+        color: var(--color-white)
+    }
+}
+
+.sectionCard_mode_dark.sectionCard_on-dark {
+    background-color: var(--color-gray-8x);
+}

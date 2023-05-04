@@ -1,0 +1,80 @@
+@import "../../../../styles/media.scss";
+
+.text {
+
+    &_type_pL {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.4em;
+
+        @include media_breakpoint_mobile {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.4em;
+        }
+    }
+
+    &_type_pM {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.4em;
+
+        @include media_breakpoint_mobile {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.4em;
+        }
+    }
+
+    &_type_pS {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.3em;
+
+        @include media_breakpoint_mobile {
+            font-size: 10px;
+            font-weight: 400;
+            line-height: 1.3em;
+        }
+    }
+
+    &_type_postscript {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.3em;
+        text-transform: uppercase;
+
+        @include media_breakpoint_mobile {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.3em;
+            text-transform: uppercase;
+        }
+    }
+
+    &_type_pHeadline {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.4em;
+
+        @include media_breakpoint_mobile {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4em;
+        }
+    }
+    
+    &_type_quote {
+        font-size: 22px;
+        font-weight: 400;
+        font-style: italic;
+        line-height: 1.6em;
+
+        @include media_breakpoint_mobile {
+            font-size: 22px;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.6em;
+        }
+    }
+}

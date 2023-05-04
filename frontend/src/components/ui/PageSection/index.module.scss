@@ -1,0 +1,14 @@
+@import "../../../styles/media.scss";
+
+.section {
+  margin: 20px 240px;
+  max-width: 100%;
+
+  @include media_breakpoint_normal_desktop {
+    margin: 20px 20px;
+  }
+
+  @include media_breakpoint_mobile {
+    margin: 12px 4px;
+  }
+}

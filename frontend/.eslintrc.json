@@ -54,44 +54,8 @@
                 "prefix": ["I"]
             },
             {
-                "selector": "variable",
-                "types": ["function"],
-                "leadingUnderscore": "allow",
-                "format": ["PascalCase", "camelCase"]
-            },
-            {
-                "selector": "variable",
-                "format": ["camelCase", "snake_case", "UPPER_CASE"]
-            },
-            {
                 "selector": "class",
                 "format": ["PascalCase"]
-            },
-            {
-                "selector": "property",
-                "filter": {
-                    "regex": "(?:(:?[a-z-]+)__(:?[a-z-]+)(?:_(:?[a-z-]+))?|__html|^__)",
-                    "match": false
-                },
-                "leadingUnderscore": "allow",
-                "format": ["snake_case", "camelCase", "PascalCase"]
-            },
-            {
-                "selector": "property",
-                "custom": {
-                    "regex": "(?:(:?[a-z-]+)__(:?[a-z-]+)(?:_(:?[a-z-]+))?|^__|__html)",
-                    "match": true
-                },
-                "format": null
-            },
-            {
-                "selector": "parameter",
-                "format": ["PascalCase", "camelCase", "snake_case"]
-            },
-            {
-                "selector": "method",
-                "leadingUnderscore": "allow",
-                "format": ["camelCase"]
             },
             {
                 "selector": "typeAlias",
