@@ -11,3 +11,18 @@ releases:
       - workflow: build-docker-image-admin.yaml
         values:
           image.tag: build-{{ .Build.RunID }}
+  pts-global-frontend:
+    name: PTS Global Frontend
+    autodeploy-on: default
+    chart: oci://quay.csssr.cloud/charts/pts-global-frontend@~1.0.0
+    slack:
+      - C056AM9FMB6
+    params:
+      env.NEXT_PUBLIC_ADMIN_API_URL:
+        type: url
+        description: Admin API URL
+        default: https://main.pts-global-admin.csssr.cloud
+    builds:
+      - workflow: build-docker-image-frontend.yaml
+        values:
+          image.tag: build-{{ .Build.RunID }}
