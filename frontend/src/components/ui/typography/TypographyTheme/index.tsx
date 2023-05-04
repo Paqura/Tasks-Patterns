@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 
-import { TTypographyTheme } from '@/components/ui/typography/types'
+import { TTypographyMode } from '@/components/ui/typography/types'
 
-const TypographyThemeContext = React.createContext<TTypographyTheme | undefined>(undefined)
+const TypographyThemeContext = React.createContext<TTypographyMode | undefined>(undefined)
 
-export const TypographyTheme: React.FC<React.PropsWithChildren<{ theme: TTypographyTheme }>> = ({
+export const TypographyTheme: React.FC<React.PropsWithChildren<{ theme: TTypographyMode }>> = ({
     children,
     theme,
 }) => {

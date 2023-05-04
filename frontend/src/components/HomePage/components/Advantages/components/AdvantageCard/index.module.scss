@@ -1,0 +1,47 @@
+@import "../../../../../../styles/media.scss";
+
+.card {
+    padding: 32px;
+    box-sizing: border-box;
+    border: 1px solid var(--color-gray-6x);
+    border-radius: 8px;
+
+    @include media_breakpoint_small_desktop {
+        width: 360px;
+        min-width: 360px;
+    }
+
+    @include media_breakpoint_mobile {
+        width: 244px;
+        min-width: 244px;
+    }
+}
+
+.title {
+    margin-top: 32px;
+
+    @include media_breakpoint_mobile {
+        margin-top: 20px;
+    }
+}
+
+.description {
+    margin-top: 20px;
+}
+
+.icon {
+    position: relative;
+    overflow: hidden;
+    width: 116px;
+    height: 100px;
+
+    & img {
+        width: auto;
+        height: 100%;
+    }
+
+    @include media_breakpoint_mobile {
+        width: 100px;
+        height: 80px;
+    }
+}

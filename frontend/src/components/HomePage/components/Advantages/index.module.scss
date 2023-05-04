@@ -1,0 +1,17 @@
+@import "../../../../styles/media.scss";
+
+.advantagesList {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @include media_breakpoint_small_desktop {
+        display: flex;
+        overflow-x: scroll;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-top: 32px;
+    }
+}

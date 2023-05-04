@@ -1,43 +1,99 @@
-@import "../../../../styles/media.scss";
-
-.text {
+.base {
     font-family: "TT Positive", sans-serif;
+}
 
-    &_type_pL {
+.type {
+    
+
+    &_pL {
         font-size: 18px;
         font-weight: 400;
         line-height: 1.4em;
     }
 
-    &_type_pM {
+    &_pM {
         font-size: 16px;
         font-weight: 400;
         line-height: 1.4em;
     }
 
-    &_type_pS {
+    &_pS {
         font-size: 12px;
         font-weight: 400;
         line-height: 1.3em;
     }
 
-    &_type_postscript {
+    &_postscript {
         font-size: 14px;
         font-weight: 400;
         line-height: 1.3em;
         text-transform: uppercase;
     }
 
-    &_type_pHeadline {
+    &_pHeadline {
         font-size: 18px;
         font-weight: 600;
         line-height: 1.4em;
     }
 
-    &_type_quote {
+    &_quote {
         font-size: 22px;
         font-weight: 400;
         font-style: italic;
         line-height: 1.6em;
+    }
+}
+
+.theme {
+    &_light {
+        &__type_pL {
+            color: var(--color-gray-6x);
+        }
+
+        &__type_pM {
+            color: var(--color-gray-8x);
+        }
+
+        &__type_pS {
+            color: var(--color-gray-6x);
+        }
+
+        &__type_postscript {
+            color: var(--color-gray-6x);
+        }
+
+        &__type_pHeadline {
+            color: var(--color-black-ui);
+        }
+
+        &__type_quote {
+            color: var(--color-gray-6x);
+        }
+    }
+
+    &_dark {
+        &__type_pL {
+            color: var(--color-gray-2x);
+        }
+
+        &__type_pM {
+            color: var(--color-gray-4x);
+        }
+
+        &__type_pS {
+            color: var(--color-white);
+        }
+
+        &__type_postscript {
+            color: var(--color-gray-6x);
+        }
+
+        &__type_pHeadline {
+            color: var(--color-white);
+        }
+
+        &__type_quote {
+            color: var(--color-gray-2x);
+        }
     }
 }

@@ -1,11 +1,13 @@
 @import "../../../../styles/media.scss";
 
-.heading {
+.base {
     font-family: "Biform", sans-serif;
     font-weight: 400;
     line-height: 1.2em;
+}
 
-    &_level_1 {
+.level {
+    &_1 {
         font-size: 72px;
 
         @include media_breakpoint_mobile {
@@ -13,7 +15,7 @@
         }
     }
 
-    &_level_2 {
+    &_2 {
         font-size: 40px;
 
         @include media_breakpoint_mobile {
@@ -21,11 +23,37 @@
         }
     }
 
-    &_level_3 {
+    &_3 {
         font-size: 24px;
 
         @include media_breakpoint_mobile {
             font-size: 20px;
+        }
+    }
+}
+
+.theme {
+    &_light {
+        &__level_1 {
+            color: var(--color-black-ui);
+        }
+        &__level_2 {
+            color: var(--color-black-ui);
+        }
+        &__level_3 {
+            color: var(--color-black-ui);
+        }
+    }
+
+    &_dark {
+        &__level_1 {
+            color: var(--color-white);
+        }
+        &__level_2 {
+            color: var(--color-white);
+        }
+        &__level_3 {
+            color: var(--color-white);
         }
     }
 }

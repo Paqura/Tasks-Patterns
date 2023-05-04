@@ -7,7 +7,6 @@ import { useTypographyTheme } from '@/components/ui/typography/TypographyTheme'
 import styles from './index.module.scss'
 
 type THeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
-    /** Heading level */
     level: THeadingLevel
 }
 
@@ -15,12 +14,9 @@ export const Heading = (props: THeadingProps) => {
     const { level = 1, className, children, ...restProps } = props
 
     const theme = useTypographyTheme()
-    const classNames = cn(
-        className,
-        styles.heading,
-        styles[`heading_level_${level}`],
-        theme?.headingClasses[level]
-    )
+    const classNames = cn(className, styles.base, styles[`level_${level}`], {
+        [styles[`theme_${theme}__level_${level}`]]: !!theme,
+    })
 
     return React.createElement(
         `h${level}` as React.ElementType,

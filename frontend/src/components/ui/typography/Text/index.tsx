@@ -16,12 +16,8 @@ export const Text = (props: TTextProps) => {
 
     const theme = useTypographyTheme()
 
-    const classNames = cn(
-        className,
-        styles.text,
-        styles[`text_type_${type}`],
-        theme?.textClasses[type]
-    )
-
+    const classNames = cn(className, styles.base, styles[`type_${type}`], {
+        [styles[`theme_${theme}__type_${type}`]]: !!theme,
+    })
     return <p className={classNames}>{children}</p>
 }
