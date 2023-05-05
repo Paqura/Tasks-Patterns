@@ -8,7 +8,7 @@ import { WelcomeToContact } from './components/WelcomeToContact'
 import styles from './index.module.scss'
 
 const title = 'Why Positive Technologies?'
-const description = `We have extensive experience in protecting businesses in various sectors of the economy, we know the nature of today's threats and regulatory requirements well - and we put that experience and that knowledge into everything we do`
+const description = `We&nbsp;have extensive experience in&nbsp;protecting businesses in&nbsp;various sectors of&nbsp;the economy, we&nbsp;know the nature of&nbsp;today&rsquo;s threats and regulatory requirements well&nbsp;&mdash; and we&nbsp;put that experience and that knowledge into everything we&nbsp;do`
 
 export const Advantages: React.FC<{}> = () => {
     return (

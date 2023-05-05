@@ -1,21 +1,15 @@
 @import "../../../../styles/media.scss";
 @import "../../../../styles/offsets.scss";
 
-.advantagesList {
-    margin-top: 60px;
+.toolsList {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 
     @include subsection-above-offset;
-
 
     @include media_breakpoint_small_desktop {
         display: flex;
         overflow-x: scroll;
     }
-}
-
-.welcomeToContact {
-    @include subsection-above-offset;
 }

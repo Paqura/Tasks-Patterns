@@ -1,0 +1,18 @@
+@import "./media";
+
+@mixin subcard-paddings {
+    padding: 32px;
+
+    @include media_breakpoint_mobile {
+        padding: 20px;
+    }
+}
+
+
+@mixin subsection-above-offset {
+    margin-top: 60px;
+
+    @include media_breakpoint_mobile {
+        margin-top: 32px;
+    }
+}

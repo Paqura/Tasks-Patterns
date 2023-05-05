@@ -3,6 +3,7 @@ import React from 'react'
 
 import { TTextType } from '@/components/ui/typography/types'
 import { useTypographyTheme } from '@/components/ui/typography/TypographyTheme'
+import { sanitizeText } from '@/utils/sanitaze'
 
 import styles from './index.module.scss'
 
@@ -19,5 +20,17 @@ export const Text = (props: TTextProps) => {
     const classNames = cn(className, styles.base, styles[`type_${type}`], {
         [styles[`theme_${theme}__type_${type}`]]: !!theme,
     })
-    return <p className={classNames}>{children}</p>
+
+    const sanitazedContent = React.Children.map(children, (child) => {
+        const isStringContent = typeof child === 'string'
+
+        if (isStringContent) {
+            return React.createElement('span', {
+                dangerouslySetInnerHTML: { __html: sanitizeText(child) },
+            })
+        }
+        return child
+    })
+
+    return <p className={classNames}>{sanitazedContent}</p>
 }
