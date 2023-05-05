@@ -1,18 +1,12 @@
 @import "../../../../styles/media.scss";
 @import "../../../../styles/offsets.scss";
 
-.advantagesList {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+.productsList {
+    display: flex;
+    overflow-x: scroll;
     gap: 20px;
 
     @include subsection-above-offset;
-
-
-    @include media_breakpoint_small_desktop {
-        display: flex;
-        overflow-x: scroll;
-    }
 }
 
 .welcomeToContact {

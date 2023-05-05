@@ -21,15 +21,11 @@
 }
 
 .title {
-    margin-top: 32px;
-
-    @include media_breakpoint_mobile {
-        margin-top: 20px;
-    }
+    margin-top: 12px;
 }
 
 .description {
-    margin-top: 20px;
+    margin-top: 12px;
 }
 
 .icon {

@@ -1,6 +1,7 @@
 // Временная страница для тестирования отдельных компонентов
 
 import { PageLayout } from '@/components/PageLayout'
+import { Link } from '@/components/ui/Link'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
@@ -35,11 +36,24 @@ export default function Components() {
                 <Text type="postscript">Text type postscript</Text>
                 <Text type="quote">Text type quote</Text>
             </PageSectionCard>
-            <div style={{ padding: '20px 0', background: 'black' }}>
-                <PageSectionCard onDark mode={'dark'}>
-                    <Heading level={1}>Dark card on dark background</Heading>
-                </PageSectionCard>
-            </div>
+            <PageSectionCard>
+                <Link href="#" type="m">
+                    Link size M
+                </Link>
+                <br />
+                <Link href="#" type="s">
+                    Link size S
+                </Link>
+            </PageSectionCard>
+            <PageSectionCard mode="dark">
+                <Link href="#" type="m">
+                    Link size M
+                </Link>
+                <br />
+                <Link href="#" type="s">
+                    Link size S
+                </Link>
+            </PageSectionCard>
         </PageLayout>
     )
 }

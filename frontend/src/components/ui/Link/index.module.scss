@@ -1,0 +1,37 @@
+.link {
+    font-family: "Biform", sans-serif;
+    font-size: 16px;
+    line-height: 1.6em;
+    text-transform: uppercase;
+}
+
+.theme {
+    &_light {
+        color: var(--color-gray-6x);
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: var(--color-black-ui);
+            }
+        }
+    }
+
+    &_dark {
+        color: var(--color-gray-4x);
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: var(--color-white);
+            }
+        }
+    }
+}
+
+.type {
+    &_m {
+        font-size: 16px;
+    }
+    &_s {
+        font-size: 14px;
+    }
+}
