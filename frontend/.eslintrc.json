@@ -90,10 +90,6 @@
                         "position": "before"
                     },
                     {
-                        "pattern": "~public/**",
-                        "group": "parent"
-                    },
-                    {
                         "pattern": "@/**",
                         "group": "parent"
                     },

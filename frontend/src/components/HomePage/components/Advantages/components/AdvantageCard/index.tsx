@@ -3,13 +3,14 @@ import React from 'react'
 
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
-import SolutionsIcon from '~public/images/advantages/comprehensive-solutions.svg'
-import CustomerServiceIcon from '~public/images/advantages/customer-service.svg'
-import TechologyIcon from '~public/images/advantages/cutting-edge-technology.svg'
-import ExpertiseIcon from '~public/images/advantages/expertise.svg'
-import TrackRecordIcon from '~public/images/advantages/proven-track-record.svg'
 
 import styles from './index.module.scss'
+
+import solutionsIcon from 'public/images/advantages/comprehensive-solutions.svg'
+import customerServiceIcon from 'public/images/advantages/customer-service.svg'
+import techologyIcon from 'public/images/advantages/cutting-edge-technology.svg'
+import expertiseIcon from 'public/images/advantages/expertise.svg'
+import trackRecordIcon from 'public/images/advantages/proven-track-record.svg'
 
 type TCardType = 'expertise' | 'customer-service' | 'track-record' | 'techology' | 'solutions'
 
@@ -21,11 +22,11 @@ type TProps = {
 
 export const AdvantageCard: React.FC<TProps> = ({ type, title, description }) => {
     const iconsByType: { [key in TCardType]: string } = {
-        expertise: ExpertiseIcon,
-        'customer-service': CustomerServiceIcon,
-        'track-record': TrackRecordIcon,
-        techology: TechologyIcon,
-        solutions: SolutionsIcon,
+        expertise: expertiseIcon,
+        'customer-service': customerServiceIcon,
+        'track-record': trackRecordIcon,
+        techology: techologyIcon,
+        solutions: solutionsIcon,
     }
 
     const Icon = iconsByType[type]

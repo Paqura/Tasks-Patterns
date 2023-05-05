@@ -16,7 +16,7 @@ type TProps = {
 export const PageSectionCard: React.FC<React.PropsWithChildren<TProps>> = ({
     children,
     mode = 'light',
-    onDark,
+    onDark = true,
 }) => {
     return (
         <PageSection

@@ -12,6 +12,7 @@
     }
 
     @include media_breakpoint_mobile {
+        padding: 20px;
         width: 244px;
         min-width: 244px;
     }

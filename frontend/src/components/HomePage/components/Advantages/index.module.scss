@@ -15,3 +15,11 @@
         margin-top: 32px;
     }
 }
+
+.welcomeToContact {
+    margin-top: 60px;
+
+    @include media_breakpoint_mobile {
+        margin-top: 32px;
+    }
+}

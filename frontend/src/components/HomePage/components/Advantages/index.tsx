@@ -4,6 +4,7 @@ import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
 
 import { AdvantageCard } from './components/AdvantageCard'
+import { WelcomeToContact } from './components/WelcomeToContact'
 import styles from './index.module.scss'
 
 const title = 'Why Positive Technologies?'
@@ -41,7 +42,9 @@ export const Advantages: React.FC<{}> = () => {
                     type="solutions"
                 />
             </div>
-            
+            <div className={styles.welcomeToContact}>
+                <WelcomeToContact />
+            </div>
         </PageSectionCard>
     )
 }

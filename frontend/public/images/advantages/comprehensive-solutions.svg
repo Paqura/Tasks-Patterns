@@ -3,11 +3,11 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M32.8569 57.5977C30.4382 57.3961 27.9473 56.7679 25.514 55.6718C18.63 52.571 14.2188 46.6119 13.5971 40.6621L12.6025 40.766C13.2668 47.123 17.9467 53.36 25.1033 56.5836C27.6536 57.7324 30.2875 58.3918 32.8569 58.5956V57.5977Z" fill="white" fill-opacity="0.4"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M63.5009 65.8522C63.7101 67.0015 63.8345 68.192 63.8653 69.4142C64.0768 77.8156 59.7727 84.9795 53.7304 87.5855L54.1265 88.5038C60.6167 85.7045 65.0846 78.1128 64.865 69.3891C64.8287 67.9453 64.6651 66.538 64.3873 65.1836C64.1082 65.4262 63.812 65.6497 63.5009 65.8522Z" fill="white" fill-opacity="0.4"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M56.5448 28.2742C63.0328 22.6309 71.5308 21.4581 77.4086 24.7232L77.8942 23.8491C71.5729 20.3375 62.6234 21.6617 55.8885 27.5196C54.05 29.1187 52.5222 30.9308 51.3259 32.8576H52.5081C53.5943 31.2181 54.9426 29.6677 56.5448 28.2742Z" fill="white" fill-opacity="0.4"/>
-<rect x="37.1415" y="85.5762" width="14.2857" height="14.2857" rx="4" transform="rotate(-15 37.1415 85.5762)" fill="#1B1B1B"/>
+<rect x="37.1415" y="85.5762" width="14.2857" height="14.2857" rx="4" transform="rotate(-15 37.1415 85.5762)" fill="#282828"/>
 <rect x="37.7539" y="85.9297" width="13.2857" height="13.2857" rx="3.5" transform="rotate(-15 37.7539 85.9297)" stroke="white" stroke-opacity="0.4"/>
-<rect x="18.9453" y="40.8115" width="14.2857" height="14.2857" rx="4" transform="rotate(-165 18.9453 40.8115)" fill="#1B1B1B"/>
+<rect x="18.9453" y="40.8115" width="14.2857" height="14.2857" rx="4" transform="rotate(-165 18.9453 40.8115)" fill="#282828"/>
 <rect x="18.5918" y="40.1992" width="13.2857" height="13.2857" rx="3.5" transform="rotate(-165 18.5918 40.1992)" stroke="white" stroke-opacity="0.4"/>
-<rect x="81.5262" y="19.625" width="14.2857" height="14.2857" rx="4" transform="rotate(30 81.5262 19.625)" fill="#1B1B1B"/>
+<rect x="81.5262" y="19.625" width="14.2857" height="14.2857" rx="4" transform="rotate(30 81.5262 19.625)" fill="#282828"/>
 <rect x="81.7093" y="20.308" width="13.2857" height="13.2857" rx="3.5" transform="rotate(30 81.7093 20.308)" stroke="white" stroke-opacity="0.4"/>
-<rect x="37.6429" y="37.6426" width="24.7143" height="24.7143" rx="7.5" fill="#1B1B1B" stroke="#FC3E24"/>
+<rect x="37.6429" y="37.6426" width="24.7143" height="24.7143" rx="7.5" fill="#282828" stroke="#FC3E24"/>
 </svg>
