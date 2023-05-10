@@ -32,11 +32,9 @@ export const Clients: React.FC<TProps> = ({ clients }) => {
             </div>
             <div className={styles.listColumn}>
                 <div className={styles.list}>
-                    {[...clients, ...clients, ...clients, ...clients, ...clients].map(
-                        (client, index) => (
-                            <ClientCard key={index + '1'} logo={client.logo} name={client.name} />
-                        )
-                    )}
+                    {clients.map((client, index) => (
+                        <ClientCard key={index + '1'} logo={client.logo} name={client.name} />
+                    ))}
                 </div>
             </div>
         </div>
