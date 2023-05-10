@@ -1,4 +1,4 @@
-import { Response } from '@admin/general-schemas'
+import { Response, ResponseCollection } from '@admin/general-schemas'
 import axios from 'axios'
 import { stringify } from 'qs'
 
@@ -28,4 +28,11 @@ export const adminClient = getClient()
 export const fetchConfig = async () => {
     const response = await adminClient.get<Response<'api::config.config'>>(`/api/config`)
     return response.data.data?.attributes
+}
+
+export const fetchProducts = async () => {
+    const response = await adminClient.get<ResponseCollection<'api::product.product'>>(
+        `/api/products`
+    )
+    return response.data.data?.map((item) => item.attributes)
 }

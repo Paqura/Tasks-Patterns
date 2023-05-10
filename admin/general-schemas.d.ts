@@ -1,4 +1,5 @@
 import {
+  AllowedMediaTypes,
   Attribute,
   ComponentAttribute,
   DynamicZoneAttribute,
@@ -44,12 +45,26 @@ type ContentAPIComponentValue<T extends Attribute> = T extends ComponentAttribut
   ? WithID & (R extends true ? GetAttributesValues<U>[] : GetAttributesValues<U>)
   : never;
 
+type Media = {
+  name: string,
+  width: number,
+  height: number,
+  size: number,
+  url: string
+};
+
+type MediaDataWrapper = {
+  attributes: Media
+};
+
 // Custom GetMediaAttributeValue implementation for the content api
-type ContentAPIMediaValue<T extends Attribute> = T extends MediaAttribute<infer R>
+type ContentAPIMediaValue<T extends Attribute> = T extends MediaAttribute<unknown, infer R>
   ? R extends true
-    ? DataWrapper
-    : DataWrapper[]
+    ? { data: MediaDataWrapper[] }
+    : { data: MediaDataWrapper }
   : never;
+
+
 
 // Custom GetDynamicZoneAttributeValue implementation for the content api
 type ContentAPIDynamicZoneValue<T extends Attribute> = T extends DynamicZoneAttribute<infer C>
@@ -88,6 +103,8 @@ type GetAllowedAttributesKey<T extends utils.SchemaUID> = GetAttributes<T> exten
   ? keyof Omit<A, utils.KeysBy<A, PrivateAttribute | PasswordAttribute>>
   : never;
 
+export type MediaAttributeContent<T extends AllowedMediaTypes, M extends boolean> = ContentAPIMediaValue<MediaAttribute<T, M>>;
+
 // Custom GetAttributesValues implementation which includes specific
 // content API logic (sanitation, custom value resolvers, etc...)
 export type GetAttributesValues<T extends utils.SchemaUID> = {
@@ -118,3 +135,4 @@ export interface CollectionMetadata {
     total: number;
   };
 }
+

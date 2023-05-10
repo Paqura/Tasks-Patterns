@@ -14,13 +14,14 @@ import {
   BooleanAttribute,
   EnumerationAttribute,
   BigIntegerAttribute,
-  SingleTypeSchema,
-  ComponentAttribute,
   IntegerAttribute,
   DecimalAttribute,
   SetMinMax,
-  ComponentSchema,
+  SingleTypeSchema,
+  ComponentAttribute,
   TextAttribute,
+  MediaAttribute,
+  ComponentSchema,
 } from '@strapi/strapi';
 
 export interface AdminPermission extends CollectionTypeSchema {
@@ -375,36 +376,6 @@ export interface AdminTransferTokenPermission extends CollectionTypeSchema {
   };
 }
 
-export interface ApiConfigConfig extends SingleTypeSchema {
-  info: {
-    singularName: 'config';
-    pluralName: 'configs';
-    displayName: 'Config';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    seo: ComponentAttribute<'share.seo'> & RequiredAttribute;
-    createdAt: DateTimeAttribute;
-    updatedAt: DateTimeAttribute;
-    publishedAt: DateTimeAttribute;
-    createdBy: RelationAttribute<
-      'api::config.config',
-      'oneToOne',
-      'admin::user'
-    > &
-      PrivateAttribute;
-    updatedBy: RelationAttribute<
-      'api::config.config',
-      'oneToOne',
-      'admin::user'
-    > &
-      PrivateAttribute;
-  };
-}
-
 export interface PluginUploadFile extends CollectionTypeSchema {
   info: {
     singularName: 'file';
@@ -713,6 +684,68 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   };
 }
 
+export interface ApiConfigConfig extends SingleTypeSchema {
+  info: {
+    singularName: 'config';
+    pluralName: 'configs';
+    displayName: 'Config';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    seo: ComponentAttribute<'share.seo'> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::config.config',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::config.config',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiProductProduct extends CollectionTypeSchema {
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'Products';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    subtitle: TextAttribute;
+    icon: MediaAttribute & RequiredAttribute;
+    link: StringAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ShareSeo extends ComponentSchema {
   info: {
     displayName: 'Seo';
@@ -734,13 +767,14 @@ declare global {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::config.config': ApiConfigConfig;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::config.config': ApiConfigConfig;
+      'api::product.product': ApiProductProduct;
       'share.seo': ShareSeo;
     }
   }

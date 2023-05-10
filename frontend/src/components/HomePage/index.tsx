@@ -1,12 +1,12 @@
 import { PageLayout, TSeo } from '@/components/PageLayout'
 
 import { Advantages } from './components/Advantages'
-import { Products } from './components/Products'
+import { Products, TProductsBlockData } from './components/Products'
 import { Tools } from './components/Tools'
 
 export type THomePageProps = {
     seo: TSeo
-}
+} & TProductsBlockData
 
 export const HomePage: React.FC<THomePageProps> = (props) => {
     return (
@@ -14,7 +14,7 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
             <h1>The Main page</h1>
             <Advantages />
             <Tools />
-            <Products />
+            <Products products={props.products} />
         </PageLayout>
     )
 }
