@@ -33,6 +33,8 @@ COPY --from=build /opt/app ./
 
 EXPOSE 1337
 
+RUN mkdir -p /opt/app/public/uploads && chown -R node:node /opt/app/public
+
 USER node
 
 CMD ["strapi", "start"]
