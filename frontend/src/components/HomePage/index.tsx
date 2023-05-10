@@ -14,7 +14,7 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
             <h1>The Main page</h1>
             <Advantages />
             <Tools />
-            <Products products={props.products} />
+            <Products products={props.products} clients={props.clients} />
         </PageLayout>
     )
 }
