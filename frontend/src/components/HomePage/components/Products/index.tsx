@@ -3,11 +3,12 @@ import React from 'react'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
 
-import { Clients } from './components/Clients'
+import { Clients, TClient } from './components/Clients'
 import { ProductCard } from './components/ProductCard'
 import styles from './index.module.scss'
 
 import solutionsIcon from 'public/images/advantages/comprehensive-solutions.svg'
+import lukouilIcon from 'public/images/lukoil.svg'
 
 const title = 'Our Products'
 const description = `At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.`
@@ -71,6 +72,29 @@ const products: TProductData[] = [
     },
 ]
 
+const clients: TClient[] = [
+    {
+        name: 'Lukoil',
+        logo: lukouilIcon,
+    },
+    {
+        name: 'ING Bank',
+        logo: lukouilIcon,
+    },
+    {
+        name: 'SAMSUNG',
+        logo: lukouilIcon,
+    },
+    {
+        name: 'Kaspersky Lab',
+        logo: lukouilIcon,
+    },
+    {
+        name: 'ABBYY',
+        logo: lukouilIcon,
+    },
+]
+
 export const Products: React.FC<{}> = () => {
     return (
         <PageSectionCard mode="dark">
@@ -88,7 +112,7 @@ export const Products: React.FC<{}> = () => {
                 ))}
             </div>
             <div className={styles.clients}>
-                <Clients />
+                <Clients clients={clients} />
             </div>
         </PageSectionCard>
     )

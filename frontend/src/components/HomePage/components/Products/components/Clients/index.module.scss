@@ -10,12 +10,22 @@
     }
 }
 
-.textContent {
-    grid-column: 1 / span 4;
+.textColumn {
+    grid-column: 1 / span 3;
+}
+
+.listColumn {
+    grid-column: 4 / span 12;
 }
 
 .list {
-    grid-column: 5 / span 12;
+    display: grid;
+    overflow-x: auto;
+    width: max-content;
+    max-width: 100%;
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: column;
+    gap: 20px;
 }
 
 .title {
@@ -30,13 +40,8 @@
     }
 }
 
-.accentText {
-    color: var(--color-primary);
-}
-
 .description {
     margin-top: 24px;
-   
 
     @include media_breakpoint_small_desktop {
         max-width: 470px;
@@ -44,21 +49,5 @@
 
     @include media_breakpoint_mobile {
         margin-top: 16px;
-    }
-}
-
-.background {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("/images/advantages/contact-background.svg");
-    background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: bottom;
-
-    @include media_breakpoint_mobile {
-        background-image: url("/images/advantages/contact-background-mobile.svg");
     }
 }

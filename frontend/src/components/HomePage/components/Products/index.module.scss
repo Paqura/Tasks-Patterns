@@ -3,7 +3,7 @@
 
 .productsList {
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
     gap: 20px;
 
     @include subsection-above-offset;
