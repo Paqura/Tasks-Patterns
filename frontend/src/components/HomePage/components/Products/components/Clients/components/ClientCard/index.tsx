@@ -2,11 +2,12 @@ import Image from 'next/image'
 import React from 'react'
 
 import { Text } from '@/components/ui/typography/Text'
+import { TImage } from '@/types'
 
 import styles from './index.module.scss'
 
 type TProps = {
-    logo: string
+    logo: TImage
     name: string
 }
 
@@ -15,7 +16,7 @@ export const ClientCard: React.FC<TProps> = ({ name, logo }) => {
         <div className={styles.card}>
             <Text type="postscript">{name}</Text>
             <div className={styles.logo}>
-                <Image src={logo} alt="" />
+                <Image src={logo.src} alt="" width={logo.width} height={logo.height} />
             </div>
         </div>
     )

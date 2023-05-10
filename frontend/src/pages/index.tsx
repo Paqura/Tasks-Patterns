@@ -3,21 +3,25 @@ import { GetServerSideProps } from 'next'
 
 import { HomePage } from '@/components/HomePage'
 import { TProductsBlockData } from '@/components/HomePage/components/Products'
-import { fetchConfig, fetchProducts } from '@/utils/adminApi'
+import { fetchClients, fetchConfig, fetchProducts } from '@/utils/adminApi'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
     products?: GetAttributesValues<'api::product.product'>[]
+    clients?: GetAttributesValues<'api::client.client'>[]
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
     const config = await fetchConfig()
     const products = await fetchProducts()
+    const clients = await fetchClients()
+
     return {
         props: {
             config,
             products,
+            clients,
         },
     }
 }
@@ -33,5 +37,11 @@ export default function Home(props: TProps) {
             href: product.link || '/',
         })) || []
 
-    return <HomePage seo={props.config?.seo || {}} products={products} />
+    const clients: TProductsBlockData['clients'] =
+        props.clients?.map((product) => ({
+            name: product.name || '',
+            logo: mapImageMediaFile(product.logo),
+        })) || []
+
+    return <HomePage seo={props.config?.seo || {}} products={products} clients={clients} />
 }

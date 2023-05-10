@@ -17,10 +17,10 @@ import {
   IntegerAttribute,
   DecimalAttribute,
   SetMinMax,
+  MediaAttribute,
   SingleTypeSchema,
   ComponentAttribute,
   TextAttribute,
-  MediaAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
 
@@ -684,6 +684,36 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   };
 }
 
+export interface ApiClientClient extends CollectionTypeSchema {
+  info: {
+    singularName: 'client';
+    pluralName: 'clients';
+    displayName: 'Clients';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: StringAttribute & RequiredAttribute;
+    logo: MediaAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::client.client',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::client.client',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiConfigConfig extends SingleTypeSchema {
   info: {
     singularName: 'config';
@@ -773,6 +803,7 @@ declare global {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::client.client': ApiClientClient;
       'api::config.config': ApiConfigConfig;
       'api::product.product': ApiProductProduct;
       'share.seo': ShareSeo;
