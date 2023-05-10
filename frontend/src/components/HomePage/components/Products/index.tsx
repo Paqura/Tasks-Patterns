@@ -16,6 +16,7 @@ type TProductData = {
     title: string
     description: string
     icon: string
+    href: string
 }
 
 const products: TProductData[] = [
@@ -23,42 +24,50 @@ const products: TProductData[] = [
         title: 'MaxPatrol SIEM',
         description: 'Real-time detection of IS incidents',
         icon: solutionsIcon,
+        href: '',
     },
     {
         title: 'MaxPatrol VM',
         description: 'A new generation system for vulnerability management',
         icon: solutionsIcon,
+        href: '',
     },
     {
         title: 'PT Sandbox',
         description: 'The first sandbox that protects exactly your infrastructure',
         icon: solutionsIcon,
+        href: '',
     },
     {
         title: 'PT ISIM',
         description: 'Management of cyber security incidents of the APCS',
         icon: solutionsIcon,
+        href: '',
     },
     {
         title: 'PT BlackBox',
         description: 'Dynamic application analyser',
         icon: solutionsIcon,
+        href: '',
     },
     {
         title: 'XSpider',
         description: 'Vulnerability scanner',
         icon: solutionsIcon,
+        href: '',
     },
 
     {
         title: 'PT Application Inspector',
         description: 'Application security analyser',
         icon: solutionsIcon,
+        href: '',
     },
     {
         title: 'PT Network Attack Discovery',
         description: 'Traffic Analysis System (NTA) for attack detection',
         icon: solutionsIcon,
+        href: '',
     },
 ]
 
@@ -74,10 +83,11 @@ export const Products: React.FC<{}> = () => {
                         title={product.title}
                         description={product.description}
                         icon={product.icon}
+                        href={product.href}
                     />
                 ))}
             </div>
-            <div className={styles.welcomeToContact}>
+            <div className={styles.clients}>
                 <Clients />
             </div>
         </PageSectionCard>

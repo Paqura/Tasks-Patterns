@@ -1,3 +1,5 @@
+@import "./media.scss";
+
 :root {
     --color-red-ui: #fc3e24;
     --color-green-ui: #34c759;
@@ -6,7 +8,7 @@
     --color-light-gray-ui: #f3f4f5;
     --color-black-ui: #1b1b1b;
     --color-gray-8x: #282828;
-    --color-gray-7x: #4E4E4E;
+    --color-gray-7x: #4e4e4e;
     --color-gray-6x: #808080;
     --color-gray-4x: #b3b3b3;
     --color-gray-2x: #eeeeee;
@@ -14,4 +16,27 @@
 
     --color-primary: var(--color-red-ui);
     --color-border: var(--color-gray-7x);
+
+    --section-card-padding-left: 120px;
+    --section-card-padding-right: 120px;
+    --section-card-padding-top: 80px;
+    --section-card-padding-bottom: 80px;
+}
+
+@include media_breakpoint_normal_desktop {
+    :root {
+        --section-card-padding-left: 40px;
+        --section-card-padding-right: 40px;
+        --section-card-padding-top: 60px;
+        --section-card-padding-bottom: 60px;
+    }
+}
+
+@include media_breakpoint_mobile {
+    :root {
+        --section-card-padding-left: 16px;
+        --section-card-padding-right: 16px;
+        --section-card-padding-top: 20px;
+        --section-card-padding-bottom: 32px;
+    }
 }

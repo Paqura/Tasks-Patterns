@@ -14,7 +14,7 @@ type TProps = {
     icon: string
 }
 
-export const ProductCard: React.FC<TProps> = ({ icon, title, description, href }) => {
+export const ProductCard: React.FC<TProps> = ({ icon, title, description }) => {
     return (
         <div className={styles.card}>
             <div className={styles.content}>
@@ -29,8 +29,8 @@ export const ProductCard: React.FC<TProps> = ({ icon, title, description, href }
                 </Text>
             </div>
 
-            <Link href={href} type="m" className={styles.link}>
-                <span className={styles.linkText}>Read more</span>
+            <Link href="#" type="m" className={styles.link}>
+                Read more
             </Link>
         </div>
     )

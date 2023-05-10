@@ -11,5 +11,7 @@
     @include media_breakpoint_small_desktop {
         display: flex;
         overflow-x: scroll;
+
+        @include include-section-card-horizontal-paddings;
     }
 }

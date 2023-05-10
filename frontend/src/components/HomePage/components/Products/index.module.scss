@@ -7,8 +7,9 @@
     gap: 20px;
 
     @include subsection-above-offset;
+    @include include-section-card-horizontal-paddings
 }
 
-.welcomeToContact {
+.clients {
     @include subsection-above-offset;
 }

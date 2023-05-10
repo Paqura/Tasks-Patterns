@@ -1,17 +1,12 @@
 @import "../../../styles/media.scss";
+@import "../../../styles/offsets.scss";
 
 .sectionCard {
     padding: 80px 120px;
     box-sizing: border-box;
     border-radius: 12px;
 
-    @include media_breakpoint_normal_desktop {
-        padding: 60px 40px;
-    }
-
-    @include media_breakpoint_mobile {
-        padding: 20px 16px 32px;
-    }
+    @include section-card-paddings;
 }
 
 .sectionCard_mode_light {

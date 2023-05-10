@@ -1,15 +1,21 @@
 @import "../../../../../../styles/media.scss";
 
-.wrapper {
-    --padding: 32px;
-    position: relative;
-    padding: var(--padding);
-    background-color: var(--color-black-ui);
-    border-radius: 12px;
+.clients {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 40px;
 
     @include media_breakpoint_mobile {
-        --padding: 20px;
+        display: block;
     }
+}
+
+.textContent {
+    grid-column: 1 / span 4;
+}
+
+.list {
+    grid-column: 5 / span 12;
 }
 
 .title {
@@ -29,16 +35,15 @@
 }
 
 .description {
-    margin-top: 16px;
-    margin-bottom: 86px; /* Временный маржин, пока не добавили кнопку */
-    max-width: 564px;
+    margin-top: 24px;
+   
 
     @include media_breakpoint_small_desktop {
         max-width: 470px;
     }
 
     @include media_breakpoint_mobile {
-        max-width: 100%;
+        margin-top: 16px;
     }
 }
 
@@ -48,13 +53,12 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/images/advantages/contact-background.svg');
+    background-image: url("/images/advantages/contact-background.svg");
     background-repeat: no-repeat;
     background-position-x: right;
     background-position-y: bottom;
-    
+
     @include media_breakpoint_mobile {
-        background-image: url('/images/advantages/contact-background-mobile.svg');
+        background-image: url("/images/advantages/contact-background-mobile.svg");
     }
-    
 }

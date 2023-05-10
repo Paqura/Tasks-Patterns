@@ -1,5 +1,35 @@
 @import "./media";
 
+@mixin section-card-padding-top {
+    padding-top: var(--section-card-padding-top);
+}
+
+@mixin section-card-padding-right {
+    padding-right: var(--section-card-padding-right);
+}
+
+@mixin section-card-padding-left {
+    padding-left: var(--section-card-padding-left);
+}
+
+@mixin section-card-padding-bottom {
+    padding-bottom: var(--section-card-padding-bottom);
+}
+
+@mixin section-card-paddings {
+    @include section-card-padding-top;
+    @include section-card-padding-right;
+    @include section-card-padding-left;
+    @include section-card-padding-bottom;
+}
+
+@mixin include-section-card-horizontal-paddings {
+    margin-right: calc(var(--section-card-padding-right) * -1);
+    margin-left: calc(var(--section-card-padding-left) * -1);
+    padding-right: var(--section-card-padding-right);
+    padding-left: var(--section-card-padding-left);
+}
+
 @mixin subcard-paddings {
     padding: 32px;
 
@@ -7,7 +37,6 @@
         padding: 20px;
     }
 }
-
 
 @mixin subsection-above-offset {
     margin-top: 60px;
