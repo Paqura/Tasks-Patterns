@@ -24,6 +24,7 @@ COPY frontend/package.json frontend/yarn.lock ./
 RUN yarn install --frozen-lockfile --production && yarn cache clean
 
 COPY --from=build /app/frontend/.next .next
+COPY --from=build /app/frontend/public ./public
 
 USER node
 
