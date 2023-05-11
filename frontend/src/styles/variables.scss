@@ -1,6 +1,7 @@
-@import "./media.scss";
+@import "./media";
 
 :root {
+    /* Colors */
     --color-red-ui: #fc3e24;
     --color-green-ui: #34c759;
     --color-gray-ui: #d7dbe1;
@@ -13,10 +14,10 @@
     --color-gray-4x: #b3b3b3;
     --color-gray-2x: #eeeeee;
     --color-white: #ffffff;
-
     --color-primary: var(--color-red-ui);
     --color-border: var(--color-gray-7x);
 
+    /* Gaps */
     --section-card-padding-left: 120px;
     --section-card-padding-right: 120px;
     --section-card-padding-top: 80px;
@@ -25,6 +26,10 @@
     --footer-padding-top: 180px;
     --footer-padding-bottom: 150px;
     --footer-padding-horizontal: 360px;
+
+    --header-padding-horizontal: 60px;
+    --header-padding-vertical: 12px;
+    --header-height: 60px;
 }
 
 @include media_breakpoint_normal_desktop {
@@ -42,6 +47,7 @@
 
 @include media_breakpoint_small_desktop {
     :root {
+        --header-padding-horizontal: 20px;
         --footer-padding-top: 80px;
         --footer-padding-bottom: var(--footer-padding-top);
     }
@@ -53,6 +59,7 @@
         --section-card-padding-right: 16px;
         --section-card-padding-top: 20px;
         --section-card-padding-bottom: 32px;
+        --header-height: 56px;
 
         --footer-padding-top: 80px;
         --footer-padding-horizontal: 20px;

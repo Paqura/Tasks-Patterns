@@ -1,0 +1,33 @@
+.nav_item {
+  position: relative;
+  padding: 20px 0;
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-gray-ui);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon {
+  transition: transform .3s ease-in-out;
+}
+
+.nav_item_open {
+  border-bottom: 0;
+
+  .icon {
+    transform: rotate(180deg);
+  }
+}
+
+.wrapper_open {
+  margin-right: -20px;
+  margin-left: -20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 32px;
+  background-color: var(--color-light-gray-ui);
+}

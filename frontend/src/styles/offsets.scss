@@ -46,6 +46,16 @@
     }
 }
 
+@mixin header-padding-horizontal {
+    padding-right: var(--header-padding-horizontal);
+    padding-left: var(--header-padding-horizontal);
+}
+
+@mixin header-padding-vertical {
+    padding-top: var(--header-padding-vertical);
+    padding-bottom: var(--header-padding-vertical);
+}
+
 @mixin footer-paddings {
     padding: var(--footer-padding-top) var(--footer-padding-horizontal) var(--footer-padding-bottom);
 }

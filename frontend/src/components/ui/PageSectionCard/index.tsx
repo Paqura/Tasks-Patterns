@@ -11,15 +11,18 @@ type TCardMode = 'light' | 'dark'
 type TProps = {
     mode?: TCardMode
     onDark?: boolean
+    sectionId?: string
 }
 
 export const PageSectionCard: React.FC<React.PropsWithChildren<TProps>> = ({
     children,
     mode = 'light',
     onDark = true,
+    sectionId,
 }) => {
     return (
         <PageSection
+            sectionId={sectionId}
             className={cn(styles.sectionCard, styles[`sectionCard_mode_${mode}`], {
                 [styles[`sectionCard_on-dark`]]: onDark,
             })}

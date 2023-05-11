@@ -1,0 +1,31 @@
+@import "../../../../styles/media";
+
+.nav_item {
+  position: relative;
+  padding: 20px 12px;
+  display: block;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    visibility: hidden;
+    height: 2px;
+    content: '';
+    background-color: var(--color-primary);
+  }
+
+  &:hover {
+    background-color: var(--color-light-gray-ui);
+  }
+}
+
+.nav_item_active {
+  background-color: var(--color-light-gray-ui);
+
+  &::before {
+    visibility: visible;
+  }
+}

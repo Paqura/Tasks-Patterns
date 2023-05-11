@@ -27,7 +27,7 @@ type TProps = TProductsBlockData
 
 export const Products: React.FC<TProps> = ({ products, clients }) => {
     return (
-        <PageSectionCard mode="dark">
+        <PageSectionCard mode="dark" sectionId="products">
             <PageSectionCardHeader title={title} description={description} />
 
             <div className={styles.productsList}>

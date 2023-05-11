@@ -1,0 +1,26 @@
+@import "../../../styles/media";
+
+.button {
+  display: block;
+  width: max-content;
+  font-family: 'TT Positive', sans-serif;
+  text-transform: uppercase;
+  background-color: transparent;
+  border-radius: 4px;
+
+  &__size {
+    &_s {
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6em;
+      border: 1px solid var(--color-gray-2x);
+
+      @include media_hover {
+        color: var(--color-white);
+        background-color: var(--color-black-ui);
+        border-color: var(--color-gray-8x);
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.list {
+  margin-top: 12px;
+  padding: 20px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-ui);
+  border-radius: 12px;
+}
+
+.list_item {
+  display: block;
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+}
+
+.description {
+  margin-top: 8px;
+  color: var(--color-gray-6x);
+}

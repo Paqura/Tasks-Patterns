@@ -3,8 +3,6 @@
 }
 
 .type {
-    
-
     &_pL {
         font-size: 18px;
         font-weight: 400;
@@ -41,6 +39,13 @@
         font-weight: 400;
         font-style: italic;
         line-height: 1.6em;
+    }
+
+    &_headerHeading {
+        font-family: Biform, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.4em;
     }
 }
 
