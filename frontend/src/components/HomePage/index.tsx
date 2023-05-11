@@ -2,12 +2,16 @@ import { AnchorBar } from '@/components/AnchorBar'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 
 import { Advantages } from './components/Advantages'
+import { Analytics, TAnalyticsBlockData } from './components/Analytics'
 import { Products, TProductsBlockData } from './components/Products'
 import { Tools } from './components/Tools'
 
-export type THomePageProps = {
+export type THomePageData = {
     seo: TSeo
-} & TProductsBlockData
+} & TProductsBlockData &
+    TAnalyticsBlockData
+
+export type THomePageProps = THomePageData
 
 const anchors = [
     {
@@ -44,6 +48,7 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
             <Advantages />
             <Tools />
             <Products products={props.products} clients={props.clients} />
+            <Analytics articles={props.articles} />
         </PageLayout>
     )
 }

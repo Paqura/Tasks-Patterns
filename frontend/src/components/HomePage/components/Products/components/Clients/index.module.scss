@@ -1,29 +1,12 @@
 @import "../../../../../../styles/media.scss";
-
-.clients {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: 40px;
-
-    @include media_breakpoint_mobile {
-        display: block;
-    }
-}
+@import "../../../../../../styles/offsets.scss";
 
 .textColumn {
     grid-column: 1 / span 3;
-
-    @include media_breakpoint_small_desktop {
-        grid-column: 1 / span 4;
-    }
 }
 
 .listColumn {
     grid-column: 4 / span 9;
-
-    @include media_breakpoint_small_desktop {
-        grid-column: 5 / span 8;
-    }
 }
 
 .list {
@@ -34,6 +17,14 @@
     grid-template-rows: 1fr 1fr;
     grid-auto-flow: column;
     gap: 20px;
+
+    @include media_breakpoint_small_desktop {
+        max-width: 470px;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-top: 32px;
+    }
 }
 
 .title {
@@ -57,5 +48,6 @@
 
     @include media_breakpoint_mobile {
         margin-top: 16px;
+        max-width: 100%;
     }
 }

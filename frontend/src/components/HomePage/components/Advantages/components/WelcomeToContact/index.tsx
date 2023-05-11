@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Button } from '@/components/ui/Button'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { sanitizeText } from '@/utils/sanitaze'
@@ -24,6 +25,7 @@ export const WelcomeToContact: React.FC = () => {
             <Text type="pM" className={styles.description}>
                 {descriptionText}
             </Text>
+            <Button link="#contact">Contact us</Button>
             <div className={styles.background} />
         </div>
     )

@@ -1,0 +1,26 @@
+@import "../../../../styles/media.scss";
+@import "../../../../styles/offsets.scss";
+
+.block {
+    overflow: hidden;
+}
+
+.articlesList {
+    position: relative;
+
+    @include subsection-above-offset;
+}
+
+.statisticsList {
+    @include subsection-above-offset;
+}
+
+.background {
+    position: absolute;
+    top: -80px;
+    left: -60px;
+
+    @include media_breakpoint_small_desktop {
+        display: none;
+    }
+}

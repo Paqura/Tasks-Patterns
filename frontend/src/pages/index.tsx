@@ -1,8 +1,7 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
-import { HomePage } from '@/components/HomePage'
-import { TProductsBlockData } from '@/components/HomePage/components/Products'
+import { HomePage, THomePageData } from '@/components/HomePage'
 import { fetchClients, fetchConfig, fetchProducts } from '@/utils/adminApi'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
@@ -29,7 +28,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
 type TProps = TServerSideProps
 
 export default function Home(props: TProps) {
-    const products: TProductsBlockData['products'] =
+    const products: THomePageData['products'] =
         props.products?.map((product) => ({
             title: product.title || '',
             description: product.subtitle,
@@ -37,11 +36,39 @@ export default function Home(props: TProps) {
             href: product.link || '/',
         })) || []
 
-    const clients: TProductsBlockData['clients'] =
+    const clients: THomePageData['clients'] =
         props.clients?.map((product) => ({
             name: product.name || '',
             logo: mapImageMediaFile(product.logo),
         })) || []
 
-    return <HomePage seo={props.config?.seo || {}} products={products} clients={clients} />
+    const articles: THomePageData['articles'] = [
+        {
+            title: 'Positive Technologies&rsquo; research addresses vulnerabilities in&nbsp;Nokia NetAct for cellular operators',
+            tag: 'WEB APPLICATIONS',
+            date: new Date(),
+            href: 'some-article-url',
+        },
+        {
+            title: 'Positive Technologies&rsquo; research addresses vulnerabilities in&nbsp;Nokia NetAct for cellular operators',
+            tag: 'WEB APPLICATIONS',
+            date: new Date(),
+            href: 'some-article-url',
+        },
+        {
+            title: 'Positive Technologies&rsquo; research addresses vulnerabilities in&nbsp;Nokia NetAct for cellular operators',
+            tag: 'WEB APPLICATIONS',
+            date: new Date(),
+            href: 'some-article-url',
+        },
+    ]
+
+    return (
+        <HomePage
+            seo={props.config?.seo || {}}
+            products={products}
+            clients={clients}
+            articles={articles}
+        />
+    )
 }

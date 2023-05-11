@@ -9,7 +9,7 @@ import { TNavItem } from '@/types'
 
 import styles from './index.module.scss'
 
-import angle from '/public/images/icons/angle.svg'
+import angle from '/public/images/common/angle.svg'
 
 interface INavMobileItem {
     navItem: TNavItem

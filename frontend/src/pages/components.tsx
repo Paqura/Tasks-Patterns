@@ -1,6 +1,7 @@
 // Временная страница для тестирования отдельных компонентов
 
 import { PageLayout } from '@/components/PageLayout'
+import { Button } from '@/components/ui/Button'
 import { Link } from '@/components/ui/Link'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Heading } from '@/components/ui/typography/Heading'
@@ -44,6 +45,10 @@ export default function Components() {
                 <Link href="#" type="s">
                     Link size S
                 </Link>
+                <br />
+                <Button size="m">Button size m</Button>
+                <br />
+                <Button size="s">Button size s</Button>
             </PageSectionCard>
             <PageSectionCard mode="dark">
                 <Link href="#" type="m">
@@ -53,6 +58,10 @@ export default function Components() {
                 <Link href="#" type="s">
                     Link size S
                 </Link>
+                <br />
+                <Button size="m">Button size m</Button>
+                <br />
+                <Button size="s">Button size s</Button>
             </PageSectionCard>
         </PageLayout>
     )

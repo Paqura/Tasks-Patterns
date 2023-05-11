@@ -1,26 +1,75 @@
 @import "../../../styles/media";
 
 .button {
-  display: block;
+  display: inline-flex;
+  align-items: center;
   width: max-content;
-  font-family: 'TT Positive', sans-serif;
+  font-family: "TT Positive", sans-serif;
+  font-weight: 400;
   text-transform: uppercase;
+  cursor: pointer;
   background-color: transparent;
   border-radius: 4px;
 
-  &__size {
+  &_size {
     &_s {
       padding: 8px 12px;
       font-size: 12px;
-      font-weight: 400;
       line-height: 1.6em;
-      border: 1px solid var(--color-gray-2x);
+    }
 
-      @include media_hover {
-        color: var(--color-white);
-        background-color: var(--color-black-ui);
-        border-color: var(--color-gray-8x);
-      }
+    &_m {
+      padding: 10px 16px;
+      font-size: 16px;
+      line-height: 1.4em;
     }
   }
+}
+
+.button_size_s.button_theme {
+  &_light {
+    color: var(--color-black-ui);
+    border: 1px solid var(--color-gray-4x);
+
+    @include media_hover {
+      color: var(--color-white);
+      background-color: var(--color-black-ui);
+      border-color: var(--color-gray-8x);
+    }
+  }
+
+  &_dark {
+    color: var(--color-white);
+    border: 1px solid var(--color-gray-8x);
+
+    @include media_hover {
+      color: var(--color-black-ui);
+      background-color: var(--color-white);
+      border-color: var(--color-gray-2x);
+    }
+  }
+}
+
+.button_size_m.button_theme {
+  &_light {
+    color: var(--color-black-ui);
+    border: 1px solid var(--color-gray-4x);
+
+    @include media_hover {
+      border-color: var(--color-gray-6x);
+    }
+  }
+
+  &_dark {
+    color: var(--color-white);
+    border: 1px solid var(--color-gray-8x);
+
+    @include media_hover {
+      border-color: var(--color-gray-6x);
+    }
+  }
+}
+
+.arrow {
+  margin-left: 16px;
 }

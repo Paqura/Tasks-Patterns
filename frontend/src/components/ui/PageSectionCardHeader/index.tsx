@@ -1,6 +1,10 @@
 import React from 'react'
 
 import { Text } from '@/components/ui//typography/Text'
+import {
+    PageSectionCardGrid,
+    PageSectionCardGridRightColumn,
+} from '@/components/ui/PageSectionCardGrid'
 import { Heading } from '@/components/ui/typography/Heading'
 
 import styles from './index.module.scss'
@@ -10,13 +14,13 @@ export const PageSectionCardHeader: React.FC<{ title: string; description: strin
     description,
 }) => {
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.text}>
+        <PageSectionCardGrid>
+            <PageSectionCardGridRightColumn className={styles.text}>
                 <Heading level={1}>{title}</Heading>
                 <Text className={styles.description} type="pL">
                     {description}
                 </Text>
-            </div>
-        </div>
+            </PageSectionCardGridRightColumn>
+        </PageSectionCardGrid>
     )
 }

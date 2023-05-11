@@ -1,0 +1,65 @@
+@import "../../../../../../styles/offsets";
+@import "../../../../../../styles/media";
+
+.block {
+    padding: 40px;
+    background: var(--color-gray-2x);
+
+    @include media_breakpoint_mobile {
+        padding: 20px;
+    }
+}
+
+.values {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 406px repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    grid-auto-flow: column;
+
+    @include media_breakpoint_small_desktop {
+        gap: 12px;
+    }
+
+    @include media_breakpoint_mobile {
+        @include include-horizontal-paddings(20px, 20px);
+        grid-template-columns: 235px repeat(2, minmax(192px, auto));
+        overflow-x: auto;
+    }
+}
+
+.value {
+    height: auto;
+
+    &_big {
+        grid-row: 1 / span 2;
+    }
+}
+
+.description,
+.contactUsText {
+    margin-top: 40px;
+
+    max-width: 604px;
+
+    grid-column: 4 / span 6;
+
+    @include media_breakpoint_mobile {
+        max-width: 100%;
+    }
+}
+
+.listItem {
+    @include media_breakpoint_mobile {
+        width: 230px;
+    }
+}
+
+.contactUsText {
+    margin-top: 1.4em;
+}
+
+.contactBtn {
+    margin-top: 32px;
+}

@@ -48,13 +48,13 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/images/advantages/contact-background.svg');
+    pointer-events: none;
+    background-image: url("/images/advantages/contact-background.svg");
     background-repeat: no-repeat;
     background-position-x: right;
     background-position-y: bottom;
-    
+
     @include media_breakpoint_mobile {
-        background-image: url('/images/advantages/contact-background-mobile.svg');
+        background-image: url("/images/advantages/contact-background-mobile.svg");
     }
-    
 }

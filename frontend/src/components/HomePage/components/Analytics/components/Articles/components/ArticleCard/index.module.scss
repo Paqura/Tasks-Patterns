@@ -1,0 +1,55 @@
+@import "../../../../../../../../styles/media.scss";
+@import "../../../../../../../../styles/offsets.scss";
+
+.card {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 184px;
+    background-color: var(--color-white);
+
+    border-radius: 8px;
+}
+.tag {
+    padding: 4px 8px;
+    width: max-content;
+    background-color: var(--color-gray-plus);
+    border-radius: 4px;
+}
+
+.date {
+    margin-top: 8px;
+}
+
+.title {
+    margin-top: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: calc(1.3em * 3);
+}
+
+.content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.icon {
+    position: relative;
+    overflow: hidden;
+    width: 52px;
+    height: 52px;
+
+    & img {
+        width: auto;
+        height: 100%;
+    }
+
+    @include media_breakpoint_mobile {
+        width: 30px;
+        height: 30px;
+    }
+}

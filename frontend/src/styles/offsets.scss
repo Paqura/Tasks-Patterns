@@ -23,11 +23,15 @@
     @include section-card-padding-bottom;
 }
 
+@mixin include-horizontal-paddings($pl, $pr) {
+    margin-right: calc($pr * -1);
+    margin-left: calc($pl * -1);
+    padding-right: $pr;
+    padding-left: $pl;
+}
+
 @mixin include-section-card-horizontal-paddings {
-    margin-right: calc(var(--section-card-padding-right) * -1);
-    margin-left: calc(var(--section-card-padding-left) * -1);
-    padding-right: var(--section-card-padding-right);
-    padding-left: var(--section-card-padding-left);
+    @include include-horizontal-paddings(var(--section-card-padding-right), var(--section-card-padding-left))
 }
 
 @mixin subcard-paddings {

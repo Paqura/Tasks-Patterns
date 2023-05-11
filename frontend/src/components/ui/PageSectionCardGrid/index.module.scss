@@ -1,6 +1,6 @@
 @import "../../../styles/media.scss";
 
-.wrapper {
+.grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: 40px;
@@ -10,18 +10,19 @@
     }
 }
 
-.text {
-    grid-column: 4 / span 6;
+.leftColumn {
+    grid-column: 1 / span 3;
+
 
     @include media_breakpoint_small_desktop {
-        grid-column: 3 / span 6;
+        grid-column: 1 / span 2;
     }
 }
 
-.description {
-    margin-top: 32px;
+.rightColumn {
+    grid-column: 4 / span 9;
 
-    @include media_breakpoint_mobile {
-        margin-top: 16px;
+    @include media_breakpoint_small_desktop {
+        grid-column: 3 / span 10;
     }
 }
