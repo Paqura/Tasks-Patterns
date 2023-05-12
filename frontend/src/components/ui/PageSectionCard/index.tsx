@@ -26,6 +26,7 @@ export const PageSectionCard: React.FC<React.PropsWithChildren<TProps>> = ({
             className={cn(styles.sectionCard, styles[`sectionCard_mode_${mode}`], {
                 [styles[`sectionCard_on-dark`]]: onDark,
             })}
+            sectionId={sectionId}
         >
             <TypographyTheme theme={mode}>{children}</TypographyTheme>
         </PageSection>

@@ -30,6 +30,9 @@
     --header-padding-horizontal: 60px;
     --header-padding-vertical: 12px;
     --header-height: 60px;
+
+    --anchor-bar-padding-vertical: 16px;
+    --anchor-bar-padding-horizontal: 120px;
 }
 
 @include media_breakpoint_normal_desktop {
@@ -42,6 +45,8 @@
         --footer-padding-top: 160px;
         --footer-padding-bottom: 100px;
         --footer-padding-horizontal: 60px;
+
+        --anchor-bar-padding-horizontal: 40px;
     }
 }
 
@@ -63,5 +68,8 @@
 
         --footer-padding-top: 80px;
         --footer-padding-horizontal: 20px;
+
+        --anchor-bar-padding-vertical: 12px;
+        --anchor-bar-padding-horizontal: 20px;
     }
 }

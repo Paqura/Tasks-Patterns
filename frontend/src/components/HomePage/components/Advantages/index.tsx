@@ -12,7 +12,7 @@ const description = `We&nbsp;have extensive experience in&nbsp;protecting busine
 
 export const Advantages: React.FC<{}> = () => {
     return (
-        <PageSectionCard mode="dark">
+        <PageSectionCard mode="dark" sectionId="advantages">
             <PageSectionCardHeader title={title} description={description} />
 
             <div className={styles.advantagesList}>

@@ -11,7 +11,7 @@ const description = `At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive
 
 export const Tools: React.FC = () => {
     return (
-        <PageSectionCard mode="light">
+        <PageSectionCard mode="light" sectionId="tools">
             <PageSectionCardHeader title={title} description={description} />
             <div className={styles.toolsList}>
                 <ToolCard

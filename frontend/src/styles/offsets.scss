@@ -59,3 +59,7 @@
 @mixin footer-paddings {
     padding: var(--footer-padding-top) var(--footer-padding-horizontal) var(--footer-padding-bottom);
 }
+
+@mixin anchor-bar-paddings {
+    padding: var(--anchor-bar-padding-vertical) var(--anchor-bar-padding-horizontal);
+}

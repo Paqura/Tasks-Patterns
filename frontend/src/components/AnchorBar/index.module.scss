@@ -1,0 +1,66 @@
+@import "../../styles/media.scss";
+@import "../../styles/offsets.scss";
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-gray-8x);
+  border-radius: 16px;
+
+  @include media_breakpoint_mobile {
+    border-radius: 8px;
+  }
+}
+
+.content {
+  @include anchor-bar-paddings;
+  display: grid;
+  overflow-y: auto;
+
+  @include media_breakpoint_mobile {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.anchor {
+  padding: 20px;
+  overflow: hidden;
+  text-align: center;
+  color: var(--color-white);
+  border-radius: 4px;
+
+  @include media_hover {
+    background-color: var(--color-black-ui);
+  }
+
+  @include media_breakpoint_small_desktop {
+    min-width: 166px;
+  }
+
+  @include media_breakpoint_mobile {
+    padding: 10px 12px;
+    min-width: 86px;
+    flex: 1 0 auto;
+  }
+}
+
+.anchor_active {
+  background-color: var(--color-black-ui);
+}
+
+.text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.shadow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 134px;
+  background: linear-gradient(270deg, var(--color-gray-8x) 0%, rgba(40, 40, 40, 0) 100%);
+}
