@@ -3,3 +3,8 @@ export type TImage = {
     width?: number
     height?: number
 }
+
+export type TFooterNavItem = {
+    name: string
+    link: string
+}

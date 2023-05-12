@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import React from 'react'
 
+import { Footer } from '@/components/Footer'
+
 export type TSeo = {
     title?: string
     description?: string
@@ -20,6 +22,7 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({ seo, chi
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>{children}</main>
+            <Footer />
         </div>
     )
 }

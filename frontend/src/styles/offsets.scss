@@ -45,3 +45,7 @@
         margin-top: 32px;
     }
 }
+
+@mixin footer-paddings {
+    padding: var(--footer-padding-top) var(--footer-padding-horizontal) var(--footer-padding-bottom);
+}

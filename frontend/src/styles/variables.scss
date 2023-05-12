@@ -21,6 +21,10 @@
     --section-card-padding-right: 120px;
     --section-card-padding-top: 80px;
     --section-card-padding-bottom: 80px;
+
+    --footer-padding-top: 180px;
+    --footer-padding-bottom: 150px;
+    --footer-padding-horizontal: 360px;
 }
 
 @include media_breakpoint_normal_desktop {
@@ -29,6 +33,17 @@
         --section-card-padding-right: 40px;
         --section-card-padding-top: 60px;
         --section-card-padding-bottom: 60px;
+
+        --footer-padding-top: 160px;
+        --footer-padding-bottom: 100px;
+        --footer-padding-horizontal: 60px;
+    }
+}
+
+@include media_breakpoint_small_desktop {
+    :root {
+        --footer-padding-top: 80px;
+        --footer-padding-bottom: var(--footer-padding-top);
     }
 }
 
@@ -38,5 +53,8 @@
         --section-card-padding-right: 16px;
         --section-card-padding-top: 20px;
         --section-card-padding-bottom: 32px;
+
+        --footer-padding-top: 80px;
+        --footer-padding-horizontal: 20px;
     }
 }

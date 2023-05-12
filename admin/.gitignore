@@ -116,3 +116,4 @@ build
 
 # We use yarn
 package-lock.json
+/.yarnrc.yml

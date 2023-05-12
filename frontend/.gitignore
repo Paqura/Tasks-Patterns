@@ -36,3 +36,5 @@ next-env.d.ts
 
 # We use yarn
 package-lock.json
+/.yarn/
+/.yarnrc.yml
