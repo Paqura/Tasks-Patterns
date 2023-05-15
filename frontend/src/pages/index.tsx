@@ -1,8 +1,9 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
+import { THeaderData } from '@/components/Header'
 import { HomePage, THomePageData } from '@/components/HomePage'
-import { fetchClients, fetchConfig, fetchNews, fetchProducts } from '@/utils/adminApi'
+import { fetchClients, fetchConfig, fetchNews, fetchHeader, fetchProducts } from '@/utils/adminApi'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 export type TServerSideProps = {
@@ -10,6 +11,7 @@ export type TServerSideProps = {
     products?: GetAttributesValues<'api::product.product'>[]
     clients?: GetAttributesValues<'api::client.client'>[]
     news?: GetAttributesValues<'api::news-item.news-item'>[]
+    header?: GetAttributesValues<'api::header.header'>
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
@@ -17,6 +19,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
     const products = await fetchProducts()
     const clients = await fetchClients()
     const news = await fetchNews()
+    const header = await fetchHeader()
 
     return {
         props: {
@@ -24,6 +27,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
             products,
             clients,
             news,
+            header,
         },
     }
 }
@@ -74,6 +78,18 @@ export default function Home(props: TProps) {
         },
     ]
 
+    const navItems: THeaderData['navItems'] =
+        props.header?.navItem?.map((item) => ({
+            title: item.title || '',
+            link: item.link || '/',
+            subItems:
+                item.navSubItem?.map((subItem) => ({
+                    title: subItem.title || '',
+                    description: subItem.description || '',
+                    link: subItem.link || '/',
+                })) || [],
+        })) || []
+
     return (
         <HomePage
             seo={props.config?.seo || {}}
@@ -81,6 +97,7 @@ export default function Home(props: TProps) {
             clients={clients}
             articles={articles}
             news={news}
+            navItems={navItems}
         />
     )
 }

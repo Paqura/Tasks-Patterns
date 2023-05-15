@@ -9,68 +9,11 @@ import { useIsDesktopSmall, useOutsideClick } from '@/utils/hooks'
 
 import styles from './index.module.scss'
 
-const navMock: TNavItem[] = [
-    {
-        title: 'Products',
-        link: '/#products',
-        subItems: [
-            {
-                title: 'MaxPatrol SIEM',
-                description: 'Real-time detection of IS incidents',
-                link: '/',
-            },
-            {
-                title: 'MaxPatrol VM',
-                description: 'A new generation system for vulnerability management',
-                link: '/',
-            },
-            {
-                title: 'PT Sandbox',
-                description: 'The first sandbox that protects exactly your infrastructure',
-                link: '/',
-            },
-            {
-                title: 'PT Sandbox',
-                description: 'The first sandbox that protects exactly your infrastructure',
-                link: '/',
-            },
-            {
-                title: 'XSpider',
-                description: 'Vulnerability scanner',
-                link: '/',
-            },
-            {
-                title: 'PT Application Inspector',
-                description: 'Application security analyser',
-                link: '/',
-            },
-            {
-                title: 'PT Network Attack Discovery',
-                description: 'Traffic Analysis System (NTA) for attack detection',
-                link: '/',
-            },
-            {
-                title: 'PT ISIM',
-                description: 'Management of cyber security incidents of the APCS',
-                link: '/',
-            },
-        ],
-    },
-    {
-        title: 'Analytics',
-        link: '/analytics',
-    },
-    {
-        title: 'News & Events',
-        link: 'news',
-    },
-    {
-        title: 'About us',
-        link: '/about-us',
-    },
-]
+export type THeaderData = {
+    navItems: TNavItem[]
+}
 
-export const Header: React.FC = () => {
+export const Header: React.FC<THeaderData> = ({ navItems }) => {
     const [isNavOpen, setIsNavOpen] = useState(false)
     const headerRef = useRef<HTMLElement | null>(null) as MutableRefObject<HTMLElement>
 
@@ -96,9 +39,9 @@ export const Header: React.FC = () => {
             <header ref={headerRef} className={styles.header}>
                 <Logo href="/" />
                 {isDesktopSmall ? (
-                    <NavMobile items={navMock} onToggle={handleToggleNav} isOpen={isNavOpen} />
+                    <NavMobile items={navItems} onToggle={handleToggleNav} isOpen={isNavOpen} />
                 ) : (
-                    <Nav items={navMock} onToggle={handleToggleNav} />
+                    <Nav items={navItems} onToggle={handleToggleNav} />
                 )}
             </header>
         </>

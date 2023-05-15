@@ -18,7 +18,7 @@ export type TNavSubItem = {
 export type TNavItem = {
     title: string
     link: string
-    subItems?: TNavSubItem[]
+    subItems: TNavSubItem[]
 }
 
 export type TFooterNavItem = {

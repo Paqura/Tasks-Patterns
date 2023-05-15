@@ -3,6 +3,7 @@ import React from 'react'
 
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { TNavItem } from '@/types'
 
 export type TSeo = {
     title?: string
@@ -11,9 +12,14 @@ export type TSeo = {
 
 type TProps = {
     seo: TSeo
+    navItems: TNavItem[]
 }
 
-export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({ seo, children }) => {
+export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
+    seo,
+    navItems,
+    children,
+}) => {
     return (
         <div>
             <Head>
@@ -22,7 +28,7 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({ seo, chi
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Header />
+            <Header navItems={navItems} />
             <main>{children}</main>
             <Footer />
         </div>

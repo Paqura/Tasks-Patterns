@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "headers",
+  "info": {
+    "singularName": "header",
+    "pluralName": "headers",
+    "displayName": "Header"
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "navItem": {
+      "type": "component",
+      "repeatable": true,
+      "component": "share.nav-item"
+    }
+  }
+}

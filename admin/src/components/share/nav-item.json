@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_share_nav_items",
+  "info": {
+    "displayName": "navItem"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "navSubItem": {
+      "type": "component",
+      "repeatable": true,
+      "component": "share.nav-sub-item"
+    }
+  }
+}

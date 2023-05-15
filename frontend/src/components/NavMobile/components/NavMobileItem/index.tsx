@@ -19,8 +19,10 @@ export const NavMobileItem = ({ navItem }: INavMobileItem) => {
     const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
     const { title, link, subItems } = navItem
 
+    const isSubItemsExist = subItems.length > 0
+
     const renderNavLink = useCallback(() => {
-        if (subItems) {
+        if (isSubItemsExist) {
             return (
                 <button
                     className={cn(styles.nav_item, { [styles.nav_item_open]: isSubmenuOpen })}
@@ -45,12 +47,12 @@ export const NavMobileItem = ({ navItem }: INavMobileItem) => {
         }
 
         return <Text type="pM">{title}</Text>
-    }, [isSubmenuOpen, link, subItems, title])
+    }, [isSubmenuOpen, link, isSubItemsExist, title])
 
     return (
         <div className={cn({ [styles.wrapper_open]: isSubmenuOpen })}>
             {renderNavLink()}
-            {subItems && isSubmenuOpen && <SubMenuMobile subItems={subItems} />}
+            {isSubItemsExist && isSubmenuOpen && <SubMenuMobile subItems={subItems} />}
         </div>
     )
 }

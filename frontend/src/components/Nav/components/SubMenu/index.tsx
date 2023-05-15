@@ -32,7 +32,7 @@ export const SubMenu: React.FC<ISubMenu> = ({ subItems, anchor }) => {
                 ))}
             </div>
             {anchor && (
-                <Button className={styles.button} link={`#${anchor}`} size="s">
+                <Button className={styles.button} link={anchor} size="s">
                     Jump to section
                 </Button>
             )}

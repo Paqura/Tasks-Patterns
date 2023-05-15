@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_share_nav_sub_items",
+  "info": {
+    "displayName": "navSubItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

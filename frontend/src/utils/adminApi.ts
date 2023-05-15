@@ -17,7 +17,7 @@ const getClient = () => {
         headers: { 'Content-Type': 'application/json' },
         paramsSerializer,
         params: {
-            populate: '*',
+            populate: 'deep',
         },
     })
     return axiosInstance
@@ -27,6 +27,11 @@ export const adminClient = getClient()
 
 export const fetchConfig = async () => {
     const response = await adminClient.get<Response<'api::config.config'>>(`/api/config`)
+    return response.data.data?.attributes
+}
+
+export const fetchHeader = async () => {
+    const response = await adminClient.get<Response<'api::header.header'>>(`/api/header`)
     return response.data.data?.attributes
 }
 

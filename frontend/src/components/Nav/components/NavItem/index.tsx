@@ -16,14 +16,15 @@ interface INavItem {
 export const NavItem: React.FC<INavItem> = ({ navItem, onToggle }) => {
     const [isItemActive, setIsItemActive] = useState(false)
     const { link, subItems, title } = navItem
+    const isSubItemsExist = subItems.length > 0
 
     const handleMouseEnter = () => {
-        subItems && onToggle(true)
+        isSubItemsExist && onToggle(true)
         setIsItemActive(true)
     }
 
     const handleMouseLeave = () => {
-        subItems && onToggle(false)
+        isSubItemsExist && onToggle(false)
         setIsItemActive(false)
     }
 
@@ -32,12 +33,12 @@ export const NavItem: React.FC<INavItem> = ({ navItem, onToggle }) => {
             <NextLink
                 href={link}
                 className={cn(styles.nav_item, {
-                    [styles.nav_item_active]: isItemActive && subItems,
+                    [styles.nav_item_active]: isItemActive && isSubItemsExist,
                 })}
             >
                 <Text type="pM">{title}</Text>
             </NextLink>
-            {isItemActive && subItems && <SubMenu subItems={subItems} anchor={link} />}
+            {isItemActive && isSubItemsExist && <SubMenu subItems={subItems} anchor={link} />}
         </div>
     )
 }
