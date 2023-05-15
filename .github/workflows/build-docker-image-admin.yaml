@@ -1,4 +1,4 @@
-name: Build docker image
+name: Build admin docker image
 on:
   workflow_dispatch:
     inputs:

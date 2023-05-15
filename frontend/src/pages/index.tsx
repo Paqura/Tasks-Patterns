@@ -58,9 +58,9 @@ export default function Home(props: TProps) {
         })) || []
 
     const clients: THomePageData['clients'] =
-        props.clients?.map((product) => ({
-            name: product.name || '',
-            logo: mapImageMediaFile(product.logo),
+        props.clients?.map((client) => ({
+            name: client.name || '',
+            logo: mapImageMediaFile(client.logo),
         })) || []
 
     const news: THomePageData['news'] =

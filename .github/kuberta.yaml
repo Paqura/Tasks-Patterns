@@ -17,11 +17,6 @@ releases:
     chart: oci://quay.csssr.cloud/charts/pts-global-frontend@~1.0.0
     slack:
       - C056AM9FMB6
-    params:
-      env.NEXT_PUBLIC_ADMIN_API_URL:
-        type: url
-        description: Admin API URL
-        default: ""
     builds:
       - workflow: build-docker-image-frontend.yaml
         values:

@@ -1,8 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
+    async rewrites() {
+        return [
+            {
+                source: '/uploads/:path*',
+                destination: `${process.env.NEXT_PUBLIC_ADMIN_API_URL}/uploads/:path*`,
+            },
+        ]
+    },
     images: {
-        domains: ['127.0.0.1', 'main.pts-global-admin.csssr.cloud'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '*.pts-global-admin.csssr.cloud',
+            },
+            {
+                protocol: 'https',
+                hostname: 'pts-global-admin-testing.s3.eu-west-2.amazonaws.com',
+            },
+        ],
     },
 }
 

@@ -1,4 +1,4 @@
-name: Build docker image
+name: Build frontend docker image
 on:
   workflow_dispatch:
     inputs:
@@ -19,6 +19,9 @@ jobs:
           ssh-key: ${{ secrets.DOWNLOAD_ACTIONS_SSH_KEY }}
           path: actions
 
+      - uses: docker://quay.csssr.cloud/csssr/github-info:v1
+        id: gh
+
       - name: Build and push docker image
         uses: ./actions/build-docker-image/v1beta1
         with:
@@ -26,3 +29,5 @@ jobs:
           image: quay.csssr.cloud/pts-global/frontend:build-${{ github.run_id }}
           username: pts-global+github_actions
           password: ${{ secrets.QUAY_PASSWORD }}
+          build-args: |
+            NEXT_PUBLIC_ADMIN_API_URL=https://${{ steps.gh.outputs.releaseID }}.pts-global-admin.csssr.cloud

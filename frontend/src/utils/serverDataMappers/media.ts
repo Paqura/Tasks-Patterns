@@ -7,7 +7,7 @@ export const mapImageMediaFile = (
 ): TImage => {
     const attrs = serverMediaField?.data?.attributes
     return {
-        src: attrs?.url ? `${process.env.NEXT_PUBLIC_ADMIN_API_URL}${attrs.url}` : '',
+        src: attrs?.url || '',
         width: attrs?.width,
         height: attrs?.height,
     }
