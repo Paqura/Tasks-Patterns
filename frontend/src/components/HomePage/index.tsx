@@ -3,12 +3,14 @@ import { PageLayout, TSeo } from '@/components/PageLayout'
 
 import { Advantages } from './components/Advantages'
 import { Analytics, TAnalyticsBlockData } from './components/Analytics'
+import { News, TNewsBlockData } from './components/News'
 import { Products, TProductsBlockData } from './components/Products'
 import { Tools } from './components/Tools'
 
 export type THomePageData = {
     seo: TSeo
 } & TProductsBlockData &
+    TNewsBlockData &
     TAnalyticsBlockData
 
 export type THomePageProps = THomePageData
@@ -49,6 +51,7 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
             <Tools />
             <Products products={props.products} clients={props.clients} />
             <Analytics articles={props.articles} />
+            <News news={props.news} />
         </PageLayout>
     )
 }

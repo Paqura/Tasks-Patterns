@@ -14,12 +14,17 @@
     grid-column: 4 / span 6;
 
     @include media_breakpoint_small_desktop {
-        grid-column: 3 / span 6;
+        grid-column: 3 / span 8;
     }
 }
 
 .description {
     margin-top: 32px;
+    max-width: 496px;
+
+    @include media_breakpoint_small_desktop {
+        max-width: 432px;
+    }
 
     @include media_breakpoint_mobile {
         margin-top: 16px;

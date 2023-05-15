@@ -2,25 +2,28 @@ import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
 import { HomePage, THomePageData } from '@/components/HomePage'
-import { fetchClients, fetchConfig, fetchProducts } from '@/utils/adminApi'
+import { fetchClients, fetchConfig, fetchNews, fetchProducts } from '@/utils/adminApi'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
     products?: GetAttributesValues<'api::product.product'>[]
     clients?: GetAttributesValues<'api::client.client'>[]
+    news?: GetAttributesValues<'api::news-item.news-item'>[]
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
     const config = await fetchConfig()
     const products = await fetchProducts()
     const clients = await fetchClients()
+    const news = await fetchNews()
 
     return {
         props: {
             config,
             products,
             clients,
+            news,
         },
     }
 }
@@ -40,6 +43,14 @@ export default function Home(props: TProps) {
         props.clients?.map((product) => ({
             name: product.name || '',
             logo: mapImageMediaFile(product.logo),
+        })) || []
+
+    const news: THomePageData['news'] =
+        props.news?.map((newsItem) => ({
+            description: newsItem.description || '',
+            href: newsItem.link || '/',
+            image: mapImageMediaFile(newsItem.image),
+            date: newsItem.published,
         })) || []
 
     const articles: THomePageData['articles'] = [
@@ -69,6 +80,7 @@ export default function Home(props: TProps) {
             products={products}
             clients={clients}
             articles={articles}
+            news={news}
         />
     )
 }

@@ -41,3 +41,10 @@ export const fetchClients = async () => {
     const response = await adminClient.get<ResponseCollection<'api::client.client'>>(`/api/clients`)
     return response.data.data?.map((item) => item.attributes)
 }
+
+export const fetchNews = async () => {
+    const response = await adminClient.get<ResponseCollection<'api::news-item.news-item'>>(
+        `/api/news`
+    )
+    return response.data.data?.map((item) => item.attributes)
+}

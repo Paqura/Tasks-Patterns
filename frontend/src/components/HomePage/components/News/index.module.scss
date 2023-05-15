@@ -1,0 +1,19 @@
+@import "../../../../styles/media.scss";
+@import "../../../../styles/offsets.scss";
+
+.newsList {
+    padding-top: 40px;
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+
+    @include include-section-card-horizontal-paddings;
+
+    @include media_breakpoint_small_desktop {
+        gap: 12px;
+    }
+
+    @include media_breakpoint_mobile {
+        padding-top: 20px;
+    }
+}
