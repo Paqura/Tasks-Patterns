@@ -26,7 +26,15 @@ export const NewsCard: React.FC<TNews> = ({ description, date, image, href, clas
 
     return (
         <NextLink href={href} className={cn(styles.card, className)}>
-            <Image src={image.src} alt="" width={image.width} height={image.height} />
+            <div className={styles.imageWrapper}>
+                <Image
+                    src={image.src}
+                    alt={description}
+                    width={image.width}
+                    height={image.height}
+                    className={styles.image}
+                />
+            </div>
             <div className={styles.info}>
                 {date && <p className={styles.date}>{getFormattedDate(date)}</p>}
                 <Text type="pM" className={styles.text}>
