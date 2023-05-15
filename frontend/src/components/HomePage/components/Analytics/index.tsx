@@ -5,7 +5,7 @@ import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
 
 import { Articles, TArticle } from './components/Articles'
-import { Statistics } from './components/Statistics'
+import { Statistics, TStatistics } from './components/Statistics'
 import styles from './index.module.scss'
 
 import backgroundIcon from '/public/images/backgrounds/analytics-background.svg'
@@ -15,19 +15,12 @@ const description = `Our team of&nbsp;experts stays up-to-date on&nbsp;the lates
 
 export type TAnalyticsBlockData = {
     articles: TArticle[]
+    statistics: TStatistics
 }
 
 type TProps = TAnalyticsBlockData
 
-const stats = {
-    first: { title: '1 value description', value: '1000' },
-    second: { title: '2 value description', value: '1000' },
-    third: { title: '3 2022 Revenue Growth', value: '1000' },
-    fourth: { title: '4 value description', value: '1000' },
-    fifth: { title: '5 value description', value: '1000' },
-}
-
-export const Analytics: React.FC<TProps> = ({ articles }) => {
+export const Analytics: React.FC<TProps> = ({ articles, statistics }) => {
     return (
         <PageSectionCard mode="light" className={styles.block} sectionId="analytics">
             <PageSectionCardHeader title={title} description={description} />
@@ -36,7 +29,7 @@ export const Analytics: React.FC<TProps> = ({ articles }) => {
                 <Articles articles={articles} />
             </div>
             <div className={styles.statisticsList}>
-                <Statistics statistics={stats} />
+                <Statistics statistics={statistics} />
             </div>
         </PageSectionCard>
     )

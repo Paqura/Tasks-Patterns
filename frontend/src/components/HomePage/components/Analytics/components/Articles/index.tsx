@@ -12,8 +12,8 @@ import styles from './index.module.scss'
 export type TArticle = {
     title: string
     href: string
-    tag: string
-    date: Date
+    tag?: string
+    date?: Date
 }
 
 type TProps = {

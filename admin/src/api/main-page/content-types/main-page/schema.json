@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "main_pages",
+  "info": {
+    "singularName": "main-page",
+    "pluralName": "main-pages",
+    "displayName": "MainPage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "statistics": {
+      "displayName": "StatisticsSummary",
+      "type": "component",
+      "repeatable": false,
+      "component": "analytics.statistics-summary"
+    }
+  }
+}

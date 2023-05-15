@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "analytic-article",
+    "pluralName": "analytic-articles",
+    "displayName": "AnalyticArticles",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "topic": {
+      "type": "text",
+      "required": true
+    },
+    "published": {
+      "type": "date",
+      "required": true
+    },
+    "tag": {
+      "type": "string"
+    },
+    "previewImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "private": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

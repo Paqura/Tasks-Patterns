@@ -28,5 +28,6 @@
 
     @include media_breakpoint_mobile {
         margin-top: 16px;
+        width: auto;
     }
 }

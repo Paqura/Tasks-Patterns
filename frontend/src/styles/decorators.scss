@@ -5,6 +5,7 @@
   text-overflow: ellipsis;
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
+  /* stylelint-disable-next-line property-no-unknown */
   box-orient: vertical;
   -webkit-line-clamp: $count;
   line-clamp: $count;

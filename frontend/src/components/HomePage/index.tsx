@@ -52,7 +52,7 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
             <Advantages />
             <Tools />
             <Products products={props.products} clients={props.clients} />
-            <Analytics articles={props.articles} />
+            <Analytics articles={props.articles} statistics={props.statistics} />
             <News news={props.news} />
         </PageLayout>
     )

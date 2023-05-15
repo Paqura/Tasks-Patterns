@@ -1,5 +1,6 @@
 @import "../../../../../../../../styles/media.scss";
 @import "../../../../../../../../styles/offsets.scss";
+@import "../../../../../../../../styles/decorators.scss";
 
 .card {
     padding: 16px;
@@ -13,6 +14,7 @@
 .tag {
     padding: 4px 8px;
     width: max-content;
+    text-transform: uppercase;
     background-color: var(--color-gray-plus);
     border-radius: 4px;
 }
@@ -23,10 +25,8 @@
 
 .title {
     margin-top: 8px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+
+    @include slice-text(3);
     max-height: calc(1.3em * 3);
 }
 

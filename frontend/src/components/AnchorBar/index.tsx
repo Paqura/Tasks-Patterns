@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 import NextLink from 'next/link'
 import { MouseEvent, MutableRefObject, useEffect, useRef, useState } from 'react'
 

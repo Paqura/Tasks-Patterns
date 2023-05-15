@@ -3,7 +3,15 @@ import { GetServerSideProps } from 'next'
 
 import { THeaderData } from '@/components/Header'
 import { HomePage, THomePageData } from '@/components/HomePage'
-import { fetchClients, fetchConfig, fetchNews, fetchHeader, fetchProducts } from '@/utils/adminApi'
+import {
+    fetchArticles,
+    fetchClients,
+    fetchConfig,
+    fetchMainPage,
+    fetchNews,
+    fetchHeader,
+    fetchProducts,
+} from '@/utils/adminApi'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 export type TServerSideProps = {
@@ -12,6 +20,8 @@ export type TServerSideProps = {
     clients?: GetAttributesValues<'api::client.client'>[]
     news?: GetAttributesValues<'api::news-item.news-item'>[]
     header?: GetAttributesValues<'api::header.header'>
+    articles?: GetAttributesValues<'api::analytic-article.analytic-article'>[]
+    mainPage?: GetAttributesValues<'api::main-page.main-page'>
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
@@ -20,6 +30,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
     const clients = await fetchClients()
     const news = await fetchNews()
     const header = await fetchHeader()
+    const articles = await fetchArticles()
+    const mainPage = await fetchMainPage()
 
     return {
         props: {
@@ -28,6 +40,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
             clients,
             news,
             header,
+            articles,
+            mainPage,
         },
     }
 }
@@ -57,26 +71,15 @@ export default function Home(props: TProps) {
             date: newsItem.published,
         })) || []
 
-    const articles: THomePageData['articles'] = [
-        {
-            title: 'Positive Technologies&rsquo; research addresses vulnerabilities in&nbsp;Nokia NetAct for cellular operators',
-            tag: 'WEB APPLICATIONS',
-            date: new Date(),
-            href: 'some-article-url',
-        },
-        {
-            title: 'Positive Technologies&rsquo; research addresses vulnerabilities in&nbsp;Nokia NetAct for cellular operators',
-            tag: 'WEB APPLICATIONS',
-            date: new Date(),
-            href: 'some-article-url',
-        },
-        {
-            title: 'Positive Technologies&rsquo; research addresses vulnerabilities in&nbsp;Nokia NetAct for cellular operators',
-            tag: 'WEB APPLICATIONS',
-            date: new Date(),
-            href: 'some-article-url',
-        },
-    ]
+    const articles: THomePageData['articles'] =
+        props.articles?.map((article) => {
+            return {
+                title: article.title || '',
+                tag: article.tag,
+                date: article.published && new Date(article.published),
+                href: article.link || '/',
+            }
+        }) || []
 
     const navItems: THeaderData['navItems'] =
         props.header?.navItem?.map((item) => ({
@@ -90,6 +93,29 @@ export default function Home(props: TProps) {
                 })) || [],
         })) || []
 
+    const statistics = {
+        first: {
+            title: props.mainPage?.statistics?.first?.title || '',
+            value: props.mainPage?.statistics?.first?.value || '',
+        },
+        second: {
+            title: props.mainPage?.statistics?.second?.title || '',
+            value: props.mainPage?.statistics?.second?.value || '',
+        },
+        third: {
+            title: props.mainPage?.statistics?.third?.title || '',
+            value: props.mainPage?.statistics?.third?.value || '',
+        },
+        fourth: {
+            title: props.mainPage?.statistics?.fourth?.title || '',
+            value: props.mainPage?.statistics?.fourth?.value || '',
+        },
+        fifth: {
+            title: props.mainPage?.statistics?.fifth?.title || '',
+            value: props.mainPage?.statistics?.fifth?.value || '',
+        },
+    }
+
     return (
         <HomePage
             seo={props.config?.seo || {}}
@@ -98,6 +124,7 @@ export default function Home(props: TProps) {
             articles={articles}
             news={news}
             navItems={navItems}
+            statistics={statistics}
         />
     )
 }

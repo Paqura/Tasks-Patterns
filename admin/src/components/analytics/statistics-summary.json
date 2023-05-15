@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_analytics_statistics_summaries",
+  "info": {
+    "displayName": "StatisticsSummary",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "first": {
+      "displayName": "StatisticsItem",
+      "type": "component",
+      "repeatable": false,
+      "component": "analytics.statistics-item",
+      "required": true
+    },
+    "second": {
+      "type": "component",
+      "repeatable": false,
+      "component": "analytics.statistics-item",
+      "required": true
+    },
+    "third": {
+      "type": "component",
+      "repeatable": false,
+      "component": "analytics.statistics-item",
+      "required": true
+    },
+    "fourth": {
+      "type": "component",
+      "repeatable": false,
+      "component": "analytics.statistics-item",
+      "required": true
+    },
+    "fifth": {
+      "type": "component",
+      "repeatable": false,
+      "component": "analytics.statistics-item",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,29 @@
+name: Run tests
+on: pull_request
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+
+      - name: Install admin dependencies
+        run: cd admin && yarn install --frozen-lockfile
+
+      - name: Install frontend dependencies
+        run: cd frontend && yarn install --frozen-lockfile && yarn cache clean
+
+      - name: Run eslint
+        run:  cd frontend && yarn lint
+      
+      - name: Run stylelint
+        run:  cd frontend && yarn style-lint
+      
+      - name: Run typecheck
+        run:  cd frontend && yarn typecheck
+

@@ -17,10 +17,11 @@ import {
   IntegerAttribute,
   DecimalAttribute,
   SetMinMax,
+  TextAttribute,
+  DateAttribute,
   MediaAttribute,
   SingleTypeSchema,
   ComponentAttribute,
-  TextAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
 
@@ -684,21 +685,56 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   };
 }
 
+export interface ApiAnalyticArticleAnalyticArticle
+  extends CollectionTypeSchema {
+  info: {
+    singularName: 'analytic-article';
+    pluralName: 'analytic-articles';
+    displayName: 'AnalyticArticles';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    topic: TextAttribute & RequiredAttribute;
+    published: DateAttribute & RequiredAttribute;
+    tag: StringAttribute;
+    previewImage: MediaAttribute & PrivateAttribute;
+    link: StringAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::analytic-article.analytic-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::analytic-article.analytic-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiClientClient extends CollectionTypeSchema {
   info: {
     singularName: 'client';
     pluralName: 'clients';
     displayName: 'Clients';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: StringAttribute & RequiredAttribute;
     logo: MediaAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
-    publishedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
       'api::client.client',
       'oneToOne',
@@ -722,13 +758,12 @@ export interface ApiConfigConfig extends SingleTypeSchema {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     seo: ComponentAttribute<'share.seo'> & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
-    publishedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
       'api::config.config',
       'oneToOne',
@@ -737,6 +772,92 @@ export interface ApiConfigConfig extends SingleTypeSchema {
       PrivateAttribute;
     updatedBy: RelationAttribute<
       'api::config.config',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiHeaderHeader extends SingleTypeSchema {
+  info: {
+    singularName: 'header';
+    pluralName: 'headers';
+    displayName: 'Header';
+  };
+  attributes: {
+    navItem: ComponentAttribute<'share.nav-item', true>;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::header.header',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::header.header',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiMainPageMainPage extends SingleTypeSchema {
+  info: {
+    singularName: 'main-page';
+    pluralName: 'main-pages';
+    displayName: 'MainPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    statistics: ComponentAttribute<'analytics.statistics-summary'>;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::main-page.main-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::main-page.main-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
+  info: {
+    singularName: 'news-item';
+    pluralName: 'news';
+    displayName: 'News';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    description: StringAttribute & RequiredAttribute;
+    link: StringAttribute & RequiredAttribute;
+    image: MediaAttribute & RequiredAttribute;
+    published: DateAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::news-item.news-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::news-item.news-item',
       'oneToOne',
       'admin::user'
     > &
@@ -776,6 +897,53 @@ export interface ApiProductProduct extends CollectionTypeSchema {
   };
 }
 
+export interface AnalyticsStatisticsItem extends ComponentSchema {
+  info: {
+    displayName: 'StatisticsItem';
+  };
+  attributes: {
+    value: StringAttribute & RequiredAttribute;
+    title: TextAttribute & RequiredAttribute;
+  };
+}
+
+export interface AnalyticsStatisticsSummary extends ComponentSchema {
+  info: {
+    displayName: 'StatisticsSummary';
+    description: '';
+  };
+  attributes: {
+    first: ComponentAttribute<'analytics.statistics-item'> & RequiredAttribute;
+    second: ComponentAttribute<'analytics.statistics-item'> & RequiredAttribute;
+    third: ComponentAttribute<'analytics.statistics-item'> & RequiredAttribute;
+    fourth: ComponentAttribute<'analytics.statistics-item'> & RequiredAttribute;
+    fifth: ComponentAttribute<'analytics.statistics-item'> & RequiredAttribute;
+  };
+}
+
+export interface ShareNavItem extends ComponentSchema {
+  info: {
+    displayName: 'navItem';
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    link: StringAttribute & RequiredAttribute;
+    navSubItem: ComponentAttribute<'share.nav-sub-item', true>;
+  };
+}
+
+export interface ShareNavSubItem extends ComponentSchema {
+  info: {
+    displayName: 'navSubItem';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    description: StringAttribute;
+    link: StringAttribute & RequiredAttribute;
+  };
+}
+
 export interface ShareSeo extends ComponentSchema {
   info: {
     displayName: 'Seo';
@@ -803,9 +971,17 @@ declare global {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::analytic-article.analytic-article': ApiAnalyticArticleAnalyticArticle;
       'api::client.client': ApiClientClient;
       'api::config.config': ApiConfigConfig;
+      'api::header.header': ApiHeaderHeader;
+      'api::main-page.main-page': ApiMainPageMainPage;
+      'api::news-item.news-item': ApiNewsItemNewsItem;
       'api::product.product': ApiProductProduct;
+      'analytics.statistics-item': AnalyticsStatisticsItem;
+      'analytics.statistics-summary': AnalyticsStatisticsSummary;
+      'share.nav-item': ShareNavItem;
+      'share.nav-sub-item': ShareNavSubItem;
       'share.seo': ShareSeo;
     }
   }
