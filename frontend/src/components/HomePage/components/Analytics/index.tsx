@@ -29,7 +29,7 @@ const stats = {
 
 export const Analytics: React.FC<TProps> = ({ articles }) => {
     return (
-        <PageSectionCard mode="light" className={styles.block}>
+        <PageSectionCard mode="light" className={styles.block} sectionId="analytics">
             <PageSectionCardHeader title={title} description={description} />
             <div className={styles.articlesList}>
                 <Image src={backgroundIcon} alt="" className={styles.background} />

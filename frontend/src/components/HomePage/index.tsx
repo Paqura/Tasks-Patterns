@@ -20,27 +20,27 @@ export type THomePageProps = THomePageData
 const anchors = [
     {
         name: 'Why us?',
-        link: '#advantages',
+        link: 'advantages',
     },
     {
         name: 'What we do?',
-        link: '#tools',
+        link: 'tools',
     },
     {
         name: 'Our Products',
-        link: '#products',
+        link: 'products',
     },
     {
         name: 'Analytics',
-        link: '#analytics',
+        link: 'analytics',
     },
     {
         name: 'Events & News',
-        link: '#news',
+        link: 'news',
     },
     {
         name: 'Contact',
-        link: '#contact',
+        link: 'contact',
     },
 ]
 

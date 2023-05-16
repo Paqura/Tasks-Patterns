@@ -1,6 +1,12 @@
 @import "../../styles/media.scss";
 @import "../../styles/offsets.scss";
 
+.bar_float {
+  position: sticky;
+  z-index: 8;
+  top: var(--header-height);
+}
+
 .wrapper {
   position: relative;
   overflow: hidden;
