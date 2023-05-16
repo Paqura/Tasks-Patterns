@@ -31,7 +31,7 @@ export const Tools: React.FC = () => {
                 />
                 <ToolCard
                     type="training"
-                    title="Mraining"
+                    title="Training"
                     description="We&nbsp;believe that cybersecurity is&nbsp;everyone&rsquo;s responsibility. That&rsquo;s why we&nbsp;offer comprehensive training programs to&nbsp;educate your employees on&nbsp;best practices and help prevent human error from compromising your security."
                 />
             </div>

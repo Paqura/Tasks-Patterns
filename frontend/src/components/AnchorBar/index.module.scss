@@ -68,5 +68,6 @@
   right: 0;
   bottom: 0;
   width: 134px;
+  pointer-events: none;
   background: linear-gradient(270deg, var(--color-gray-8x) 0%, rgba(40, 40, 40, 0) 100%);
 }
