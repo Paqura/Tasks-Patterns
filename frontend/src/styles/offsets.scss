@@ -37,7 +37,7 @@
 @mixin subcard-paddings {
     padding: 32px;
 
-    @include media_breakpoint_mobile {
+    @include media_breakpoint_small_desktop {
         padding: 20px;
     }
 }
