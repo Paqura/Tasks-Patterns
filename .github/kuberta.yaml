@@ -21,7 +21,7 @@ releases:
       env.NEXT_PUBLIC_ADMIN_API_URL:
         type: url
         description: Admin API URL
-        default: https://main.pts-global-admin.csssr.cloud
+        default: ""
     builds:
       - workflow: build-docker-image-frontend.yaml
         values:
