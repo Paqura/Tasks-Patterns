@@ -60,8 +60,8 @@ type MediaDataWrapper = {
 // Custom GetMediaAttributeValue implementation for the content api
 type ContentAPIMediaValue<T extends Attribute> = T extends MediaAttribute<unknown, infer R>
   ? R extends true
-    ? { data: MediaDataWrapper[] }
-    : { data: MediaDataWrapper }
+    ? { data?: MediaDataWrapper[] }
+    : { data?: MediaDataWrapper }
   : never;
 
 
