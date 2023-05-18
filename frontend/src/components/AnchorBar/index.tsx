@@ -6,7 +6,7 @@ import { MouseEvent, useEffect, useRef, useState } from 'react'
 import { PageSection } from '@/components/ui/PageSection'
 import { Text } from '@/components/ui/typography/Text'
 import { PAGE_SECTIONS_ANCHORS_ELEMENT_ID } from '@/utils/constants'
-import { isInViewPort } from '@/utils/helpers'
+import { isInViewPort, useObserver } from '@/utils/helpers'
 import { scrollToSection } from '@/utils/scrollToSection'
 
 import styles from './index.module.scss'
@@ -30,33 +30,7 @@ export const AnchorBar = ({ anchors, isFloat = true }: IAnchorBar) => {
     const contentRef = useRef<HTMLDivElement>(null)
     const intersectionSensorRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        if (!isFloat || !intersectionSensorRef.current) {
-            return
-        }
-        let observer = new IntersectionObserver(
-            (entries) => {
-                if (!entries[0]) {
-                    return
-                }
-                if (entries[0].intersectionRatio > 0) {
-                    setIsSticky(false)
-                } else {
-                    setIsSticky(true)
-                }
-            },
-            {
-                threshold: 0.3,
-                root: document.querySelector('main'),
-                rootMargin: '-1px',
-            }
-        )
-        observer.observe(intersectionSensorRef.current)
-
-        return () => {
-            observer.disconnect()
-        }
-    }, [isFloat])
+    useObserver(intersectionSensorRef, setIsSticky, isFloat)
 
     useEffect(() => {
         const contentEl = contentRef.current

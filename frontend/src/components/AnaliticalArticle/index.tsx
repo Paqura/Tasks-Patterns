@@ -51,16 +51,15 @@ export default function AnalyticalArticle(props: TAnalitycArticlePageProps) {
                         <Text className={styles.date} type="pM">
                             {formatDate(props.analyticArticleData.published)}
                         </Text>
-                        <div className={styles.aside}>
-                            {!isDesktopSmall && (
-                                <>
-                                    <Text className={styles.title} type="postscript">
-                                        {props.analyticArticleData.titleTableOfContent}
-                                    </Text>
-                                    <Aside articleHeaders={tableOfContent} />
-                                </>
-                            )}
-                        </div>
+
+                        {!isDesktopSmall && (
+                            <div className={styles.aside}>
+                                <Text className={styles.title} type="postscript">
+                                    {props.analyticArticleData.titleTableOfContent}
+                                </Text>
+                                <Aside articleHeaders={tableOfContent} />
+                            </div>
+                        )}
                         <div className={styles.contentWrapper}>
                             {sortSection.map((item) => (
                                 <div

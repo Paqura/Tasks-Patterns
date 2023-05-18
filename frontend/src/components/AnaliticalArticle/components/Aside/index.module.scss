@@ -1,15 +1,38 @@
 .wrapper {
   text-transform: uppercase;
 }
+
+.fixedPosition {
+  position: fixed;
+  top: 60px;
+  width: 20%;
+}
+
 .itemWrap {
+  position: relative;
   padding: 20px 0 28px;
+  display: flex;
+  flex-direction: row;
   border-bottom: 1px solid var(--color-gray-6x);
+  justify-content: space-between;
 }
 
 .itemTitle {
-  color:  var(--color-gray-6x)
+  color: var(--color-gray-6x);
 }
 
 .itemTitle_active {
+  margin-left: 10px;
   color: var(--color-black-ui);
+
+  &::before {
+    position: absolute;
+    top: 28px;
+    left: 0px;
+    width: 8px;
+    height: 8px;
+    content: '';
+    background-color: var(--color-red-ui);
+    border-radius: 50%;
+  }
 }
