@@ -27,9 +27,28 @@
     "tag": {
       "type": "string"
     },
-    "link": {
-      "type": "string",
-      "required": true
+    "articleText": {
+      "type": "component",
+      "repeatable": true,
+      "component": "article-section.article-section"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "tableOfContent": {
+      "type": "string"
+    },
+    "files": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "titleOfHelpfulFiles": {
+      "type": "string"
     }
   }
 }

@@ -1,0 +1,27 @@
+
+@import "../../../../styles/media.scss";
+@import "../../../../styles/offsets.scss";
+
+.attachmentsWrap{
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  overflow-y: auto;
+}
+
+.attachment {
+  margin-right: 20px;
+  margin-left: 0;
+  padding: 23px 16px;
+  width: 195px;
+  background-color: var(--color-white);
+}
+
+.description {
+  padding-top: 40px;
+}
+
+.icon {
+  position: absolute;
+  top: 35px;
+  right: 5px
+}

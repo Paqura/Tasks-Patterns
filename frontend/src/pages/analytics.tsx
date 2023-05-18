@@ -58,7 +58,7 @@ export default function Analytics(props: TProps) {
                 title: article.title || '',
                 description: article.topic || '',
                 date: article.published && new Date(article.published),
-                href: article.link || '/',
+                href: article.slug || '/',
             }
         }) || []
 

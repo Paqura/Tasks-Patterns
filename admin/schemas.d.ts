@@ -19,12 +19,13 @@ import {
   SetMinMax,
   TextAttribute,
   DateAttribute,
-  SingleTypeSchema,
-  MediaAttribute,
   ComponentAttribute,
   UIDAttribute,
+  MediaAttribute,
+  SingleTypeSchema,
   DynamicZoneAttribute,
   ComponentSchema,
+  RichTextAttribute,
 } from '@strapi/strapi';
 
 export interface AdminPermission extends CollectionTypeSchema {
@@ -703,7 +704,11 @@ export interface ApiAnalyticArticleAnalyticArticle
     topic: TextAttribute & RequiredAttribute;
     published: DateAttribute & RequiredAttribute;
     tag: StringAttribute;
-    link: StringAttribute & RequiredAttribute;
+    articleText: ComponentAttribute<'article-section.article-section', true>;
+    slug: UIDAttribute<'api::analytic-article.analytic-article', 'title'>;
+    tableOfContent: StringAttribute;
+    files: MediaAttribute;
+    titleOfHelpfulFiles: StringAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -996,6 +1001,18 @@ export interface AnalyticsStatisticsSummary extends ComponentSchema {
   };
 }
 
+export interface ArticleSectionArticleSection extends ComponentSchema {
+  info: {
+    displayName: 'ArticleSectionItem';
+    description: '';
+  };
+  attributes: {
+    value: RichTextAttribute & RequiredAttribute;
+    number: IntegerAttribute & RequiredAttribute;
+    title: RichTextAttribute & RequiredAttribute;
+  };
+}
+
 export interface ProductImageSlide extends ComponentSchema {
   info: {
     displayName: 'ImageSlide';
@@ -1140,6 +1157,7 @@ declare global {
       'api::product.product': ApiProductProduct;
       'analytics.statistics-item': AnalyticsStatisticsItem;
       'analytics.statistics-summary': AnalyticsStatisticsSummary;
+      'article-section.article-section': ArticleSectionArticleSection;
       'product.image-slide': ProductImageSlide;
       'product.imaged-card': ProductImagedCard;
       'product.imaged-cards-grid-block': ProductImagedCardsGridBlock;

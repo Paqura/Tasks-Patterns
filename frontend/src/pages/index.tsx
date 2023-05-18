@@ -81,7 +81,7 @@ export default function Home(props: TProps) {
                 title: article.title || '',
                 tag: article.tag,
                 date: article.published && new Date(article.published),
-                href: article.link || '/',
+                href: `/analytics/${article.slug}` || '/',
             }
         }) || []
 

@@ -1,0 +1,15 @@
+.wrapper {
+  text-transform: uppercase;
+}
+.itemWrap {
+  padding: 20px 0 28px;
+  border-bottom: 1px solid var(--color-gray-6x);
+}
+
+.itemTitle {
+  color:  var(--color-gray-6x)
+}
+
+.itemTitle_active {
+  color: var(--color-black-ui);
+}

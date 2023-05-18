@@ -10,6 +10,12 @@ export type TImage = {
     alt?: string
 }
 
+export type TFile = {
+    title: string
+    id: number | string
+    src: string
+}
+
 export type TVideo = {
     src: string
 }

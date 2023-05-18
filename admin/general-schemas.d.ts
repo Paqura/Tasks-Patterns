@@ -52,6 +52,7 @@ type Media = {
   size: number,
   url: string
   alt?: string
+  caption?: string
 };
 
 type MediaDataWrapper = {
@@ -136,4 +137,3 @@ export interface CollectionMetadata {
     total: number;
   };
 }
-

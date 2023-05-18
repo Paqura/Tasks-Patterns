@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_analytics_article_sections",
+  "info": {
+    "displayName": "ArticleSectionItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "richtext",
+      "required": true
+    },
+    "number": {
+      "type": "integer",
+      "required": true
+    },
+    "title": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
