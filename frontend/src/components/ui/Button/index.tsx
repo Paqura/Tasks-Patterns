@@ -13,6 +13,7 @@ interface IButton {
     link?: string
     size?: 'm' | 's'
     className?: string
+    onClick?: React.MouseEventHandler
 }
 
 export const Button: React.FC<PropsWithChildren<IButton>> = ({
@@ -20,6 +21,7 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
     size = 'm',
     className,
     children,
+    onClick,
 }) => {
     const theme = useTypographyTheme() || 'light'
 
@@ -39,11 +41,11 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
         )
     }
     return link ? (
-        <NextLink href={link} className={classNames}>
+        <NextLink href={link} className={classNames} onClick={onClick}>
             {renderContent()}
         </NextLink>
     ) : (
-        <button type="button" className={classNames}>
+        <button type="button" className={classNames} onClick={onClick}>
             {renderContent()}
         </button>
     )

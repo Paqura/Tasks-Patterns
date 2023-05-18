@@ -9,6 +9,10 @@ export type TImage = {
     height?: number
 }
 
+export type TVideo = {
+    src: string
+}
+
 export type TNavSubItem = {
     title: string
     description?: string

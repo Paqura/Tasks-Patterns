@@ -816,6 +816,12 @@ export interface ApiMainPageMainPage extends SingleTypeSchema {
   };
   attributes: {
     statistics: ComponentAttribute<'analytics.statistics-summary'>;
+    headingVideo: MediaAttribute;
+    title: TextAttribute &
+      RequiredAttribute &
+      DefaultTo<'Technologically preventing the unacceptable for business and government'>;
+    subtitle: TextAttribute &
+      DefaultTo<'Bringing experts and enthusiasts together to&nbsp;create cutting-edge cybersecurity technology'>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<

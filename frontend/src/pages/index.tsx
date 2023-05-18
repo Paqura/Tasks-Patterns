@@ -1,7 +1,6 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
-import { THeaderData } from '@/components/Header'
 import { HomePage, THomePageData } from '@/components/HomePage'
 import {
     fetchArticles,
@@ -12,7 +11,7 @@ import {
     fetchHeader,
     fetchProducts,
 } from '@/utils/adminApi'
-import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
+import { mapImageMediaFile, mapVideoMediaFile } from '@/utils/serverDataMappers/media'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
@@ -25,13 +24,15 @@ export type TServerSideProps = {
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
-    const config = await fetchConfig()
-    const products = await fetchProducts()
-    const clients = await fetchClients()
-    const news = await fetchNews()
-    const header = await fetchHeader()
-    const articles = await fetchArticles()
-    const mainPage = await fetchMainPage()
+    const [config, products, clients, news, header, articles, mainPage] = await Promise.all([
+        fetchConfig(),
+        fetchProducts(),
+        fetchClients(),
+        fetchNews(),
+        fetchHeader(),
+        fetchArticles(),
+        fetchMainPage(),
+    ])
 
     return {
         props: {
@@ -49,7 +50,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
 type TProps = TServerSideProps
 
 export default function Home(props: TProps) {
-    const products: THomePageData['products'] =
+    const products: THomePageData['productsBlock']['products'] =
         props.products?.map((product) => ({
             title: product.title || '',
             description: product.subtitle,
@@ -57,13 +58,13 @@ export default function Home(props: TProps) {
             href: product.link || '/',
         })) || []
 
-    const clients: THomePageData['clients'] =
+    const clients: THomePageData['productsBlock']['clients'] =
         props.clients?.map((client) => ({
             name: client.name || '',
             logo: mapImageMediaFile(client.logo),
         })) || []
 
-    const news: THomePageData['news'] =
+    const news: THomePageData['newsBlock']['news'] =
         props.news?.map((newsItem) => ({
             description: newsItem.description || '',
             href: newsItem.link || '/',
@@ -71,7 +72,7 @@ export default function Home(props: TProps) {
             date: newsItem.published,
         })) || []
 
-    const articles: THomePageData['articles'] =
+    const articles: THomePageData['analyticsBlock']['articles'] =
         props.articles?.map((article) => {
             return {
                 title: article.title || '',
@@ -81,7 +82,7 @@ export default function Home(props: TProps) {
             }
         }) || []
 
-    const navItems: THeaderData['navItems'] =
+    const navItems: THomePageData['header']['navItems'] =
         props.header?.navItem?.map((item) => ({
             title: item.title || '',
             link: item.link || '/',
@@ -93,7 +94,7 @@ export default function Home(props: TProps) {
                 })) || [],
         })) || []
 
-    const statistics = {
+    const statistics: THomePageData['analyticsBlock']['statistics'] = {
         first: {
             title: props.mainPage?.statistics?.first?.title || '',
             value: props.mainPage?.statistics?.first?.value || '',
@@ -116,15 +117,20 @@ export default function Home(props: TProps) {
         },
     }
 
+    const heading: THomePageData['headingBlock'] = {
+        video: mapVideoMediaFile(props.mainPage?.headingVideo),
+        title: props.mainPage?.title || '',
+        subtitle: props.mainPage?.subtitle,
+    }
+
     return (
         <HomePage
             seo={props.config?.seo || {}}
-            products={products}
-            clients={clients}
-            articles={articles}
-            news={news}
-            navItems={navItems}
-            statistics={statistics}
+            productsBlock={{ products, clients }}
+            analyticsBlock={{ articles, statistics }}
+            newsBlock={{ news }}
+            header={{ navItems }}
+            headingBlock={heading}
         />
     )
 }

@@ -5,6 +5,7 @@ import { Nav } from '@/components/Nav'
 import { NavMobile } from '@/components/NavMobile'
 import { Logo } from '@/components/ui/Logo'
 import { TNavItem } from '@/types'
+import { NAV_ELEMENT_ID } from '@/utils/constants'
 import { useIsDesktopSmall, useOutsideClick } from '@/utils/hooks'
 
 import styles from './index.module.scss'
@@ -36,7 +37,7 @@ export const Header: React.FC<THeaderData> = ({ navItems }) => {
     return (
         <>
             {isNavOpen && <div className={styles.overlay} />}
-            <header ref={headerRef} className={styles.header}>
+            <header ref={headerRef} className={styles.header} id={NAV_ELEMENT_ID}>
                 <Logo href="/" />
                 {isDesktopSmall ? (
                     <NavMobile items={navItems} onToggle={handleToggleNav} isOpen={isNavOpen} />

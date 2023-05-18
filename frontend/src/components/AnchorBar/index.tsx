@@ -5,7 +5,9 @@ import { MouseEvent, MutableRefObject, useEffect, useRef, useState } from 'react
 
 import { PageSection } from '@/components/ui/PageSection'
 import { Text } from '@/components/ui/typography/Text'
+import { PAGE_SECTIONS_ANCHORS_ELEMENT_ID } from '@/utils/constants'
 import { isInViewPort } from '@/utils/helpers'
+import { scrollToSection } from '@/utils/scrollToSection'
 
 import styles from './index.module.scss'
 
@@ -64,25 +66,12 @@ export const AnchorBar = ({ anchors, isFloat = true }: IAnchorBar) => {
     const handleClick = (e: MouseEvent<HTMLAnchorElement>, anchor: string) => {
         e.preventDefault()
         setActiveTab(anchor)
-
-        const element = document.getElementById(anchor)
-
-        if (element) {
-            const headerHeight = document.querySelector('header')?.offsetHeight || 0
-            const barHeight = wrapperRef?.current.offsetHeight || 0
-
-            const elementOffsetTop = element.offsetTop - (headerHeight + barHeight)
-
-            window.scrollTo({
-                top: elementOffsetTop,
-                behavior: 'smooth',
-            })
-        }
+        scrollToSection(anchor)
     }
 
     return (
         <PageSection className={cn({ [styles.bar_float]: isFloat })}>
-            <div ref={wrapperRef} className={styles.wrapper}>
+            <div ref={wrapperRef} className={styles.wrapper} id={PAGE_SECTIONS_ANCHORS_ELEMENT_ID}>
                 <div
                     ref={contentRef}
                     className={styles.content}

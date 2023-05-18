@@ -18,9 +18,12 @@ export type TAnalyticsBlockData = {
     statistics: TStatistics
 }
 
-type TProps = TAnalyticsBlockData
+type TProps = {
+    data: TAnalyticsBlockData
+}
 
-export const Analytics: React.FC<TProps> = ({ articles, statistics }) => {
+export const Analytics: React.FC<TProps> = ({ data }) => {
+    const { articles, statistics } = data
     return (
         <PageSectionCard mode="light" className={styles.block} sectionId="analytics">
             <PageSectionCardHeader title={title} description={description} />

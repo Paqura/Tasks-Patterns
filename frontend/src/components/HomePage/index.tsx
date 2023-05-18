@@ -1,19 +1,25 @@
 import { AnchorBar } from '@/components/AnchorBar'
 import { THeaderData } from '@/components/Header'
 import { PageLayout, TSeo } from '@/components/PageLayout'
+import { PageSectionCard } from '@/components/ui/PageSectionCard'
+import { Heading } from '@/components/ui/typography/Heading'
+import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
 import { Advantages } from './components/Advantages'
 import { Analytics, TAnalyticsBlockData } from './components/Analytics'
+import { Banner, TBannerData } from './components/Banner'
 import { News, TNewsBlockData } from './components/News'
 import { Products, TProductsBlockData } from './components/Products'
 import { Tools } from './components/Tools'
 
 export type THomePageData = {
     seo: TSeo
-} & TProductsBlockData &
-    TNewsBlockData &
-    TAnalyticsBlockData &
-    THeaderData
+    headingBlock: TBannerData
+    productsBlock: TProductsBlockData
+    newsBlock: TNewsBlockData
+    analyticsBlock: TAnalyticsBlockData
+    header: THeaderData
+}
 
 export type THomePageProps = THomePageData
 
@@ -46,14 +52,17 @@ const anchors = [
 
 export const HomePage: React.FC<THomePageProps> = (props) => {
     return (
-        <PageLayout seo={props.seo} navItems={props.navItems}>
-            <h1>The Main page</h1>
+        <PageLayout seo={props.seo} navItems={props.header.navItems}>
+            <Banner data={props.headingBlock} />
             <AnchorBar anchors={anchors} />
             <Advantages />
             <Tools />
-            <Products products={props.products} clients={props.clients} />
-            <Analytics articles={props.articles} statistics={props.statistics} />
-            <News news={props.news} />
+            <Products data={props.productsBlock} />
+            <Analytics data={props.analyticsBlock} />
+            <News data={props.newsBlock} />
+            <PageSectionCard sectionId={CONTACTS_SECTION_ID}>
+                <Heading level={2}>Contacts form</Heading>
+            </PageSectionCard>
         </PageLayout>
     )
 }

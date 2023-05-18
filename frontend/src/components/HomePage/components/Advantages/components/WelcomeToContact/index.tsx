@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { sanitizeText } from '@/utils/sanitaze'
+import { scrollToContacts } from '@/utils/scrollToSection'
 
 import styles from './index.module.scss'
 
@@ -25,7 +26,7 @@ export const WelcomeToContact: React.FC = () => {
             <Text type="pM" className={styles.description}>
                 {descriptionText}
             </Text>
-            <Button link="#contact">Contact us</Button>
+            <Button onClick={scrollToContacts}>Contact us</Button>
             <div className={styles.background} />
         </div>
     )

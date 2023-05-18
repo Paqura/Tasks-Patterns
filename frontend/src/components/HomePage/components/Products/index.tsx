@@ -23,9 +23,12 @@ export type TProductsBlockData = {
     clients: TClient[]
 }
 
-type TProps = TProductsBlockData
+type TProps = {
+    data: TProductsBlockData
+}
 
-export const Products: React.FC<TProps> = ({ products, clients }) => {
+export const Products: React.FC<TProps> = ({ data }) => {
+    const { products, clients } = data
     return (
         <PageSectionCard mode="dark" sectionId="products">
             <PageSectionCardHeader title={title} description={description} />

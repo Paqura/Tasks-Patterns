@@ -7,6 +7,7 @@ import {
     PageSectionCardGridRightColumn,
 } from '@/components/ui/PageSectionCardGrid'
 import { Text } from '@/components/ui/typography/Text'
+import { scrollToContacts } from '@/utils/scrollToSection'
 
 import { StatisticValueCard } from './components/StatisticValueCard'
 import styles from './index.module.scss'
@@ -64,7 +65,7 @@ export const Statistics: React.FC<TProps> = ({ statistics }) => {
             <PageSectionCardGrid>
                 <PageSectionCardGridRightColumn className={styles.contactUsText}>
                     <Text type="pL">{contactUsText}</Text>
-                    <Button link="#contact" className={styles.contactBtn}>
+                    <Button onClick={scrollToContacts} className={styles.contactBtn}>
                         Contact us
                     </Button>
                 </PageSectionCardGridRightColumn>

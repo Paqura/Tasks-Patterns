@@ -14,9 +14,12 @@ export type TNewsBlockData = {
     news: TNews[]
 }
 
-type TProps = TNewsBlockData
+type TProps = {
+    data: TNewsBlockData
+}
 
-export const News: React.FC<TProps> = ({ news }) => {
+export const News: React.FC<TProps> = ({ data }) => {
+    const { news } = data
     return (
         <PageSectionCard sectionId="news">
             <PageSectionCardHeader title={title} description={description} />
