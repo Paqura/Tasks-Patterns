@@ -24,7 +24,7 @@ export type TServerSideProps = {
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
-    const [config, products, clients, news, header, articles, mainPage] = await Promise.all([
+    const [config, products, clients, news, header, { articles }, mainPage] = await Promise.all([
         fetchConfig(),
         fetchProducts(),
         fetchClients(),

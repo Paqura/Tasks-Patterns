@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "analytics_pages",
+  "info": {
+    "singularName": "analytics-page",
+    "pluralName": "analytics-pages",
+    "displayName": "AnalyticsPage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

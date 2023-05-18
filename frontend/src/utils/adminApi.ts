@@ -54,14 +54,27 @@ export const fetchNews = async () => {
     return response.data.data?.map((item) => item.attributes)
 }
 
-export const fetchArticles = async () => {
+export const fetchArticles = async (page: number = 1, pageSize: number = 5) => {
+    const url = `/api/analytic-articles?pagination[page]=${page}&pagination[pageSize]=${pageSize}&sort=published%3Adesc`
+
     const response = await adminClient.get<
         ResponseCollection<'api::analytic-article.analytic-article'>
-    >(`/api/analytic-articles`)
-    return response.data.data?.map((item) => item.attributes)
+    >(url)
+
+    return {
+        articles: response.data.data?.map((item) => item.attributes),
+        pagination: response.data.meta.pagination,
+    }
 }
 
 export const fetchMainPage = async () => {
     const response = await adminClient.get<Response<'api::main-page.main-page'>>(`/api/main-page`)
+    return response.data.data?.attributes
+}
+
+export const fetchAnalyticsPage = async () => {
+    const response = await adminClient.get<Response<'api::analytics-page.analytics-page'>>(
+        `/api/analytics-page`
+    )
     return response.data.data?.attributes
 }

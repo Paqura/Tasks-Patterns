@@ -5,6 +5,8 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { TNavItem } from '@/types'
 
+import styles from './index.module.scss'
+
 export type TSeo = {
     title?: string
     description?: string
@@ -29,7 +31,7 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header navItems={navItems} />
-            <main>{children}</main>
+            <main className={styles.main}>{children}</main>
             <Footer />
         </div>
     )

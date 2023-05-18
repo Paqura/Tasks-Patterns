@@ -1,0 +1,54 @@
+@import '../../../../styles/media';
+@import '../../../../styles/offsets.scss';
+
+.section {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    padding-top: 118px;
+    padding-bottom: 80px;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 40px;
+
+    @include media_breakpoint_normal_desktop {
+        padding-top: 98px;
+        padding-bottom: 60px;
+    }
+
+    @include media_breakpoint_mobile {
+        padding-top: 32px;
+        padding-bottom: 28px;
+
+        display: block;
+    }
+
+    @include section-card-padding-left;
+    @include section-card-padding-right;
+}
+
+.content {
+    grid-column: 1 / span 8;
+
+    @include media_breakpoint_normal_desktop {
+        grid-column: 1 / span 7;
+    }
+
+    @include media_breakpoint_small_desktop {
+        grid-column: 1 / span 9;
+    }
+}
+
+.title {
+    color: var(--color-white);
+}
+
+.description {
+    margin-top: 32px;
+    color: var(--color-gray-6x);
+
+    @include media_breakpoint_mobile {
+        margin-top: 16px;
+    }
+}

@@ -10,7 +10,6 @@ import styles from './index.module.scss'
 type THeadingProps = {
     className?: string
     level: THeadingLevel
-    value?: string
 }
 
 export const Heading: React.FC<React.PropsWithChildren<THeadingProps>> = ({

@@ -720,6 +720,36 @@ export interface ApiAnalyticArticleAnalyticArticle
   };
 }
 
+export interface ApiAnalyticsPageAnalyticsPage extends SingleTypeSchema {
+  info: {
+    singularName: 'analytics-page';
+    pluralName: 'analytics-pages';
+    displayName: 'AnalyticsPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    description: TextAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::analytics-page.analytics-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::analytics-page.analytics-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiClientClient extends CollectionTypeSchema {
   info: {
     singularName: 'client';
@@ -978,6 +1008,7 @@ declare global {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::analytic-article.analytic-article': ApiAnalyticArticleAnalyticArticle;
+      'api::analytics-page.analytics-page': ApiAnalyticsPageAnalyticsPage;
       'api::client.client': ApiClientClient;
       'api::config.config': ApiConfigConfig;
       'api::header.header': ApiHeaderHeader;

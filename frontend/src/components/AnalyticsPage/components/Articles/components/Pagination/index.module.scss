@@ -1,0 +1,57 @@
+@import '../../../../../../styles//media.scss';
+
+.pagination {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+
+    @include media_breakpoint_mobile {
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+
+    @include media_breakpoint_small_desktop {
+        justify-content: flex-start;
+    }
+
+    @include media_breakpoint_normal_desktop {
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+}
+
+.content {
+    display: flex;
+    border: 1px solid var(--color-gray-4x);
+    border-radius: 4px;
+}
+
+.item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 38px;
+
+    &:not(:last-child)::after {
+        position: absolute;
+        right: 0;
+        height: 16px;
+        content: '';
+        border-right: 1px solid var(--color-gray-4x);
+    }
+}
+
+.itemText {
+    color: var(--color-black-ui);
+}
+
+.itemTextActive {
+    color: var(--color-red-ui);
+}
+
+.itemDots {
+    color: var(--color-gray-4x);
+}
