@@ -2,6 +2,7 @@ import cn from 'classnames'
 import React from 'react'
 
 import { Button } from '@/components/ui/Button'
+import { CardsSlider } from '@/components/ui/CardsSlider'
 import {
     PageSectionCardGrid,
     PageSectionCardGridRightColumn,
@@ -40,23 +41,25 @@ export const Statistics: React.FC<TProps> = ({ statistics }) => {
     return (
         <div className={styles.block}>
             <Text type="postscript">{title}</Text>
-            <ul className={styles.values}>
-                <li className={cn(styles.value, styles.value_big)}>
-                    <StatisticValueCard {...statistics.first} />
-                </li>
-                <li className={styles.value}>
-                    <StatisticValueCard {...statistics.second} />
-                </li>
-                <li className={styles.value}>
-                    <StatisticValueCard {...statistics.third} />
-                </li>
-                <li className={styles.value}>
-                    <StatisticValueCard {...statistics.fourth} />
-                </li>
-                <li className={styles.value}>
-                    <StatisticValueCard {...statistics.fifth} />
-                </li>
-            </ul>
+            <CardsSlider hideControls scrollAreaClassName={styles.cardsScrollArea}>
+                <ul className={styles.values}>
+                    <li className={cn(styles.value, styles.value_big)}>
+                        <StatisticValueCard {...statistics.first} />
+                    </li>
+                    <li className={styles.value}>
+                        <StatisticValueCard {...statistics.second} />
+                    </li>
+                    <li className={styles.value}>
+                        <StatisticValueCard {...statistics.third} />
+                    </li>
+                    <li className={styles.value}>
+                        <StatisticValueCard {...statistics.fourth} />
+                    </li>
+                    <li className={styles.value}>
+                        <StatisticValueCard {...statistics.fifth} />
+                    </li>
+                </ul>
+            </CardsSlider>
             <PageSectionCardGrid>
                 <PageSectionCardGridRightColumn className={styles.description}>
                     <Text type="pL">{description}</Text>

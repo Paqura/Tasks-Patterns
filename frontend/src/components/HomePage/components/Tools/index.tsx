@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { CardsSlider } from '@/components/ui/CardsSlider'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
 
@@ -13,7 +14,7 @@ export const Tools: React.FC = () => {
     return (
         <PageSectionCard mode="light" sectionId="tools">
             <PageSectionCardHeader title={title} description={description} />
-            <div className={styles.toolsList}>
+            <CardsSlider scrollAreaClassName={styles.toolsList}>
                 <ToolCard
                     type="assessment"
                     title="Assessment"
@@ -34,7 +35,7 @@ export const Tools: React.FC = () => {
                     title="Training"
                     description="We&nbsp;believe that cybersecurity is&nbsp;everyone&rsquo;s responsibility. That&rsquo;s why we&nbsp;offer comprehensive training programs to&nbsp;educate your employees on&nbsp;best practices and help prevent human error from compromising your security."
                 />
-            </div>
+            </CardsSlider>
         </PageSectionCard>
     )
 }

@@ -2,6 +2,7 @@
 
 import { PageLayout } from '@/components/PageLayout'
 import { Button } from '@/components/ui/Button'
+import { SliderButtons } from '@/components/ui/CardsSlider/components/SliderButtons'
 import { Link } from '@/components/ui/Link'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Heading } from '@/components/ui/typography/Heading'
@@ -62,6 +63,24 @@ export default function Components() {
                 <Button size="m">Button size m</Button>
                 <br />
                 <Button size="s">Button size s</Button>
+            </PageSectionCard>
+            <PageSectionCard mode="light">
+                <SliderButtons />
+                <br />
+                <br />
+                <SliderButtons disableLeft={true} disableRight={false} />
+                <br />
+                <br />
+                <SliderButtons disableLeft={true} disableRight={true} />
+            </PageSectionCard>
+            <PageSectionCard mode="dark">
+                <SliderButtons />
+                <br />
+                <br />
+                <SliderButtons disableLeft={true} disableRight={false} />
+                <br />
+                <br />
+                <SliderButtons disableLeft={true} disableRight={true} />
             </PageSectionCard>
         </PageLayout>
     )

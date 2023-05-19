@@ -2,11 +2,14 @@
 @import "../../../../styles/offsets.scss";
 
 .productsList {
+    @include subsection-above-offset;
+}
+
+.productsScrollArea {
     display: flex;
     overflow-x: auto;
     gap: 20px;
 
-    @include subsection-above-offset;
     @include include-section-card-horizontal-paddings
 }
 

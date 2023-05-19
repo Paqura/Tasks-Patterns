@@ -1,0 +1,42 @@
+@import "../../../styles/media";
+@import "../../../styles/decorators";
+
+.wrapper {
+    position: relative;
+}
+
+.scrollArea {
+    overflow-x: scroll;
+    touch-action: pan-x;
+
+    @include hide-scrollbar;
+}
+
+.controlsBlock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    transform: translateY(calc((100% + 60px) * -1));
+    justify-content: flex-end;
+    gap: 32px;
+
+    @include media_breakpoint_mobile {
+        position: relative;
+        left: 0;
+        margin-bottom: 20px;
+        transform: none;
+        justify-content: flex-start;
+    }
+}
+
+.extraControls {
+    display: flex;
+    align-items: center;
+}
+
+.moveButtons {
+    @include media_breakpoint_small_desktop {
+        display: none;
+    }
+}

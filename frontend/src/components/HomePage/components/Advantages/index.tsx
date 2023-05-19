@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { CardsSlider } from '@/components/ui/CardsSlider'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
 
@@ -15,7 +16,7 @@ export const Advantages: React.FC<{}> = () => {
         <PageSectionCard mode="dark" sectionId="advantages">
             <PageSectionCardHeader title={title} description={description} />
 
-            <div className={styles.advantagesList}>
+            <CardsSlider hideControls scrollAreaClassName={styles.advantagesList}>
                 <AdvantageCard
                     title="Expertise"
                     description="Our team of&nbsp;cybersecurity professionals has years of&nbsp;experience working with companies of&nbsp;all sizes and in&nbsp;all industries. We&nbsp;stay up-to-date with the latest threats and vulnerabilities, so&nbsp;you don&rsquo;t have&nbsp;to."
@@ -41,7 +42,7 @@ export const Advantages: React.FC<{}> = () => {
                     description="We&nbsp;offer a&nbsp;wide range of&nbsp;cybersecurity services, including vulnerability assessment, compliance management, and threat analysis. Our solutions are customized to&nbsp;meet your specific needs and budget."
                     type="solutions"
                 />
-            </div>
+            </CardsSlider>
             <div className={styles.welcomeToContact}>
                 <WelcomeToContact />
             </div>

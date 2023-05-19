@@ -8,12 +8,14 @@
         display: block;
     }
 }
-
-.list {
-    margin-top: 16px;
-    display: grid;
+.header {
+    display: flex;
+    justify-content: space-between;
     gap: 20px;
-    grid-template-columns: repeat(3, 1fr);
+}
+
+.listScrollArea {
+    margin-top: 16px;
 
     @include media_breakpoint_small_desktop {
         gap: 12px;
@@ -23,6 +25,16 @@
         overflow-x: auto;
 
         @include include-section-card-horizontal-paddings;
+    }
+}
+
+.list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+
+    @include media_breakpoint_small_desktop {
+        gap: 12px;
     }
 }
 

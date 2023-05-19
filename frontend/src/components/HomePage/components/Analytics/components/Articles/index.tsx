@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { CardsSlider } from '@/components/ui/CardsSlider'
+import { Link } from '@/components/ui/Link'
 import {
     PageSectionCardGrid,
     PageSectionCardGridRightColumn,
@@ -26,14 +28,31 @@ export const Articles: React.FC<TProps> = ({ articles }) => {
     return (
         <PageSectionCardGrid className={styles.block}>
             <PageSectionCardGridRightColumn>
-                <Heading level={3}>Analytical articles</Heading>
-                <ul className={styles.list}>
-                    {showedArticles.map((article, index) => (
-                        <li key={index} className={styles.listItem}>
-                            <ArticleCard {...article} />
-                        </li>
-                    ))}
-                </ul>
+                <div className={styles.header}>
+                    <Heading level={3}>Analytical articles</Heading>
+                    <Link type="s" href="/analytics">
+                        All articles
+                    </Link>
+                </div>
+                <CardsSlider hideControls scrollAreaClassName={styles.listScrollArea}>
+                    <ul className={styles.list}>
+                        {showedArticles.map((article, index) => (
+                            <li key={index} className={styles.listItem}>
+                                <ArticleCard {...article} />
+                            </li>
+                        ))}
+                        {showedArticles.map((article, index) => (
+                            <li key={index} className={styles.listItem}>
+                                <ArticleCard {...article} />
+                            </li>
+                        ))}
+                        {showedArticles.map((article, index) => (
+                            <li key={index} className={styles.listItem}>
+                                <ArticleCard {...article} />
+                            </li>
+                        ))}
+                    </ul>
+                </CardsSlider>
             </PageSectionCardGridRightColumn>
         </PageSectionCardGrid>
     )

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { CardsSlider } from '@/components/ui/CardsSlider'
+import { Link } from '@/components/ui/Link'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
 import { TImage } from '@/types'
@@ -29,11 +31,19 @@ type TProps = {
 
 export const Products: React.FC<TProps> = ({ data }) => {
     const { products, clients } = data
+
     return (
         <PageSectionCard mode="dark" sectionId="products">
             <PageSectionCardHeader title={title} description={description} />
-
-            <div className={styles.productsList}>
+            <CardsSlider
+                className={styles.productsList}
+                scrollAreaClassName={styles.productsScrollArea}
+                controls={
+                    <Link type="s" href={'/products'}>
+                        All products
+                    </Link>
+                }
+            >
                 {products.map((product, index) => (
                     <ProductCard
                         key={index}
@@ -43,7 +53,7 @@ export const Products: React.FC<TProps> = ({ data }) => {
                         href={product.href}
                     />
                 ))}
-            </div>
+            </CardsSlider>
             <div className={styles.clients}>
                 <Clients clients={clients} />
             </div>

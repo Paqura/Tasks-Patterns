@@ -1,6 +1,8 @@
 import React from 'react'
 
 import { NewsCard, TNews } from '@/components/HomePage/components/News/components/NewsCard'
+import { CardsSlider } from '@/components/ui/CardsSlider'
+import { Link } from '@/components/ui/Link'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
 
@@ -23,11 +25,19 @@ export const News: React.FC<TProps> = ({ data }) => {
     return (
         <PageSectionCard sectionId="news">
             <PageSectionCardHeader title={title} description={description} />
-            <div className={styles.newsList}>
+            <CardsSlider
+                controls={
+                    <Link type="s" href={'/news'}>
+                        All news
+                    </Link>
+                }
+                className={styles.newsList}
+                scrollAreaClassName={styles.newsListScrollArea}
+            >
                 {news.map((newsItem, index) => (
                     <NewsCard key={index} {...newsItem} />
                 ))}
-            </div>
+            </CardsSlider>
         </PageSectionCard>
     )
 }
