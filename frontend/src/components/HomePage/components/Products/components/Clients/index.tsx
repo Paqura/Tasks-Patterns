@@ -1,5 +1,7 @@
+import chunk from 'lodash/chunk'
 import React from 'react'
 
+import { AutoCarousel } from '@/components/ui/AutoCarousel'
 import {
     PageSectionCardGrid,
     PageSectionCardGridLeftColumn,
@@ -8,6 +10,7 @@ import {
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { TImage } from '@/types'
+import { useIsDesktopSmall } from '@/utils/hooks'
 
 import { ClientCard } from './components/ClientCard'
 import styles from './index.module.scss'
@@ -25,6 +28,10 @@ type TProps = {
 }
 
 export const Clients: React.FC<TProps> = ({ clients }) => {
+    const isDesktopSmall = useIsDesktopSmall()
+    const clientsPerSlide = isDesktopSmall ? 4 : 6
+    const clientsListChunks = chunk(clients, clientsPerSlide)
+
     return (
         <PageSectionCardGrid>
             <PageSectionCardGridLeftColumn className={styles.textColumn}>
@@ -36,11 +43,25 @@ export const Clients: React.FC<TProps> = ({ clients }) => {
                 </Text>
             </PageSectionCardGridLeftColumn>
             <PageSectionCardGridRightColumn className={styles.listColumn}>
-                <div className={styles.list}>
-                    {clients.map((client, index) => (
-                        <ClientCard key={index + '1'} logo={client.logo} name={client.name} />
+                <AutoCarousel>
+                    {clientsListChunks.map((chunk, index) => (
+                        <div
+                            className={styles.listItem}
+                            key={index + '1'}
+                            style={{
+                                gridTemplateColumns: `repeat(${clientsPerSlide / 2}, 1fr)`,
+                            }}
+                        >
+                            {chunk.map((client, index) => (
+                                <ClientCard
+                                    key={index + '1'}
+                                    logo={client.logo}
+                                    name={client.name}
+                                />
+                            ))}
+                        </div>
                     ))}
-                </div>
+                </AutoCarousel>
             </PageSectionCardGridRightColumn>
         </PageSectionCardGrid>
     )
