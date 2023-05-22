@@ -22,6 +22,7 @@ import {
   MediaAttribute,
   SingleTypeSchema,
   ComponentAttribute,
+  UIDAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
 
@@ -945,7 +946,8 @@ export interface ApiProductProduct extends CollectionTypeSchema {
     title: StringAttribute & RequiredAttribute;
     subtitle: TextAttribute;
     icon: MediaAttribute & RequiredAttribute;
-    link: StringAttribute & RequiredAttribute;
+    slug: UIDAttribute;
+    bannerImage: MediaAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<

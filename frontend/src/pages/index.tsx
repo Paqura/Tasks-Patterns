@@ -11,6 +11,7 @@ import {
     fetchHeader,
     fetchProducts,
 } from '@/utils/adminApi'
+import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapImageMediaFile, mapVideoMediaFile } from '@/utils/serverDataMappers/media'
 
 export type TServerSideProps = {
@@ -57,7 +58,7 @@ export default function Home(props: TProps) {
             title: product.title || '',
             description: product.subtitle,
             icon: mapImageMediaFile(product.icon),
-            href: product.link || '/',
+            href: product.slug || '',
         })) || []
 
     const clients: THomePageData['productsBlock']['clients'] =
@@ -84,17 +85,7 @@ export default function Home(props: TProps) {
             }
         }) || []
 
-    const navItems: THomePageData['header']['navItems'] =
-        props.header?.navItem?.map((item) => ({
-            title: item.title || '',
-            link: item.link || '/',
-            subItems:
-                item.navSubItem?.map((subItem) => ({
-                    title: subItem.title || '',
-                    description: subItem.description || '',
-                    link: subItem.link || '/',
-                })) || [],
-        })) || []
+    const headerData: THomePageData['header'] = mapHeaderServerData(props.header)
 
     const statistics: THomePageData['analyticsBlock']['statistics'] = {
         first: {
@@ -131,7 +122,7 @@ export default function Home(props: TProps) {
             productsBlock={{ products, clients }}
             analyticsBlock={{ articles, statistics }}
             newsBlock={{ news }}
-            header={{ navItems }}
+            header={headerData}
             headingBlock={heading}
         />
     )

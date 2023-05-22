@@ -1,0 +1,94 @@
+@import '../../../styles/media';
+@import '../../../styles/offsets';
+
+.banner {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    @include section-card-padding-right;
+    @include section-card-padding-left;
+
+    @include media_breakpoint_mobile {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+.textContent {
+    position: relative;
+    margin-top: 180px;
+    margin-bottom: 160px;
+    box-sizing: content-box;
+    max-width: 615px;
+    grid-column: 1 / span 6;
+
+    @include media_breakpoint_mobile {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+}
+
+.description {
+    margin-top: 20px;
+    max-width: 477px;
+    color: var(--color-gray-6x);
+
+    @include media_breakpoint_normal_desktop {
+        max-width: 497px;
+    }
+
+    @include media_breakpoint_small_desktop {
+        max-width: 405px;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-top: 16px;
+        max-width: 100%;
+    }
+}
+
+.contactBtn {
+    margin-top: 40px;
+
+    @include media_breakpoint_mobile {
+        margin-top: 32px;
+    }
+}
+
+.logoWrapper {
+    grid-column: 7 / span 12;
+    display: flex;
+    justify-content: flex-end;
+
+    @include media_breakpoint_mobile {
+        width: 100%;
+        height: 156px;
+        justify-content: flex-start;
+    }
+}
+
+.smallLogo,
+.bigLogo {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+.bigLogo {
+    display: block;
+
+    @include media_breakpoint_mobile {
+        display: none;
+    }
+}
+
+.smallLogo {
+    display: none;
+
+    @include media_breakpoint_mobile {
+        display: block;
+    }
+}

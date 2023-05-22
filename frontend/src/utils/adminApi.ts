@@ -42,6 +42,17 @@ export const fetchProducts = async () => {
     return response.data.data?.map((item) => item.attributes)
 }
 
+export const fetchProduct = async (id: string) => {
+    try {
+        const response = await adminClient.get<Response<'api::product.product'>>(
+            `/api/products/${id}`
+        )
+        return response.data.data?.attributes
+    } catch {
+        return null
+    }
+}
+
 export const fetchClients = async () => {
     const response = await adminClient.get<ResponseCollection<'api::client.client'>>(`/api/clients`)
     return response.data.data?.map((item) => item.attributes)

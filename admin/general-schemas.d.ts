@@ -51,6 +51,7 @@ type Media = {
   height: number,
   size: number,
   url: string
+  alt?: string
 };
 
 type MediaDataWrapper = {

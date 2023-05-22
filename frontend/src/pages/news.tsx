@@ -1,9 +1,9 @@
 import { GetAttributesValues, CollectionMetadata } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
-import { THeaderData } from '@/components/Header'
 import { NewsPage, TNewsPageData } from '@/components/NewsPage'
 import { fetchHeader, fetchConfig, fetchNews, fetchNewsPage } from '@/utils/adminApi'
+import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 export type TServerSideProps = {
@@ -48,18 +48,6 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
 type TProps = TServerSideProps
 
 export default function News(props: TProps) {
-    const navItems: THeaderData['navItems'] =
-        props.header?.navItem?.map((item) => ({
-            title: item.title || '',
-            link: item.link || '/',
-            subItems:
-                item.navSubItem?.map((subItem) => ({
-                    title: subItem.title || '',
-                    description: subItem.description || '',
-                    link: subItem.link || '/',
-                })) || [],
-        })) || []
-
     const headingSection = {
         title: props.newsPage?.title || '',
         description: props.newsPage?.description || '',
@@ -79,7 +67,7 @@ export default function News(props: TProps) {
     return (
         <NewsPage
             seo={props.config?.seo || {}}
-            headerData={{ navItems }}
+            headerData={mapHeaderServerData(props.header)}
             headingSectionData={headingSection}
             articlesListData={{ articles, pagination: props.pagination }}
         />

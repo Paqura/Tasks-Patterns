@@ -27,9 +27,15 @@
         "images"
       ]
     },
-    "link": {
-      "type": "string",
-      "required": true
+    "slug": {
+      "type": "uid"
+    },
+    "bannerImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

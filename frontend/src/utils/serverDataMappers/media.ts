@@ -10,6 +10,7 @@ export const mapImageMediaFile = (
         src: attrs?.url || '',
         width: attrs?.width,
         height: attrs?.height,
+        alt: attrs?.alt,
     }
 }
 
