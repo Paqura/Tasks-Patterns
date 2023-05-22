@@ -1,10 +1,11 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
-import { ProductPage, TProductData, TProductPageData } from '@/components/ProductPage'
+import { ProductPage, TProductPageData } from '@/components/ProductPage'
+import { TProductData } from '@/components/ProductPage/types'
 import { fetchConfig, fetchHeader, fetchProduct } from '@/utils/adminApi'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapProduct } from '@/utils/serverDataMappers/product'
+import { mapProductServerData } from '@/utils/serverDataMappers/product'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
@@ -47,7 +48,7 @@ type TProps = TServerSideProps
 export default function Product(props: TProps) {
     const headerData: TProductPageData['header'] = mapHeaderServerData(props.header)
 
-    const product: TProductData = mapProduct(props.product)
+    const product: TProductData = mapProductServerData(props.product)
 
     return <ProductPage seo={props.config?.seo || {}} header={headerData} product={product} />
 }

@@ -1,12 +1,18 @@
-@import "../../../styles/media";
-@import "../../../styles/decorators";
+@import '../../../styles/media';
+@import '../../../styles/decorators';
 
 .wrapper {
     position: relative;
+    display: flex;
+    flex-direction: column;
+
+    @include media_breakpoint_mobile {
+        display: block;
+    }
 }
 
 .scrollArea {
-    overflow-x: scroll;
+    overflow-x: auto;
     touch-action: pan-x;
 
     @include hide-scrollbar;
@@ -17,7 +23,7 @@
     top: 0;
     right: 0;
     display: flex;
-    transform: translateY(calc((100% + 60px) * -1));
+    transform: translateY(-100%);
     justify-content: flex-end;
     gap: 32px;
 

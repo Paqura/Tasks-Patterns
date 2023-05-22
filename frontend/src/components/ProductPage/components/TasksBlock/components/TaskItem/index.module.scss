@@ -1,0 +1,36 @@
+@import '../../../../../../styles/media';
+
+.task {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-black-ui);
+    border-radius: 12px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: 180px;
+    background-color: var(--color-gray-6x);
+    object-fit: cover;
+
+    @include media_breakpoint_mobile {
+        height: 120px;
+    }
+}
+
+.textContent {
+    padding: 32px;
+
+    @include media_breakpoint_small_desktop {
+        padding: 32px 20px;
+    }
+
+    @include media_breakpoint_mobile {
+        padding: 20px;
+    }
+}
+
+.description {
+    margin-top: 16px;
+}

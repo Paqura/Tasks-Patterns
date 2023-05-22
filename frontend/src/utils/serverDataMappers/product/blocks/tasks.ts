@@ -1,6 +1,6 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 
-import { TProductTasksBlockData } from '@/components/ProductPage'
+import { TProductTasksBlockData } from '@/components/ProductPage/types'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 type TBackendTasksBlockData = Extract<
@@ -8,7 +8,9 @@ type TBackendTasksBlockData = Extract<
     { __component: 'product.product-tasks-block' }
 >
 
-export const mapProductTasksBlockData = (block: TBackendTasksBlockData): TProductTasksBlockData => {
+export const mapProductTasksBlockServerData = (
+    block: TBackendTasksBlockData
+): TProductTasksBlockData => {
     return {
         title: block.title || '',
         description: block.description,

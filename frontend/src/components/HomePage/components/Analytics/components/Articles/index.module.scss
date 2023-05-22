@@ -17,10 +17,6 @@
 .listScrollArea {
     margin-top: 16px;
 
-    @include media_breakpoint_small_desktop {
-        gap: 12px;
-    }
-
     @include media_breakpoint_mobile {
         overflow-x: auto;
 

@@ -1,11 +1,11 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 
-import { TProductData, TProductsBlockData } from '@/components/ProductPage'
+import { TProductData, TProductsBlockData } from '@/components/ProductPage/types'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
-import { mapProductTasksBlockData } from './blocks/tasks'
+import { mapProductTasksBlockServerData } from './blocks/tasks'
 
-const mapProductBlocksData = (
+const mapProductBlocksServerData = (
     blocks: GetAttributesValues<'api::product.product'>['blocks']
 ): TProductsBlockData[] => {
     return (
@@ -15,7 +15,7 @@ const mapProductBlocksData = (
                     case 'product.product-tasks-block':
                         return {
                             type: 'tasks',
-                            data: mapProductTasksBlockData(block),
+                            data: mapProductTasksBlockServerData(block),
                             sectionId: block.sectionId || 'tasks-' + index,
                         }
 
@@ -27,7 +27,7 @@ const mapProductBlocksData = (
     )
 }
 
-export const mapProduct = (
+export const mapProductServerData = (
     productData: GetAttributesValues<'api::product.product'>
 ): TProductData => {
     return {
@@ -35,6 +35,6 @@ export const mapProduct = (
         subtitle: productData.subtitle,
         logo: mapImageMediaFile(productData.icon),
         bannerImage: mapImageMediaFile(productData.bannerImage),
-        blocks: mapProductBlocksData(productData.blocks),
+        blocks: mapProductBlocksServerData(productData.blocks),
     }
 }

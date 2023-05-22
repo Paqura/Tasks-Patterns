@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import debounce from 'lodash/debounce'
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
@@ -12,7 +13,7 @@ type TProps = {
     hideControls?: boolean
 }
 
-const scrollStepRatio = 0.2
+const scrollStepRatio = 0.4
 
 export const CardsSlider: React.FC<React.PropsWithChildren<TProps>> = ({
     className,
@@ -37,6 +38,23 @@ export const CardsSlider: React.FC<React.PropsWithChildren<TProps>> = ({
         }
     }, [])
 
+    useEffect(() => {
+        const handleResize = debounce(
+            () => {
+                const el = containerRef.current
+                el && calculateButtonsState(el.scrollLeft)
+            },
+            500,
+            {
+                leading: false,
+            }
+        )
+        window.addEventListener('resize', handleResize)
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [calculateButtonsState])
+
     useLayoutEffect(() => {
         calculateButtonsState(containerRef.current?.scrollLeft || 0)
     }, [calculateButtonsState])
@@ -59,10 +77,10 @@ export const CardsSlider: React.FC<React.PropsWithChildren<TProps>> = ({
     const handleClickLeft = () => {
         const el = containerRef.current
         if (el) {
-            const fullWidth = el.scrollWidth
             const currentScrollPos = el.scrollLeft
+            const visibleWidth = containerRef.current?.clientWidth
             const newScrollPos = Math.max(
-                Math.ceil(currentScrollPos - fullWidth * scrollStepRatio),
+                Math.ceil(currentScrollPos - visibleWidth * scrollStepRatio),
                 0
             )
             if (currentScrollPos !== newScrollPos) {
@@ -82,7 +100,7 @@ export const CardsSlider: React.FC<React.PropsWithChildren<TProps>> = ({
             const currentScrollPos = containerRef.current?.scrollLeft
             const maxScrollPosition = fullWidth - visibleWidth
             const newScrollPos = Math.min(
-                Math.ceil(currentScrollPos + fullWidth * scrollStepRatio),
+                Math.ceil(currentScrollPos + visibleWidth * scrollStepRatio),
                 maxScrollPosition
             )
 

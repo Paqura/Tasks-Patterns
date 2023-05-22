@@ -1,8 +1,10 @@
-@import "../../../../styles/media.scss";
-@import "../../../../styles/offsets.scss";
+@import '../../../../styles/media.scss';
+@import '../../../../styles/offsets.scss';
 
 .productsList {
-    @include subsection-above-offset;
+    @include media_breakpoint_small_desktop {
+        @include subsection-above-offset;
+    }
 }
 
 .productsScrollArea {
@@ -10,7 +12,12 @@
     overflow-x: auto;
     gap: 20px;
 
-    @include include-section-card-horizontal-paddings
+    @include subsection-above-offset;
+    @include include-section-card-horizontal-paddings;
+
+    @include media_breakpoint_small_desktop {
+        margin-top: 0;
+    }
 }
 
 .clients {

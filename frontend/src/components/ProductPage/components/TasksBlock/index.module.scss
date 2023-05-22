@@ -1,0 +1,97 @@
+@import '../../../../styles/media';
+@import '../../../../styles/offsets';
+
+.description {
+    margin-top: 32px;
+    max-width: 577px;
+
+    @include media_breakpoint_normal_desktop {
+        max-width: 510px;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-top: 16px;
+        max-width: auto;
+    }
+}
+
+.tasksListScrollArea {
+    @include subsection-above-offset;
+
+    @include media_breakpoint_mobile {
+        @include include-section-card-horizontal-paddings;
+    }
+}
+
+.tasksList {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    gap: 20px;
+
+    @include media_breakpoint_normal_desktop {
+        gap: 12px;
+    }
+
+    @include media_breakpoint_mobile {
+        display: flex;
+    }
+}
+
+.taksListItem {
+    position: relative;
+    display: block;
+
+    @include media_breakpoint_mobile {
+        min-width: 244px;
+    }
+}
+
+.statistics {
+    @include subsection-above-offset;
+}
+
+.statisticsListScrollArea {
+    margin-top: 40px;
+
+    @include include-section-card-horizontal-paddings;
+
+    @include media_breakpoint_mobile {
+        margin-top: 24px;
+    }
+}
+
+.statisticsList {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+
+    @include media_breakpoint_normal_desktop {
+        gap: 12px;
+    }
+
+    @include media_breakpoint_mobile {
+        display: flex;
+    }
+}
+
+.statisticsListItem {
+    width: 240px;
+    min-width: 240px;
+
+    @include media_breakpoint_normal_desktop {
+        width: 234px;
+        min-width: 234px;
+    }
+
+    @include media_breakpoint_small_desktop {
+        width: 200px;
+        min-width: 200px;
+    }
+
+    @include media_breakpoint_mobile {
+        width: 180px;
+        min-width: 180px;
+    }
+}
