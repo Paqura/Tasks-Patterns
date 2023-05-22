@@ -4,7 +4,7 @@ import { GetServerSideProps } from 'next'
 import { ProductPage, TProductData, TProductPageData } from '@/components/ProductPage'
 import { fetchConfig, fetchHeader, fetchProduct } from '@/utils/adminApi'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
+import { mapProduct } from '@/utils/serverDataMappers/product'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
@@ -46,12 +46,8 @@ type TProps = TServerSideProps
 
 export default function Product(props: TProps) {
     const headerData: TProductPageData['header'] = mapHeaderServerData(props.header)
-    const product: TProductData = {
-        title: props.product.title || '',
-        subtitle: props.product.subtitle,
-        logo: mapImageMediaFile(props.product.icon),
-        bannerImage: mapImageMediaFile(props.product.bannerImage),
-    }
+
+    const product: TProductData = mapProduct(props.product)
 
     return <ProductPage seo={props.config?.seo || {}} header={headerData} product={product} />
 }

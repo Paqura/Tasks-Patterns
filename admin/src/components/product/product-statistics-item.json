@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_product_product_statistics_items",
+  "info": {
+    "displayName": "ProductStatisticsItem"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

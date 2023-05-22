@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_product_product_tasks",
+  "info": {
+    "displayName": "ProductTask",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

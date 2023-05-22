@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_product_product_tasks_blocks",
+  "info": {
+    "displayName": "ProductTasksBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "tasks": {
+      "displayName": "ProductTask",
+      "type": "component",
+      "repeatable": true,
+      "component": "product.product-task"
+    },
+    "statisticsTitile": {
+      "type": "string"
+    },
+    "statisticsValues": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.product-statistics-item"
+    }
+
+  }
+}

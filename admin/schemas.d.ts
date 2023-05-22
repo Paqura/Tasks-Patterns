@@ -23,6 +23,7 @@ import {
   SingleTypeSchema,
   ComponentAttribute,
   UIDAttribute,
+  DynamicZoneAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
 
@@ -948,6 +949,7 @@ export interface ApiProductProduct extends CollectionTypeSchema {
     icon: MediaAttribute & RequiredAttribute;
     slug: UIDAttribute;
     bannerImage: MediaAttribute;
+    blocks: DynamicZoneAttribute<['product.product-tasks-block']>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -989,6 +991,46 @@ export interface AnalyticsStatisticsSummary extends ComponentSchema {
   };
 }
 
+export interface ProductProductStatisticsItem extends ComponentSchema {
+  info: {
+    displayName: 'ProductStatisticsItem';
+  };
+  attributes: {
+    value: StringAttribute & RequiredAttribute;
+    label: TextAttribute & RequiredAttribute;
+  };
+}
+
+export interface ProductProductTask extends ComponentSchema {
+  info: {
+    displayName: 'ProductTask';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    description: TextAttribute;
+    image: MediaAttribute;
+  };
+}
+
+export interface ProductProductTasksBlock extends ComponentSchema {
+  info: {
+    displayName: 'ProductTasksBlock';
+    description: '';
+  };
+  attributes: {
+    sectionId: StringAttribute;
+    title: StringAttribute & RequiredAttribute;
+    description: TextAttribute & RequiredAttribute;
+    tasks: ComponentAttribute<'product.product-task', true>;
+    statisticsTitile: StringAttribute;
+    statisticsValues: ComponentAttribute<
+      'product.product-statistics-item',
+      true
+    >;
+  };
+}
+
 export interface ShareNavItem extends ComponentSchema {
   info: {
     displayName: 'navItem';
@@ -1023,6 +1065,13 @@ export interface ShareSeo extends ComponentSchema {
   };
 }
 
+export interface ShareTest extends ComponentSchema {
+  info: {
+    displayName: 'test';
+  };
+  attributes: {};
+}
+
 declare global {
   namespace Strapi {
     interface Schemas {
@@ -1050,9 +1099,13 @@ declare global {
       'api::product.product': ApiProductProduct;
       'analytics.statistics-item': AnalyticsStatisticsItem;
       'analytics.statistics-summary': AnalyticsStatisticsSummary;
+      'product.product-statistics-item': ProductProductStatisticsItem;
+      'product.product-task': ProductProductTask;
+      'product.product-tasks-block': ProductProductTasksBlock;
       'share.nav-item': ShareNavItem;
       'share.nav-sub-item': ShareNavSubItem;
       'share.seo': ShareSeo;
+      'share.test': ShareTest;
     }
   }
 }

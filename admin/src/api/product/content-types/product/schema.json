@@ -31,11 +31,18 @@
       "type": "uid"
     },
     "bannerImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "product.product-tasks-block"
+      ]
     }
   }
 }
