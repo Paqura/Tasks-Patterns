@@ -1,33 +1,34 @@
 import { GetAttributesValues, CollectionMetadata } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
-import { AnalyticsPage, TAnalyticsPageData } from '@/components/AnalyticsPage'
 import { THeaderData } from '@/components/Header'
-import { fetchHeader, fetchConfig, fetchArticles, fetchAnalyticsPage } from '@/utils/adminApi'
+import { NewsPage, TNewsPageData } from '@/components/NewsPage'
+import { fetchHeader, fetchConfig, fetchNews, fetchNewsPage } from '@/utils/adminApi'
+import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
     header?: GetAttributesValues<'api::header.header'>
-    analyticsPage?: GetAttributesValues<'api::analytics-page.analytics-page'>
-    articles?: GetAttributesValues<'api::analytic-article.analytic-article'>[]
+    newsPage?: GetAttributesValues<'api::news-page.news-page'>
+    news?: GetAttributesValues<'api::news-item.news-item'>[]
     pagination: CollectionMetadata['pagination']
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({ query }) => {
     const page = Number(query.page) || 1
 
-    const [config, header, analyticsPage, { articles, pagination }] = await Promise.all([
+    const [config, header, newsPage, { news, pagination }] = await Promise.all([
         fetchConfig(),
         fetchHeader(),
-        fetchAnalyticsPage(),
-        fetchArticles(page),
+        fetchNewsPage(),
+        fetchNews(page),
     ])
 
     if (pagination.page > pagination.pageCount) {
         return {
             redirect: {
                 permanent: false,
-                destination: '/analytics',
+                destination: '/news',
             },
             props: {},
         }
@@ -37,8 +38,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         props: {
             config,
             header,
-            analyticsPage,
-            articles,
+            newsPage,
+            news,
             pagination,
         },
     }
@@ -46,7 +47,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
 
 type TProps = TServerSideProps
 
-export default function Analytics(props: TProps) {
+export default function News(props: TProps) {
     const navItems: THeaderData['navItems'] =
         props.header?.navItem?.map((item) => ({
             title: item.title || '',
@@ -60,22 +61,23 @@ export default function Analytics(props: TProps) {
         })) || []
 
     const headingSection = {
-        title: props.analyticsPage?.title || '',
-        description: props.analyticsPage?.description || '',
+        title: props.newsPage?.title || '',
+        description: props.newsPage?.description || '',
     }
 
-    const articles: TAnalyticsPageData['articlesListData']['articles'] =
-        props.articles?.map((article) => {
+    const articles: TNewsPageData['articlesListData']['articles'] =
+        props.news?.map((article) => {
             return {
                 title: article.title || '',
                 description: article.topic || '',
                 date: article.published && new Date(article.published),
+                image: mapImageMediaFile(article.previewImage),
                 href: article.link || '/',
             }
         }) || []
 
     return (
-        <AnalyticsPage
+        <NewsPage
             seo={props.config?.seo || {}}
             headerData={{ navItems }}
             headingSectionData={headingSection}

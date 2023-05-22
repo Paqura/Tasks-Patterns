@@ -12,24 +12,28 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "description": {
-      "type": "string",
+    "topic": {
+      "type": "text",
       "required": true
     },
     "link": {
       "type": "string",
       "required": true
     },
-    "image": {
-      "allowedTypes": [
-        "images"
-      ],
+    "previewImage": {
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "published": {
       "type": "date",
+      "required": true
+    },
+    "title": {
+      "type": "string",
       "required": true
     }
   }

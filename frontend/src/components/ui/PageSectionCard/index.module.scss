@@ -1,13 +1,17 @@
-@import "../../../styles/media.scss";
-@import "../../../styles/offsets.scss";
+@import '../../../styles/media.scss';
+@import '../../../styles/offsets.scss';
 
 .sectionCard {
     position: relative;
     padding: 80px 120px;
     box-sizing: border-box;
-    border-radius: 12px;
+    border-radius: 16px;
 
     @include section-card-paddings;
+
+    @include media_breakpoint_mobile {
+        border-radius: 12px;
+    }
 }
 
 .sectionCard_mode_light {

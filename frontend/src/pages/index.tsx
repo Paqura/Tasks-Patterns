@@ -24,15 +24,17 @@ export type TServerSideProps = {
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
-    const [config, products, clients, news, header, { articles }, mainPage] = await Promise.all([
-        fetchConfig(),
-        fetchProducts(),
-        fetchClients(),
-        fetchNews(),
-        fetchHeader(),
-        fetchArticles(),
-        fetchMainPage(),
-    ])
+    const [config, products, clients, { news }, header, { articles }, mainPage] = await Promise.all(
+        [
+            fetchConfig(),
+            fetchProducts(),
+            fetchClients(),
+            fetchNews(),
+            fetchHeader(),
+            fetchArticles(),
+            fetchMainPage(),
+        ]
+    )
 
     return {
         props: {
@@ -66,9 +68,9 @@ export default function Home(props: TProps) {
 
     const news: THomePageData['newsBlock']['news'] =
         props.news?.map((newsItem) => ({
-            description: newsItem.description || '',
+            title: newsItem.title || '',
             href: newsItem.link || '/',
-            image: mapImageMediaFile(newsItem.image),
+            image: mapImageMediaFile(newsItem.previewImage),
             date: newsItem.published,
         })) || []
 

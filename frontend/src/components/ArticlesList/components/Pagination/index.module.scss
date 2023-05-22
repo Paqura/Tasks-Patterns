@@ -1,13 +1,14 @@
-@import '../../../../../../styles//media.scss';
+@import '../../../../styles/media.scss';
 
 .pagination {
     margin-top: 20px;
     margin-bottom: 20px;
+
     display: flex;
     justify-content: center;
 
-    @include media_breakpoint_mobile {
-        margin-top: 12px;
+    @include media_breakpoint_normal_desktop {
+        margin-top: 20px;
         margin-bottom: 0;
     }
 
@@ -15,8 +16,8 @@
         justify-content: flex-start;
     }
 
-    @include media_breakpoint_normal_desktop {
-        margin-top: 20px;
+    @include media_breakpoint_mobile {
+        margin-top: 12px;
         margin-bottom: 0;
     }
 }
@@ -29,9 +30,11 @@
 
 .item {
     position: relative;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: 48px;
     height: 38px;
 

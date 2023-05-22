@@ -10,20 +10,20 @@ import { formatDate } from '@/utils/date'
 import styles from './index.module.scss'
 
 export type TNews = {
-    description: string
+    title: string
     date?: Date
     image: TImage
     href: string
     className?: string
 }
 
-export const NewsCard: React.FC<TNews> = ({ description, date, image, href, className }) => {
+export const NewsCard: React.FC<TNews> = ({ title, date, image, href, className }) => {
     return (
         <NextLink href={href} className={cn(styles.card, className)}>
             <div className={styles.imageWrapper}>
                 <Image
                     src={image.src}
-                    alt={description}
+                    alt={title}
                     width={image.width}
                     height={image.height}
                     className={styles.image}
@@ -32,7 +32,7 @@ export const NewsCard: React.FC<TNews> = ({ description, date, image, href, clas
             <div className={styles.info}>
                 {date && <p className={styles.date}>{formatDate(date)}</p>}
                 <Text type="pM" className={styles.text}>
-                    {description}
+                    {title}
                 </Text>
             </div>
         </NextLink>

@@ -845,13 +845,13 @@ export interface ApiMainPageMainPage extends SingleTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    statistics: ComponentAttribute<'analytics.statistics-summary'>;
-    headingVideo: MediaAttribute;
     title: TextAttribute &
       RequiredAttribute &
       DefaultTo<'Technologically preventing the unacceptable for business and government'>;
     subtitle: TextAttribute &
       DefaultTo<'Bringing experts and enthusiasts together to&nbsp;create cutting-edge cybersecurity technology'>;
+    headingVideo: MediaAttribute;
+    statistics: ComponentAttribute<'analytics.statistics-summary'>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -880,10 +880,11 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    description: StringAttribute & RequiredAttribute;
+    topic: TextAttribute & RequiredAttribute;
     link: StringAttribute & RequiredAttribute;
-    image: MediaAttribute & RequiredAttribute;
+    previewImage: MediaAttribute & RequiredAttribute;
     published: DateAttribute & RequiredAttribute;
+    title: StringAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -894,6 +895,35 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
       PrivateAttribute;
     updatedBy: RelationAttribute<
       'api::news-item.news-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiNewsPageNewsPage extends SingleTypeSchema {
+  info: {
+    singularName: 'news-page';
+    pluralName: 'news-pages';
+    displayName: 'NewsPage';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    description: TextAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::news-page.news-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::news-page.news-page',
       'oneToOne',
       'admin::user'
     > &
@@ -1014,6 +1044,7 @@ declare global {
       'api::header.header': ApiHeaderHeader;
       'api::main-page.main-page': ApiMainPageMainPage;
       'api::news-item.news-item': ApiNewsItemNewsItem;
+      'api::news-page.news-page': ApiNewsPageNewsPage;
       'api::product.product': ApiProductProduct;
       'analytics.statistics-item': AnalyticsStatisticsItem;
       'analytics.statistics-summary': AnalyticsStatisticsSummary;

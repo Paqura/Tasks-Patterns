@@ -3,27 +3,30 @@ import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Article, TArticleData } from './components/Article'
 import { Pagination, TPaginationData } from './components/Pagination'
 
-export type TArticlesData = {
+export type TArticlesListData = {
     articles: TArticleData[]
     pagination: TPaginationData
 }
 
-type TArticlesProps = TArticlesData
+type TArticlesListProps = {
+    data: TArticlesListData
+}
 
-export const Articles: React.FC<TArticlesProps> = ({ articles, pagination }) => {
+export const ArticlesList: React.FC<TArticlesListProps> = ({ data }) => {
     return (
         <PageSectionCard mode="light">
-            {articles.map(({ title, description, date, href }) => (
+            {data.articles.map(({ title, description, date, image, href }) => (
                 <Article
                     key={title}
                     title={title}
                     description={description}
                     date={date}
+                    image={image}
                     href={href}
                 />
             ))}
 
-            <Pagination page={pagination.page} pageCount={pagination.pageCount} />
+            <Pagination page={data.pagination.page} pageCount={data.pagination.pageCount} />
         </PageSectionCard>
     )
 }
