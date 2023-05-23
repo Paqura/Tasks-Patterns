@@ -1,7 +1,7 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 
-import { TProductTasksBlockData } from '@/components/ProductPage/types'
-import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
+import { TProductTasksBlockData } from '@/components/ProductPage/components/TasksBlock'
+import { mapImagedCardServerData } from '@/utils/serverDataMappers/product/imaged-card'
 
 type TBackendTasksBlockData = Extract<
     Exclude<GetAttributesValues<'api::product.product'>['blocks'], undefined>[0],
@@ -14,12 +14,7 @@ export const mapProductTasksBlockServerData = (
     return {
         title: block.title || '',
         description: block.description,
-        tasks:
-            block.tasks?.map((task) => ({
-                title: task.title || '',
-                description: task.description || '',
-                image: mapImageMediaFile(task.image),
-            })) || [],
+        tasks: block.tasks?.map(mapImagedCardServerData) || [],
         statistics:
             block.statisticsValues && block.statisticsValues?.length > 0
                 ? {

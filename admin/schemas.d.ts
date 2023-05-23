@@ -949,7 +949,9 @@ export interface ApiProductProduct extends CollectionTypeSchema {
     icon: MediaAttribute & RequiredAttribute;
     slug: UIDAttribute;
     bannerImage: MediaAttribute;
-    blocks: DynamicZoneAttribute<['product.product-tasks-block']>;
+    blocks: DynamicZoneAttribute<
+      ['product.product-tasks-block', 'product.imaged-cards-grid-block']
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -991,6 +993,31 @@ export interface AnalyticsStatisticsSummary extends ComponentSchema {
   };
 }
 
+export interface ProductImagedCard extends ComponentSchema {
+  info: {
+    displayName: 'ImagedCard';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    description: TextAttribute;
+    image: MediaAttribute & RequiredAttribute;
+  };
+}
+
+export interface ProductImagedCardsGridBlock extends ComponentSchema {
+  info: {
+    displayName: 'ImagedCardsGridBlock';
+    description: '';
+  };
+  attributes: {
+    sectionId: StringAttribute & RequiredAttribute;
+    title: StringAttribute & RequiredAttribute;
+    description: TextAttribute;
+    items: ComponentAttribute<'product.imaged-card', true>;
+  };
+}
+
 export interface ProductProductStatisticsItem extends ComponentSchema {
   info: {
     displayName: 'ProductStatisticsItem';
@@ -1001,28 +1028,16 @@ export interface ProductProductStatisticsItem extends ComponentSchema {
   };
 }
 
-export interface ProductProductTask extends ComponentSchema {
-  info: {
-    displayName: 'ProductTask';
-    description: '';
-  };
-  attributes: {
-    title: StringAttribute & RequiredAttribute;
-    description: TextAttribute;
-    image: MediaAttribute;
-  };
-}
-
 export interface ProductProductTasksBlock extends ComponentSchema {
   info: {
     displayName: 'ProductTasksBlock';
     description: '';
   };
   attributes: {
-    sectionId: StringAttribute;
+    sectionId: StringAttribute & RequiredAttribute;
     title: StringAttribute & RequiredAttribute;
     description: TextAttribute & RequiredAttribute;
-    tasks: ComponentAttribute<'product.product-task', true>;
+    tasks: ComponentAttribute<'product.imaged-card', true>;
     statisticsTitile: StringAttribute;
     statisticsValues: ComponentAttribute<
       'product.product-statistics-item',
@@ -1099,8 +1114,9 @@ declare global {
       'api::product.product': ApiProductProduct;
       'analytics.statistics-item': AnalyticsStatisticsItem;
       'analytics.statistics-summary': AnalyticsStatisticsSummary;
+      'product.imaged-card': ProductImagedCard;
+      'product.imaged-cards-grid-block': ProductImagedCardsGridBlock;
       'product.product-statistics-item': ProductProductStatisticsItem;
-      'product.product-task': ProductProductTask;
       'product.product-tasks-block': ProductProductTasksBlock;
       'share.nav-item': ShareNavItem;
       'share.nav-sub-item': ShareNavSubItem;

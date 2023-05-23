@@ -7,7 +7,8 @@
   "options": {},
   "attributes": {
     "sectionId": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "title": {
       "type": "string",
@@ -21,7 +22,7 @@
       "displayName": "ProductTask",
       "type": "component",
       "repeatable": true,
-      "component": "product.product-task"
+      "component": "product.imaged-card"
     },
     "statisticsTitile": {
       "type": "string"
@@ -31,6 +32,5 @@
       "repeatable": true,
       "component": "product.product-statistics-item"
     }
-
   }
 }

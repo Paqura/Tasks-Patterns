@@ -41,7 +41,8 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "product.product-tasks-block"
+        "product.product-tasks-block",
+        "product.imaged-cards-grid-block"
       ]
     }
   }

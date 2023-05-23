@@ -11,8 +11,6 @@ import { scrollToContacts } from '@/utils/scrollToSection'
 
 import styles from './index.module.scss'
 
-export type TBannerData = {}
-
 type TProps = {
     title: string
     subtitle?: string

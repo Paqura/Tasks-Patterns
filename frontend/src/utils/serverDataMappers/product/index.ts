@@ -3,6 +3,7 @@ import { GetAttributesValues } from '@admin/general-schemas'
 import { TProductData, TProductsBlockData } from '@/components/ProductPage/types'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
+import { mapImagedCardsGridBlockServerData } from './blocks/imaged-cards-grid'
 import { mapProductTasksBlockServerData } from './blocks/tasks'
 
 const mapProductBlocksServerData = (
@@ -16,6 +17,13 @@ const mapProductBlocksServerData = (
                         return {
                             type: 'tasks',
                             data: mapProductTasksBlockServerData(block),
+                            sectionId: block.sectionId || 'tasks-' + index,
+                        }
+
+                    case 'product.imaged-cards-grid-block':
+                        return {
+                            type: 'imaged-cards-grid',
+                            data: mapImagedCardsGridBlockServerData(block),
                             sectionId: block.sectionId || 'tasks-' + index,
                         }
 

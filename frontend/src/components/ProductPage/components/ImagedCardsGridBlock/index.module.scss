@@ -1,0 +1,32 @@
+@import '../../../../styles/media';
+@import '../../../../styles/offsets';
+
+.cardsListScrollArea {
+    @include subsection-above-offset;
+
+    @include media_breakpoint_mobile {
+        @include include-section-card-horizontal-paddings;
+    }
+}
+
+.cardsList {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    gap: 20px;
+
+    @include media_breakpoint_mobile {
+        display: flex;
+        gap: 12px;
+    }
+}
+
+.cardsListItem {
+    position: relative;
+    display: block;
+
+    @include media_breakpoint_mobile {
+        min-width: 244px;
+    }
+}

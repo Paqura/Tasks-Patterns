@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_product_product_tasks",
+  "collectionName": "components_product_imaged_cards",
   "info": {
-    "displayName": "ProductTask",
+    "displayName": "ImagedCard",
     "description": ""
   },
   "options": {},
@@ -14,11 +14,12 @@
       "type": "text"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

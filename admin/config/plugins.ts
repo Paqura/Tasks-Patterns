@@ -5,7 +5,7 @@ export default ({ env }) => {
     },
     'strapi-plugin-populate-deep': {
       config: {
-        defaultDepth: 3
+        defaultDepth: 10
       }
     },
     upload: env.bool('S3_ENABLED')

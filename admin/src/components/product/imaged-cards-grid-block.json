@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_product_imaged_cards_grid_blocks",
+  "info": {
+    "displayName": "ImagedCardsGridBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.imaged-card"
+    }
+  }
+}

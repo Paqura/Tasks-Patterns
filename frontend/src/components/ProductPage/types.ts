@@ -1,19 +1,18 @@
 import { TImage } from '@/types'
 
-export type TProductsBlockData = { sectionId: string } & {
-    type: 'tasks'
-    data: TProductTasksBlockData
-}
+import { TImagedCardsGridBlockData } from './components/ImagedCardsGridBlock'
+import { TProductTasksBlockData } from './components/TasksBlock'
 
-export type TProductTasksBlockData = {
-    title: string
-    description?: string
-    tasks: { title: string; description?: string; image: TImage }[]
-    statistics?: {
-        title: string
-        values: { value: string; label: string }[]
-    }
-}
+export type TProductsBlockData = { sectionId: string } & (
+    | {
+          type: 'tasks'
+          data: TProductTasksBlockData
+      }
+    | {
+          type: 'imaged-cards-grid'
+          data: TImagedCardsGridBlockData
+      }
+)
 
 export type TProductData = {
     title: string

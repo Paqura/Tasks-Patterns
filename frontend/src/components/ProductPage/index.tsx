@@ -5,6 +5,7 @@ import { Heading } from '@/components/ui/typography/Heading'
 import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
 import { Banner } from './components/Banner'
+import { ImagedCardsGridBlock } from './components/ImagedCardsGridBlock'
 import { TasksBlock } from './components/TasksBlock'
 import { TProductData, TProductsBlockData } from './types'
 
@@ -21,6 +22,8 @@ export const ProductPage: React.FC<TProductPageProps> = ({ product, header, seo 
         switch (block.type) {
             case 'tasks':
                 return <TasksBlock key={index} data={block.data} />
+            case 'imaged-cards-grid':
+                return <ImagedCardsGridBlock key={index} data={block.data} />
             default:
                 break
         }

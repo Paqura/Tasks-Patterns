@@ -1,14 +1,23 @@
 import React from 'react'
 
-import { TProductTasksBlockData } from '@/components/ProductPage/types'
+import { ImagedCard, TImagedCard } from '@/components/ProductPage/components/ImagedCard'
 import { CardsSlider } from '@/components/ui/CardsSlider'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 
 import { StatisticsItem } from './components/StatisticsItem'
-import { TaskItem } from './components/TaskItem'
 import styles from './index.module.scss'
+
+export type TProductTasksBlockData = {
+    title: string
+    description?: string
+    tasks: TImagedCard[]
+    statistics?: {
+        title: string
+        values: { value: string; label: string }[]
+    }
+}
 
 export const TasksBlock: React.FC<{ data: TProductTasksBlockData }> = ({ data }) => {
     return (
@@ -21,11 +30,7 @@ export const TasksBlock: React.FC<{ data: TProductTasksBlockData }> = ({ data })
                 <ul className={styles.tasksList}>
                     {data.tasks.map((task) => (
                         <li key={task.title} className={styles.taksListItem}>
-                            <TaskItem
-                                title={task.title}
-                                description={task.description}
-                                image={task.image}
-                            />
+                            <ImagedCard data={task} />
                         </li>
                     ))}
                 </ul>
