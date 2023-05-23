@@ -1,0 +1,94 @@
+.controls {
+    display: flex;
+    gap: 12px;
+
+    &.mobileMode {
+        justify-content: flex-end;
+    }
+
+    &.hasExtraPadding {
+        padding: 0 20px;
+    }
+}
+
+.languageValue {
+    font-family: 'TT Positive', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+
+    .mobileMode & {
+        font-size: 16px;
+    }
+}
+
+.searchBlock {
+    position: absolute;
+    z-index: 1;
+    top: calc(var(--header-height) + 2px);
+    right: 0;
+    left: 0;
+
+    padding: 20px 60px;
+
+    display: flex;
+
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-gray-2x);
+    align-items: center;
+
+    .mobileMode & {
+        position: static;
+        padding: 10px 20px;
+        width: 100%;
+
+        background-color: var(--color-light-gray-ui);
+        border-top: none;
+        align-items: center;
+    }
+}
+
+.searchIconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    width: 32px;
+    height: 32px;
+
+    flex: none;
+}
+
+.searchInput {
+    padding: 0 4px;
+    height: 32px;
+
+    font-family: 'TT Positive', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    color: var(--color-black-ui);
+
+    border: none;
+    flex: 1 1 auto;
+
+    &::placeholder {
+        color: var(--color-gray-4x);
+    }
+
+    .mobileMode & {
+        background-color: var(--color-light-gray-ui);
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.searchButtonClose {
+    flex: none;
+
+    margin-left: 12px;
+}

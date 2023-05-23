@@ -2,7 +2,7 @@ import cn from 'classnames'
 import NextLink from 'next/link'
 import React, { useState } from 'react'
 
-import { SubMenu } from '@/components/Nav/components/SubMenu'
+import { SubMenu } from '@/components/Header/components/Nav/components/SubMenu'
 import { Text } from '@/components/ui/typography/Text'
 import { TNavItem } from '@/types'
 

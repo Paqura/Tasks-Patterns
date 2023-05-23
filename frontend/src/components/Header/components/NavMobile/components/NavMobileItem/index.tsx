@@ -3,7 +3,7 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import { useCallback, useState } from 'react'
 
-import { SubMenuMobile } from '@/components/NavMobile/components/SubMenuMobile'
+import { SubMenuMobile } from '@/components/Header/components/NavMobile/components/SubMenuMobile'
 import { Text } from '@/components/ui/typography/Text'
 import { TNavItem } from '@/types'
 

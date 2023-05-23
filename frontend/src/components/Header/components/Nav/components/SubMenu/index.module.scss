@@ -1,8 +1,9 @@
-@import "../../../../styles/media";
+@import "../../../../../../styles/media.scss";
 
 .sub_menu {
   position: absolute;
-  top: calc(var(--header-height) + 2);
+  z-index: 5;
+  top: calc(var(--header-height) + 2px);
   right: 0;
   left: 0;
   padding: 20px 60px;

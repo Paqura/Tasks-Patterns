@@ -1,13 +1,13 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import React, { MutableRefObject, useRef, useState } from 'react'
 
-import { Nav } from '@/components/Nav'
-import { NavMobile } from '@/components/NavMobile'
 import { Logo } from '@/components/ui/Logo'
 import { TNavItem } from '@/types'
 import { NAV_ELEMENT_ID } from '@/utils/constants'
 import { useIsDesktopSmall, useOutsideClick } from '@/utils/hooks'
 
+import { Nav } from './components/Nav'
+import { NavMobile } from './components/NavMobile'
 import styles from './index.module.scss'
 
 export type THeaderData = {
@@ -40,7 +40,7 @@ export const Header: React.FC<THeaderData> = ({ navItems }) => {
             <header ref={headerRef} className={styles.header} id={NAV_ELEMENT_ID}>
                 <Logo href="/" />
                 {isDesktopSmall ? (
-                    <NavMobile items={navItems} onToggle={handleToggleNav} isOpen={isNavOpen} />
+                    <NavMobile items={navItems} isOpen={isNavOpen} onToggle={handleToggleNav} />
                 ) : (
                     <Nav items={navItems} onToggle={handleToggleNav} />
                 )}

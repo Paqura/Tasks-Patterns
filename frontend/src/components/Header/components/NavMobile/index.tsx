@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
-import { NavMobileItem } from '@/components/NavMobile/components/NavMobileItem'
+import { Controls } from '@/components/Header/components/Controls'
+import { NavMobileItem } from '@/components/Header/components/NavMobile/components/NavMobileItem'
 import { TNavItem } from '@/types'
 
 import styles from './index.module.scss'
@@ -27,8 +28,11 @@ export const NavMobile = ({ items, isOpen, onToggle }: INavMobile) => {
                     alt={isOpen ? 'Закрыть меню' : 'Открыть меню'}
                 />
             </button>
+
             {isOpen && (
                 <nav className={styles.nav}>
+                    <Controls isMobileMode={true} />
+
                     <div className={styles.nav_list}>
                         {items.map((navItem) => (
                             <NavMobileItem key={navItem.title} navItem={navItem} />
