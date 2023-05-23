@@ -9,6 +9,7 @@
         "stylelint-declaration-block-no-ignored-properties",
         "stylelint-scss"
     ],
+    "customSyntax": "postcss-scss",
     "rules": {
         "selector-max-id": 0,
         "max-nesting-depth": 4,
