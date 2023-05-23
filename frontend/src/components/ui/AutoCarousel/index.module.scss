@@ -1,14 +1,12 @@
-@import "../../../styles/media";
+@import '../../../styles/media';
 
 .carousel {
     :global {
-        .control-dots {
-            position: relative;
+        .swiper-pagination {
+            position: absolute;
             z-index: 2;
             top: 0;
-            right: 30px;
-            left: 0px;
-            margin-bottom: 16px;
+            right: 0px;
             display: flex;
             max-width: 100%;
             height: auto;
@@ -16,21 +14,27 @@
             gap: 10px;
 
             @include media_breakpoint_small_desktop {
-                position: absolute;
+                position: relative;
                 top: initial;
                 bottom: 0;
-                margin-top: 0;
-                margin-bottom: 0;
                 width: 100%;
             }
         }
     }
 }
+
 .slide {
-    margin-right: 1px;
-    
+    padding-top: 16px;
+    padding-bottom: 0;
+
     @include media_breakpoint_small_desktop {
-        padding-bottom: 22px;
+        padding-top: 0;
+        padding-bottom: 16px;
+    }
+
+    @include media_breakpoint_mobile {
+        padding-top: 0;
+        padding-bottom: 12px;
     }
 
     &_hidden {
@@ -69,5 +73,19 @@
         width: 100%;
         transition-timing-function: linear;
         transition-property: width;
+    }
+}
+
+.animationStarted {
+    :global {
+        .swiper-pagination-bullet-active {
+            :local {
+                .bulletProgress {
+                    width: 100%;
+                    transition-timing-function: linear;
+                    transition-property: width;
+                }
+            }
+        }
     }
 }

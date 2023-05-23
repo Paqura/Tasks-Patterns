@@ -2,9 +2,9 @@
 
 import { PageLayout } from '@/components/PageLayout'
 import { Button } from '@/components/ui/Button'
-import { SliderButtons } from '@/components/ui/CardsSlider/components/SliderButtons'
 import { Link } from '@/components/ui/Link'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
+import { SliderButtons } from '@/components/ui/SliderButtons'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 

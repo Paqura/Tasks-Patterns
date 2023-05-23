@@ -1,4 +1,4 @@
-@import "./media";
+@import './media';
 
 @mixin section-card-padding-top {
     padding-top: var(--section-card-padding-top);
@@ -24,14 +24,22 @@
 }
 
 @mixin include-horizontal-paddings($pl, $pr) {
-    margin-right: calc($pr * -1);
-    margin-left: calc($pl * -1);
+    @include exclude-horizontal-paddings($pl, $pr);
     padding-right: $pr;
     padding-left: $pl;
 }
 
+@mixin exclude-horizontal-paddings($pl, $pr) {
+    margin-right: calc($pr * -1);
+    margin-left: calc($pl * -1);
+}
+
 @mixin include-section-card-horizontal-paddings {
-    @include include-horizontal-paddings(var(--section-card-padding-right), var(--section-card-padding-left))
+    @include include-horizontal-paddings(var(--section-card-padding-right), var(--section-card-padding-left));
+}
+
+@mixin exclude-section-card-horizontal-paddings {
+    @include exclude-horizontal-paddings(var(--section-card-padding-right), var(--section-card-padding-left));
 }
 
 @mixin subcard-paddings {

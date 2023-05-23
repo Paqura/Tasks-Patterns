@@ -59,7 +59,7 @@ export default function News(props: TProps) {
                 title: article.title || '',
                 description: article.topic || '',
                 date: article.published && new Date(article.published),
-                image: mapImageMediaFile(article.previewImage),
+                image: mapImageMediaFile(article.previewImage) || { src: '' },
                 href: article.link || '/',
             }
         }) || []

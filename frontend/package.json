@@ -8,7 +8,8 @@
         "start": "next start",
         "lint": "next lint",
         "typecheck": "tsc --noEmit",
-        "style-lint": "stylelint \"src/**/*.scss\""
+        "style-lint": "stylelint \"src/**/*.scss\"",
+        "check-all": "yarn lint && yarn style-lint && yarn typecheck"
     },
     "dependencies": {
         "@types/body-scroll-lock": "^3.1.0",
@@ -26,9 +27,9 @@
         "qs": "^6.11.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-responsive-carousel": "^3.2.23",
         "sass": "^1.62.1",
         "sharp": "^0.32.1",
+        "swiper": "^9.3.2",
         "typescript": "5.0.4"
     },
     "devDependencies": {

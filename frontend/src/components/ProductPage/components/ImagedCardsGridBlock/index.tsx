@@ -13,9 +13,12 @@ export type TImagedCardsGridBlockData = {
     items: TImagedCard[]
 }
 
-export const ImagedCardsGridBlock: React.FC<{ data: TImagedCardsGridBlockData }> = ({ data }) => {
+export const ImagedCardsGridBlock: React.FC<{
+    data: TImagedCardsGridBlockData
+    sectionId: string
+}> = ({ data, sectionId }) => {
     return (
-        <PageSectionCard mode={'light'}>
+        <PageSectionCard mode={'light'} sectionId={sectionId}>
             <PageSectionCardHeader title={data.title} description={data.description} />
             <CardsSlider scrollAreaClassName={styles.cardsListScrollArea}>
                 <ul className={styles.cardsList}>

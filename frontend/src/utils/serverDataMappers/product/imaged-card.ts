@@ -9,6 +9,6 @@ export const mapImagedCardServerData = (data: TBackendImagedCardData): TImagedCa
     return {
         title: data.title || '',
         description: data.description || '',
-        image: mapImageMediaFile(data.image),
+        image: mapImageMediaFile(data.image) || { src: '' },
     }
 }

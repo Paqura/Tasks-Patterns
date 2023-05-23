@@ -6,6 +6,7 @@ import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
 import { Banner } from './components/Banner'
 import { ImagedCardsGridBlock } from './components/ImagedCardsGridBlock'
+import { ImagesSliderBlock } from './components/ImagesSliderBlock'
 import { TasksBlock } from './components/TasksBlock'
 import { TProductData, TProductsBlockData } from './types'
 
@@ -21,9 +22,19 @@ export const ProductPage: React.FC<TProductPageProps> = ({ product, header, seo 
     const renderBlock = (block: TProductsBlockData, index: number) => {
         switch (block.type) {
             case 'tasks':
-                return <TasksBlock key={index} data={block.data} />
+                return <TasksBlock key={index} data={block.data} sectionId={block.sectionId} />
             case 'imaged-cards-grid':
-                return <ImagedCardsGridBlock key={index} data={block.data} />
+                return (
+                    <ImagedCardsGridBlock
+                        key={index}
+                        data={block.data}
+                        sectionId={block.sectionId}
+                    />
+                )
+            case 'images-slider':
+                return (
+                    <ImagesSliderBlock key={index} data={block.data} sectionId={block.sectionId} />
+                )
             default:
                 break
         }

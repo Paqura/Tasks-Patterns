@@ -57,21 +57,21 @@ export default function Home(props: TProps) {
         props.products?.map((product) => ({
             title: product.title || '',
             description: product.subtitle,
-            icon: mapImageMediaFile(product.icon),
+            icon: mapImageMediaFile(product.icon) || { src: '' },
             href: product.slug || '',
         })) || []
 
     const clients: THomePageData['productsBlock']['clients'] =
         props.clients?.map((client) => ({
             name: client.name || '',
-            logo: mapImageMediaFile(client.logo),
+            logo: mapImageMediaFile(client.logo) || { src: '' },
         })) || []
 
     const news: THomePageData['newsBlock']['news'] =
         props.news?.map((newsItem) => ({
             title: newsItem.title || '',
             href: newsItem.link || '/',
-            image: mapImageMediaFile(newsItem.previewImage),
+            image: mapImageMediaFile(newsItem.previewImage) || { src: '' },
             date: newsItem.published,
         })) || []
 

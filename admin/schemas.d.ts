@@ -950,7 +950,11 @@ export interface ApiProductProduct extends CollectionTypeSchema {
     slug: UIDAttribute;
     bannerImage: MediaAttribute;
     blocks: DynamicZoneAttribute<
-      ['product.product-tasks-block', 'product.imaged-cards-grid-block']
+      [
+        'product.product-tasks-block',
+        'product.imaged-cards-grid-block',
+        'product.images-slider-block'
+      ]
     >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
@@ -993,6 +997,16 @@ export interface AnalyticsStatisticsSummary extends ComponentSchema {
   };
 }
 
+export interface ProductImageSlide extends ComponentSchema {
+  info: {
+    displayName: 'ImageSlide';
+  };
+  attributes: {
+    image: MediaAttribute & RequiredAttribute;
+    caption: TextAttribute;
+  };
+}
+
 export interface ProductImagedCard extends ComponentSchema {
   info: {
     displayName: 'ImagedCard';
@@ -1015,6 +1029,19 @@ export interface ProductImagedCardsGridBlock extends ComponentSchema {
     title: StringAttribute & RequiredAttribute;
     description: TextAttribute;
     items: ComponentAttribute<'product.imaged-card', true>;
+  };
+}
+
+export interface ProductImagesSliderBlock extends ComponentSchema {
+  info: {
+    displayName: 'ImagesSliderBlock';
+    description: '';
+  };
+  attributes: {
+    sectionId: StringAttribute;
+    title: StringAttribute & RequiredAttribute;
+    description: TextAttribute;
+    slides: ComponentAttribute<'product.image-slide', true>;
   };
 }
 
@@ -1114,8 +1141,10 @@ declare global {
       'api::product.product': ApiProductProduct;
       'analytics.statistics-item': AnalyticsStatisticsItem;
       'analytics.statistics-summary': AnalyticsStatisticsSummary;
+      'product.image-slide': ProductImageSlide;
       'product.imaged-card': ProductImagedCard;
       'product.imaged-cards-grid-block': ProductImagedCardsGridBlock;
+      'product.images-slider-block': ProductImagesSliderBlock;
       'product.product-statistics-item': ProductProductStatisticsItem;
       'product.product-tasks-block': ProductProductTasksBlock;
       'share.nav-item': ShareNavItem;

@@ -1,0 +1,6 @@
+@import '../../../../styles/offsets';
+
+.sliderScrollArea {
+    @include subsection-above-offset;
+    @include exclude-section-card-horizontal-paddings;
+}

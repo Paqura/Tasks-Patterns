@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import debounce from 'lodash/debounce'
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
-import { SliderButtons } from './components/SliderButtons'
+import { SliderButtons } from '@/components/ui/SliderButtons'
+
 import styles from './index.module.scss'
 
 type TProps = {

@@ -42,7 +42,8 @@
       "type": "dynamiczone",
       "components": [
         "product.product-tasks-block",
-        "product.imaged-cards-grid-block"
+        "product.imaged-cards-grid-block",
+        "product.images-slider-block"
       ]
     }
   }

@@ -1,6 +1,7 @@
 import { TImage } from '@/types'
 
 import { TImagedCardsGridBlockData } from './components/ImagedCardsGridBlock'
+import { TImagesSliderBlockData } from './components/ImagesSliderBlock'
 import { TProductTasksBlockData } from './components/TasksBlock'
 
 export type TProductsBlockData = { sectionId: string } & (
@@ -11,6 +12,10 @@ export type TProductsBlockData = { sectionId: string } & (
     | {
           type: 'imaged-cards-grid'
           data: TImagedCardsGridBlockData
+      }
+    | {
+          type: 'images-slider'
+          data: TImagesSliderBlockData
       }
 )
 

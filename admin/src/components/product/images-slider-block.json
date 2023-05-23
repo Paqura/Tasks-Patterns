@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_product_images_slider_blocks",
+  "info": {
+    "displayName": "ImagesSliderBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "slides": {
+      "displayName": "ImageSlide",
+      "type": "component",
+      "repeatable": true,
+      "component": "product.image-slide"
+    }
+  }
+}

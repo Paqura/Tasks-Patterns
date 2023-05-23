@@ -4,6 +4,7 @@ import { TProductData, TProductsBlockData } from '@/components/ProductPage/types
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 import { mapImagedCardsGridBlockServerData } from './blocks/imaged-cards-grid'
+import { mapImagesSliderBlockServerData } from './blocks/images-slider'
 import { mapProductTasksBlockServerData } from './blocks/tasks'
 
 const mapProductBlocksServerData = (
@@ -26,6 +27,12 @@ const mapProductBlocksServerData = (
                             data: mapImagedCardsGridBlockServerData(block),
                             sectionId: block.sectionId || 'tasks-' + index,
                         }
+                    case 'product.images-slider-block':
+                        return {
+                            type: 'images-slider',
+                            data: mapImagesSliderBlockServerData(block),
+                            sectionId: block.sectionId || 'tasks-' + index,
+                        }
 
                     default:
                         return null
@@ -41,8 +48,8 @@ export const mapProductServerData = (
     return {
         title: productData.title || '',
         subtitle: productData.subtitle,
-        logo: mapImageMediaFile(productData.icon),
-        bannerImage: mapImageMediaFile(productData.bannerImage),
+        logo: mapImageMediaFile(productData.icon) || { src: '' },
+        bannerImage: mapImageMediaFile(productData.bannerImage) || { src: '' },
         blocks: mapProductBlocksServerData(productData.blocks),
     }
 }

@@ -1,0 +1,85 @@
+@import '../../../styles/media';
+
+.slider {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    width: 100%;
+    max-width: 100%;
+    height: 560px;
+
+    max-height: 100%;
+    transition: transform 0.3s linear;
+    object-fit: contain;
+
+    @include media_breakpoint_normal_desktop {
+        height: 584px;
+    }
+
+    @include media_breakpoint_small_desktop {
+        height: 420px;
+    }
+
+    @include media_breakpoint_mobile {
+        height: 190px;
+    }
+}
+
+.caption {
+    margin: 0 auto;
+    margin-top: 16px;
+    visibility: hidden;
+    width: 100%;
+    text-align: center;
+}
+
+.slideWrapper {
+    &_active .caption {
+        visibility: visible;
+    }
+
+    &_prev {
+        & .image {
+            opacity: 0.5;
+            transform: scale(80%) translateX(+10%);
+        }
+
+        @include media_hover {
+            & .image {
+                cursor: pointer;
+                opacity: 0.75;
+            }
+        }
+    }
+
+    &_next {
+        & .image {
+            opacity: 0.5;
+            transform: scale(80%) translateX(-10%);
+        }
+
+        @include media_hover {
+            & .image {
+                cursor: pointer;
+                opacity: 0.75;
+            }
+        }
+    }
+}
+
+.controlsBlock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    transform: translateY(-100%);
+    justify-content: flex-end;
+    gap: 32px;
+
+    @include media_breakpoint_small_desktop {
+        display: none;
+    }
+}

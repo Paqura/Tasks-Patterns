@@ -19,9 +19,12 @@ export type TProductTasksBlockData = {
     }
 }
 
-export const TasksBlock: React.FC<{ data: TProductTasksBlockData }> = ({ data }) => {
+export const TasksBlock: React.FC<{ data: TProductTasksBlockData; sectionId: string }> = ({
+    data,
+    sectionId,
+}) => {
     return (
-        <PageSectionCard mode={'dark'}>
+        <PageSectionCard mode={'dark'} sectionId={sectionId}>
             <Heading level={1}>{data.title}</Heading>
             <Text className={styles.description} type="pL">
                 {data.description}
