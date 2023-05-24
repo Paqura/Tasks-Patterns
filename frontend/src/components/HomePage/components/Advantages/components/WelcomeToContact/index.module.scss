@@ -1,4 +1,4 @@
-@import "../../../../../../styles/media.scss";
+@import '../../../../../../styles/media.scss';
 
 .wrapper {
     --padding: 40px;
@@ -30,7 +30,7 @@
 
 .description {
     margin-top: 16px;
-    margin-bottom: 86px; /* Временный маржин, пока не добавили кнопку */
+    margin-bottom: 40px;
     max-width: 564px;
 
     @include media_breakpoint_small_desktop {
@@ -49,12 +49,12 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    background-image: url("/images/advantages/contact-background.svg");
+    background-image: url('/images/advantages/contact-background.svg');
     background-repeat: no-repeat;
     background-position-x: right;
     background-position-y: bottom;
 
     @include media_breakpoint_mobile {
-        background-image: url("/images/advantages/contact-background-mobile.svg");
+        background-image: url('/images/advantages/contact-background-mobile.svg');
     }
 }

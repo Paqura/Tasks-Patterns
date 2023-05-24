@@ -1,20 +1,43 @@
-@import "../../../../../../styles/media.scss";
-@import "../../../../../../styles/offsets.scss";
+@import '../../../../../../styles/media.scss';
+@import '../../../../../../styles/offsets.scss';
+
+.block {
+    display: flex;
+
+    @include media_breakpoint_mobile {
+        display: block;
+    }
+}
 
 .textColumn {
-    grid-column: 1 / span 3;
+    margin-right: 50px;
+    width: 270px;
+    width: 100%;
+    min-width: 270px;
+    flex: 0;
+
+    @include media_breakpoint_normal_desktop {
+        margin-right: 84px;
+        width: 282px;
+        min-width: 282px;
+    }
 
     @include media_breakpoint_small_desktop {
-        grid-column: 1 / span 4;
+        margin-right: 40px;
+        width: 282px;
+        min-width: 282px;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-right: 0;
+        width: 100%;
+        min-width: 100%;
     }
 }
 
 .listColumn {
-    grid-column: 4 / span 9;
-
-    @include media_breakpoint_small_desktop {
-        grid-column: 5 / span 9;
-    }
+    flex: 1;
+    overflow: hidden;
 }
 
 .listItem {
@@ -29,6 +52,7 @@
     }
 
     @include media_breakpoint_mobile {
+        gap: 12px;
         margin-top: 32px;
         max-height: 264px;
     }

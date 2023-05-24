@@ -23,7 +23,7 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
     children,
 }) => {
     return (
-        <div>
+        <div className={styles.layout}>
             <Head>
                 <title>{seo.title || 'PT Security'}</title>
                 {seo.description && <meta name="description" content={seo.description} />}
@@ -31,8 +31,10 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header navItems={navItems} />
-            <main className={styles.main}>{children}</main>
-            <Footer />
+            <main className={styles.main}>
+                {children}
+                <Footer />
+            </main>
         </div>
     )
 }

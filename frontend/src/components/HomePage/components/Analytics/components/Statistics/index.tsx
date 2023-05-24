@@ -40,7 +40,9 @@ const contactUsText =
 export const Statistics: React.FC<TProps> = ({ statistics }) => {
     return (
         <div className={styles.block}>
-            <Text type="postscript">{title}</Text>
+            <Text type="postscript" className={styles.title}>
+                {title}
+            </Text>
             <CardsSlider hideControls scrollAreaClassName={styles.cardsScrollArea}>
                 <ul className={styles.values}>
                     <li className={cn(styles.value, styles.value_big)}>
@@ -62,12 +64,16 @@ export const Statistics: React.FC<TProps> = ({ statistics }) => {
             </CardsSlider>
             <PageSectionCardGrid>
                 <PageSectionCardGridRightColumn className={styles.description}>
-                    <Text type="pL">{description}</Text>
+                    <Text type="pL" className={styles.descriptionText}>
+                        {description}
+                    </Text>
                 </PageSectionCardGridRightColumn>
             </PageSectionCardGrid>
             <PageSectionCardGrid>
                 <PageSectionCardGridRightColumn className={styles.contactUsText}>
-                    <Text type="pL">{contactUsText}</Text>
+                    <Text type="pL" className={styles.descriptionText}>
+                        {contactUsText}
+                    </Text>
                     <Button onClick={scrollToContacts} className={styles.contactBtn}>
                         Contact us
                     </Button>

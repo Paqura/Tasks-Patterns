@@ -16,9 +16,11 @@ type TProps = {
 export const ArticleCard: React.FC<TProps> = ({ title, tag, date, href }) => {
     return (
         <Link href={href} className={styles.card}>
-            <Text className={styles.tag} type="pS">
-                {tag}
-            </Text>
+            {tag && (
+                <Text className={styles.tag} type="pS">
+                    {tag}
+                </Text>
+            )}
             <div className={styles.content}>
                 <Text className={styles.date} type="postscript">
                     {date && formatDate(date)}

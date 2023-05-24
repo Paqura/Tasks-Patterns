@@ -12,6 +12,8 @@
 }
 
 .statisticsList {
+    position: relative;
+
     @include subsection-above-offset;
 }
 

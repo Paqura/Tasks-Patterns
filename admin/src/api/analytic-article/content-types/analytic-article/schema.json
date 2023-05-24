@@ -27,15 +27,6 @@
     "tag": {
       "type": "string"
     },
-    "previewImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "private": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "link": {
       "type": "string",
       "required": true

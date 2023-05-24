@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import debounce from 'lodash/debounce'
 import NextLink from 'next/link'
-import { MouseEvent, MutableRefObject, useEffect, useRef, useState } from 'react'
+import { MouseEvent, useEffect, useRef, useState } from 'react'
 
 import { PageSection } from '@/components/ui/PageSection'
 import { Text } from '@/components/ui/typography/Text'
@@ -24,14 +24,47 @@ interface IAnchorBar {
 export const AnchorBar = ({ anchors, isFloat = true }: IAnchorBar) => {
     const [activeTab, setActiveTab] = useState<string>(anchors[0].link)
     const [isShadowvisible, setIsShadowvisible] = useState(false)
+    const [isSticky, setIsSticky] = useState(false)
 
-    const wrapperRef = useRef<HTMLDivElement | null>(null) as MutableRefObject<HTMLDivElement>
-    const contentRef = useRef<HTMLDivElement | null>(null) as MutableRefObject<HTMLDivElement>
+    const wrapperRef = useRef<HTMLDivElement>(null)
+    const contentRef = useRef<HTMLDivElement>(null)
+    const intersectionSensorRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        if (!isFloat || !intersectionSensorRef.current) {
+            return
+        }
+        let observer = new IntersectionObserver(
+            (entries) => {
+                if (!entries[0]) {
+                    return
+                }
+                if (entries[0].intersectionRatio > 0) {
+                    setIsSticky(false)
+                } else {
+                    setIsSticky(true)
+                }
+            },
+            {
+                threshold: 0.3,
+                root: document.querySelector('main'),
+                rootMargin: '-1px',
+            }
+        )
+        observer.observe(intersectionSensorRef.current)
+
+        return () => {
+            observer.disconnect()
+        }
+    }, [isFloat])
 
     useEffect(() => {
         const contentEl = contentRef.current
         const wrapperEl = wrapperRef.current
 
+        if (!contentEl || !wrapperEl) {
+            return
+        }
         const handleResize = () => {
             setIsShadowvisible(wrapperEl.offsetWidth < contentEl.scrollWidth)
         }
@@ -70,30 +103,39 @@ export const AnchorBar = ({ anchors, isFloat = true }: IAnchorBar) => {
     }
 
     return (
-        <PageSection className={cn({ [styles.bar_float]: isFloat })}>
-            <div ref={wrapperRef} className={styles.wrapper} id={PAGE_SECTIONS_ANCHORS_ELEMENT_ID}>
+        <>
+            <div className={styles.intersectionSensor} ref={intersectionSensorRef} />
+            <PageSection
+                className={cn({ [styles.bar_float]: isFloat, [styles.bar_aligned]: isSticky })}
+            >
                 <div
-                    ref={contentRef}
-                    className={styles.content}
-                    style={{ gridTemplateColumns: `repeat(${anchors.length}, 1fr)` }}
+                    ref={wrapperRef}
+                    className={styles.wrapper}
+                    id={PAGE_SECTIONS_ANCHORS_ELEMENT_ID}
                 >
-                    {anchors.map((anchor) => (
-                        <NextLink
-                            key={anchor.link}
-                            href={`#${anchor.link}`}
-                            className={cn(styles.anchor, {
-                                [styles.anchor_active]: activeTab === anchor.link,
-                            })}
-                            onClick={(e) => handleClick(e, anchor.link)}
-                        >
-                            <Text type="pM" className={styles.text}>
-                                {anchor.name}
-                            </Text>
-                        </NextLink>
-                    ))}
-                    {isShadowvisible && <div className={styles.shadow} />}
+                    <div
+                        ref={contentRef}
+                        className={styles.content}
+                        style={{ gridTemplateColumns: `repeat(${anchors.length}, 1fr)` }}
+                    >
+                        {anchors.map((anchor) => (
+                            <NextLink
+                                key={anchor.link}
+                                href={`#${anchor.link}`}
+                                className={cn(styles.anchor, {
+                                    [styles.anchor_active]: activeTab === anchor.link,
+                                })}
+                                onClick={(e) => handleClick(e, anchor.link)}
+                            >
+                                <Text type="pM" className={styles.text}>
+                                    {anchor.name}
+                                </Text>
+                            </NextLink>
+                        ))}
+                        {isShadowvisible && <div className={styles.shadow} />}
+                    </div>
                 </div>
-            </div>
-        </PageSection>
+            </PageSection>
+        </>
     )
 }

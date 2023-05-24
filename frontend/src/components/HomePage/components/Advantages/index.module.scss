@@ -10,6 +10,7 @@
 
     @include media_breakpoint_small_desktop {
         display: flex;
+        gap: 12px;
 
         @include include-section-card-horizontal-paddings;
     }

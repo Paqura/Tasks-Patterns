@@ -2,7 +2,7 @@
 @import '../../../../styles/offsets.scss';
 
 .newsList {
-    @include media_breakpoint_small_desktop {
+    @include media_breakpoint_mobile {
         @include subsection-above-offset;
     }
 }
@@ -19,7 +19,7 @@
         gap: 12px;
     }
 
-    @include media_breakpoint_small_desktop {
+    @include media_breakpoint_mobile {
         margin-top: 0;
     }
 }

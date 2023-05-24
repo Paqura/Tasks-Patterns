@@ -1,15 +1,16 @@
-@import "../../styles/media";
-@import "../../styles/offsets";
+@import '../../styles/media';
+@import '../../styles/offsets';
 
 .header {
   @include header-padding-horizontal;
 
-  position: fixed;
+  position: sticky;
   z-index: 9;
   top: 0;
   right: 0;
   left: 0;
   display: flex;
+  height: var(--header-height);
   background-color: var(--color-white);
   border-bottom: 1px solid var(--color-gray-2x);
   justify-content: space-between;

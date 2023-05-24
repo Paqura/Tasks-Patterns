@@ -19,8 +19,8 @@ import {
   SetMinMax,
   TextAttribute,
   DateAttribute,
-  MediaAttribute,
   SingleTypeSchema,
+  MediaAttribute,
   ComponentAttribute,
   UIDAttribute,
   DynamicZoneAttribute,
@@ -703,7 +703,6 @@ export interface ApiAnalyticArticleAnalyticArticle
     topic: TextAttribute & RequiredAttribute;
     published: DateAttribute & RequiredAttribute;
     tag: StringAttribute;
-    previewImage: MediaAttribute & PrivateAttribute;
     link: StringAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;

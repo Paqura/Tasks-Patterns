@@ -1,5 +1,5 @@
-@import "../../../../../../styles/offsets";
-@import "../../../../../../styles/media";
+@import '../../../../../../styles/offsets';
+@import '../../../../../../styles/media';
 
 .block {
     padding: 40px;
@@ -8,6 +8,10 @@
     @include media_breakpoint_mobile {
         padding: 20px;
     }
+}
+
+.title {
+    color: var(--color-gray-8x);
 }
 
 .cardsScrollArea {
@@ -21,7 +25,6 @@
 .values {
     display: grid;
     grid-template-columns: 406px repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     gap: 20px;
     grid-auto-flow: column;
 
@@ -31,6 +34,7 @@
 
     @include media_breakpoint_mobile {
         grid-template-columns: 235px repeat(2, minmax(192px, auto));
+        width: max-content;
     }
 }
 
@@ -53,6 +57,10 @@
     @include media_breakpoint_mobile {
         max-width: 100%;
     }
+}
+
+.descriptionText {
+    color: var(--color-black-ui);
 }
 
 .listItem {

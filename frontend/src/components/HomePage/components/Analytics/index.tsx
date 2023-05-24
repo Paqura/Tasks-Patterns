@@ -10,7 +10,7 @@ import styles from './index.module.scss'
 
 import backgroundIcon from '/public/images/backgrounds/analytics-background.svg'
 
-const title = 'Analytics?'
+const title = 'Analytics'
 const description = `Our team of&nbsp;experts stays up-to-date on&nbsp;the latest threats and trends in&nbsp;the industry, and we&rsquo;re always looking for ways to&nbsp;improve our solutions and services.`
 
 export type TAnalyticsBlockData = {

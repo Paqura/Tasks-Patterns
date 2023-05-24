@@ -22,6 +22,18 @@
   }
 }
 
+@mixin media_breakpoint_touch_devices {
+  @media (max-width: 1279px) {
+    @content;
+  }
+}
+
+@mixin media_breakpoint_no_touch_devices {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
 @mixin media_hover {
   @media (hover: hover) and (pointer: fine) {
     &:hover {

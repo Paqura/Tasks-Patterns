@@ -2,11 +2,6 @@ import chunk from 'lodash/chunk'
 import React from 'react'
 
 import { AutoCarousel } from '@/components/ui/AutoCarousel'
-import {
-    PageSectionCardGrid,
-    PageSectionCardGridLeftColumn,
-    PageSectionCardGridRightColumn,
-} from '@/components/ui/PageSectionCardGrid'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { TImage } from '@/types'
@@ -33,16 +28,16 @@ export const Clients: React.FC<TProps> = ({ clients }) => {
     const clientsListChunks = chunk(clients, clientsPerSlide)
 
     return (
-        <PageSectionCardGrid>
-            <PageSectionCardGridLeftColumn className={styles.textColumn}>
+        <div className={styles.block}>
+            <div className={styles.textColumn}>
                 <Heading level={2} className={styles.title}>
                     {title}
                 </Heading>
                 <Text type="pM" className={styles.description}>
                     {descriptionText}
                 </Text>
-            </PageSectionCardGridLeftColumn>
-            <PageSectionCardGridRightColumn className={styles.listColumn}>
+            </div>
+            <div className={styles.listColumn}>
                 <AutoCarousel>
                     {clientsListChunks.map((chunk, index) => (
                         <div
@@ -62,7 +57,7 @@ export const Clients: React.FC<TProps> = ({ clients }) => {
                         </div>
                     ))}
                 </AutoCarousel>
-            </PageSectionCardGridRightColumn>
-        </PageSectionCardGrid>
+            </div>
+        </div>
     )
 }

@@ -15,7 +15,9 @@
     overflow-x: auto;
     touch-action: pan-x;
 
-    @include hide-scrollbar;
+    @include media_breakpoint_no_touch_devices {
+        @include hide-scrollbar;
+    }
 }
 
 .controlsBlock {
@@ -42,7 +44,7 @@
 }
 
 .moveButtons {
-    @include media_breakpoint_small_desktop {
+    @include media_breakpoint_touch_devices {
         display: none;
     }
 }

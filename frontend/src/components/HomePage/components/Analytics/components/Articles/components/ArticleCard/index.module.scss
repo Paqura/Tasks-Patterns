@@ -27,7 +27,10 @@
     margin-top: 8px;
 
     @include slice-text(3);
-    max-height: calc(1.3em * 3);
+
+    @include media_breakpoint_mobile {
+        @include slice-text(4);
+    }
 }
 
 .content {

@@ -2,6 +2,7 @@
   display: -moz-box;
   display: -webkit-box;
   overflow: hidden;
+  max-height: calc(1.4em * $count);
   text-overflow: ellipsis;
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;

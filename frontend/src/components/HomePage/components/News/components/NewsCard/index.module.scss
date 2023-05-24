@@ -1,5 +1,5 @@
-@import "../../../../../../styles/media.scss";
-@import "../../../../../../styles/decorators.scss";
+@import '../../../../../../styles/media.scss';
+@import '../../../../../../styles/decorators.scss';
 
 .card {
   display: flex;
@@ -32,11 +32,12 @@
 
 .image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .info {
-  padding: 16px 20px 20px;
+  padding: 12px 20px 20px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -61,7 +62,6 @@
 
 .text {
   @include slice-text(3);
-  max-height: calc(1.3em * 3);
 
   @include media_breakpoint_mobile {
     @include slice-text(4);

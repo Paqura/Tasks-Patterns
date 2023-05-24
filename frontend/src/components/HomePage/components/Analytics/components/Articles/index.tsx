@@ -41,16 +41,6 @@ export const Articles: React.FC<TProps> = ({ articles }) => {
                                 <ArticleCard {...article} />
                             </li>
                         ))}
-                        {showedArticles.map((article, index) => (
-                            <li key={index} className={styles.listItem}>
-                                <ArticleCard {...article} />
-                            </li>
-                        ))}
-                        {showedArticles.map((article, index) => (
-                            <li key={index} className={styles.listItem}>
-                                <ArticleCard {...article} />
-                            </li>
-                        ))}
                     </ul>
                 </CardsSlider>
             </PageSectionCardGridRightColumn>
