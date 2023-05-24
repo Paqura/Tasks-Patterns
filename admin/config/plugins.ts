@@ -27,6 +27,27 @@ export default ({ env }) => {
         providerOptions: {},
       },
     },
+    meilisearch: {
+      config: {
+        host: env('MEILISEARCH_HOST'),
+        apiKey: env('MEILISEARCH_APP_KEY'),
+        'analytic-article': {
+          indexName: 'searchable-items',
+          settings: {
+            searchableAttributes: ['title', 'topic']
+          }
+        },
+        'news-item': {
+          indexName: 'searchable-items',
+          settings: {
+            searchableAttributes: ['title', 'topic']
+          }
+        },
+        'product': {
+          indexName: 'searchable-items',
+        }
+      }
+    },
     upload: env.bool('S3_ENABLED')
       ? {
         config: {

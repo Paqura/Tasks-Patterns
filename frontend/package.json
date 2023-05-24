@@ -24,6 +24,7 @@
         "isomorphic-dompurify": "^1.5.0",
         "lodash": "^4.17.21",
         "marked": "^5.0.2",
+        "meilisearch": "^0.32.4",
         "next": "13.3.0",
         "qs": "^6.11.1",
         "react": "18.2.0",

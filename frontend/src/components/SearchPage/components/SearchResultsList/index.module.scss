@@ -1,0 +1,38 @@
+.section {
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    width: 603px;
+}
+
+.item {
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }   
+    
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-gray-ui);
+}
+
+.title em, .description em {
+    padding: 0 4px;
+    display: inline-block;
+    font-style: normal;
+    background-color: rgba(252, 62, 36, 0.2);
+    border-radius: 2px;
+}
+
+.title {
+    margin-bottom: 8px;
+    color: var(--color-red-ui);
+}
+
+.description {
+    color: var(--color-gray-6x);
+
+    & em {
+        color: var(--color-black-ui);
+    }
+}
