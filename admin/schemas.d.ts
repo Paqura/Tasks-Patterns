@@ -957,7 +957,8 @@ export interface ApiProductProduct extends CollectionTypeSchema {
       [
         'product.product-tasks-block',
         'product.imaged-cards-grid-block',
-        'product.images-slider-block'
+        'product.images-slider-block',
+        'product.faq-block'
       ]
     >;
     createdAt: DateTimeAttribute;
@@ -1013,6 +1014,32 @@ export interface ArticleSectionArticleSection extends ComponentSchema {
   };
 }
 
+export interface ProductFaqBlock extends ComponentSchema {
+  info: {
+    displayName: 'FAQBlock';
+    description: '';
+  };
+  attributes: {
+    sectionId: StringAttribute & RequiredAttribute;
+    title: StringAttribute & RequiredAttribute & DefaultTo<'F.A.Q.'>;
+    description: TextAttribute &
+      DefaultTo<'Quick answers to&nbsp;questions you may have. Can&rsquo;t find what you&rsquo;re looking for? Check out our full documentation'>;
+    items: ComponentAttribute<'product.faq-item', true>;
+  };
+}
+
+export interface ProductFaqItem extends ComponentSchema {
+  info: {
+    displayName: 'FAQItem';
+    description: '';
+  };
+  attributes: {
+    question: StringAttribute & RequiredAttribute;
+    answer: TextAttribute & RequiredAttribute;
+    icon: MediaAttribute;
+  };
+}
+
 export interface ProductImageSlide extends ComponentSchema {
   info: {
     displayName: 'ImageSlide';
@@ -1054,7 +1081,7 @@ export interface ProductImagesSliderBlock extends ComponentSchema {
     description: '';
   };
   attributes: {
-    sectionId: StringAttribute;
+    sectionId: StringAttribute & RequiredAttribute;
     title: StringAttribute & RequiredAttribute;
     description: TextAttribute;
     slides: ComponentAttribute<'product.image-slide', true>;
@@ -1086,6 +1113,25 @@ export interface ProductProductTasksBlock extends ComponentSchema {
       'product.product-statistics-item',
       true
     >;
+  };
+}
+
+export interface ProductWelcomeToPilotBlock extends ComponentSchema {
+  info: {
+    displayName: 'WelcomeToPilotBlock';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Quick start and scalability'>;
+    description: TextAttribute &
+      RequiredAttribute &
+      DefaultTo<'A&nbsp;flexible mix of&nbsp;components makes PT&nbsp;ISIM easy and quick to&nbsp;deploy, with minimal configuration required, on&nbsp;infrastructures belonging to&nbsp;companies in&nbsp;any industry. Whether rapid or&nbsp;gradual, scaling up&nbsp;is&nbsp;always a&nbsp;smooth process on&nbsp;even the most complex networks.'>;
+    buttonText: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Order pilot now'>;
+    image: MediaAttribute & RequiredAttribute;
   };
 }
 
@@ -1158,12 +1204,15 @@ declare global {
       'analytics.statistics-item': AnalyticsStatisticsItem;
       'analytics.statistics-summary': AnalyticsStatisticsSummary;
       'article-section.article-section': ArticleSectionArticleSection;
+      'product.faq-block': ProductFaqBlock;
+      'product.faq-item': ProductFaqItem;
       'product.image-slide': ProductImageSlide;
       'product.imaged-card': ProductImagedCard;
       'product.imaged-cards-grid-block': ProductImagedCardsGridBlock;
       'product.images-slider-block': ProductImagesSliderBlock;
       'product.product-statistics-item': ProductProductStatisticsItem;
       'product.product-tasks-block': ProductProductTasksBlock;
+      'product.welcome-to-pilot-block': ProductWelcomeToPilotBlock;
       'share.nav-item': ShareNavItem;
       'share.nav-sub-item': ShareNavSubItem;
       'share.seo': ShareSeo;

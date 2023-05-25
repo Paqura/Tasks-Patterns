@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_product_faq_blocks",
+  "info": {
+    "displayName": "FAQBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "F.A.Q."
+    },
+    "description": {
+      "type": "text",
+      "default": "Quick answers to&nbsp;questions you may have. Can&rsquo;t find what you&rsquo;re looking for? Check out our full documentation"
+    },
+    "items": {
+      "displayName": "FAQItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "product.faq-item"
+    }
+  }
+}

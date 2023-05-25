@@ -5,6 +5,7 @@ import { Heading } from '@/components/ui/typography/Heading'
 import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
 import { Banner } from './components/Banner'
+import { FaqBlock } from './components/FaqBlock'
 import { ImagedCardsGridBlock } from './components/ImagedCardsGridBlock'
 import { ImagesSliderBlock } from './components/ImagesSliderBlock'
 import { TasksBlock } from './components/TasksBlock'
@@ -35,6 +36,8 @@ export const ProductPage: React.FC<TProductPageProps> = ({ product, header, seo 
                 return (
                     <ImagesSliderBlock key={index} data={block.data} sectionId={block.sectionId} />
                 )
+            case 'faq':
+                return <FaqBlock key={index} data={block.data} sectionId={block.sectionId} />
             default:
                 break
         }

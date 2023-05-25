@@ -43,7 +43,8 @@
       "components": [
         "product.product-tasks-block",
         "product.imaged-cards-grid-block",
-        "product.images-slider-block"
+        "product.images-slider-block",
+        "product.faq-block"
       ]
     }
   }

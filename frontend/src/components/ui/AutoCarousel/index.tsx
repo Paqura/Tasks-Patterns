@@ -28,18 +28,22 @@ export const AutoCarousel: React.FC<React.PropsWithChildren<TProps>> = ({
         }, 0)
     }, [])
 
-    const pagination = {
-        clickable: true,
-        enabled: slidesCount >= 1,
-        renderBullet: function (index: number, className: string) {
-            return `<span class="${cn(className, styles.bullet)}">
-                <span 
-                    class="${styles.bulletProgress}"
-                    style="transition-duration: ${slideLifetime}ms"
-                ></span>
-            </span>`
-        },
-    }
+    const pagination =
+        slidesCount > 1
+            ? {
+                  clickable: true,
+                  renderBullet: function (index: number, className: string) {
+                      return `
+                        <span class="${cn(className, styles.bullet)}">
+                            <span 
+                                class="${styles.bulletProgress}"
+                                style="transition-duration: ${slideLifetime}ms"
+                            ></span>
+                        </span>
+                    `
+                  },
+              }
+            : undefined
 
     return (
         <Swiper
@@ -53,15 +57,13 @@ export const AutoCarousel: React.FC<React.PropsWithChildren<TProps>> = ({
             pagination={pagination}
             modules={[Autoplay, Pagination]}
         >
-            {
-                React.Children.map(children, (slide) => (
-                    <SwiperSlide
-                        className={cn(styles.slide, { [styles.slide_hidden]: !animationStarted })}
-                    >
-                        {slide}
-                    </SwiperSlide>
-                )) as React.ReactChild[]
-            }
+            {React.Children.map(children, (slide) => (
+                <SwiperSlide
+                    className={cn(styles.slide, { [styles.slide_hidden]: !animationStarted })}
+                >
+                    {slide}
+                </SwiperSlide>
+            ))}
         </Swiper>
     )
 }
