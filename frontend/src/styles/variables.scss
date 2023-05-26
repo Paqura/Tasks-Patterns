@@ -18,6 +18,9 @@
     --color-border: var(--color-gray-7x);
 
     /* Gaps */
+    --section-margin-vertical: 20px;
+    --section-margin-horizontal: 240px;
+
     --section-card-padding-left: 120px;
     --section-card-padding-right: 120px;
     --section-card-padding-top: 80px;
@@ -37,6 +40,9 @@
 
 @include media_breakpoint_normal_desktop {
     :root {
+        --section-margin-vertical: 20px;
+        --section-margin-horizontal: 20px;
+
         --section-card-padding-left: 40px;
         --section-card-padding-right: 40px;
         --section-card-padding-top: 60px;
@@ -60,6 +66,9 @@
 
 @include media_breakpoint_mobile {
     :root {
+        --section-margin-vertical: 12px;
+        --section-margin-horizontal: 0px;
+
         --section-card-padding-left: 20px;
         --section-card-padding-right: 20px;
         --section-card-padding-top: 20px;

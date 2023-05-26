@@ -7,6 +7,7 @@ import { mapFaqBlockServerData } from './blocks/faq'
 import { mapImagedCardsGridBlockServerData } from './blocks/imaged-cards-grid'
 import { mapImagesSliderBlockServerData } from './blocks/images-slider'
 import { mapProductTasksBlockServerData } from './blocks/tasks'
+import { mapWelcomeToPilotBlockServerData } from './blocks/welcome-to-pilot'
 
 const mapProductBlocksServerData = (
     blocks: GetAttributesValues<'api::product.product'>['blocks']
@@ -42,6 +43,11 @@ const mapProductBlocksServerData = (
                             type: 'faq',
                             data: mapFaqBlockServerData(block),
                             sectionId: block.sectionId || defaultSectionId,
+                        }
+                    case 'product.welcome-to-pilot-block':
+                        return {
+                            type: 'welcome-to-pilot',
+                            data: mapWelcomeToPilotBlockServerData(block),
                         }
 
                     default:

@@ -958,7 +958,8 @@ export interface ApiProductProduct extends CollectionTypeSchema {
         'product.product-tasks-block',
         'product.imaged-cards-grid-block',
         'product.images-slider-block',
-        'product.faq-block'
+        'product.faq-block',
+        'product.welcome-to-pilot-block'
       ]
     >;
     createdAt: DateTimeAttribute;

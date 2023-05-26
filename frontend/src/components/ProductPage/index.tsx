@@ -9,6 +9,7 @@ import { FaqBlock } from './components/FaqBlock'
 import { ImagedCardsGridBlock } from './components/ImagedCardsGridBlock'
 import { ImagesSliderBlock } from './components/ImagesSliderBlock'
 import { TasksBlock } from './components/TasksBlock'
+import { WelcomeToPilotBlock } from './components/WelcomeToPilotBlock'
 import { TProductData, TProductsBlockData } from './types'
 
 export type TProductPageData = {
@@ -38,6 +39,8 @@ export const ProductPage: React.FC<TProductPageProps> = ({ product, header, seo 
                 )
             case 'faq':
                 return <FaqBlock key={index} data={block.data} sectionId={block.sectionId} />
+            case 'welcome-to-pilot':
+                return <WelcomeToPilotBlock key={index} data={block.data} />
             default:
                 break
         }
