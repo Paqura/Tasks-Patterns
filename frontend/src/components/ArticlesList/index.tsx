@@ -1,10 +1,10 @@
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 
-import { Article, TArticleData } from './components/Article'
+import { Article, TArticlePreviewData } from './components/Article'
 import { Pagination, TPaginationData } from './components/Pagination'
 
 export type TArticlesListData = {
-    articles: TArticleData[]
+    articles: TArticlePreviewData[]
     pagination: TPaginationData
 }
 
@@ -15,11 +15,11 @@ type TArticlesListProps = {
 export const ArticlesList: React.FC<TArticlesListProps> = ({ data }) => {
     return (
         <PageSectionCard mode="light">
-            {data.articles.map(({ title, description, date, image, href }) => (
+            {data.articles.map(({ title, topic, date, image, href }) => (
                 <Article
                     key={title}
                     title={title}
-                    description={description}
+                    topic={topic}
                     date={date}
                     image={image}
                     href={href}

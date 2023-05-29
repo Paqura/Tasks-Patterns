@@ -106,10 +106,20 @@ export const fetchNewsPage = async () => {
     return response.data.data?.attributes
 }
 
-export const fetchArticle = async (id: string) => {
+export const fetchAnalyticArticle = async (id: string) => {
     try {
         const response = await adminClient.get<Response<'api::analytic-article.analytic-article'>>(
             `/api/analytic-articles/${id}`
+        )
+        return response.data.data?.attributes
+    } catch {
+        return null
+    }
+}
+export const fetchNewsArticle = async (id: string) => {
+    try {
+        const response = await adminClient.get<Response<'api::news-item.news-item'>>(
+            `/api/news/${id}`
         )
         return response.data.data?.attributes
     } catch {

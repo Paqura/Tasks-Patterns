@@ -924,13 +924,16 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    topic: TextAttribute & RequiredAttribute;
-    link: StringAttribute & RequiredAttribute;
     previewImage: MediaAttribute & RequiredAttribute;
     published: DateAttribute & RequiredAttribute;
     title: StringAttribute & RequiredAttribute;
     isEvent: BooleanAttribute & DefaultTo<false>;
     eventDate: DateAttribute;
+    slug: UIDAttribute<'api::news-item.news-item', 'title'>;
+    topic: TextAttribute & RequiredAttribute;
+    articleText: ComponentAttribute<'article-section.article-section', true>;
+    titleOfHelpfulFiles: StringAttribute;
+    files: MediaAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1098,7 +1101,7 @@ export interface ArticleSectionArticleSection extends ComponentSchema {
   };
   attributes: {
     value: RichTextAttribute & RequiredAttribute;
-    number: IntegerAttribute & RequiredAttribute;
+    number: IntegerAttribute;
     title: RichTextAttribute & RequiredAttribute;
   };
 }

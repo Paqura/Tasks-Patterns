@@ -9,17 +9,17 @@ import { formatDate } from '@/utils/date'
 
 import styles from './index.module.scss'
 
-export type TArticleData = {
+export type TArticlePreviewData = {
     title: string
-    description: string
+    topic: string
     date?: Date
     image?: TImage
     href: string
 }
 
-type TArticleProps = TArticleData
+type TArticlePreviewProps = TArticlePreviewData
 
-export const Article: React.FC<TArticleProps> = ({ title, description, date, image, href }) => {
+export const Article: React.FC<TArticlePreviewProps> = ({ title, topic, date, image, href }) => {
     return (
         <article className={cn(styles.article, { [styles.hasImage]: image })}>
             {image && (
@@ -44,7 +44,7 @@ export const Article: React.FC<TArticleProps> = ({ title, description, date, ima
                 </Heading>
 
                 <Text type="pM" className={styles.description}>
-                    {description}
+                    {topic}
                 </Text>
 
                 <NextLink href={href}>

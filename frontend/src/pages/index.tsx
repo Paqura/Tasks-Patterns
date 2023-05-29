@@ -70,7 +70,7 @@ export default function Home(props: TProps) {
     const news: THomePageData['newsBlock']['news'] =
         props.news?.map((newsItem) => ({
             title: newsItem.title || '',
-            href: newsItem.link || '/',
+            href: `/news/${newsItem.slug}` || '/',
             image: mapImageMediaFile(newsItem.previewImage) || { src: '' },
             date: newsItem.published,
         })) || []

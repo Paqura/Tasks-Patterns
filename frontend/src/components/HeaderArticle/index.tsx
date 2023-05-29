@@ -4,7 +4,7 @@ import { Text } from '@/components/ui/typography/Text'
 
 import styles from './index.module.scss'
 
-export default function Header(props: { title: string; topic: string }) {
+export default function HeaderArticle(props: { title: string; topic: string }) {
     return (
         <PageSection className={styles.section}>
             <div className={styles.header}>

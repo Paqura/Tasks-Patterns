@@ -57,10 +57,10 @@ export default function News(props: TProps) {
         props.news?.map((article) => {
             return {
                 title: article.title || '',
-                description: article.topic || '',
+                topic: article.topic || '',
                 date: article.published && new Date(article.published),
                 image: mapImageMediaFile(article.previewImage) || { src: '' },
-                href: article.link || '/',
+                href: `/news/${article.slug}` || '/',
             }
         }) || []
 

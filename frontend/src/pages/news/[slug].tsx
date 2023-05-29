@@ -2,15 +2,15 @@ import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 import React from 'react'
 
-import AnalyticalArticle from '@/components/AnaliticalArticle'
-import { fetchAnalyticArticle, fetchConfig, fetchHeader } from '@/utils/adminApi'
-import { mapArticleServerData } from '@/utils/serverDataMappers/analytic-article'
+import NewsArticle from '@/components/NewsArticle'
+import { fetchConfig, fetchHeader, fetchNewsArticle } from '@/utils/adminApi'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
+import { mapNewsArticleServerData } from '@/utils/serverDataMappers/news-article'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
     header?: GetAttributesValues<'api::header.header'>
-    article: GetAttributesValues<'api::analytic-article.analytic-article'>
+    newsItem: GetAttributesValues<'api::news-item.news-item'>
 }
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
@@ -20,36 +20,34 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             notFound: true,
         }
     }
-    const [article, config, header] = await Promise.all([
-        fetchAnalyticArticle(params.slug),
+    const [newsItem, config, header] = await Promise.all([
+        fetchNewsArticle(params.slug),
         fetchConfig(),
         fetchHeader(),
     ])
-    if (!article) {
+    if (!newsItem) {
         return {
             notFound: true,
         }
     }
-
     return {
         props: {
-            article,
+            newsItem,
             config,
             header,
         },
     }
 }
-
 type TProps = TServerSideProps
 
-export default function AnalyticalArticlePage(props: TProps) {
-    const article = mapArticleServerData(props.article)
+export default function NewsArticleItem(props: TProps) {
+    const article = mapNewsArticleServerData(props.newsItem)
 
     return (
-        <AnalyticalArticle
+        <NewsArticle
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
-            analyticArticleData={article}
+            newsArticleData={article}
         />
     )
 }

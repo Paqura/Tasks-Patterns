@@ -12,7 +12,7 @@
     },
     "number": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "title": {
       "type": "richtext",

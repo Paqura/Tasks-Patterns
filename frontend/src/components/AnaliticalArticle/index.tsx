@@ -4,6 +4,7 @@ import React from 'react'
 
 import Aside, { TTitleTableOfContent } from '@/components/AnaliticalArticle/components/Aside'
 import { AnchorBar } from '@/components/AnchorBar'
+import HeaderArticle from '@/components/HeaderArticle'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Text } from '@/components/ui/typography/Text'
@@ -14,7 +15,6 @@ import HelpfulFiles from './components/HelpfulFiles'
 import styles from './index.module.scss'
 import { TAnalitycArticleData } from './types'
 
-import Header from 'src/components/AnaliticalArticle/components/Header'
 import { THeaderData } from 'src/components/Header/index'
 
 export type TAnalitycArticlePageData = {
@@ -40,7 +40,7 @@ export default function AnalyticalArticle(props: TAnalitycArticlePageProps) {
     return (
         <PageLayout seo={props.seo} navItems={props.headerData.navItems}>
             <div className={styles.wrapper}>
-                <Header
+                <HeaderArticle
                     title={props.analyticArticleData.title}
                     topic={props.analyticArticleData.topic}
                 />

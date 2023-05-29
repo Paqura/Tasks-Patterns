@@ -12,14 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "topic": {
-      "type": "text",
-      "required": true
-    },
-    "link": {
-      "type": "string",
-      "required": true
-    },
     "previewImage": {
       "type": "media",
       "multiple": false,
@@ -42,6 +34,30 @@
     },
     "eventDate": {
       "type": "date"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "topic": {
+      "type": "text",
+      "required": true
+    },
+    "articleText": {
+      "type": "component",
+      "repeatable": true,
+      "component": "article-section.article-section"
+    },
+    "titleOfHelpfulFiles": {
+      "type": "string"
+    },
+    "files": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
     }
   }
 }
