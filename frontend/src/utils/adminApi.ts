@@ -26,6 +26,7 @@ const getClient = () => {
             populate: 'deep',
         },
     })
+
     return axiosInstance
 }
 

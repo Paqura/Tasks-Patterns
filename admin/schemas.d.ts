@@ -929,6 +929,8 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     previewImage: MediaAttribute & RequiredAttribute;
     published: DateAttribute & RequiredAttribute;
     title: StringAttribute & RequiredAttribute;
+    isEvent: BooleanAttribute & DefaultTo<false>;
+    eventDate: DateAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1011,6 +1013,41 @@ export interface ApiProductProduct extends CollectionTypeSchema {
       PrivateAttribute;
     updatedBy: RelationAttribute<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiWebinarRequestWebinarRequest extends CollectionTypeSchema {
+  info: {
+    singularName: 'webinar-request';
+    pluralName: 'webinar-requests';
+    displayName: 'WebinarRequests';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    fullName: StringAttribute & RequiredAttribute;
+    email: EmailAttribute & RequiredAttribute;
+    phone: StringAttribute & RequiredAttribute;
+    eventName: StringAttribute & RequiredAttribute;
+    eventDate: DateAttribute & RequiredAttribute;
+    companyName: StringAttribute;
+    companySite: StringAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::webinar-request.webinar-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::webinar-request.webinar-request',
       'oneToOne',
       'admin::user'
     > &
@@ -1269,6 +1306,7 @@ declare global {
       'api::news-item.news-item': ApiNewsItemNewsItem;
       'api::news-page.news-page': ApiNewsPageNewsPage;
       'api::product.product': ApiProductProduct;
+      'api::webinar-request.webinar-request': ApiWebinarRequestWebinarRequest;
       'about.employee': AboutEmployee;
       'analytics.statistics-item': AnalyticsStatisticsItem;
       'analytics.statistics-summary': AnalyticsStatisticsSummary;

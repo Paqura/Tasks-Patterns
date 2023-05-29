@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "webinar_requests",
+  "info": {
+    "singularName": "webinar-request",
+    "pluralName": "webinar-requests",
+    "displayName": "WebinarRequests",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "eventName": {
+      "type": "string",
+      "required": true
+    },
+    "eventDate": {
+      "type": "date",
+      "required": true
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "companySite": {
+      "type": "string"
+    }
+  }
+}
