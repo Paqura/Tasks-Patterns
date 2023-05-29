@@ -1,4 +1,4 @@
-import { Dispatch, MutableRefObject, RefObject, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, RefObject, SetStateAction, useEffect } from 'react'
 
 export const isInViewPort = (element: HTMLElement): boolean => {
     const rect = element.getBoundingClientRect()
