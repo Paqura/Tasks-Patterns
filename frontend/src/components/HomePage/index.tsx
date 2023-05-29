@@ -3,6 +3,7 @@ import { THeaderData } from '@/components/Header'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Heading } from '@/components/ui/typography/Heading'
+import { PageAnchorsContextProvider } from '@/utils/anchors'
 import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
 import { Advantages } from './components/Advantages'
@@ -53,16 +54,18 @@ const anchors = [
 export const HomePage: React.FC<THomePageProps> = (props) => {
     return (
         <PageLayout seo={props.seo} navItems={props.header.navItems}>
-            <Banner data={props.headingBlock} />
-            <AnchorBar anchors={anchors} />
-            <Advantages />
-            <Tools />
-            <Products data={props.productsBlock} />
-            <Analytics data={props.analyticsBlock} />
-            <News data={props.newsBlock} />
-            <PageSectionCard sectionId={CONTACTS_SECTION_ID}>
-                <Heading level={2}>Contacts form</Heading>
-            </PageSectionCard>
+            <PageAnchorsContextProvider>
+                <Banner data={props.headingBlock} />
+                <AnchorBar anchors={anchors} />
+                <Advantages />
+                <Tools />
+                <Products data={props.productsBlock} />
+                <Analytics data={props.analyticsBlock} />
+                <News data={props.newsBlock} />
+                <PageSectionCard sectionId={CONTACTS_SECTION_ID}>
+                    <Heading level={2}>Contacts form</Heading>
+                </PageSectionCard>
+            </PageAnchorsContextProvider>
         </PageLayout>
     )
 }

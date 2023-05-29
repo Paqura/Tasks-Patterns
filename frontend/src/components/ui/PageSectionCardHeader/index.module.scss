@@ -1,4 +1,4 @@
-@import "../../../styles/media.scss";
+@import '../../../styles/media.scss';
 
 .wrapper {
     display: grid;
@@ -15,6 +15,16 @@
 
     @include media_breakpoint_small_desktop {
         grid-column: 3 / span 8;
+    }
+}
+
+.number {
+    margin-top: 24px;
+    color: var(--color-gray-6x);
+
+    @include media_breakpoint_mobile {
+        margin-top: 0px;
+        margin-bottom: 20px;
     }
 }
 

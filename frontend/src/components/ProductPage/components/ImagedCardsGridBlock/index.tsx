@@ -15,11 +15,16 @@ export type TImagedCardsGridBlockData = {
 
 export const ImagedCardsGridBlock: React.FC<{
     data: TImagedCardsGridBlockData
+    number: number
     sectionId: string
-}> = ({ data, sectionId }) => {
+}> = ({ data, sectionId, number }) => {
     return (
         <PageSectionCard mode={'light'} sectionId={sectionId}>
-            <PageSectionCardHeader title={data.title} description={data.description} />
+            <PageSectionCardHeader
+                number={number}
+                title={data.title}
+                description={data.description}
+            />
             <CardsSlider scrollAreaClassName={styles.cardsListScrollArea}>
                 <ul className={styles.cardsList}>
                     {data.items.map((item) => (

@@ -17,6 +17,7 @@
 .wrapper {
   position: relative;
   overflow: hidden;
+  height: var(--anchor-bar-height);
   background-color: var(--color-gray-8x);
   border-radius: 16px;
 

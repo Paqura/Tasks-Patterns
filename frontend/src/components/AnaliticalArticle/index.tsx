@@ -1,5 +1,3 @@
-import DOMPurify from 'isomorphic-dompurify'
-import { marked } from 'marked'
 import React from 'react'
 
 import Aside, { TTitleTableOfContent } from '@/components/AnaliticalArticle/components/Aside'
@@ -8,10 +6,12 @@ import HeaderArticle from '@/components/HeaderArticle'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Text } from '@/components/ui/typography/Text'
+import { PageAnchorsContextProvider } from '@/utils/anchors'
 import { formatDate } from '@/utils/date'
 import { useIsDesktopSmall } from '@/utils/hooks'
 
 import HelpfulFiles from './components/HelpfulFiles'
+import { Section } from './components/Section'
 import styles from './index.module.scss'
 import { TAnalitycArticleData } from './types'
 
@@ -39,58 +39,45 @@ export default function AnalyticalArticle(props: TAnalitycArticlePageProps) {
 
     return (
         <PageLayout seo={props.seo} navItems={props.headerData.navItems}>
-            <div className={styles.wrapper}>
-                <HeaderArticle
-                    title={props.analyticArticleData.title}
-                    topic={props.analyticArticleData.topic}
-                />
+            <PageAnchorsContextProvider>
+                <div className={styles.wrapper}>
+                    <HeaderArticle
+                        title={props.analyticArticleData.title}
+                        topic={props.analyticArticleData.topic}
+                    />
 
-                {isDesktopSmall && <AnchorBar anchors={tableOfContent} />}
-                <PageSectionCard className={styles.section}>
-                    <div className={styles.wrapperSection}>
-                        <Text className={styles.date} type="pM">
-                            {formatDate(props.analyticArticleData.published)}
-                        </Text>
+                    {isDesktopSmall && <AnchorBar anchors={tableOfContent} />}
+                    <PageSectionCard className={styles.section}>
+                        <div className={styles.wrapperSection}>
+                            <Text className={styles.date} type="pM">
+                                {formatDate(props.analyticArticleData.published)}
+                            </Text>
 
-                        {!isDesktopSmall && (
-                            <div className={styles.aside}>
-                                <Text className={styles.title} type="postscript">
-                                    {props.analyticArticleData.titleTableOfContent}
-                                </Text>
-                                <Aside articleHeaders={tableOfContent} />
-                            </div>
-                        )}
-                        <div className={styles.contentWrapper}>
-                            {sortSection.map((item) => (
-                                <div
-                                    key={item.number}
-                                    id={item.number.toString()}
-                                    className={styles.content}
-                                >
-                                    <div
-                                        dangerouslySetInnerHTML={{
-                                            __html: DOMPurify.sanitize(marked.parse(item.title)),
-                                        }}
-                                    />
-                                    <div
-                                        dangerouslySetInnerHTML={{
-                                            __html: DOMPurify.sanitize(marked.parse(item.value)),
-                                        }}
-                                    />
+                            {!isDesktopSmall && (
+                                <div className={styles.aside}>
+                                    <Text className={styles.title} type="postscript">
+                                        {props.analyticArticleData.titleTableOfContent}
+                                    </Text>
+                                    <Aside articleHeaders={tableOfContent} />
                                 </div>
-                            ))}
+                            )}
+                            <div className={styles.contentWrapper}>
+                                {sortSection.map((item) => (
+                                    <Section key={item.number} item={item} />
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles.helpfulFilesWrap}>
-                        <div className={styles.helpfulFiles}>
-                            <HelpfulFiles
-                                files={props.analyticArticleData.files}
-                                title={props.analyticArticleData.titleOfHelpfulFiles}
-                            />
+                        <div className={styles.helpfulFilesWrap}>
+                            <div className={styles.helpfulFiles}>
+                                <HelpfulFiles
+                                    files={props.analyticArticleData.files}
+                                    title={props.analyticArticleData.titleOfHelpfulFiles}
+                                />
+                            </div>
                         </div>
-                    </div>
-                </PageSectionCard>
-            </div>
+                    </PageSectionCard>
+                </div>
+            </PageAnchorsContextProvider>
         </PageLayout>
     )
 }

@@ -12,13 +12,18 @@ export type TImagesSliderBlockData = {
     slides: TSlide[]
 }
 
-export const ImagesSliderBlock: React.FC<{ data: TImagesSliderBlockData; sectionId: string }> = ({
-    data,
-    sectionId,
-}) => {
+export const ImagesSliderBlock: React.FC<{
+    data: TImagesSliderBlockData
+    sectionId: string
+    number: number
+}> = ({ data, sectionId, number }) => {
     return (
         <PageSectionCard mode={'dark'} sectionId={sectionId}>
-            <PageSectionCardHeader title={data.title} description={data.description} />
+            <PageSectionCardHeader
+                number={number}
+                title={data.title}
+                description={data.description}
+            />
             <ImagesSlider slides={data.slides} scrollAreaClassName={styles.sliderScrollArea} />
         </PageSectionCard>
     )

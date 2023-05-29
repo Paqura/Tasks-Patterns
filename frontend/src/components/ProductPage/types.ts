@@ -7,7 +7,7 @@ import { TImagesSliderBlockData } from './components/ImagesSliderBlock'
 import { TProductTasksBlockData } from './components/TasksBlock'
 import { TWelcomeToPilotBlockData } from './components/WelcomeToPilotBlock'
 
-type TSectionCardParams = {
+export type TSectionCardParams = {
     sectionId: string
 }
 

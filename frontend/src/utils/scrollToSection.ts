@@ -2,7 +2,6 @@ import { NAV_ELEMENT_ID, PAGE_SECTIONS_ANCHORS_ELEMENT_ID, CONTACTS_SECTION_ID }
 
 export const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
-
     if (element) {
         const headerHeight = document.getElementById(NAV_ELEMENT_ID)?.offsetHeight || 0
         const barHeight =

@@ -7,7 +7,7 @@ import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { TypographyTheme } from '@/components/ui/typography/TypographyTheme'
 import { TImage } from '@/types'
-import { scrollToContacts } from '@/utils/scrollToSection'
+import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
 import styles from './index.module.scss'
 
@@ -29,7 +29,7 @@ export const Banner: React.FC<TProps> = ({ title, subtitle, logo, bannerImage })
                             {subtitle}
                         </Text>
                     )}
-                    <Button className={styles.contactBtn} onClick={scrollToContacts}>
+                    <Button className={styles.contactBtn} link={`#${CONTACTS_SECTION_ID}`}>
                         Contact us
                     </Button>
                 </TypographyTheme>

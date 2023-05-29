@@ -16,10 +16,15 @@ export type TFaqBlockData = {
 export const FaqBlock: React.FC<{
     data: TFaqBlockData
     sectionId: string
-}> = ({ data, sectionId }) => {
+    number: number
+}> = ({ data, sectionId, number }) => {
     return (
         <PageSectionCard mode={'light'} sectionId={sectionId}>
-            <PageSectionCardHeader title={data.title} description={data.description} />
+            <PageSectionCardHeader
+                number={number}
+                title={data.title}
+                description={data.description}
+            />
             <LoadMore
                 className={styles.cardsListWrapper}
                 cuttedClassName={styles.cardsListWrapper_cutted}

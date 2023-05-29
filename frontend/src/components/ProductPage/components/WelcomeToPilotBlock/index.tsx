@@ -6,7 +6,7 @@ import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { TypographyTheme } from '@/components/ui/typography/TypographyTheme'
 import { TImage } from '@/types'
-import { scrollToContacts } from '@/utils/scrollToSection'
+import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
 import styles from './index.module.scss'
 
@@ -40,7 +40,7 @@ export const WelcomeToPilotBlock: React.FC<TProps> = ({ data }) => {
                         <Text className={styles.description} type="pL">
                             {data.description}
                         </Text>
-                        <Button className={styles.button} size="m" onClick={scrollToContacts}>
+                        <Button className={styles.button} size="m" link={`#${CONTACTS_SECTION_ID}`}>
                             {data.buttonText}
                         </Button>
                     </div>

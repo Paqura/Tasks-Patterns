@@ -15,6 +15,7 @@ import styles from './index.module.scss'
 type TProps = {
     data: TFilesBlockData
     sectionId: string
+    number: number
 }
 
 export type TFilesBlockData = {
@@ -23,10 +24,14 @@ export type TFilesBlockData = {
     files: TFile[]
 }
 
-export const FilesBlock: React.FC<TProps> = ({ data, sectionId }) => {
+export const FilesBlock: React.FC<TProps> = ({ data, sectionId, number }) => {
     return (
         <PageSectionCard mode={'light'} sectionId={sectionId} className={styles.block}>
-            <PageSectionCardHeader title={data.title} description={data.description} />
+            <PageSectionCardHeader
+                title={data.title}
+                description={data.description}
+                number={number}
+            />
             <PageSectionCardGrid>
                 <PageSectionCardGridRightColumn>
                     <CardsSlider hideControls scrollAreaClassName={styles.listScrollArea}>

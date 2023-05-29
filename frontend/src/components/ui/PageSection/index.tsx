@@ -8,14 +8,12 @@ type TProps = {
     sectionId?: string
 }
 
-export const PageSection: React.FC<React.PropsWithChildren<TProps>> = ({
-    children,
-    className,
-    sectionId,
-}) => {
-    return (
-        <section className={cn(styles.section, className)} id={sectionId}>
-            {children}
-        </section>
-    )
-}
+export const PageSection = React.forwardRef<HTMLDivElement, React.PropsWithChildren<TProps>>(
+    ({ children, className, sectionId }, ref) => {
+        return (
+            <section className={cn(styles.section, className)} id={sectionId} ref={ref}>
+                {children}
+            </section>
+        )
+    }
+)

@@ -9,4 +9,6 @@
     padding-bottom: 0.01px; /* To fix margin collapse */
     overflow-y: auto;
     background-color: var(--color-black-ui);
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--anchor-bar-height);
 }

@@ -1,28 +1,28 @@
 import cn from 'classnames'
-import debounce from 'lodash/debounce'
 import NextLink from 'next/link'
 import { MouseEvent, useEffect, useRef, useState } from 'react'
 
 import { PageSection } from '@/components/ui/PageSection'
 import { Text } from '@/components/ui/typography/Text'
+import { useAnchors } from '@/utils/anchors'
 import { PAGE_SECTIONS_ANCHORS_ELEMENT_ID } from '@/utils/constants'
-import { isInViewPort, useObserver } from '@/utils/helpers'
-import { scrollToSection } from '@/utils/scrollToSection'
+import { useObserver } from '@/utils/helpers'
 
 import styles from './index.module.scss'
 
-type TAnchorLink = {
+export type TAnchorLink = {
     name: string
     link: string
 }
 
-interface IAnchorBar {
+type TAnchorBar = {
     anchors: TAnchorLink[]
     isFloat?: boolean
 }
 
-export const AnchorBar = ({ anchors, isFloat = true }: IAnchorBar) => {
-    const [activeTab, setActiveTab] = useState<string>(anchors[0].link)
+export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
+    const { activeLink, api } = useAnchors()
+
     const [isShadowvisible, setIsShadowvisible] = useState(false)
     const [isSticky, setIsSticky] = useState(false)
 
@@ -58,22 +58,8 @@ export const AnchorBar = ({ anchors, isFloat = true }: IAnchorBar) => {
         }
     }, [])
 
-    useEffect(() => {
-        const handleScroll = debounce(() => {
-            anchors.map((anchor) => {
-                const element = document.getElementById(anchor.link)
-                element && isInViewPort(element) && setActiveTab(anchor.link)
-            })
-        }, 500)
-        window.addEventListener('scroll', handleScroll)
-
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [anchors])
-
     const handleClick = (e: MouseEvent<HTMLAnchorElement>, anchor: string) => {
-        e.preventDefault()
-        setActiveTab(anchor)
-        scrollToSection(anchor)
+        api.setActive(anchor)
     }
 
     return (
@@ -97,7 +83,7 @@ export const AnchorBar = ({ anchors, isFloat = true }: IAnchorBar) => {
                                 key={anchor.link}
                                 href={`#${anchor.link}`}
                                 className={cn(styles.anchor, {
-                                    [styles.anchor_active]: activeTab === anchor.link,
+                                    [styles.anchor_active]: activeLink === anchor.link,
                                 })}
                                 onClick={(e) => handleClick(e, anchor.link)}
                             >
