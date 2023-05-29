@@ -17,12 +17,12 @@ import {
   IntegerAttribute,
   DecimalAttribute,
   SetMinMax,
+  SingleTypeSchema,
   TextAttribute,
-  DateAttribute,
   ComponentAttribute,
+  DateAttribute,
   UIDAttribute,
   MediaAttribute,
-  SingleTypeSchema,
   DynamicZoneAttribute,
   ComponentSchema,
   RichTextAttribute,
@@ -688,6 +688,44 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   };
 }
 
+export interface ApiAboutPageAboutPage extends SingleTypeSchema {
+  info: {
+    singularName: 'about-page';
+    pluralName: 'about-pages';
+    displayName: 'AboutPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    description: TextAttribute & RequiredAttribute;
+    expertsSectionManagersList: ComponentAttribute<'about.employee', true> &
+      RequiredAttribute;
+    expertsSectionManagersBlockTitle: StringAttribute & RequiredAttribute;
+    expertsSectionExpertsList: ComponentAttribute<'about.employee', true> &
+      RequiredAttribute;
+    expertsSectionExpertsBlockTitle: StringAttribute & RequiredAttribute;
+    expertsSectionTitle: StringAttribute & RequiredAttribute;
+    expertsSectionDescription: TextAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::about-page.about-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::about-page.about-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiAnalyticArticleAnalyticArticle
   extends CollectionTypeSchema {
   info: {
@@ -979,6 +1017,18 @@ export interface ApiProductProduct extends CollectionTypeSchema {
   };
 }
 
+export interface AboutEmployee extends ComponentSchema {
+  info: {
+    displayName: 'employee';
+    description: '';
+  };
+  attributes: {
+    name: StringAttribute & RequiredAttribute;
+    roles: TextAttribute & RequiredAttribute;
+    photo: MediaAttribute & RequiredAttribute;
+  };
+}
+
 export interface AnalyticsStatisticsItem extends ComponentSchema {
   info: {
     displayName: 'StatisticsItem';
@@ -1193,6 +1243,7 @@ declare global {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::analytic-article.analytic-article': ApiAnalyticArticleAnalyticArticle;
       'api::analytics-page.analytics-page': ApiAnalyticsPageAnalyticsPage;
       'api::client.client': ApiClientClient;
@@ -1202,6 +1253,7 @@ declare global {
       'api::news-item.news-item': ApiNewsItemNewsItem;
       'api::news-page.news-page': ApiNewsPageNewsPage;
       'api::product.product': ApiProductProduct;
+      'about.employee': AboutEmployee;
       'analytics.statistics-item': AnalyticsStatisticsItem;
       'analytics.statistics-summary': AnalyticsStatisticsSummary;
       'article-section.article-section': ArticleSectionArticleSection;

@@ -115,3 +115,10 @@ export const fetchArticle = async (id: string) => {
         return null
     }
 }
+
+export const fetchAboutPage = async () => {
+    const response = await adminClient.get<Response<'api::about-page.about-page'>>(
+        `/api/about-page`
+    )
+    return response.data.data?.attributes
+}
