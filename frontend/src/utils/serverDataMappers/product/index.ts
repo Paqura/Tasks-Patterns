@@ -4,6 +4,7 @@ import { TProductData, TProductsBlockData } from '@/components/ProductPage/types
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 import { mapFaqBlockServerData } from './blocks/faq'
+import { mapFilesBlockServerData } from './blocks/files'
 import { mapImagedCardsGridBlockServerData } from './blocks/imaged-cards-grid'
 import { mapImagesSliderBlockServerData } from './blocks/images-slider'
 import { mapProductTasksBlockServerData } from './blocks/tasks'
@@ -48,6 +49,12 @@ const mapProductBlocksServerData = (
                         return {
                             type: 'welcome-to-pilot',
                             data: mapWelcomeToPilotBlockServerData(block),
+                        }
+                    case 'product.files-block':
+                        return {
+                            type: 'files',
+                            data: mapFilesBlockServerData(block),
+                            sectionId: block.sectionId || defaultSectionId,
                         }
 
                     default:

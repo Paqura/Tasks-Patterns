@@ -1,7 +1,6 @@
 import { MediaAttributeContent } from '@admin/general-schemas'
 
-import { TFileData } from '@/components/AnaliticalArticle/types'
-import { TImage, TVideo } from '@/types'
+import { TFile, TImage, TVideo } from '@/types'
 
 const mapImageAttributes = (
     attrs: Exclude<
@@ -24,7 +23,7 @@ export const mapImageMediaFile = (
 }
 export const mapFilesServerData = (
     serverFilesData: MediaAttributeContent<'files', true> | undefined
-): TFileData[] => {
+): TFile[] => {
     return (
         serverFilesData?.data?.map((item) => {
             return {

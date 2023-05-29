@@ -6,6 +6,7 @@ import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
 import { Banner } from './components/Banner'
 import { FaqBlock } from './components/FaqBlock'
+import { FilesBlock } from './components/FilesBlock'
 import { ImagedCardsGridBlock } from './components/ImagedCardsGridBlock'
 import { ImagesSliderBlock } from './components/ImagesSliderBlock'
 import { TasksBlock } from './components/TasksBlock'
@@ -41,6 +42,8 @@ export const ProductPage: React.FC<TProductPageProps> = ({ product, header, seo 
                 return <FaqBlock key={index} data={block.data} sectionId={block.sectionId} />
             case 'welcome-to-pilot':
                 return <WelcomeToPilotBlock key={index} data={block.data} />
+            case 'files':
+                return <FilesBlock key={index} data={block.data} sectionId={block.sectionId} />
             default:
                 break
         }

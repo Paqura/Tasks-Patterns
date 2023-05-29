@@ -11,9 +11,9 @@ export type TImage = {
 }
 
 export type TFile = {
+    name: string
     title: string
-    id: number | string
-    src: string
+    url: string
 }
 
 export type TVideo = {

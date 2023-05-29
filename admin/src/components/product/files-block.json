@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_product_files_blocks",
+  "info": {
+    "displayName": "FilesBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Helpful info"
+    },
+    "description": {
+      "type": "text",
+      "default": "At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.",
+      "required": true
+    },
+    "files": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "sectionId": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { TImage } from '@/types'
 
 import { TFaqBlockData } from './components/FaqBlock'
+import { TFilesBlockData } from './components/FilesBlock'
 import { TImagedCardsGridBlockData } from './components/ImagedCardsGridBlock'
 import { TImagesSliderBlockData } from './components/ImagesSliderBlock'
 import { TProductTasksBlockData } from './components/TasksBlock'
@@ -31,6 +32,10 @@ export type TProductsBlockData =
           type: 'welcome-to-pilot'
           data: TWelcomeToPilotBlockData
       }
+    | ({
+          type: 'files'
+          data: TFilesBlockData
+      } & TSectionCardParams)
 
 export type TProductData = {
     title: string

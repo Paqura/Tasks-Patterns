@@ -997,7 +997,8 @@ export interface ApiProductProduct extends CollectionTypeSchema {
         'product.imaged-cards-grid-block',
         'product.images-slider-block',
         'product.faq-block',
-        'product.welcome-to-pilot-block'
+        'product.welcome-to-pilot-block',
+        'product.files-block'
       ]
     >;
     createdAt: DateTimeAttribute;
@@ -1088,6 +1089,21 @@ export interface ProductFaqItem extends ComponentSchema {
     question: StringAttribute & RequiredAttribute;
     answer: TextAttribute & RequiredAttribute;
     icon: MediaAttribute;
+  };
+}
+
+export interface ProductFilesBlock extends ComponentSchema {
+  info: {
+    displayName: 'FilesBlock';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute & DefaultTo<'Helpful info'>;
+    description: TextAttribute &
+      RequiredAttribute &
+      DefaultTo<'At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.'>;
+    files: MediaAttribute & RequiredAttribute;
+    sectionId: StringAttribute & RequiredAttribute;
   };
 }
 
@@ -1259,6 +1275,7 @@ declare global {
       'article-section.article-section': ArticleSectionArticleSection;
       'product.faq-block': ProductFaqBlock;
       'product.faq-item': ProductFaqItem;
+      'product.files-block': ProductFilesBlock;
       'product.image-slide': ProductImageSlide;
       'product.imaged-card': ProductImagedCard;
       'product.imaged-cards-grid-block': ProductImagedCardsGridBlock;

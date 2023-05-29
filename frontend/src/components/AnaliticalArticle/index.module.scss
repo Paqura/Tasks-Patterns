@@ -84,8 +84,6 @@
 .helpfulFilesWrap {
   position: relative;
   padding-top: var(--footer-padding-horizontal);
-  padding-right: var(--section-card-padding-right);
-  padding-left: var(--section-card-padding-left);
   display: grid;
   column-gap: 40px;
   grid-template-columns: repeat(12, 1fr);

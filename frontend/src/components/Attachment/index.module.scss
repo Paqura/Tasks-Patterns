@@ -1,0 +1,24 @@
+.attachment {
+    position: relative;
+    padding: 24px 16px;
+    display: block;
+    width: 195px;
+    min-width: 195px;
+    min-height: 112px;
+    background-color: var(--color-white);
+    background-image: url('/images/backgrounds/download.svg');
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: bottom;
+    border-radius: 8px;
+}
+
+.description {
+    padding-top: 40px;
+}
+
+.icon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

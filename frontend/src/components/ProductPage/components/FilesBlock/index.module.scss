@@ -1,0 +1,32 @@
+@import '../../../../styles/media';
+@import '../../../../styles/offsets';
+
+.block {
+    background-image: url('/images/backgrounds/info-background.svg');
+    background-repeat: no-repeat;
+    background-position: top right;
+
+    @include media_breakpoint_mobile {
+        background-size: 163px;
+    }
+}
+
+.listScrollArea {
+    @include subsection-above-offset;
+
+    @include media_breakpoint_mobile {
+        @include include-section-card-horizontal-paddings;
+    }
+}
+
+.list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    width: fit-content;
+
+    @include media_breakpoint_small_desktop {
+        display: flex;
+        gap: 12px;
+    }
+}

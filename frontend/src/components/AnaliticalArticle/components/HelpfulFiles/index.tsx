@@ -1,16 +1,12 @@
-import Link from 'next/link'
 import React from 'react'
-import Image from 'next/image'
 
-import { TFileData } from 'src/components/AnaliticalArticle/types'
-
-import { PageSectionCard } from '@/components/ui/PageSectionCard'
+import { Attachment } from '@/components/Attachment'
+import { CardsSlider } from '@/components/ui/CardsSlider'
 import { Heading } from '@/components/ui/typography/Heading'
-import { Text } from '@/components/ui/typography/Text'
 
 import styles from './index.module.scss'
 
-import downloadSimple from '/public/images/common/download-simple.svg'
+import { TFileData } from 'src/components/AnaliticalArticle/types'
 
 export default function HelpfulFiles(props: { files: TFileData[]; title: string }) {
     return (
@@ -19,22 +15,11 @@ export default function HelpfulFiles(props: { files: TFileData[]; title: string 
             <Heading className={styles.description} level={3}>
                 {props.title}
             </Heading>
-            <div className={styles.attachmentsWrap}>
+            <CardsSlider hideControls scrollAreaClassName={styles.attachmentsWrap}>
                 {props.files.map((attach, ind: number) => {
-                    return (
-                        <PageSectionCard key={ind} className={styles.attachment}>
-                            <Link href={attach.url}>
-                                <Text type="pM">{attach.title}</Text>
-                                <Image
-                                    className={styles.icon}
-                                    src={downloadSimple}
-                                    alt="download icon"
-                                />
-                            </Link>
-                        </PageSectionCard>
-                    )
+                    return <Attachment key={ind} src={attach.url} title={attach.title} />
                 })}
-            </div>
+            </CardsSlider>
         </div>
     )
 }

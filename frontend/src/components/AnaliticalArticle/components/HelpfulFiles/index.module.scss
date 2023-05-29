@@ -1,27 +1,28 @@
+@import '../../../../styles/media.scss';
+@import '../../../../styles/offsets.scss';
 
-@import "../../../../styles/media.scss";
-@import "../../../../styles/offsets.scss";
-
-.attachmentsWrap{
+.attachmentsWrap {
+  margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
   overflow-y: auto;
-}
+  width: fit-content;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 
-.attachment {
-  margin-right: 20px;
-  margin-left: 0;
-  padding: 23px 16px;
-  width: 195px;
-  background-color: var(--color-white);
+  @include media_breakpoint_mobile {
+    @include include-section-card-horizontal-paddings;
+
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    width: auto;
+  }
 }
 
 .description {
-  padding-top: 40px;
-}
+  margin-top: 40px;
 
-.icon {
-  position: absolute;
-  top: 35px;
-  right: 5px
+  @include media_breakpoint_mobile {
+    margin-top: 24px;
+  }
 }
