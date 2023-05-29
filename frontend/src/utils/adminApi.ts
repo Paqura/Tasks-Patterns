@@ -14,7 +14,13 @@ const getClient = () => {
     const axiosInstance = axios.create({
         baseURL: baseURL,
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            ...(process.env.ADMIN_API_KEY
+                ? { Authorization: `bearer ${process.env.ADMIN_API_KEY}` }
+                : {}),
+        },
+        withCredentials: true,
         paramsSerializer,
         params: {
             populate: 'deep',
