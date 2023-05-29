@@ -18,6 +18,10 @@
     @include media_breakpoint_no_touch_devices {
         @include hide-scrollbar;
     }
+
+    @include media_breakpoint_touch_devices {
+        padding-bottom: 12px;
+    }
 }
 
 .controlsBlock {

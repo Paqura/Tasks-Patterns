@@ -28,7 +28,7 @@
     grid-template-columns: repeat(3, 1fr);
     
     @include media_breakpoint_small_desktop {
-        width: min-content;
+        width: fit-content;
         gap: 12px;
     }
 }

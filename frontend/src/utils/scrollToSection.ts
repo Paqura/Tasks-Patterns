@@ -9,8 +9,9 @@ export const scrollToSection = (sectionId: string) => {
             document.getElementById(PAGE_SECTIONS_ANCHORS_ELEMENT_ID)?.offsetHeight || 0
 
         const elementOffsetTop = element.offsetTop - (headerHeight + barHeight)
+        const mainEl = document.querySelector('main')
 
-        window.scrollTo({
+        mainEl?.scrollTo({
             top: elementOffsetTop,
             behavior: 'smooth',
         })
