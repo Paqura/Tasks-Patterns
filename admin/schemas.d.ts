@@ -26,6 +26,7 @@ import {
   DynamicZoneAttribute,
   ComponentSchema,
   RichTextAttribute,
+  CustomField,
 } from '@strapi/strapi';
 
 export interface AdminPermission extends CollectionTypeSchema {
@@ -1008,7 +1009,8 @@ export interface ApiProductProduct extends CollectionTypeSchema {
         'product.faq-block',
         'product.welcome-to-pilot-block',
         'product.files-block',
-        'product.other-products-block'
+        'product.other-products-block',
+        'product.product-overview-block'
       ]
     >;
     createdAt: DateTimeAttribute;
@@ -1235,6 +1237,24 @@ export interface ProductOtherProductsBlock extends ComponentSchema {
   };
 }
 
+export interface ProductProductOverviewBlock extends ComponentSchema {
+  info: {
+    displayName: 'ProductOverviewBlock';
+    description: '';
+  };
+  attributes: {
+    sectionId: StringAttribute & RequiredAttribute;
+    title: StringAttribute & RequiredAttribute & DefaultTo<'Product Overview'>;
+    content: RichTextAttribute &
+      CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+  };
+}
+
 export interface ProductProductStatisticsItem extends ComponentSchema {
   info: {
     displayName: 'ProductStatisticsItem';
@@ -1364,6 +1384,7 @@ declare global {
       'product.imaged-cards-grid-block': ProductImagedCardsGridBlock;
       'product.images-slider-block': ProductImagesSliderBlock;
       'product.other-products-block': ProductOtherProductsBlock;
+      'product.product-overview-block': ProductProductOverviewBlock;
       'product.product-statistics-item': ProductProductStatisticsItem;
       'product.product-tasks-block': ProductProductTasksBlock;
       'product.welcome-to-pilot-block': ProductWelcomeToPilotBlock;

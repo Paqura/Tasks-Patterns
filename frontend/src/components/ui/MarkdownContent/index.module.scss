@@ -1,0 +1,165 @@
+@import '../../../styles/media';
+@import '../../../styles/offsets';
+@import '../typography/Text/index.module';
+@import '../typography/Heading/index.module';
+
+.content {
+    @include subsection-above-offset;
+
+    :global {
+        h1 {
+            @include heading_level_1;
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            @include heading_level_2;
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            @include heading_level_3;
+            margin-bottom: 16px;
+        }
+
+        h4 {
+            @include text_type_quote;
+            @include text_theme_light_quote;
+            margin-bottom: 16px;
+        }
+
+        h5 {
+            @include text_type_postscript;
+            @include text_theme_light_postscript;
+            margin-bottom: 16px;
+            color: var(--color-gray-6x);
+        }
+
+        a {
+            color: var(--color-red-ui);
+        }
+
+        p,
+        ul,
+        ol {
+            margin-bottom: 16px;
+
+            @include text_type_pM;
+            @include text_theme_light_pM;
+        }
+
+        blockquote {
+            margin-bottom: 16px;
+            padding: 20px 16px;
+            background-color: var(--color-gray-plus);
+
+            p {
+                @include text_type_quote;
+                color: var(--color-black-ui);
+            }
+
+            h4 {
+                @include text_type_pL;
+                color: var(--color-gray-6x);
+            }
+        }
+
+        table {
+            max-width: 100%;
+            border-collapse: collapse;
+            
+        }
+
+        td,
+        th {
+            padding: 20px;
+        }
+
+        th {
+            background-color: rgba(255, 255, 255, 0.5);
+
+            @include text_type_pHeadline;
+            @include text_theme_light_pHeadline;
+        }
+        td {
+            background-color: var(--color-white);
+
+            @include text_type_pM;
+            @include text_theme_light_pM;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid var(--color-gray-2x);
+        }
+
+        img {
+            margin-bottom: 16px;
+            max-width: 100%;
+            border-radius: 16px;
+        }
+
+        .image-style-align-right {
+            float: right;
+        }
+        .image-style-align-left {
+            float: left;
+        }
+
+        figure {
+            margin: 0px auto 16px;
+            margin-bottom: 16px;
+            text-align: center;
+
+            &.image_resized img {
+                width: 100%;
+            }
+
+            table.ck-table-resized {
+                width: 100%;
+            }
+        }
+
+        figcaption {
+            text-align: center;
+
+            @include text_type_postscript;
+            @include text_theme_light_postscript;
+        }
+
+        ol {
+            li {
+                list-style: decimal inside none;
+
+                &::marker {
+                    color: var(--color-primary);
+                }
+            }
+        }
+
+        ul {
+            padding-left: 13px;
+
+            li {
+                list-style: none;
+
+                &::before {
+                    margin-right: 5px;
+                    margin-left: -13px;
+                    display: inline-block;
+                    width: 8px;
+                    height: 8px;
+                    font-weight: bold;
+                    content: '';
+                    background-color: var(--color-primary);
+                    border-radius: 1px;
+                }
+
+                &:not(:last-of-type) {
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }
+}

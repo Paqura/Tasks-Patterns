@@ -8,6 +8,7 @@ import { mapFilesBlockServerData } from './blocks/files'
 import { mapImagedCardsGridBlockServerData } from './blocks/imaged-cards-grid'
 import { mapImagesSliderBlockServerData } from './blocks/images-slider'
 import { mapOtherProductsBlockServerData } from './blocks/other-products'
+import { mapOverviewBlockServerData } from './blocks/overview'
 import { mapProductTasksBlockServerData } from './blocks/tasks'
 import { mapWelcomeToPilotBlockServerData } from './blocks/welcome-to-pilot'
 
@@ -65,6 +66,12 @@ const mapProductBlocksServerData = ({
                         return {
                             type: 'other-products',
                             data: mapOtherProductsBlockServerData(block, products),
+                            sectionId: block.sectionId || defaultSectionId,
+                        }
+                    case 'product.product-overview-block':
+                        return {
+                            type: 'overview',
+                            data: mapOverviewBlockServerData(block),
                             sectionId: block.sectionId || defaultSectionId,
                         }
 

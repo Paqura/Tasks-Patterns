@@ -6,6 +6,7 @@ import {
     PageSectionCardGridLeftColumn,
     PageSectionCardGridRightColumn,
 } from '@/components/ui/PageSectionCardGrid'
+import { PageSectionCardNumber } from '@/components/ui/PageSectionCardNumber'
 import { Heading } from '@/components/ui/typography/Heading'
 
 import styles from './index.module.scss'
@@ -19,12 +20,7 @@ export const PageSectionCardHeader: React.FC<{
         <PageSectionCardGrid>
             {number && (
                 <PageSectionCardGridLeftColumn>
-                    <Heading level={2} className={styles.number}>
-                        {number.toLocaleString('en-US', {
-                            minimumIntegerDigits: 2,
-                            useGrouping: false,
-                        })}
-                    </Heading>
+                    <PageSectionCardNumber number={number} className={styles.number} />
                 </PageSectionCardGridLeftColumn>
             )}
             <PageSectionCardGridRightColumn className={styles.text}>

@@ -1,20 +1,21 @@
 {
-  "collectionName": "components_analytics_article_sections",
+  "collectionName": "components_product_product_overview_blocks",
   "info": {
-    "displayName": "ArticleSectionItem",
+    "displayName": "ProductOverviewBlock",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "value": {
-      "type": "richtext",
+    "sectionId": {
+      "type": "string",
       "required": true
     },
-    "number": {
-      "type": "integer",
-      "required": false
-    },
     "title": {
+      "type": "string",
+      "default": "Product Overview",
+      "required": true
+    },
+    "content": {
       "type": "customField",
       "options": {
         "preset": "toolbar"

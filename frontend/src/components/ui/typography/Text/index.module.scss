@@ -1,78 +1,130 @@
 .base {
-    font-family: "TT Positive", sans-serif;
+    font-family: 'TT Positive', sans-serif;
+}
+
+@mixin text_type_pL {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.4em;
+}
+
+@mixin text_type_pM {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4em;
+}
+
+@mixin text_type_pS {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.3em;
+}
+
+@mixin text_type_postscript {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3em;
+    text-transform: uppercase;
+}
+
+@mixin text_type_pHeadline {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4em;
+}
+
+@mixin text_type_quote {
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6em;
+}
+
+@mixin text_type_headerHeading {
+    font-family: Biform, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4em;
 }
 
 .type {
     &_pL {
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 1.4em;
+        @include text_type_pL;
     }
 
     &_pM {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.4em;
+        @include text_type_pM;
     }
 
     &_pS {
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 1.3em;
+        @include text_type_pS;
     }
 
     &_postscript {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.3em;
-        text-transform: uppercase;
+        @include text_type_postscript;
     }
 
     &_pHeadline {
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 1.4em;
+        @include text_type_pHeadline;
     }
 
     &_quote {
-        font-size: 22px;
-        font-weight: 400;
-        font-style: italic;
-        line-height: 1.6em;
+        @include text_type_quote;
     }
 
     &_headerHeading {
-        font-family: Biform, sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.4em;
+        @include text_type_headerHeading;
     }
+}
+
+@mixin text_theme_light_pL {
+    color: var(--color-gray-6x);
+}
+
+@mixin text_theme_light_pM {
+    color: var(--color-gray-8x);
+}
+
+@mixin text_theme_light_pS {
+    color: var(--color-gray-6x);
+}
+
+@mixin text_theme_light_postscript {
+    color: var(--color-gray-6x);
+}
+
+@mixin text_theme_light_pHeadline {
+    color: var(--color-black-ui);
+}
+
+@mixin text_theme_light_quote {
+    color: var(--color-gray-6x);
 }
 
 .theme {
     &_light {
         &__type_pL {
-            color: var(--color-gray-6x);
+            @include text_theme_light_pL;
         }
 
         &__type_pM {
-            color: var(--color-gray-8x);
+            @include text_theme_light_pM;
         }
 
         &__type_pS {
-            color: var(--color-gray-6x);
+            @include text_theme_light_pS;
         }
 
         &__type_postscript {
-            color: var(--color-gray-6x);
+            @include text_theme_light_postscript;
         }
 
         &__type_pHeadline {
-            color: var(--color-black-ui);
+            @include text_theme_light_pHeadline;
         }
 
         &__type_quote {
-            color: var(--color-gray-6x);
+            @include text_theme_light_quote;
         }
     }
 

@@ -1,0 +1,17 @@
+@import '../../../../styles/media';
+@import '../../../../styles/offsets';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.number {
+    margin-top: 24px;
+    color: var(--color-gray-6x);
+
+    @include media_breakpoint_mobile {
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+}

@@ -3,6 +3,7 @@ import { marked } from 'marked'
 import React, { useEffect, useRef } from 'react'
 
 import { TArticleSection } from '@/components/AnaliticalArticle/types'
+import { MarkdownContent } from '@/components/ui/MarkdownContent'
 import { useAnchors } from '@/utils/anchors'
 
 import styles from './index.module.scss'
@@ -31,11 +32,7 @@ export const Section: React.FC<TProps> = ({ item }) => {
                     __html: DOMPurify.sanitize(marked.parse(item.title)),
                 }}
             />
-            <div
-                dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(marked.parse(item.value)),
-                }}
-            />
+            <MarkdownContent>{item.value}</MarkdownContent>
         </div>
     )
 }
