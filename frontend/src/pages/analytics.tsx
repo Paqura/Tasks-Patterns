@@ -56,7 +56,7 @@ export default function Analytics(props: TProps) {
         props.articles?.map((article) => {
             return {
                 title: article.title || '',
-                description: article.topic || '',
+                topic: article.topic || '',
                 date: article.published && new Date(article.published),
                 href: article.slug || '/',
             }
