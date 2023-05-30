@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 
 import { ProductPage, TProductPageData } from '@/components/ProductPage'
 import { TProductData } from '@/components/ProductPage/types'
-import { fetchConfig, fetchHeader, fetchProduct } from '@/utils/adminApi'
+import { fetchConfig, fetchHeader, fetchProduct, fetchProducts } from '@/utils/adminApi'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapProductServerData } from '@/utils/serverDataMappers/product'
 
@@ -11,6 +11,7 @@ export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
     header?: GetAttributesValues<'api::header.header'>
     product: GetAttributesValues<'api::product.product'>
+    allProducts?: GetAttributesValues<'api::product.product'>[]
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: string }> = async ({
@@ -22,10 +23,17 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
         }
     }
 
-    const [config, header, product] = await Promise.all([
+    const [config, header, product, allProducts] = await Promise.all([
         fetchConfig(),
         fetchHeader(),
-        fetchProduct(params?.id),
+        fetchProduct(params.id),
+        fetchProducts({
+            filters: {
+                slug: {
+                    $ne: params.id,
+                },
+            },
+        }),
     ])
 
     if (!product) {
@@ -39,6 +47,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
             config,
             header,
             product,
+            allProducts,
         },
     }
 }
@@ -48,7 +57,7 @@ type TProps = TServerSideProps
 export default function Product(props: TProps) {
     const headerData: TProductPageData['header'] = mapHeaderServerData(props.header)
 
-    const product: TProductData = mapProductServerData(props.product)
+    const product: TProductData = mapProductServerData(props.product, props.allProducts)
 
     return <ProductPage seo={props.config?.seo || {}} header={headerData} product={product} />
 }

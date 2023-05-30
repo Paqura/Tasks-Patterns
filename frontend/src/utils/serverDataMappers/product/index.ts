@@ -7,12 +7,17 @@ import { mapFaqBlockServerData } from './blocks/faq'
 import { mapFilesBlockServerData } from './blocks/files'
 import { mapImagedCardsGridBlockServerData } from './blocks/imaged-cards-grid'
 import { mapImagesSliderBlockServerData } from './blocks/images-slider'
+import { mapOtherProductsBlockServerData } from './blocks/other-products'
 import { mapProductTasksBlockServerData } from './blocks/tasks'
 import { mapWelcomeToPilotBlockServerData } from './blocks/welcome-to-pilot'
 
-const mapProductBlocksServerData = (
+const mapProductBlocksServerData = ({
+    blocks,
+    products,
+}: {
     blocks: GetAttributesValues<'api::product.product'>['blocks']
-): TProductsBlockData[] => {
+    products?: GetAttributesValues<'api::product.product'>[]
+}): TProductsBlockData[] => {
     return (
         (blocks
             ?.map<TProductsBlockData | null>((block, index) => {
@@ -56,6 +61,12 @@ const mapProductBlocksServerData = (
                             data: mapFilesBlockServerData(block),
                             sectionId: block.sectionId || defaultSectionId,
                         }
+                    case 'product.other-products-block':
+                        return {
+                            type: 'other-products',
+                            data: mapOtherProductsBlockServerData(block, products),
+                            sectionId: block.sectionId || defaultSectionId,
+                        }
 
                     default:
                         return null
@@ -66,13 +77,14 @@ const mapProductBlocksServerData = (
 }
 
 export const mapProductServerData = (
-    productData: GetAttributesValues<'api::product.product'>
+    productData: GetAttributesValues<'api::product.product'>,
+    products?: GetAttributesValues<'api::product.product'>[]
 ): TProductData => {
     return {
         title: productData.title || '',
         subtitle: productData.subtitle,
         logo: mapImageMediaFile(productData.icon) || { src: '' },
         bannerImage: mapImageMediaFile(productData.bannerImage) || { src: '' },
-        blocks: mapProductBlocksServerData(productData.blocks),
+        blocks: mapProductBlocksServerData({ blocks: productData.blocks, products: products }),
     }
 }

@@ -2,7 +2,10 @@ import { Response, ResponseCollection } from '@admin/general-schemas'
 import axios from 'axios'
 import { stringify } from 'qs'
 
-export const paramsSerializer = (params: Record<string, unknown>) => stringify(params)
+export const paramsSerializer = (params: Record<string, unknown>) =>
+    stringify(params, {
+        arrayFormat: 'brackets',
+    })
 
 const getClient = () => {
     const baseURL = process.env.NEXT_PUBLIC_ADMIN_API_URL
@@ -42,9 +45,12 @@ export const fetchHeader = async () => {
     return response.data.data?.attributes
 }
 
-export const fetchProducts = async () => {
+export const fetchProducts = async (params: Record<string, unknown> = {}) => {
     const response = await adminClient.get<ResponseCollection<'api::product.product'>>(
-        `/api/products`
+        `/api/products`,
+        {
+            params: params,
+        }
     )
     return response.data.data?.map((item) => item.attributes)
 }

@@ -1003,7 +1003,8 @@ export interface ApiProductProduct extends CollectionTypeSchema {
         'product.images-slider-block',
         'product.faq-block',
         'product.welcome-to-pilot-block',
-        'product.files-block'
+        'product.files-block',
+        'product.other-products-block'
       ]
     >;
     createdAt: DateTimeAttribute;
@@ -1195,6 +1196,18 @@ export interface ProductImagesSliderBlock extends ComponentSchema {
   };
 }
 
+export interface ProductOtherProductsBlock extends ComponentSchema {
+  info: {
+    displayName: 'OtherProductsBlock';
+  };
+  attributes: {
+    sectionId: StringAttribute & RequiredAttribute;
+    title: StringAttribute & RequiredAttribute & DefaultTo<'Our Products'>;
+    description: TextAttribute &
+      DefaultTo<'At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.'>;
+  };
+}
+
 export interface ProductProductStatisticsItem extends ComponentSchema {
   info: {
     displayName: 'ProductStatisticsItem';
@@ -1321,6 +1334,7 @@ declare global {
       'product.imaged-card': ProductImagedCard;
       'product.imaged-cards-grid-block': ProductImagedCardsGridBlock;
       'product.images-slider-block': ProductImagesSliderBlock;
+      'product.other-products-block': ProductOtherProductsBlock;
       'product.product-statistics-item': ProductProductStatisticsItem;
       'product.product-tasks-block': ProductProductTasksBlock;
       'product.welcome-to-pilot-block': ProductWelcomeToPilotBlock;

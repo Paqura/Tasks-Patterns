@@ -11,6 +11,7 @@ import { FaqBlock } from './components/FaqBlock'
 import { FilesBlock } from './components/FilesBlock'
 import { ImagedCardsGridBlock } from './components/ImagedCardsGridBlock'
 import { ImagesSliderBlock } from './components/ImagesSliderBlock'
+import { OtherProductsBlock } from './components/OtherProductsBlock'
 import { TasksBlock } from './components/TasksBlock'
 import { WelcomeToPilotBlock } from './components/WelcomeToPilotBlock'
 import { TProductData, TSectionCardParams } from './types'
@@ -89,6 +90,18 @@ export const ProductPage: React.FC<TProductPageProps> = ({ product, header, seo 
                     acc.lastNumber = acc.lastNumber + 1
                     acc.blocks.push(
                         <FilesBlock
+                            number={acc.lastNumber}
+                            key={index}
+                            data={block.data}
+                            sectionId={block.sectionId}
+                        />
+                    )
+                    acc.anchors.push(getAnchorLink(block))
+                    break
+                case 'other-products':
+                    acc.lastNumber = acc.lastNumber + 1
+                    acc.blocks.push(
+                        <OtherProductsBlock
                             number={acc.lastNumber}
                             key={index}
                             data={block.data}

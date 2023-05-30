@@ -46,7 +46,8 @@
         "product.images-slider-block",
         "product.faq-block",
         "product.welcome-to-pilot-block",
-        "product.files-block"
+        "product.files-block",
+        "product.other-products-block"
       ]
     }
   }

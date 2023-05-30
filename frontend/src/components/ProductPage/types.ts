@@ -4,6 +4,7 @@ import { TFaqBlockData } from './components/FaqBlock'
 import { TFilesBlockData } from './components/FilesBlock'
 import { TImagedCardsGridBlockData } from './components/ImagedCardsGridBlock'
 import { TImagesSliderBlockData } from './components/ImagesSliderBlock'
+import { TOtherProductsBlockData } from './components/OtherProductsBlock'
 import { TProductTasksBlockData } from './components/TasksBlock'
 import { TWelcomeToPilotBlockData } from './components/WelcomeToPilotBlock'
 
@@ -35,6 +36,10 @@ export type TProductsBlockData =
     | ({
           type: 'files'
           data: TFilesBlockData
+      } & TSectionCardParams)
+    | ({
+          type: 'other-products'
+          data: TOtherProductsBlockData
       } & TSectionCardParams)
 
 export type TProductData = {

@@ -6,27 +6,26 @@ import { Link } from '@/components/ui/Link'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
 
-import { Clients, TClient } from './components/Clients'
 import styles from './index.module.scss'
 
-const title = 'Our Products'
-const description = `At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.`
-
-export type TProductsBlockData = {
-    products: TProductCard[]
-    clients: TClient[]
+export type TOtherProductsBlockData = {
+    title: string
+    description?: string
+    items: TProductCard[]
 }
 
 type TProps = {
-    data: TProductsBlockData
+    number: number
+    sectionId: string
+    data: TOtherProductsBlockData
 }
 
-export const Products: React.FC<TProps> = ({ data }) => {
-    const { products, clients } = data
+export const OtherProductsBlock: React.FC<TProps> = ({ data, sectionId, number }) => {
+    const { items, title, description } = data
 
     return (
-        <PageSectionCard mode="dark" sectionId="products">
-            <PageSectionCardHeader title={title} description={description} />
+        <PageSectionCard mode="dark" sectionId={sectionId}>
+            <PageSectionCardHeader title={title} description={description} number={number} />
             <CardsSlider
                 className={styles.productsList}
                 scrollAreaClassName={styles.productsScrollArea}
@@ -36,13 +35,10 @@ export const Products: React.FC<TProps> = ({ data }) => {
                     </Link>
                 }
             >
-                {products.map((product, index) => (
+                {items.map((product, index) => (
                     <ProductCard key={index} data={product} />
                 ))}
             </CardsSlider>
-            <div className={styles.clients}>
-                <Clients clients={clients} />
-            </div>
         </PageSectionCard>
     )
 }

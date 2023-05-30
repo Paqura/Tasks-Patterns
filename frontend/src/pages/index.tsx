@@ -13,6 +13,7 @@ import {
 } from '@/utils/adminApi'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapImageMediaFile, mapVideoMediaFile } from '@/utils/serverDataMappers/media'
+import { mapProductCardServerData } from '@/utils/serverDataMappers/product/product-card'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
@@ -54,12 +55,7 @@ type TProps = TServerSideProps
 
 export default function Home(props: TProps) {
     const products: THomePageData['productsBlock']['products'] =
-        props.products?.map((product) => ({
-            title: product.title || '',
-            description: product.subtitle,
-            icon: mapImageMediaFile(product.icon) || { src: '' },
-            href: product.slug || '',
-        })) || []
+        props.products?.map(mapProductCardServerData) || []
 
     const clients: THomePageData['productsBlock']['clients'] =
         props.clients?.map((client) => ({

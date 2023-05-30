@@ -8,14 +8,19 @@ import { TImage } from '@/types'
 
 import styles from './index.module.scss'
 
-type TProps = {
-    href: string
+export type TProductCard = {
     title: string
     description?: string
     icon: TImage
+    href: string
 }
 
-export const ProductCard: React.FC<TProps> = ({ icon, title, description, href }) => {
+type TProps = {
+    data: TProductCard
+}
+
+export const ProductCard: React.FC<TProps> = ({ data }) => {
+    const { icon, title, description, href } = data
     return (
         <div className={styles.card}>
             <div className={styles.content}>
