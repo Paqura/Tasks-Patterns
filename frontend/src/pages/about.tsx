@@ -31,7 +31,9 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
 type TProps = TServerSideProps
 
 export default function About(props: TProps) {
-    const { headingSectionData, expertsSectionData } = mapAboutPageServerData(props.aboutPage)
+    const { headingSectionData, expertsSectionData, historySectionData } = mapAboutPageServerData(
+        props.aboutPage
+    )
 
     return (
         <AboutPage
@@ -39,6 +41,7 @@ export default function About(props: TProps) {
             headerData={mapHeaderServerData(props.header)}
             headingSectionData={headingSectionData}
             expertsSectionData={expertsSectionData}
+            historySectionData={historySectionData}
         />
     )
 }

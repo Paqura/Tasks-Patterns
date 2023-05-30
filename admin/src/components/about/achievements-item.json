@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_about_achievements_items",
+  "info": {
+    "displayName": "AchievementsItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

@@ -47,6 +47,21 @@
     "expertsSectionDescription": {
       "type": "text",
       "required": true
+    },
+    "historySectionTitle": {
+      "type": "string",
+      "required": true
+    },
+    "historySectionDescription": {
+      "type": "text",
+      "required": true
+    },
+    "historySectionHistoryItems": {
+      "displayName": "HistoryItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "about.history-item",
+      "required": true
     }
   }
 }

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_about_history_items",
+  "info": {
+    "displayName": "HistoryItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "date": {
+      "type": "string",
+      "required": true
+    },
+    "number": {
+      "type": "string",
+      "required": true
+    },
+    "numberDescription": {
+      "type": "string",
+      "required": true
+    },
+    "achievements": {
+      "displayName": "AchievementsItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "about.achievements-item"
+    }
+  }
+}

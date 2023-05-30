@@ -709,6 +709,10 @@ export interface ApiAboutPageAboutPage extends SingleTypeSchema {
     expertsSectionExpertsBlockTitle: StringAttribute & RequiredAttribute;
     expertsSectionTitle: StringAttribute & RequiredAttribute;
     expertsSectionDescription: TextAttribute & RequiredAttribute;
+    historySectionTitle: StringAttribute & RequiredAttribute;
+    historySectionDescription: TextAttribute & RequiredAttribute;
+    historySectionHistoryItems: ComponentAttribute<'about.history-item', true> &
+      RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1059,6 +1063,16 @@ export interface ApiWebinarRequestWebinarRequest extends CollectionTypeSchema {
   };
 }
 
+export interface AboutAchievementsItem extends ComponentSchema {
+  info: {
+    displayName: 'AchievementsItem';
+    description: '';
+  };
+  attributes: {
+    value: TextAttribute & RequiredAttribute;
+  };
+}
+
 export interface AboutEmployee extends ComponentSchema {
   info: {
     displayName: 'employee';
@@ -1068,6 +1082,19 @@ export interface AboutEmployee extends ComponentSchema {
     name: StringAttribute & RequiredAttribute;
     roles: TextAttribute & RequiredAttribute;
     photo: MediaAttribute & RequiredAttribute;
+  };
+}
+
+export interface AboutHistoryItem extends ComponentSchema {
+  info: {
+    displayName: 'HistoryItem';
+    description: '';
+  };
+  attributes: {
+    date: StringAttribute & RequiredAttribute;
+    number: StringAttribute & RequiredAttribute;
+    numberDescription: StringAttribute & RequiredAttribute;
+    achievements: ComponentAttribute<'about.achievements-item', true>;
   };
 }
 
@@ -1323,7 +1350,9 @@ declare global {
       'api::news-page.news-page': ApiNewsPageNewsPage;
       'api::product.product': ApiProductProduct;
       'api::webinar-request.webinar-request': ApiWebinarRequestWebinarRequest;
+      'about.achievements-item': AboutAchievementsItem;
       'about.employee': AboutEmployee;
+      'about.history-item': AboutHistoryItem;
       'analytics.statistics-item': AnalyticsStatisticsItem;
       'analytics.statistics-summary': AnalyticsStatisticsSummary;
       'article-section.article-section': ArticleSectionArticleSection;

@@ -27,68 +27,66 @@ export const ExpertsSection: React.FC<TExpertsSectionProps> = ({ data }) => {
         data
 
     return (
-        <PageSectionCard mode={'dark'} className={styles.section}>
-            <div className={styles.content}>
-                <div className={styles.sectionHeading}>
-                    <Heading level={1} className={styles.sectionTitle}>
-                        {title}
-                    </Heading>
+        <PageSectionCard mode={'dark'}>
+            <div className={styles.sectionHeading}>
+                <Heading level={1} className={styles.sectionTitle}>
+                    {title}
+                </Heading>
 
-                    <Text type="pL" className={styles.sectionDescription}>
-                        {description}
-                    </Text>
-                </div>
+                <Text type="pL" className={styles.sectionDescription}>
+                    {description}
+                </Text>
+            </div>
 
-                <div className={styles.employeesBlock}>
-                    <Heading level={2} className={styles.employeesBlockTitle}>
-                        {managersBlockTitle}
-                    </Heading>
+            <div className={styles.employeesBlock}>
+                <Heading level={2} className={styles.employeesBlockTitle}>
+                    {managersBlockTitle}
+                </Heading>
 
-                    <LoadMore
-                        cuttedClassName={styles.loadMoreBlockCutted}
-                        cutterClassName={styles.loadMoreBlockCutter}
-                    >
-                        <CardsSlider hideControls scrollAreaClassName={styles.employeeCardsList}>
-                            {managersList.map(({ photo, name, roles }, index) => (
-                                <EmployeeCard
-                                    key={index}
-                                    data={{
-                                        photo,
-                                        name,
-                                        roles,
-                                    }}
-                                />
-                            ))}
-                        </CardsSlider>
-                    </LoadMore>
-                </div>
+                <LoadMore
+                    cuttedClassName={styles.loadMoreBlockCutted}
+                    cutterClassName={styles.loadMoreBlockCutter}
+                >
+                    <CardsSlider hideControls scrollAreaClassName={styles.employeeCardsList}>
+                        {managersList.map(({ photo, name, roles }, index) => (
+                            <EmployeeCard
+                                key={index}
+                                data={{
+                                    photo,
+                                    name,
+                                    roles,
+                                }}
+                            />
+                        ))}
+                    </CardsSlider>
+                </LoadMore>
+            </div>
 
-                <div className={styles.employeesBlock}>
-                    <Heading level={2} className={styles.employeesBlockTitle}>
-                        {expertsBlockTitle}
-                    </Heading>
+            <div className={styles.employeesBlock}>
+                <Heading level={2} className={styles.employeesBlockTitle}>
+                    {expertsBlockTitle}
+                </Heading>
 
-                    <LoadMore
-                        cuttedClassName={cn(
-                            styles.loadMoreBlockCutted,
-                            styles.loadMoreBlockCuttedLastBlock
-                        )}
-                        cutterClassName={styles.loadMoreBlockCutter}
-                    >
-                        <CardsSlider hideControls scrollAreaClassName={styles.employeeCardsList}>
-                            {expertsList.map(({ photo, name, roles }, index) => (
-                                <EmployeeCard
-                                    key={index}
-                                    data={{
-                                        photo,
-                                        name,
-                                        roles,
-                                    }}
-                                />
-                            ))}
-                        </CardsSlider>
-                    </LoadMore>
-                </div>
+                <LoadMore
+                    cuttedClassName={cn(
+                        styles.loadMoreBlockCutted,
+                        styles.loadMoreBlockCuttedLastBlock
+                    )}
+                    cutterClassName={styles.loadMoreBlockCutter}
+                >
+                    <CardsSlider hideControls scrollAreaClassName={styles.employeeCardsList}>
+                        {expertsList.map(({ photo, name, roles }, index) => (
+                            <EmployeeCard
+                                key={index}
+                                data={{
+                                    photo,
+                                    name,
+                                    roles,
+                                }}
+                            />
+                        ))}
+                    </CardsSlider>
+                </LoadMore>
             </div>
         </PageSectionCard>
     )
