@@ -2,10 +2,10 @@ import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 import React from 'react'
 
-import NewsArticlePage from '@/components/NewsArticlePage'
+import EventArticlePage from '@/components/EventArticlePage'
 import { fetchConfig, fetchHeader, fetchNewsArticle } from '@/utils/adminApi'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapNewsArticleServerData } from '@/utils/serverDataMappers/news-article'
+import { mapEventArticleServerData } from '@/utils/serverDataMappers/news-article'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
@@ -32,10 +32,10 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
         }
     }
 
-    if (newsItem?.isEvent) {
+    if (!newsItem?.isEvent) {
         return {
             redirect: {
-                destination: `/webinar/${params.slug}`,
+                destination: `/news/${params.slug}`,
                 permanent: true,
             },
         }
@@ -51,14 +51,14 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
 }
 type TProps = TServerSideProps
 
-export default function NewsArticleItem(props: TProps) {
-    const article = mapNewsArticleServerData(props.newsItem)
+export default function EventArticleItem(props: TProps) {
+    const article = mapEventArticleServerData(props.newsItem)
 
     return (
-        <NewsArticlePage
+        <EventArticlePage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
-            newsArticleData={article}
+            eventArticleData={article}
         />
     )
 }

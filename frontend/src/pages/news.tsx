@@ -55,12 +55,14 @@ export default function News(props: TProps) {
 
     const articles: TNewsPageData['articlesListData']['articles'] =
         props.news?.map((article) => {
+            const baseUrl = article.isEvent ? 'webinar' : 'news';
+
             return {
                 title: article.title || '',
                 topic: article.topic || '',
                 date: article.published && new Date(article.published),
                 image: mapImageMediaFile(article.previewImage) || { src: '' },
-                href: `/news/${article.slug}` || '/',
+                href: `/${baseUrl}/${article.slug}` || '/',
             }
         }) || []
 

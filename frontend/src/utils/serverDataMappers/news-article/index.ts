@@ -16,6 +16,8 @@ export type TNewsArticleData = {
     files: TFileData[]
 }
 
+export type TEventArticleData = TNewsArticleData
+
 const mapArticleSectionsServerData = (
     article: WithID & GetAttributesValues<'article-section.article-section'>[]
 ): TArticleSection[] => {
@@ -45,5 +47,16 @@ export const mapNewsArticleServerData = (
         topic: serverArticleData?.topic || '',
         filesTitle: serverArticleData?.titleOfHelpfulFiles || '',
         image: mapImageMediaFile(serverArticleData?.previewImage) || { src: '' },
+    }
+}
+
+export const mapEventArticleServerData = (
+    serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
+): TEventArticleData => {
+    return {
+        ...mapNewsArticleServerData(serverArticleData),
+        date: serverArticleData?.eventDate
+            ? new Date(serverArticleData?.eventDate)
+            : new Date(),
     }
 }
