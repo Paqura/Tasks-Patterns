@@ -55,6 +55,7 @@ export default async function handler(req: TWebinarRegistrationRequest, res: Nex
                     phone,
                     eventDate,
                     eventName,
+                    eventSlug: slug,
                 },
             })
 

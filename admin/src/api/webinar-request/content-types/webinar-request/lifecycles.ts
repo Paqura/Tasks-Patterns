@@ -1,26 +1,39 @@
+const siteName = 'example.com'
+const webinarBaseUrl = `http://${siteName}/webinar`
+
 const emailTemplate = {
-  subject: 'New register to <%= event.eventName %>',
-  text: `Params:
-    eventName: <%= event.eventName %>
-    createdAt: <%= event.createdAt %>
-    fullName: <%= user.fullName %>
-    email: <%= user.email %>
-    phone: <%= user.phone %>
-    companyName: <%= user.companyName %>
-    companyPosition: <%= user.companyPosition %>`,
-  html: `<h1>Params:</h1>
-    <p>eventName: <%= event.eventName %><p>
-    <p>createdAt: <%= event.createdAt %><p>
-    <p>fullName: <%= user.fullName %><p>
-    <p>email: <%= user.email %><p>
-    <p>phone: <%= user.phone %><p>
-    <p>companyName: <%= user.companyName %><p>
-    <p>companyPosition: <%= user.companyPosition %><p>`,
+  subject: `${siteName} = Получена заявка на участие в вебинаре`,
+  text: `Приветствуем!
+На сайте ${siteName} пользователь <%= user.fullName %> оставил заявку на участие в вебинаре <%= event.name %>, который пройдет <%= event.date %>.
+Контакты пользователя:
+<%= user.contacts %>
+<%= user.additional %>`,
+};
+
+const emailUserTemplate = {
+  subject: 'Успешная регистрация на вебинар',
+  text: `Приветствуем!
+  Вы зарегистрировались на вебинар <%= event.name %>, который пройдет <%= event.date %>. Ниже прикрепляем ссылку на вебинар для подключения:
+  ${webinarBaseUrl}/<%= event.slug %>
+  До встречи!`,
 };
 
 module.exports = {
   async afterCreate(event) {
     const { result } = event;
+    const contacts = [`Email: ${result.email}`];
+    const additional = [];
+
+    if (result.phone) {
+      contacts.push(`Телефон: ${result.phone}`)
+    }
+
+    if (result.companyName) {
+      additional.push(`Компания: ${result.companyName}`)
+    }
+    if (result.companyPosition) {
+      additional.push(`Роль: ${result.companyPosition}`)
+    }
 
     try{
       await strapi.plugins['email'].services.email.sendTemplatedEmail(
@@ -31,14 +44,26 @@ module.exports = {
         {
           event: {
             name: result.eventName,
-            createdAt: result.createdAt,
+            date: result.eventDate,
           },
           user: {
+            contacts: contacts.join(', '),
             fullName: result.fullName,
-            email: result.email,
-            phone: result.phone,
-            companyName: result.companyName,
-            companyPosition: result.companyPosition,
+            additional: additional.length > 0 ? `Дополнительно пользователь указал в заявке: \n ${additional.join(', ')}` : '',
+          },
+        }
+      );
+
+      await strapi.plugins['email'].services.email.sendTemplatedEmail(
+        {
+          to: result.email,
+        },
+        emailUserTemplate,
+        {
+          event: {
+            name: result.eventName,
+            date: result.eventDate,
+            slug: result.eventSlug,
           },
         }
       );
