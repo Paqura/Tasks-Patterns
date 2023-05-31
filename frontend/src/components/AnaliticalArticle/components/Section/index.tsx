@@ -1,9 +1,8 @@
-import DOMPurify from 'isomorphic-dompurify'
-import { marked } from 'marked'
 import React, { useEffect, useRef } from 'react'
 
 import { TArticleSection } from '@/components/AnaliticalArticle/types'
 import { MarkdownContent } from '@/components/ui/MarkdownContent'
+import { Heading } from '@/components/ui/typography/Heading'
 import { useAnchors } from '@/utils/anchors'
 
 import styles from './index.module.scss'
@@ -27,11 +26,9 @@ export const Section: React.FC<TProps> = ({ item }) => {
 
     return (
         <div key={item.number} id={sectionId} className={styles.content} ref={ref}>
-            <div
-                dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(marked.parse(item.title)),
-                }}
-            />
+            <div className={styles.title}>
+                <Heading level={2}>{item.title}</Heading>
+            </div>
             <MarkdownContent>{item.value}</MarkdownContent>
         </div>
     )

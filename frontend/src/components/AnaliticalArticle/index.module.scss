@@ -82,10 +82,10 @@
 
 .helpfulFilesWrap {
   position: relative;
+  padding-top: 60px;
   display: grid;
   column-gap: 40px;
   grid-template-columns: repeat(12, 1fr);
-
   &::after {
     position: absolute;
     top: 0;

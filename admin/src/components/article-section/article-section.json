@@ -6,20 +6,19 @@
   },
   "options": {},
   "attributes": {
-    "value": {
-      "type": "richtext",
-      "required": true
-    },
     "number": {
       "type": "integer",
       "required": false
     },
-    "title": {
+    "value": {
       "type": "customField",
       "options": {
         "preset": "toolbar"
       },
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "title": {
+      "type": "string"
     }
   }
 }
