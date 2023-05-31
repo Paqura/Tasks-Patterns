@@ -17,6 +17,8 @@ export type TEventFormData = {
     position: string
     title: string
     slug: string
+    successTitle: string
+    successDescription: string
 }
 
 export type TEventVideoData = {
@@ -57,6 +59,8 @@ const mapEventFormServerData = (
         phone: serverArticleData.eventForm?.fieldPhone || '',
         position: serverArticleData.eventForm?.fieldPosition || '',
         title: serverArticleData.eventForm?.title || '',
+        successTitle: serverArticleData.eventForm?.successTitle || '',
+        successDescription: serverArticleData.eventForm?.successDescription || '',
         slug: serverArticleData?.slug || '',
     }
 }

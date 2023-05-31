@@ -1396,6 +1396,12 @@ export interface WebinarWebinarForm extends ComponentSchema {
     checkboxConsentsTerms: StringAttribute &
       RequiredAttribute &
       DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href="#">privacy policy</a>.'>;
+    successTitle: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Your request has been sent successfully'>;
+    successDescription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Our teem will contact you shortly'>;
   };
 }
 

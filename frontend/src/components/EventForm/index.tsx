@@ -1,8 +1,9 @@
 import cn from 'classnames'
 import { marked } from 'marked'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import FormSuccess from '@/components/ui/FormSuccess'
 import { sanitizeText } from '@/utils/sanitize'
 
 import styles from './index.module.scss'
@@ -25,6 +26,7 @@ type TFormFields = {
 }
 
 export default function EventForm(props: TEventForm) {
+    const [isCompleted, setIsCompleted] = useState<boolean>(false)
     const {
         register,
         handleSubmit,
@@ -41,105 +43,124 @@ export default function EventForm(props: TEventForm) {
             companyPosition: data.companyPosition,
         })
 
-        alert(isSuccess ? 'A confirmation email has been sent to your email' : 'Error')
+        if (isSuccess) {
+            setIsCompleted(true)
+        }
     }
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.wrapper}>
             {props.eventFormData.title && (
                 <Heading level={2} className={styles.title}>
                     {props.eventFormData.title}
                 </Heading>
             )}
-            <div className={styles.fields}>
-                <div className={cn(styles.field, styles.name)}>
-                    <input
-                        className={cn({
-                            [styles.error]: errors?.fullName ?? false,
-                        })}
-                        type={'text'}
-                        placeholder={props.eventFormData.name}
-                        {...register('fullName', { required: true })}
-                    />
-                </div>
-                <div className={styles.field}>
-                    <input
-                        type={'text'}
-                        placeholder={props.eventFormData.company}
-                        {...register('companyName')}
-                    />
-                </div>
-                <div className={styles.field}>
-                    <input
-                        type={'text'}
-                        placeholder={props.eventFormData.position}
-                        {...register('companyPosition')}
-                    />
-                </div>
-                <div className={styles.field}>
-                    <input
-                        type={'tel'}
-                        className={cn({
-                            [styles.error]: errors?.phone ?? false,
-                        })}
-                        placeholder={props.eventFormData.phone}
-                        {...register('phone', {
-                            pattern: {
-                                value: /^\+?[1-9][0-9]{7,19}$/,
-                                message: '+99-999-999-99-99',
-                            },
-                        })}
-                    />
-                </div>
-                <div className={styles.field}>
-                    <input
-                        className={cn({
-                            [styles.error]: errors?.email ?? false,
-                        })}
-                        type={'email'}
-                        placeholder={props.eventFormData.email}
-                        {...register('email', {
-                            required: true,
-                            pattern: {
-                                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                                message: 'Only latin characters, numbers, - _ are allowed',
-                            },
-                        })}
-                    />
-                </div>
-            </div>
-            <div className={styles.agrees}>
-                <label
-                    className={cn(styles.checkbox, {
-                        [styles.error]: errors?.consentsTerms ?? false,
-                    })}
-                >
-                    <input type={'checkbox'} {...register('consentsTerms', { required: true })} />
-                    <span
-                        dangerouslySetInnerHTML={{
-                            __html: sanitizeText(marked.parse(props.eventFormData.consentsTerms)),
-                        }}
-                    />
-                </label>
-                <label
-                    className={cn(styles.checkbox, {
-                        [styles.error]: errors?.subscription ?? false,
-                    })}
-                >
-                    <input
-                        type={'checkbox'}
-                        {...register('subscription', { required: 'required' })}
-                    />
-                    <span
-                        dangerouslySetInnerHTML={{
-                            __html: sanitizeText(marked.parse(props.eventFormData.subscription)),
-                        }}
-                    />
-                </label>
-            </div>
-            <Button size={'m'} type={'submit'} className={styles.submit}>
-                {props.eventFormData.submit}
-            </Button>
-        </form>
+            {isCompleted && (
+                <FormSuccess
+                    title={props.eventFormData.successTitle}
+                    description={props.eventFormData.successTitle}
+                />
+            )}
+            {isCompleted || (
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className={styles.fields}>
+                        <div className={cn(styles.field, styles.name)}>
+                            <input
+                                className={cn({
+                                    [styles.error]: errors?.fullName ?? false,
+                                })}
+                                type={'text'}
+                                placeholder={props.eventFormData.name}
+                                {...register('fullName', { required: true })}
+                            />
+                        </div>
+                        <div className={styles.field}>
+                            <input
+                                type={'text'}
+                                placeholder={props.eventFormData.company}
+                                {...register('companyName')}
+                            />
+                        </div>
+                        <div className={styles.field}>
+                            <input
+                                type={'text'}
+                                placeholder={props.eventFormData.position}
+                                {...register('companyPosition')}
+                            />
+                        </div>
+                        <div className={styles.field}>
+                            <input
+                                type={'tel'}
+                                className={cn({
+                                    [styles.error]: errors?.phone ?? false,
+                                })}
+                                placeholder={props.eventFormData.phone}
+                                {...register('phone', {
+                                    pattern: {
+                                        value: /^\+?[1-9][0-9]{7,19}$/,
+                                        message: '+99-999-999-99-99',
+                                    },
+                                })}
+                            />
+                        </div>
+                        <div className={styles.field}>
+                            <input
+                                className={cn({
+                                    [styles.error]: errors?.email ?? false,
+                                })}
+                                type={'email'}
+                                placeholder={props.eventFormData.email}
+                                {...register('email', {
+                                    required: true,
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                                        message: 'Only latin characters, numbers, - _ are allowed',
+                                    },
+                                })}
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.agrees}>
+                        <label
+                            className={cn(styles.checkbox, {
+                                [styles.error]: errors?.consentsTerms ?? false,
+                            })}
+                        >
+                            <input
+                                type={'checkbox'}
+                                {...register('consentsTerms', { required: true })}
+                            />
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: sanitizeText(
+                                        marked.parse(props.eventFormData.consentsTerms)
+                                    ),
+                                }}
+                            />
+                        </label>
+                        <label
+                            className={cn(styles.checkbox, {
+                                [styles.error]: errors?.subscription ?? false,
+                            })}
+                        >
+                            <input
+                                type={'checkbox'}
+                                {...register('subscription', { required: 'required' })}
+                            />
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: sanitizeText(
+                                        marked.parse(props.eventFormData.subscription)
+                                    ),
+                                }}
+                            />
+                        </label>
+                    </div>
+                    <Button size={'m'} type={'submit'} className={styles.submit}>
+                        {props.eventFormData.submit}
+                    </Button>
+                </form>
+            )}
+        </div>
     )
 }

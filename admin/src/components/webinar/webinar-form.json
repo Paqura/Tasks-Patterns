@@ -49,6 +49,16 @@
       "type": "string",
       "default": "I consent to the processing of my personal data in accordance with the terms of the <a href=\"#\">privacy policy</a>.",
       "required": true
+    },
+    "successTitle": {
+      "type": "string",
+      "default": "Thank you, your application has been sent",
+      "required": true
+    },
+    "successDescription": {
+      "type": "string",
+      "required": true,
+      "default": "Our specialists will contact you soon."
     }
   }
 }
