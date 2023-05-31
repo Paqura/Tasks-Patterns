@@ -1,7 +1,8 @@
 import cn from 'classnames'
-import DOMPurify from 'isomorphic-dompurify'
 import { marked } from 'marked'
 import React from 'react'
+
+import { sanitizeText } from '@/utils/sanitize'
 
 import styles from './index.module.scss'
 
@@ -15,7 +16,7 @@ export const MarkdownContent: React.FC<TProps> = ({ children, className }) => {
         <div
             className={cn(styles.content, className)}
             dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(marked.parse(children)),
+                __html: sanitizeText(marked.parse(children)),
             }}
         />
     )

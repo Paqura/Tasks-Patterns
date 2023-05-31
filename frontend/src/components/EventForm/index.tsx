@@ -1,8 +1,9 @@
 import cn from 'classnames'
-import DOMPurify from 'isomorphic-dompurify'
 import { marked } from 'marked'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+
+import { sanitizeText } from '@/utils/sanitize'
 
 import styles from './index.module.scss'
 
@@ -116,9 +117,7 @@ export default function EventForm(props: TEventForm) {
                     <input type={'checkbox'} {...register('consentsTerms', { required: true })} />
                     <span
                         dangerouslySetInnerHTML={{
-                            __html: DOMPurify.sanitize(
-                                marked.parse(props.eventFormData.consentsTerms)
-                            ),
+                            __html: sanitizeText(marked.parse(props.eventFormData.consentsTerms)),
                         }}
                     />
                 </label>
@@ -133,9 +132,7 @@ export default function EventForm(props: TEventForm) {
                     />
                     <span
                         dangerouslySetInnerHTML={{
-                            __html: DOMPurify.sanitize(
-                                marked.parse(props.eventFormData.subscription)
-                            ),
+                            __html: sanitizeText(marked.parse(props.eventFormData.subscription)),
                         }}
                     />
                 </label>

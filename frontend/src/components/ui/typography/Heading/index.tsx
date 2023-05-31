@@ -3,7 +3,7 @@ import React from 'react'
 
 import { THeadingLevel } from '@/components/ui/typography/types'
 import { useTypographyTheme } from '@/components/ui/typography/TypographyTheme'
-import { sanitizeText } from '@/utils/sanitaze'
+import { sanitizeText } from '@/utils/sanitize'
 
 import styles from './index.module.scss'
 

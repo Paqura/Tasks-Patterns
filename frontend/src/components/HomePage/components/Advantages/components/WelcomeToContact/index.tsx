@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { CONTACTS_SECTION_ID } from '@/utils/constants'
-import { sanitizeText } from '@/utils/sanitaze'
+import { sanitizeText } from '@/utils/sanitize'
 
 import styles from './index.module.scss'
 
