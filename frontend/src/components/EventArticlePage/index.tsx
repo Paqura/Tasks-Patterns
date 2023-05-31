@@ -1,11 +1,13 @@
 import {
     TEventArticleData,
+    TEventCalendarData,
     TEventFormData,
     TEventVideoData,
 } from '@/utils/serverDataMappers/event-article'
 
 import styles from './index.module.scss'
 
+import EventCalendar from 'src/components/EventCalendar'
 import EventForm from 'src/components/EventForm'
 import EventVideo from 'src/components/EventVideo'
 import { THeaderData } from 'src/components/Header'
@@ -21,6 +23,7 @@ export type TEventArticlePageData = {
     eventArticleData: TEventArticleData
     eventFormData?: TEventFormData
     eventVideoData?: TEventVideoData
+    eventCalendarData?: TEventCalendarData
     eventIsCompleted: boolean
 }
 type TEventArticlePageProps = TEventArticlePageData
@@ -48,6 +51,10 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
 
                         {props.eventVideoData && !props.eventIsCompleted && (
                             <EventVideo eventVideoData={props.eventVideoData} />
+                        )}
+
+                        {props.eventCalendarData && !props.eventIsCompleted && (
+                            <EventCalendar eventCalendarData={props.eventCalendarData} />
                         )}
                     </div>
                 </div>

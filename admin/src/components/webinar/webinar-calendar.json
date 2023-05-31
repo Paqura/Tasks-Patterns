@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_webinar_webinar_calendars",
+  "info": {
+    "displayName": "WebinarCalendar",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Don’t miss <b>the event!</b>"
+    },
+    "description": {
+      "type": "string",
+      "default": "Download the event information to add it to your calendar so you don't miss the event",
+      "required": true
+    },
+    "button": {
+      "type": "string",
+      "default": "Add to my calendar",
+      "required": true
+    },
+    "calendar": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    }
+  }
+}

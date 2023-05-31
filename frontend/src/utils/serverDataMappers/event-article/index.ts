@@ -1,5 +1,6 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 
+import { mapFilesMediaFile } from 'src/utils/serverDataMappers/media'
 import {
     mapNewsArticleServerData,
     TNewsArticleData,
@@ -22,6 +23,13 @@ export type TEventVideoData = {
     id: string
 }
 
+export type TEventCalendarData = {
+    title: string
+    description: string
+    button: string
+    calendar: string
+}
+
 export type TEventArticleData = TNewsArticleData
 
 export type TEventArticle = {
@@ -29,6 +37,7 @@ export type TEventArticle = {
     article: TEventArticleData
     form?: TEventFormData
     video?: TEventVideoData
+    calendar?: TEventCalendarData
 }
 
 const mapEventFormServerData = (
@@ -64,6 +73,23 @@ const mapEventVideoServerData = (
     }
 }
 
+const mapEventCalendarServerData = (
+    serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
+): TEventCalendarData | undefined => {
+    if (!serverArticleData?.eventCalendar) {
+        return undefined
+    }
+
+    const { url } = mapFilesMediaFile(serverArticleData.eventCalendar?.calendar)
+
+    return {
+        title: serverArticleData.eventCalendar.title || '',
+        description: serverArticleData.eventCalendar?.description || '',
+        button: serverArticleData.eventCalendar?.button || '',
+        calendar: url,
+    }
+}
+
 export const mapEventArticleServerData = (
     serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
 ): TEventArticle => {
@@ -79,5 +105,6 @@ export const mapEventArticleServerData = (
         article,
         form: mapEventFormServerData(serverArticleData),
         video: mapEventVideoServerData(serverArticleData),
+        calendar: mapEventCalendarServerData(serverArticleData),
     }
 }

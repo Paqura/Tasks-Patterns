@@ -1,0 +1,33 @@
+@import '../../styles/media';
+
+.calendar {
+    padding: 40px;
+    box-sizing: border-box;
+    background: var(--color-white);
+    border-radius: 12px;
+
+    @include media_breakpoint_mobile {
+        padding: 20px;
+    }
+}
+
+.title {
+    margin-bottom: 16px;
+    color: var(--color-gray-8x);
+
+    mark {
+        white-space: nowrap;
+        color: var(--color-primary);
+        background: none;
+    }
+}
+
+.description {
+    margin-bottom: 40px;
+    max-width: 350px;
+    color: var(--color-gray-6x);
+
+    @include media_breakpoint_mobile {
+        margin-bottom: 16px;
+    }
+}

@@ -65,6 +65,11 @@
     },
     "eventYoutubeVideoId": {
       "type": "string"
+    },
+    "eventCalendar": {
+      "type": "component",
+      "repeatable": false,
+      "component": "webinar.webinar-calendar"
     }
   }
 }

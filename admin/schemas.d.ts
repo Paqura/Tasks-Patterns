@@ -941,6 +941,7 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     articleText: RichTextAttribute;
     eventForm: ComponentAttribute<'webinar.webinar-form'>;
     eventYoutubeVideoId: StringAttribute;
+    eventCalendar: ComponentAttribute<'webinar.webinar-calendar'>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1351,6 +1352,25 @@ export interface ShareTest extends ComponentSchema {
   attributes: {};
 }
 
+export interface WebinarWebinarCalendar extends ComponentSchema {
+  info: {
+    displayName: 'WebinarCalendar';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Don\u2019t miss <b>the event!</b>'>;
+    description: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<"Download the event information to add it to your calendar so you don't miss the event">;
+    button: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Add to my calendar'>;
+    calendar: MediaAttribute & RequiredAttribute;
+  };
+}
+
 export interface WebinarWebinarForm extends ComponentSchema {
   info: {
     displayName: 'WebinarForm';
@@ -1428,6 +1448,7 @@ declare global {
       'share.nav-sub-item': ShareNavSubItem;
       'share.seo': ShareSeo;
       'share.test': ShareTest;
+      'webinar.webinar-calendar': WebinarWebinarCalendar;
       'webinar.webinar-form': WebinarWebinarForm;
     }
   }

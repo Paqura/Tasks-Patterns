@@ -21,6 +21,18 @@ export const mapImageMediaFile = (
         ? mapImageAttributes(serverMediaField?.data?.attributes)
         : null
 }
+
+export const mapFilesMediaFile = (
+    serverMediaField: MediaAttributeContent<'files', false> | undefined
+): TFile => {
+    const attrs = serverMediaField?.data?.attributes
+    return {
+        name: attrs?.name || '',
+        title: attrs?.caption || attrs?.name || '',
+        url: attrs?.url || '',
+    }
+}
+
 export const mapFilesServerData = (
     serverFilesData: MediaAttributeContent<'files', true> | undefined
 ): TFile[] => {
