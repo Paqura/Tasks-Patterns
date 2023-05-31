@@ -31,7 +31,6 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             notFound: true,
         }
     }
-
     if (newsItem?.isEvent) {
         return {
             redirect: {
@@ -40,7 +39,6 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             },
         }
     }
-
     return {
         props: {
             newsItem,

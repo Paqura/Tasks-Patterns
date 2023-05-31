@@ -27,7 +27,7 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
 
                 <EventForm />
 
-                <NewsArticle {...props.eventArticleData} />
+                <NewsArticle newsArticleData={props.eventArticleData} />
             </PageSectionCard>
         </PageLayout>
     )

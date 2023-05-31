@@ -1,6 +1,6 @@
-import { GetAttributesValues, MediaAttributeContent, WithID } from '@admin/general-schemas'
+import { GetAttributesValues, MediaAttributeContent } from '@admin/general-schemas'
 
-import { TArticleSection, TFileData } from '@/components/AnaliticalArticle/types'
+import { TFileData } from '@/components/AnaliticalArticle/types'
 import { TImage } from '@/types'
 
 import { mapFilesServerData, mapImageMediaFile } from 'src/utils/serverDataMappers/media'
@@ -11,33 +11,17 @@ export type TNewsArticleData = {
     date?: Date
     image?: TImage
     href: string
-    articleText: TArticleSection[]
+    articleText: string
     filesTitle: string
     files: TFileData[]
 }
-
 export type TEventArticleData = TNewsArticleData
-
-const mapArticleSectionsServerData = (
-    article: WithID & GetAttributesValues<'article-section.article-section'>[]
-): TArticleSection[] => {
-    return article.map((item) => {
-        return {
-            title: item.title || '',
-            value: item.value || '',
-            number: item.number || 0,
-        }
-    })
-}
 
 export const mapNewsArticleServerData = (
     serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
 ): TNewsArticleData => {
     return {
-        articleText:
-            (serverArticleData?.articleText &&
-                mapArticleSectionsServerData(serverArticleData?.articleText)) ??
-            [],
+        articleText: serverArticleData?.articleText ?? '',
         files: serverArticleData?.files
             ? mapFilesServerData(serverArticleData?.files as MediaAttributeContent<'files', true>)
             : [],
@@ -45,7 +29,7 @@ export const mapNewsArticleServerData = (
         date: serverArticleData?.published ? new Date(serverArticleData?.published) : new Date(),
         title: serverArticleData?.title || '',
         topic: serverArticleData?.topic || '',
-        filesTitle: serverArticleData?.titleOfHelpfulFiles || '',
+        filesTitle: serverArticleData?.filesTitle || '',
         image: mapImageMediaFile(serverArticleData?.previewImage) || { src: '' },
     }
 }

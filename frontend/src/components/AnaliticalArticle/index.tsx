@@ -10,12 +10,12 @@ import { PageAnchorsContextProvider } from '@/utils/anchors'
 import { formatDate } from '@/utils/date'
 import { useIsDesktopSmall } from '@/utils/hooks'
 
-import HelpfulFiles from './components/HelpfulFiles'
 import { Section } from './components/Section'
 import styles from './index.module.scss'
 import { TAnalitycArticleData } from './types'
 
 import { THeaderData } from 'src/components/Header/index'
+import HelpfulFiles from 'src/components/HelpfulFiles'
 
 export type TAnalitycArticlePageData = {
     seo: TSeo

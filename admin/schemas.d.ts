@@ -23,9 +23,9 @@ import {
   DateAttribute,
   UIDAttribute,
   MediaAttribute,
+  RichTextAttribute,
   DynamicZoneAttribute,
   ComponentSchema,
-  RichTextAttribute,
   CustomField,
 } from '@strapi/strapi';
 
@@ -936,9 +936,9 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     eventDate: DateAttribute;
     slug: UIDAttribute<'api::news-item.news-item', 'title'>;
     topic: TextAttribute & RequiredAttribute;
-    articleText: ComponentAttribute<'article-section.article-section', true>;
-    titleOfHelpfulFiles: StringAttribute;
+    filesTitle: StringAttribute;
     files: MediaAttribute;
+    articleText: RichTextAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
