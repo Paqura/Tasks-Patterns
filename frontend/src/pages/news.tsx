@@ -55,7 +55,7 @@ export default function News(props: TProps) {
 
     const articles: TNewsPageData['articlesListData']['articles'] =
         props.news?.map((article) => {
-            const baseUrl = article.isEvent ? 'webinar' : 'news';
+            const baseUrl = article.isEvent ? 'webinar' : 'news'
 
             return {
                 title: article.title || '',

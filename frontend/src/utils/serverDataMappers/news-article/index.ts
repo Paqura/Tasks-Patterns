@@ -55,8 +55,6 @@ export const mapEventArticleServerData = (
 ): TEventArticleData => {
     return {
         ...mapNewsArticleServerData(serverArticleData),
-        date: serverArticleData?.eventDate
-            ? new Date(serverArticleData?.eventDate)
-            : new Date(),
+        date: serverArticleData?.eventDate ? new Date(serverArticleData?.eventDate) : new Date(),
     }
 }

@@ -44,6 +44,10 @@
       "multiple": true,
       "required": false,
       "allowedTypes": [
+        "files",
+        "images",
+        "videos",
+        "audios",
         "files"
       ]
     },
