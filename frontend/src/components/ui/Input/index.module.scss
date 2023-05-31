@@ -1,0 +1,40 @@
+.container {
+    position: relative;
+}
+
+.input {
+    padding: 11px;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6em;
+    text-transform: uppercase;
+    color: var(--color-black-ui);
+
+    border: 1px solid var(--color-gray-ui);
+    border-radius: 4px;
+    outline: none;
+
+    &:hover:not(&_error) {
+        border-color: var(--color-gray-4x);
+    }
+
+    &:focus:not(&_error) {
+        border-color: var(--color-gray-8x);
+        outline: none;
+    }
+
+    &_error {
+        border-color: var(--color-error);
+    }
+
+    ::placeholder {
+        color: var(--color-gray-6x);
+    }
+}
+
+.errorMessage {
+    display: block;
+    border-color: var(--color-error);
+}
