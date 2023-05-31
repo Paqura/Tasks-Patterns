@@ -4,7 +4,7 @@
   "info": {
     "singularName": "news-item",
     "pluralName": "news",
-    "displayName": "News",
+    "displayName": "News&Events",
     "description": ""
   },
   "options": {
@@ -56,6 +56,12 @@
     },
     "articleText": {
       "type": "richtext"
+    },
+    "eventForm": {
+      "type": "component",
+      "repeatable": false,
+      "component": "webinar.webinar-form",
+      "required": false
     }
   }
 }

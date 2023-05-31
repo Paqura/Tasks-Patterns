@@ -922,7 +922,7 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
   info: {
     singularName: 'news-item';
     pluralName: 'news';
-    displayName: 'News';
+    displayName: 'News&Events';
     description: '';
   };
   options: {
@@ -939,6 +939,7 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     filesTitle: StringAttribute;
     files: MediaAttribute;
     articleText: RichTextAttribute;
+    eventForm: ComponentAttribute<'webinar.webinar-form'>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1343,6 +1344,34 @@ export interface ShareTest extends ComponentSchema {
   attributes: {};
 }
 
+export interface WebinarWebinarForm extends ComponentSchema {
+  info: {
+    displayName: 'WebinarForm';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute & DefaultTo<'Registration for the webinar'>;
+    fieldName: StringAttribute & RequiredAttribute & DefaultTo<'Your name'>;
+    fieldCompany: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Company name'>;
+    fieldPosition: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Your position'>;
+    fieldPhone: StringAttribute & RequiredAttribute & DefaultTo<'Your phone'>;
+    fieldEmail: StringAttribute & RequiredAttribute & DefaultTo<'Your email'>;
+    buttonSubmit: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Registration'>;
+    checkboxSubscription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'I agree to receive advertising and information messages.'>;
+    checkboxConsentsTerms: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href="#">privacy policy</a>.'>;
+  };
+}
+
 declare global {
   namespace Strapi {
     interface Schemas {
@@ -1392,6 +1421,7 @@ declare global {
       'share.nav-sub-item': ShareNavSubItem;
       'share.seo': ShareSeo;
       'share.test': ShareTest;
+      'webinar.webinar-form': WebinarWebinarForm;
     }
   }
 }

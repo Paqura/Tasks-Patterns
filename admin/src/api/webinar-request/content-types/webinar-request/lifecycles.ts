@@ -7,7 +7,7 @@ const emailTemplate = {
     email: <%= user.email %>
     phone: <%= user.phone %>
     companyName: <%= user.companyName %>
-    companySite: <%= user.companySite %>`,
+    companyPosition: <%= user.companyPosition %>`,
   html: `<h1>Params:</h1>
     <p>eventName: <%= event.eventName %><p>
     <p>createdAt: <%= event.createdAt %><p>
@@ -15,7 +15,7 @@ const emailTemplate = {
     <p>email: <%= user.email %><p>
     <p>phone: <%= user.phone %><p>
     <p>companyName: <%= user.companyName %><p>
-    <p>companySite: <%= user.companySite %><p>`,
+    <p>companyPosition: <%= user.companyPosition %><p>`,
 };
 
 module.exports = {
@@ -38,7 +38,7 @@ module.exports = {
             email: result.email,
             phone: result.phone,
             companyName: result.companyName,
-            companySite: result.companySite,
+            companyPosition: result.companyPosition,
           },
         }
       );

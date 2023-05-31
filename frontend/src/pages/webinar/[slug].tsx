@@ -4,8 +4,8 @@ import React from 'react'
 
 import EventArticlePage from '@/components/EventArticlePage'
 import { fetchConfig, fetchHeader, fetchNewsArticle } from '@/utils/adminApi'
+import { mapEventArticleServerData } from '@/utils/serverDataMappers/event-article'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapEventArticleServerData } from '@/utils/serverDataMappers/news-article'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
@@ -52,13 +52,14 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
 type TProps = TServerSideProps
 
 export default function EventArticleItem(props: TProps) {
-    const article = mapEventArticleServerData(props.newsItem)
+    const { article, form } = mapEventArticleServerData(props.newsItem)
 
     return (
         <EventArticlePage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
             eventArticleData={article}
+            eventFormData={form}
         />
     )
 }

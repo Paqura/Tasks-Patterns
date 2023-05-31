@@ -10,6 +10,7 @@ import styles from './index.module.scss'
 import arrowIcon from '/public/images/common/arrows-right.svg'
 
 interface IButton {
+    type?: 'button' | 'reset' | 'submit'
     link?: string
     size?: 'm' | 's'
     className?: string
@@ -17,6 +18,7 @@ interface IButton {
 }
 
 export const Button: React.FC<PropsWithChildren<IButton>> = ({
+    type = 'button',
     link,
     size = 'm',
     className,
@@ -45,7 +47,7 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
             {renderContent()}
         </NextLink>
     ) : (
-        <button type="button" className={classNames} onClick={onClick}>
+        <button type={type} className={classNames} onClick={onClick}>
             {renderContent()}
         </button>
     )

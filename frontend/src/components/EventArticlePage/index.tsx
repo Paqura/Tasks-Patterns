@@ -1,4 +1,4 @@
-import { TEventArticleData } from '@/utils/serverDataMappers/news-article'
+import { TEventArticleData, TEventFormData } from '@/utils/serverDataMappers/event-article'
 
 import EventForm from 'src/components/EventForm'
 import { THeaderData } from 'src/components/Header'
@@ -12,6 +12,7 @@ export type TEventArticlePageData = {
     seo: TSeo
     headerData: THeaderData
     eventArticleData: TEventArticleData
+    eventFormData?: TEventFormData
 }
 type TEventArticlePageProps = TEventArticlePageData
 export default function EventArticlePage(props: TEventArticlePageProps) {
@@ -25,7 +26,7 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
             <PageSectionCard>
                 <NewsArticleDate date={props.eventArticleData.date} />
 
-                <EventForm />
+                {props.eventFormData && <EventForm eventFormData={props.eventFormData} />}
 
                 <NewsArticle newsArticleData={props.eventArticleData} />
             </PageSectionCard>

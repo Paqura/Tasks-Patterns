@@ -22,7 +22,7 @@
     },
     "phone": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "eventName": {
       "type": "string",
@@ -35,7 +35,7 @@
     "companyName": {
       "type": "string"
     },
-    "companySite": {
+    "companyPosition": {
       "type": "string"
     }
   }
