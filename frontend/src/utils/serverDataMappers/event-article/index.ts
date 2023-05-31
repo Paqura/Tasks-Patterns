@@ -1,6 +1,9 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 
-import { mapNewsArticleServerData, TNewsArticleData } from '../news-article'
+import {
+    mapNewsArticleServerData,
+    TNewsArticleData,
+} from 'src/utils/serverDataMappers/news-article'
 
 export type TEventFormData = {
     submit: string
@@ -15,11 +18,17 @@ export type TEventFormData = {
     slug: string
 }
 
+export type TEventVideoData = {
+    id: string
+}
+
 export type TEventArticleData = TNewsArticleData
 
 export type TEventArticle = {
+    isCompleted: boolean
     article: TEventArticleData
     form?: TEventFormData
+    video?: TEventVideoData
 }
 
 const mapEventFormServerData = (
@@ -43,16 +52,32 @@ const mapEventFormServerData = (
     }
 }
 
+const mapEventVideoServerData = (
+    serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
+): TEventVideoData | undefined => {
+    if (!serverArticleData?.eventYoutubeVideoId) {
+        return undefined
+    }
+
+    return {
+        id: serverArticleData.eventYoutubeVideoId || '',
+    }
+}
+
 export const mapEventArticleServerData = (
     serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
 ): TEventArticle => {
+    const nowDate = new Date()
+    const article = {
+        ...mapNewsArticleServerData(serverArticleData),
+        date: serverArticleData?.eventDate ? new Date(serverArticleData?.eventDate) : nowDate,
+    }
+    const isCompleted = article.date.getTime() < nowDate.getTime()
+
     return {
-        article: {
-            ...mapNewsArticleServerData(serverArticleData),
-            date: serverArticleData?.eventDate
-                ? new Date(serverArticleData?.eventDate)
-                : new Date(),
-        },
+        isCompleted,
+        article,
         form: mapEventFormServerData(serverArticleData),
+        video: mapEventVideoServerData(serverArticleData),
     }
 }

@@ -52,7 +52,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
 type TProps = TServerSideProps
 
 export default function EventArticleItem(props: TProps) {
-    const { article, form } = mapEventArticleServerData(props.newsItem)
+    const { article, form, video, isCompleted } = mapEventArticleServerData(props.newsItem)
 
     return (
         <EventArticlePage
@@ -60,6 +60,8 @@ export default function EventArticleItem(props: TProps) {
             headerData={mapHeaderServerData(props.header)}
             eventArticleData={article}
             eventFormData={form}
+            eventVideoData={video}
+            eventIsCompleted={isCompleted}
         />
     )
 }

@@ -16,8 +16,6 @@ export type TNewsArticleData = {
     files: TFileData[]
 }
 
-export type TEventArticleData = TNewsArticleData
-
 export const mapNewsArticleServerData = (
     serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
 ): TNewsArticleData => {
@@ -34,4 +32,3 @@ export const mapNewsArticleServerData = (
         image: mapImageMediaFile(serverArticleData?.previewImage) || { src: '' },
     }
 }
-

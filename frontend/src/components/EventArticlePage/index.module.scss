@@ -1,0 +1,43 @@
+@import '../../styles/media.scss';
+
+.contentWrapper {
+    padding-bottom: 60px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 40px;
+
+    @include media_breakpoint_small_desktop {
+        grid-gap: 20px;
+    }
+
+    @include media_breakpoint_mobile {
+        padding-bottom: 40px;
+        display: block;
+    }
+
+    @include media_breakpoint_big_desktop {
+        padding-bottom: 72px;
+    }
+}
+
+.dateWrap {
+    color: var(--color-gray-6x);
+
+    grid-column: 1 / span 2;
+
+    @include media_breakpoint_small_desktop {
+        grid-column: 2 / span 2;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-bottom: 16px;
+    }
+}
+
+.content {
+    grid-column: 4 / span 6;
+
+    @include media_breakpoint_small_desktop {
+        grid-column: 2 / span 10;
+    }
+}

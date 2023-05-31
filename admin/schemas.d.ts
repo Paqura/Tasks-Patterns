@@ -940,6 +940,7 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     files: MediaAttribute;
     articleText: RichTextAttribute;
     eventForm: ComponentAttribute<'webinar.webinar-form'>;
+    eventYoutubeVideoId: StringAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1044,11 +1045,11 @@ export interface ApiWebinarRequestWebinarRequest extends CollectionTypeSchema {
   attributes: {
     fullName: StringAttribute & RequiredAttribute;
     email: EmailAttribute & RequiredAttribute;
-    phone: StringAttribute & RequiredAttribute;
+    phone: StringAttribute;
     eventName: StringAttribute & RequiredAttribute;
     eventDate: DateAttribute & RequiredAttribute;
     companyName: StringAttribute;
-    companySite: StringAttribute;
+    companyPosition: StringAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1133,7 +1134,13 @@ export interface ArticleSectionArticleSection extends ComponentSchema {
   attributes: {
     value: RichTextAttribute & RequiredAttribute;
     number: IntegerAttribute;
-    title: RichTextAttribute & RequiredAttribute;
+    title: RichTextAttribute &
+      CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
   };
 }
 

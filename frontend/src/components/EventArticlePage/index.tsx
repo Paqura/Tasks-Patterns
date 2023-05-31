@@ -1,10 +1,17 @@
-import { TEventArticleData, TEventFormData } from '@/utils/serverDataMappers/event-article'
+import {
+    TEventArticleData,
+    TEventFormData,
+    TEventVideoData,
+} from '@/utils/serverDataMappers/event-article'
+
+import styles from './index.module.scss'
 
 import EventForm from 'src/components/EventForm'
+import EventVideo from 'src/components/EventVideo'
 import { THeaderData } from 'src/components/Header'
-import HeaderArticle from 'src/components/HeaderArticle'
 import NewsArticle from 'src/components/NewsArticle'
 import NewsArticleDate from 'src/components/NewsArticleDate'
+import NewsArticleHeader from 'src/components/NewsArticleHeader'
 import { PageLayout, TSeo } from 'src/components/PageLayout'
 import { PageSectionCard } from 'src/components/ui/PageSectionCard'
 
@@ -13,22 +20,37 @@ export type TEventArticlePageData = {
     headerData: THeaderData
     eventArticleData: TEventArticleData
     eventFormData?: TEventFormData
+    eventVideoData?: TEventVideoData
+    eventIsCompleted: boolean
 }
 type TEventArticlePageProps = TEventArticlePageData
 export default function EventArticlePage(props: TEventArticlePageProps) {
     return (
         <PageLayout seo={props.seo} navItems={props.headerData.navItems}>
-            <HeaderArticle
+            <NewsArticleHeader
+                image={props?.eventArticleData?.image ?? { src: '' }}
                 title={props.eventArticleData.title}
                 topic={props.eventArticleData.topic}
             />
 
             <PageSectionCard>
-                <NewsArticleDate date={props.eventArticleData.date} />
+                <div className={styles.contentWrapper}>
+                    <div className={styles.dateWrap}>
+                        <NewsArticleDate date={props.eventArticleData.date} />
+                    </div>
 
-                {props.eventFormData && <EventForm eventFormData={props.eventFormData} />}
+                    <div className={styles.content}>
+                        {props.eventFormData && !props.eventIsCompleted && (
+                            <EventForm eventFormData={props.eventFormData} />
+                        )}
 
-                <NewsArticle newsArticleData={props.eventArticleData} />
+                        <NewsArticle newsArticleData={props.eventArticleData} />
+
+                        {props.eventVideoData && !props.eventIsCompleted && (
+                            <EventVideo eventVideoData={props.eventVideoData} />
+                        )}
+                    </div>
+                </div>
             </PageSectionCard>
         </PageLayout>
     )

@@ -1,4 +1,4 @@
-import DOMPurify from 'dompurify'
+import DOMPurify from 'isomorphic-dompurify'
 import { marked } from 'marked'
 
 import { TNewsArticleData } from '@/utils/serverDataMappers/news-article'
