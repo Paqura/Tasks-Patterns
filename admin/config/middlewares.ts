@@ -13,21 +13,17 @@ export default ({ env }) => {
               'data:',
               'blob:',
               'dl.airtable.com',
-              `${env('S3_BUCKET')}.s3.${env('AWS_REGION')}.amazonaws.com`,
-              ...(env('S3_ENDPOINT')
-                ? [`${env('S3_BUCKET')}.${new URL(env('S3_ENDPOINT'))?.host}`]
-                : []),
-            ],
+              'storage.yandexcloud.net',
+              env('AWS_REGION') && `${env('S3_BUCKET')}.s3.${env('AWS_REGION')}.amazonaws.com`,
+            ].filter(Boolean),
             'media-src': [
               '\'self\'',
               'data:',
               'blob:',
               'dl.airtable.com',
-              `${env('S3_BUCKET')}.s3.${env('AWS_REGION')}.amazonaws.com`,
-              ...(env('S3_ENDPOINT')
-                ? [`${env('S3_BUCKET')}.${new URL(env('S3_ENDPOINT'))?.host}`]
-                : []),
-            ],
+              'storage.yandexcloud.net',
+              env('AWS_REGION') && `${env('S3_BUCKET')}.s3.${env('AWS_REGION')}.amazonaws.com`,
+            ].filter(Boolean),
             upgradeInsecureRequests: null,
           },
         },
