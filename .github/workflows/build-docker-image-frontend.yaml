@@ -24,6 +24,7 @@ jobs:
 
       - name: Build and push docker image
         uses: ./actions/build-docker-image/v1beta1
+        if: ${{ steps.gh.outputs.releaseID != 'production' }}
         with:
           file: frontend/Dockerfile
           image: quay.csssr.cloud/pts-global/frontend:build-${{ github.run_id }}
@@ -31,3 +32,14 @@ jobs:
           password: ${{ secrets.QUAY_PASSWORD }}
           build-args: |
             NEXT_PUBLIC_ADMIN_API_URL=https://${{ steps.gh.outputs.releaseID }}.pts-global-admin.csssr.cloud
+
+      - name: Build and push docker image
+        uses: ./actions/build-docker-image/v1beta1
+        if: ${{ steps.gh.outputs.releaseID == 'production' }}
+        with:
+          file: frontend/Dockerfile
+          image: quay.csssr.cloud/pts-global/frontend:build-${{ github.run_id }}
+          username: pts-global+github_actions
+          password: ${{ secrets.QUAY_PASSWORD }}
+          build-args: |
+            NEXT_PUBLIC_ADMIN_API_URL=https://pts-global-admin-production.csssr.cloud
