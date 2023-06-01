@@ -1,0 +1,28 @@
+@import '../Input/index.module';
+
+.container {
+    position: relative;
+}
+
+.input {
+    height: 115px;
+    resize: vertical;
+
+    @include input_base;
+
+    &:hover:not(&_error) {
+        @include input_hover;
+    }
+
+    &:focus:not(&_error) {
+        @include input_focus;
+    }
+
+    &::placeholder {
+        @include input_placeholder;
+    }
+
+    &_error {
+        @include input_error;
+    }
+}

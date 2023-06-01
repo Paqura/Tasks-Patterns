@@ -52,7 +52,7 @@ const PHONE_MASK: Mask = [
     /\d/,
 ]
 
-const Input = ({
+export const Input = ({
     type,
     placeholder,
     name,
@@ -106,7 +106,6 @@ const Input = ({
             className={cn(styles.input, className, {
                 [styles.input_error]: Boolean(errorMessage),
             })}
-            showMask
             mask={PHONE_MASK}
             guide={true}
             type={'tel'}
@@ -137,5 +136,3 @@ const Input = ({
         </label>
     )
 }
-
-export default Input

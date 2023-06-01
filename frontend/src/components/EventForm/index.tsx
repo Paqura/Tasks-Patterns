@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/Button'
 import FormSuccess from '@/components/ui/FormSuccess'
-import Input from '@/components/ui/Input'
+import { Input } from '@/components/ui/Input'
 import { InputCheckbox } from '@/components/ui/InputCheckbox'
 import { Heading } from '@/components/ui/typography/Heading'
 import { TEventFormData } from '@/utils/serverDataMappers/event-article'
