@@ -1,13 +1,12 @@
 import cn from 'classnames'
-import { marked } from 'marked'
 import React, { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/Button'
 import FormSuccess from '@/components/ui/FormSuccess'
 import Input from '@/components/ui/Input'
+import { InputCheckbox } from '@/components/ui/InputCheckbox'
 import { Heading } from '@/components/ui/typography/Heading'
-import { sanitizeText } from '@/utils/sanitize'
 import { TEventFormData } from '@/utils/serverDataMappers/event-article'
 import { postWebinarRequest } from '@/utils/siteApi'
 
@@ -28,11 +27,6 @@ type TFormFields = {
 export default function EventForm(props: TEventForm) {
     const [isCompleted, setIsCompleted] = useState<boolean>(false)
     const context = useForm()
-
-    const {
-        register,
-        formState: { errors },
-    } = context
 
     const onSubmit = async (data: TFormFields) => {
         const isSuccess = await postWebinarRequest({
@@ -78,6 +72,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="text"
                                     name={'companyName'}
+                                    required
                                     placeholder={props.eventFormData.company}
                                 />
                             </div>
@@ -85,6 +80,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="text"
                                     name={'companyPosition'}
+                                    required
                                     placeholder={props.eventFormData.position}
                                 />
                             </div>
@@ -92,6 +88,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="tel"
                                     name={'phone'}
+                                    required
                                     placeholder={props.eventFormData.phone}
                                 />
                             </div>
@@ -99,45 +96,22 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="email"
                                     name={'email'}
+                                    required
                                     placeholder={props.eventFormData.email}
                                 />
                             </div>
                         </div>
                         <div className={styles.agrees}>
-                            <label
-                                className={cn(styles.checkbox, {
-                                    [styles.error]: errors?.consentsTerms ?? false,
-                                })}
-                            >
-                                <input
-                                    type={'checkbox'}
-                                    {...register('consentsTerms', { required: true })}
-                                />
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: sanitizeText(
-                                            marked.parse(props.eventFormData.consentsTerms)
-                                        ),
-                                    }}
-                                />
-                            </label>
-                            <label
-                                className={cn(styles.checkbox, {
-                                    [styles.error]: errors?.subscription ?? false,
-                                })}
-                            >
-                                <input
-                                    type={'checkbox'}
-                                    {...register('subscription', { required: 'required' })}
-                                />
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: sanitizeText(
-                                            marked.parse(props.eventFormData.subscription)
-                                        ),
-                                    }}
-                                />
-                            </label>
+                            <InputCheckbox
+                                name={'consentsTerms'}
+                                required
+                                title={props.eventFormData.consentsTerms}
+                            />
+                            <InputCheckbox
+                                name={'subscription'}
+                                required
+                                title={props.eventFormData.consentsTerms}
+                            />
                         </div>
                         <Button size={'m'} type={'submit'} className={styles.submit}>
                             {props.eventFormData.submit}

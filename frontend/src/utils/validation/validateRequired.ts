@@ -1,1 +1,1 @@
-export const validateRequired = (isRequired: boolean) => isRequired && 'Required'
+export const validateRequired = (isRequired?: boolean) => isRequired && 'Required'

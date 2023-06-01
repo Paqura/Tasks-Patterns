@@ -66,7 +66,7 @@ const Input = ({
     const controller = useController({
         name: fieldName,
         rules: {
-            required: validateRequired(Boolean(props.required)),
+            required: validateRequired(props.required),
             pattern: pattern || validators[type] || undefined,
         },
         shouldUnregister: true,
