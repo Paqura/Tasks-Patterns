@@ -1,0 +1,36 @@
+@import '../../styles/media';
+@import '../../styles/offsets';
+
+.cardsList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @include media_breakpoint_touch_devices {
+        display: flex;
+        gap: 12px;
+    }
+
+    @include media_breakpoint_small_desktop {
+        @include include-section-card-horizontal-paddings;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-right: 0;
+        margin-left: 0;
+
+        @include section-card-padding-right;
+        @include section-card-padding-left;
+    }
+}
+
+.productCard {
+    width: 100%;
+    min-width: 100%;
+    background-color: var(--color-gray-8x);
+
+    @include media_breakpoint_touch_devices {
+        width: 260px;
+        min-width: 260px;
+    }
+}

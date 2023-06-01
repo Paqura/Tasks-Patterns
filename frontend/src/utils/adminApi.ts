@@ -49,7 +49,12 @@ export const fetchProducts = async (params: Record<string, unknown> = {}) => {
     const response = await adminClient.get<ResponseCollection<'api::product.product'>>(
         `/api/products`,
         {
-            params: params,
+            params: {
+                sort: {
+                    order: 'asc',
+                },
+                ...params,
+            },
         }
     )
     return response.data.data?.map((item) => item.attributes)
@@ -136,6 +141,13 @@ export const fetchNewsArticle = async (id: string) => {
 export const fetchAboutPage = async () => {
     const response = await adminClient.get<Response<'api::about-page.about-page'>>(
         `/api/about-page`
+    )
+    return response.data.data?.attributes
+}
+
+export const fetchAllProductsPage = async () => {
+    const response = await adminClient.get<Response<'api::all-products-page.all-products-page'>>(
+        `/api/all-products-page`
     )
     return response.data.data?.attributes
 }

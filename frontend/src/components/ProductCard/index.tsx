@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import Image from 'next/image'
 import React from 'react'
 
@@ -16,13 +17,14 @@ export type TProductCard = {
 }
 
 type TProps = {
+    className?: string
     data: TProductCard
 }
 
-export const ProductCard: React.FC<TProps> = ({ data }) => {
+export const ProductCard: React.FC<TProps> = ({ className, data }) => {
     const { icon, title, description, href } = data
     return (
-        <div className={styles.card}>
+        <div className={cn(styles.card, className)}>
             <div className={styles.content}>
                 <div className={styles.icon}>
                     <Image src={icon.src} alt="" width={icon.width} height={icon.height} />

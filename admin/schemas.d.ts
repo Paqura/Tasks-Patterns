@@ -731,6 +731,37 @@ export interface ApiAboutPageAboutPage extends SingleTypeSchema {
   };
 }
 
+export interface ApiAllProductsPageAllProductsPage extends SingleTypeSchema {
+  info: {
+    singularName: 'all-products-page';
+    pluralName: 'all-products-pages';
+    displayName: 'AllProductsPage';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute & DefaultTo<'Our Products'>;
+    description: TextAttribute &
+      RequiredAttribute &
+      DefaultTo<'Our software is&nbsp;designed to&nbsp;provide the highest level of&nbsp;protection while minimizing disruption to&nbsp;your business. We&nbsp;use the latest technology and techniques to&nbsp;stay ahead of&nbsp;the ever-evolving threat landscape. And with years of&nbsp;experience working with businesses of&nbsp;all sizes and in&nbsp;all industries, our team of&nbsp;experts has the knowledge and expertise to&nbsp;keep your organization secure.'>;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::all-products-page.all-products-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::all-products-page.all-products-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiAnalyticArticleAnalyticArticle
   extends CollectionTypeSchema {
   info: {
@@ -1002,7 +1033,8 @@ export interface ApiProductProduct extends CollectionTypeSchema {
     title: StringAttribute & RequiredAttribute;
     subtitle: TextAttribute;
     icon: MediaAttribute & RequiredAttribute;
-    slug: UIDAttribute;
+    order: IntegerAttribute;
+    slug: UIDAttribute & RequiredAttribute;
     bannerImage: MediaAttribute;
     blocks: DynamicZoneAttribute<
       [
@@ -1133,15 +1165,15 @@ export interface ArticleSectionArticleSection extends ComponentSchema {
     description: '';
   };
   attributes: {
-    value: RichTextAttribute & RequiredAttribute;
     number: IntegerAttribute;
-    title: RichTextAttribute &
+    value: RichTextAttribute &
       CustomField<
         'plugin::ckeditor5.CKEditor',
         {
           preset: 'toolbar';
         }
       >;
+    title: StringAttribute;
   };
 }
 
@@ -1360,10 +1392,10 @@ export interface WebinarWebinarCalendar extends ComponentSchema {
   attributes: {
     title: StringAttribute &
       RequiredAttribute &
-      DefaultTo<'Don\u2019t miss <mark>the event!</mark>'>;
+      DefaultTo<'Don\u2019t miss <b>the event!</b>'>;
     description: StringAttribute &
       RequiredAttribute &
-      DefaultTo<'Download the event information to add it to your calendar so you don\'t miss the event'>;
+      DefaultTo<"Download the event information to add it to your calendar so you don't miss the event">;
     button: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Add to my calendar'>;
@@ -1398,10 +1430,10 @@ export interface WebinarWebinarForm extends ComponentSchema {
       DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href="#">privacy policy</a>.'>;
     successTitle: StringAttribute &
       RequiredAttribute &
-      DefaultTo<'Your request has been sent successfully'>;
+      DefaultTo<'Thank you, your application has been sent'>;
     successDescription: StringAttribute &
       RequiredAttribute &
-      DefaultTo<'Our teem will contact you shortly'>;
+      DefaultTo<'Our specialists will contact you soon.'>;
   };
 }
 
@@ -1422,6 +1454,7 @@ declare global {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about-page.about-page': ApiAboutPageAboutPage;
+      'api::all-products-page.all-products-page': ApiAllProductsPageAllProductsPage;
       'api::analytic-article.analytic-article': ApiAnalyticArticleAnalyticArticle;
       'api::analytics-page.analytics-page': ApiAnalyticsPageAnalyticsPage;
       'api::client.client': ApiClientClient;

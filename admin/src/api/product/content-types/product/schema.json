@@ -23,20 +23,20 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
+    },
+    "order": {
+      "type": "integer"
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "required": true
     },
     "bannerImage": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "blocks": {
       "type": "dynamiczone",
