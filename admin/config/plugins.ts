@@ -56,7 +56,8 @@ export default ({ env }) => {
             s3Options: {
               accessKeyId: env('AWS_ACCESS_KEY_ID'),
               secretAccessKey: env('AWS_SECRET_ACCESS_KEY'),
-              region: env('AWS_REGION'),
+              endpoint: env('S3_ENDPOINT', undefined),
+              region: env('AWS_REGION', undefined),
               params: {
                 Bucket: env('S3_BUCKET'),
                 ACL: 'public-read'
