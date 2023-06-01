@@ -1,6 +1,6 @@
 import { GetAttributesValues, MediaAttributeContent } from '@admin/general-schemas'
 
-import { TFileData } from '@/components/AnaliticalArticle/types'
+import { TFileData } from '@/components/AnalyticalArticlePage/types'
 import { TImage } from '@/types'
 
 import { mapFilesServerData, mapImageMediaFile } from 'src/utils/serverDataMappers/media'

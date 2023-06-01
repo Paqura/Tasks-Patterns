@@ -1,12 +1,11 @@
 import React from 'react'
 
+import { TFileData } from '@/components/AnalyticalArticlePage/types'
 import { Attachment } from '@/components/Attachment'
 import { CardsSlider } from '@/components/ui/CardsSlider'
 import { Heading } from '@/components/ui/typography/Heading'
 
 import styles from './index.module.scss'
-
-import { TFileData } from 'src/components/AnaliticalArticle/types'
 
 export default function HelpfulFiles(props: { files: TFileData[]; title: string }) {
     return (

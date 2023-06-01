@@ -2,7 +2,7 @@ import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 import React from 'react'
 
-import AnalyticalArticle from '@/components/AnaliticalArticle'
+import { AnalyticalArticlePage } from '@/components/AnalyticalArticlePage'
 import { fetchAnalyticArticle, fetchConfig, fetchHeader } from '@/utils/adminApi'
 import { mapArticleServerData } from '@/utils/serverDataMappers/analytic-article'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
@@ -42,11 +42,11 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
 
 type TProps = TServerSideProps
 
-export default function AnalyticalArticlePage(props: TProps) {
+export default function AnalyticalArticle(props: TProps) {
     const article = mapArticleServerData(props.article)
 
     return (
-        <AnalyticalArticle
+        <AnalyticalArticlePage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
             analyticArticleData={article}

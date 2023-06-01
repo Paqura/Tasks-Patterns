@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
-import { TArticleSection } from '@/components/AnaliticalArticle/types'
+import { TArticleSection } from '@/components/AnalyticalArticlePage/types'
 import { MarkdownContent } from '@/components/ui/MarkdownContent'
 import { Heading } from '@/components/ui/typography/Heading'
 import { useAnchors } from '@/utils/anchors'

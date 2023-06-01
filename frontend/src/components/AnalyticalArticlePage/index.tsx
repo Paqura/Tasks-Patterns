@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Aside, { TTitleTableOfContent } from '@/components/AnaliticalArticle/components/Aside'
+import { Aside, TTitleTableOfContent } from '@/components/AnalyticalArticlePage/components/Aside'
 import { AnchorBar } from '@/components/AnchorBar'
 import HeaderArticle from '@/components/HeaderArticle'
 import { PageLayout, TSeo } from '@/components/PageLayout'
@@ -24,7 +24,7 @@ export type TAnalitycArticlePageData = {
 }
 type TAnalitycArticlePageProps = TAnalitycArticlePageData
 
-export default function AnalyticalArticle(props: TAnalitycArticlePageProps) {
+export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props) => {
     const isDesktopSmall = useIsDesktopSmall()
     const regExp = new RegExp(/#+|=|<h[0-9]>|<\/h[0-9]>/g)
 

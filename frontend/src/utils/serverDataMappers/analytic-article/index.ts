@@ -1,6 +1,6 @@
 import { GetAttributesValues, MediaAttributeContent, WithID } from '@admin/general-schemas'
 
-import { TAnalitycArticleData, TArticleSection } from '@/components/AnaliticalArticle/types'
+import { TAnalitycArticleData, TArticleSection } from '@/components/AnalyticalArticlePage/types'
 
 import { mapFilesServerData } from 'src/utils/serverDataMappers/media'
 
