@@ -2,7 +2,7 @@ version: 1-alpha.1
 
 releases:
   pts-global-admin:
-    name: PTS Global Admin
+    name: Admin Testing
     autodeploy-on: default
     chart: oci://quay.csssr.cloud/charts/pts-global-admin@~1.0.0
     slack:
@@ -11,8 +11,16 @@ releases:
       - workflow: build-docker-image-admin.yaml
         values:
           image.tag: build-{{ .Build.RunID }}
+
+  pts-global-admin-production:
+    name: Admin Production
+    base: pts-global-admin
+    cluster: pts-global-production
+    static-params:
+      environment: production
+
   pts-global-frontend:
-    name: PTS Global Frontend
+    name: Frontend Testing
     autodeploy-on: default
     chart: oci://quay.csssr.cloud/charts/pts-global-frontend@~1.0.0
     slack:
@@ -21,3 +29,10 @@ releases:
       - workflow: build-docker-image-frontend.yaml
         values:
           image.tag: build-{{ .Build.RunID }}
+
+  pts-global-frontend-production:
+    name: Frontend Production
+    base: pts-global-frontend
+    cluster: pts-global-production
+    static-params:
+      environment: production
