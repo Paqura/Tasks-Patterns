@@ -7,13 +7,14 @@ import FormSuccess from '@/components/ui/FormSuccess'
 import { Input } from '@/components/ui/Input'
 import { InputCheckbox } from '@/components/ui/InputCheckbox'
 import { Heading } from '@/components/ui/typography/Heading'
-import { TEventFormData } from '@/utils/serverDataMappers/event-article'
+import { TEventConfigData } from '@/utils/serverDataMappers/event-article'
 import { postWebinarRequest } from '@/utils/siteApi'
 
 import styles from './index.module.scss'
 
 export type TEventForm = {
-    eventFormData: TEventFormData
+    slug: string
+    eventConfigData: TEventConfigData
 }
 
 type TFormFields = {
@@ -30,7 +31,7 @@ export default function EventForm(props: TEventForm) {
 
     const onSubmit = async (data: TFormFields) => {
         const isSuccess = await postWebinarRequest({
-            slug: props.eventFormData.slug,
+            slug: props.slug,
             fullName: data.fullName,
             email: data.email,
             phone: data.phone,
@@ -45,15 +46,15 @@ export default function EventForm(props: TEventForm) {
 
     return (
         <div className={styles.wrapper}>
-            {props.eventFormData.title && (
+            {props.eventConfigData.title && (
                 <Heading level={2} className={styles.title}>
-                    {props.eventFormData.title}
+                    {props.eventConfigData.title}
                 </Heading>
             )}
             {isCompleted && (
                 <FormSuccess
-                    title={props.eventFormData.successTitle}
-                    description={props.eventFormData.successTitle}
+                    title={props.eventConfigData.successTitle}
+                    description={props.eventConfigData.successTitle}
                 />
             )}
             {isCompleted || (
@@ -65,31 +66,28 @@ export default function EventForm(props: TEventForm) {
                                     type="text"
                                     name={'fullName'}
                                     required
-                                    placeholder={props.eventFormData.name}
+                                    placeholder={props.eventConfigData.name}
                                 />
                             </div>
                             <div className={styles.field}>
                                 <Input
                                     type="text"
                                     name={'companyName'}
-                                    required
-                                    placeholder={props.eventFormData.company}
+                                    placeholder={props.eventConfigData.company}
                                 />
                             </div>
                             <div className={styles.field}>
                                 <Input
                                     type="text"
                                     name={'companyPosition'}
-                                    required
-                                    placeholder={props.eventFormData.position}
+                                    placeholder={props.eventConfigData.position}
                                 />
                             </div>
                             <div className={styles.field}>
                                 <Input
                                     type="tel"
                                     name={'phone'}
-                                    required
-                                    placeholder={props.eventFormData.phone}
+                                    placeholder={props.eventConfigData.phone}
                                 />
                             </div>
                             <div className={styles.field}>
@@ -97,7 +95,7 @@ export default function EventForm(props: TEventForm) {
                                     type="email"
                                     name={'email'}
                                     required
-                                    placeholder={props.eventFormData.email}
+                                    placeholder={props.eventConfigData.email}
                                 />
                             </div>
                         </div>
@@ -105,16 +103,16 @@ export default function EventForm(props: TEventForm) {
                             <InputCheckbox
                                 name={'consentsTerms'}
                                 required
-                                title={props.eventFormData.consentsTerms}
+                                title={props.eventConfigData.consentsTerms}
                             />
                             <InputCheckbox
                                 name={'subscription'}
                                 required
-                                title={props.eventFormData.subscription}
+                                title={props.eventConfigData.subscription}
                             />
                         </div>
                         <Button size={'m'} type={'submit'} className={styles.submit}>
-                            {props.eventFormData.submit}
+                            {props.eventConfigData.submit}
                         </Button>
                     </form>
                 </FormProvider>

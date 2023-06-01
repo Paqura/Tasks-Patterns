@@ -3,14 +3,25 @@ import { GetServerSideProps } from 'next'
 
 import { ProductPage, TProductPageData } from '@/components/ProductPage'
 import { TProductData } from '@/components/ProductPage/types'
-import { fetchConfig, fetchHeader, fetchProduct, fetchProducts } from '@/utils/adminApi'
+import {
+    fetchAnyQuestions,
+    fetchConfig,
+    fetchHeader,
+    fetchProduct,
+    fetchProducts,
+} from '@/utils/adminApi'
+import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapProductServerData } from '@/utils/serverDataMappers/product'
+import {
+    getSelectProductOptionsServerData,
+    mapProductServerData,
+} from '@/utils/serverDataMappers/product'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
     header?: GetAttributesValues<'api::header.header'>
     product: GetAttributesValues<'api::product.product'>
+    anyQuestions?: GetAttributesValues<'api::any-question.any-question'>
     allProducts?: GetAttributesValues<'api::product.product'>[]
 }
 
@@ -23,7 +34,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
         }
     }
 
-    const [config, header, product, allProducts] = await Promise.all([
+    const [config, header, product, allProducts, anyQuestions] = await Promise.all([
         fetchConfig(),
         fetchHeader(),
         fetchProduct(params.id),
@@ -34,6 +45,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
                 },
             },
         }),
+        fetchAnyQuestions(),
     ])
 
     if (!product) {
@@ -48,6 +60,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
             header,
             product,
             allProducts,
+            anyQuestions,
         },
     }
 }
@@ -56,8 +69,18 @@ type TProps = TServerSideProps
 
 export default function Product(props: TProps) {
     const headerData: TProductPageData['header'] = mapHeaderServerData(props.header)
+    const anyQuestions = mapAnyQuestionsServerData(props.anyQuestions)
 
     const product: TProductData = mapProductServerData(props.product, props.allProducts)
+    const selectProductOptions = getSelectProductOptionsServerData(props.product, props.allProducts)
 
-    return <ProductPage seo={props.config?.seo || {}} header={headerData} product={product} />
+    return (
+        <ProductPage
+            seo={props.config?.seo || {}}
+            header={headerData}
+            product={product}
+            anyQuestions={anyQuestions}
+            selectProductOptions={selectProductOptions}
+        />
+    )
 }

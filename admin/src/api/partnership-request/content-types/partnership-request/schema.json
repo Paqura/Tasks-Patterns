@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "partnership_requests",
+  "info": {
+    "singularName": "partnership-request",
+    "pluralName": "partnership-requests",
+    "displayName": "PartnershipRequests",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "companyName": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "comment": {
+      "type": "text",
+      "required": true
+    },
+  }
+}

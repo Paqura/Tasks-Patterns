@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_email_email_templates",
+  "info": {
+    "displayName": "EmailTemplate",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "subject": {
+      "type": "string",
+      "required": true
+    },
+    "html": {
+      "type": "text",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

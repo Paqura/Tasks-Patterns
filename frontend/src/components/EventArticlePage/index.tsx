@@ -1,9 +1,4 @@
-import {
-    TEventArticleData,
-    TEventCalendarData,
-    TEventFormData,
-    TEventVideoData,
-} from '@/utils/serverDataMappers/event-article'
+import { TEventArticleData, TEventConfigData } from '@/utils/serverDataMappers/event-article'
 
 import styles from './index.module.scss'
 
@@ -18,12 +13,13 @@ import { PageLayout, TSeo } from 'src/components/PageLayout'
 import { PageSectionCard } from 'src/components/ui/PageSectionCard'
 
 export type TEventArticlePageData = {
+    slug: string
     seo: TSeo
     headerData: THeaderData
     eventArticleData: TEventArticleData
-    eventFormData?: TEventFormData
-    eventVideoData?: TEventVideoData
-    eventCalendarData?: TEventCalendarData
+    eventConfigData?: TEventConfigData
+    eventVideo?: string
+    eventCalendar?: string
     eventIsCompleted: boolean
 }
 type TEventArticlePageProps = TEventArticlePageData
@@ -43,19 +39,24 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
                     </div>
 
                     <div className={styles.content}>
-                        {props.eventFormData && !props.eventIsCompleted && (
-                            <EventForm eventFormData={props.eventFormData} />
+                        {props.eventConfigData && !props.eventIsCompleted && (
+                            <EventForm slug={props.slug} eventConfigData={props.eventConfigData} />
                         )}
 
                         <NewsArticle newsArticleData={props.eventArticleData} />
 
-                        {props.eventVideoData && !props.eventIsCompleted && (
-                            <EventVideo eventVideoData={props.eventVideoData} />
+                        {props.eventVideo && !props.eventIsCompleted && (
+                            <EventVideo videoId={props.eventVideo} />
                         )}
 
-                        {props.eventCalendarData && !props.eventIsCompleted && (
-                            <EventCalendar eventCalendarData={props.eventCalendarData} />
-                        )}
+                        {props.eventCalendar &&
+                            props.eventConfigData &&
+                            !props.eventIsCompleted && (
+                                <EventCalendar
+                                    eventConfigData={props.eventConfigData}
+                                    calendar={props.eventCalendar}
+                                />
+                            )}
                     </div>
                 </div>
             </PageSectionCard>

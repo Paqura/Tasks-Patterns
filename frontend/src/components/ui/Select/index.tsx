@@ -16,7 +16,7 @@ interface IProps<TValueType> {
     options: TSelectOption<TValueType>[]
 }
 
-type TSelectOption<TValueType> = {
+export type TSelectOption<TValueType> = {
     value: TValueType
     label: string
 }

@@ -1,0 +1,43 @@
+{
+  "kind": "singleType",
+  "collectionName": "any_questions",
+  "info": {
+    "singularName": "any-question",
+    "pluralName": "any-questions",
+    "displayName": "AnyQuestions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Any questions?",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true,
+      "default": "Fill in the form and our specialists<br/> will contact you shortly"
+    },
+    "feedback": {
+      "type": "component",
+      "repeatable": false,
+      "component": "any-questions.general-questions",
+      "required": true
+    },
+    "partnership": {
+      "type": "component",
+      "repeatable": false,
+      "component": "any-questions.partnership",
+      "required": true
+    },
+    "pilotApplication": {
+      "type": "component",
+      "repeatable": false,
+      "component": "any-questions.pilot-application",
+      "required": true
+    }
+  }
+}

@@ -24,6 +24,12 @@
       "type": "string",
       "required": false
     },
+    "companyName": {
+      "type": "string"
+    },
+    "companyPosition": {
+      "type": "string"
+    },
     "eventName": {
       "type": "string",
       "required": true
@@ -32,11 +38,9 @@
       "type": "date",
       "required": true
     },
-    "companyName": {
-      "type": "string"
-    },
-    "companyPosition": {
-      "type": "string"
+    "eventLink": {
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -1,0 +1,48 @@
+{
+  "kind": "singleType",
+  "collectionName": "email_templates",
+  "info": {
+    "singularName": "email-template",
+    "pluralName": "email-templates",
+    "displayName": "EmailTemplates"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "feedback": {
+      "type": "component",
+      "repeatable": false,
+      "component": "email.email-template",
+      "required": true,
+      "default": {
+        "subject": "test"
+      }
+    },
+    "partnership": {
+      "type": "component",
+      "repeatable": false,
+      "component": "email.email-template",
+      "required": true
+    },
+    "pilotApplication": {
+      "type": "component",
+      "repeatable": false,
+      "component": "email.email-template",
+      "required": true
+    },
+    "webinar": {
+      "type": "component",
+      "repeatable": false,
+      "component": "email.email-template",
+      "required": true
+    },
+    "webinarUser": {
+      "type": "component",
+      "repeatable": false,
+      "component": "email.email-template",
+      "required": true
+    }
+  }
+}

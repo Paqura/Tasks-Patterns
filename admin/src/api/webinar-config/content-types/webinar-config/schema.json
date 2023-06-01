@@ -1,10 +1,15 @@
 {
-  "collectionName": "components_webinar_webinar_forms",
+  "kind": "singleType",
+  "collectionName": "webinar_configs",
   "info": {
-    "displayName": "WebinarForm",
-    "description": ""
+    "singularName": "webinar-config",
+    "pluralName": "webinar-configs",
+    "displayName": "WebinarConfig"
   },
-  "options": {},
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
@@ -59,6 +64,21 @@
       "type": "string",
       "required": true,
       "default": "Our specialists will contact you soon."
+    },
+    "calendarTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Don’t miss <b>the event!</b>"
+    },
+    "calendarDescription": {
+      "type": "string",
+      "default": "Download the event information to add it to your calendar so you don't miss the event",
+      "required": true
+    },
+    "calendarButton": {
+      "type": "string",
+      "default": "Add to my calendar",
+      "required": true
     }
   }
 }

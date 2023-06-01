@@ -28,13 +28,6 @@
       "type": "string",
       "required": true
     },
-    "isEvent": {
-      "type": "boolean",
-      "default": false
-    },
-    "eventDate": {
-      "type": "date"
-    },
     "slug": {
       "type": "uid",
       "targetField": "title"
@@ -57,19 +50,25 @@
     "articleText": {
       "type": "richtext"
     },
-    "eventForm": {
-      "type": "component",
-      "repeatable": false,
-      "component": "webinar.webinar-form",
-      "required": false
+    "isEvent": {
+      "type": "boolean",
+      "default": false
+    },
+    "eventDate": {
+      "type": "date"
+    },
+    "eventLink": {
+      "type": "string"
     },
     "eventYoutubeVideoId": {
       "type": "string"
     },
     "eventCalendar": {
-      "type": "component",
-      "repeatable": false,
-      "component": "webinar.webinar-calendar"
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files"
+      ]
     }
   }
 }

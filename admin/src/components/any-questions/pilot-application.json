@@ -1,0 +1,74 @@
+{
+  "collectionName": "components_any_questions_pilot_application",
+  "info": {
+    "displayName": "PilotApplication"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Pilot<br/> application"
+    },
+    "description": {
+      "type": "string",
+      "default": "Test drive our solutions. Get started with a pilot program.",
+      "required": true
+    },
+    "fieldProduct": {
+      "type": "string",
+      "default": "Select a product",
+      "required": true
+    },
+    "fieldCompanyName": {
+      "type": "string",
+      "default": "Company name",
+      "required": true
+    },
+    "fieldName": {
+      "type": "string",
+      "default": "Your name",
+      "required": true
+    },
+    "fieldPhone": {
+      "type": "string",
+      "default": "Your phone",
+      "required": true
+    },
+    "fieldEmail": {
+      "type": "string",
+      "required": true,
+      "default": "Or Email"
+    },
+    "fieldComment": {
+      "type": "string",
+      "required": true,
+      "default": "Your question"
+    },
+    "checkboxConsentsTerms": {
+      "type": "string",
+      "default": "I consent to the processing of my personal data in accordance with the terms of the <a href=\\\"#\\\">privacy policy</a>.",
+      "required": true
+    },
+    "checkboxSubscription": {
+      "type": "string",
+      "default": "I agree to receive advertising and information messages.",
+      "required": true
+    },
+    "buttonSubmit": {
+      "type": "string",
+      "default": "SEND",
+      "required": true
+    },
+    "successTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Thank you, your application has been sent"
+    },
+    "successDescription": {
+      "type": "string",
+      "default": "Our specialists will contact you soon.",
+      "required": true
+    }
+  }
+}

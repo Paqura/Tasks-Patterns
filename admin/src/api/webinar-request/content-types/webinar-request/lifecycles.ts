@@ -1,71 +1,38 @@
-const siteName = 'example.com'
-const webinarBaseUrl = `http://${siteName}/webinar`
-
-const emailTemplate = {
-  subject: `${siteName} = Получена заявка на участие в вебинаре`,
-  text: `Приветствуем!
-На сайте ${siteName} пользователь <%= user.fullName %> оставил заявку на участие в вебинаре <%= event.name %>, который пройдет <%= event.date %>.
-Контакты пользователя:
-<%= user.contacts %>
-<%= user.additional %>`,
-};
-
-const emailUserTemplate = {
-  subject: 'Успешная регистрация на вебинар',
-  text: `Приветствуем!
-  Вы зарегистрировались на вебинар <%= event.name %>, который пройдет <%= event.date %>. Ниже прикрепляем ссылку на вебинар для подключения:
-  ${webinarBaseUrl}/<%= event.slug %>
-  До встречи!`,
-};
-
 module.exports = {
   async afterCreate(event) {
     const { result } = event;
-    const contacts = [`Email: ${result.email}`];
-    const additional = [];
-
-    if (result.phone) {
-      contacts.push(`Телефон: ${result.phone}`)
-    }
-
-    if (result.companyName) {
-      additional.push(`Компания: ${result.companyName}`)
-    }
-    if (result.companyPosition) {
-      additional.push(`Роль: ${result.companyPosition}`)
-    }
 
     try{
+      const entity = await strapi.db.query('api::email-template.email-template').findOne({});
+      const templateAdmin = await strapi.db.query('api::email-template.email-template').load(entity, 'webinar', {});
+      const templateUser = await strapi.db.query('api::email-template.email-template').load(entity, 'webinarUser', {});
+
+      const params = {
+        fullName: result.fullName,
+        phone: result.phone,
+        email: result.email,
+        companyName: result.companyName,
+        companyPosition: result.companyPosition,
+        eventDate: result.eventDate,
+        eventName: result.eventName,
+        eventLink: result.eventLink,
+      };
+
+
       await strapi.plugins['email'].services.email.sendTemplatedEmail(
         {
           to: process.env.REQUESTS_EMAIL,
         },
-        emailTemplate,
-        {
-          event: {
-            name: result.eventName,
-            date: result.eventDate,
-          },
-          user: {
-            contacts: contacts.join(', '),
-            fullName: result.fullName,
-            additional: additional.length > 0 ? `Дополнительно пользователь указал в заявке: \n ${additional.join(', ')}` : '',
-          },
-        }
+        templateAdmin,
+        params
       );
 
       await strapi.plugins['email'].services.email.sendTemplatedEmail(
         {
           to: result.email,
         },
-        emailUserTemplate,
-        {
-          event: {
-            name: result.eventName,
-            date: result.eventDate,
-            slug: result.eventSlug,
-          },
-        }
+        templateUser,
+        params
       );
     } catch(err) {
       // eslint-disable-next-line no-console

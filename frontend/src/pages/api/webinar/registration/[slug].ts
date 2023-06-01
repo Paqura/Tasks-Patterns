@@ -20,9 +20,9 @@ const getWebinarData = async (slug: string | string[]) => {
         `/api/news/${slug}`
     )
 
-    const { title: eventName, eventDate, isEvent } = response.data.data?.attributes ?? {}
+    const { title: eventName, eventDate, eventLink, isEvent } = response.data.data?.attributes ?? {}
 
-    return { eventName, eventDate, isEvent }
+    return { eventName, eventDate, eventLink, isEvent }
 }
 
 export default async function handler(req: TWebinarRegistrationRequest, res: NextApiResponse) {
@@ -30,16 +30,14 @@ export default async function handler(req: TWebinarRegistrationRequest, res: Nex
     if (req.method === 'POST' && slug) {
         try {
             const { fullName, email, phone, companyName, companyPosition } = req.body
-            const { eventName, eventDate, isEvent } = await getWebinarData(slug)
+            const { eventName, eventDate, isEvent, eventLink } = await getWebinarData(slug)
 
-            if (!isEvent || !eventName || !eventDate) {
-                // TODO: Fix message
+            if (!isEvent || !eventName || !eventDate || !eventLink) {
                 res.status(405).send({ message: 'Bad event' })
                 return
             }
 
-            // TODO: Add a check for completed eventDate
-            if (!eventDate && false) {
+            if (new Date(eventDate).getTime() < new Date().getTime()) {
                 res.status(405).send({ message: 'Event is completed' })
                 return
             }
@@ -55,7 +53,7 @@ export default async function handler(req: TWebinarRegistrationRequest, res: Nex
                     phone,
                     eventDate,
                     eventName,
-                    eventSlug: slug,
+                    eventLink,
                 },
             })
 

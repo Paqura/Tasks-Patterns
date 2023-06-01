@@ -1,0 +1,69 @@
+{
+  "collectionName": "components_any_questions_partnership",
+  "info": {
+    "displayName": "Partnership"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Partnership"
+    },
+    "description": {
+      "type": "string",
+      "default": "Let's partner <br/>and make the world <br/>a safer place.",
+      "required": true
+    },
+    "fieldName": {
+      "type": "string",
+      "default": "Your name",
+      "required": true
+    },
+    "fieldCompanyName": {
+      "type": "string",
+      "default": "Company name",
+      "required": true
+    },
+    "fieldPhone": {
+      "type": "string",
+      "default": "Your phone",
+      "required": true
+    },
+    "fieldEmail": {
+      "type": "string",
+      "required": true,
+      "default": "Or Email"
+    },
+    "fieldComment": {
+      "type": "string",
+      "required": true,
+      "default": "Your question"
+    },
+    "checkboxConsentsTerms": {
+      "type": "string",
+      "default": "I consent to the processing of my personal data in accordance with the terms of the <a href=\\\"#\\\">privacy policy</a>.",
+      "required": true
+    },
+    "checkboxSubscription": {
+      "type": "string",
+      "default": "I agree to receive advertising and information messages.",
+      "required": true
+    },
+    "buttonSubmit": {
+      "type": "string",
+      "default": "SEND",
+      "required": true
+    },
+    "successTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Thank you, your application has been sent"
+    },
+    "successDescription": {
+      "type": "string",
+      "default": "Our specialists will contact you soon.",
+      "required": true
+    }
+  }
+}

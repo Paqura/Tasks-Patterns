@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pilot_application_requests",
+  "info": {
+    "singularName": "pilot-application-request",
+    "pluralName": "pilot-application-requests",
+    "displayName": "PilotApplicationRequests",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product": {
+      "type": "string",
+      "required": true
+    },
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "companyName": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "comment": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

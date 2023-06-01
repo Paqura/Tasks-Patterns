@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "feedback_requests",
+  "info": {
+    "singularName": "feedback-request",
+    "pluralName": "feedback-requests",
+    "displayName": "FeedbackRequests",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "comment": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

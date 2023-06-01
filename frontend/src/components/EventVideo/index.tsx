@@ -2,10 +2,8 @@ import React from 'react'
 
 import styles from './index.module.scss'
 
-import { TEventVideoData } from 'src/utils/serverDataMappers/event-article'
-
 export type TEventForm = {
-    eventVideoData: TEventVideoData
+    videoId: string
 }
 
 export default function EventVideo(props: TEventForm) {
@@ -13,7 +11,7 @@ export default function EventVideo(props: TEventForm) {
         <div className={styles.wrapper}>
             <iframe
                 className={styles.video}
-                src={`https://www.youtube.com/embed/${props.eventVideoData.id}`}
+                src={`https://www.youtube.com/embed/${props.videoId}`}
                 allow={
                     'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
                 }

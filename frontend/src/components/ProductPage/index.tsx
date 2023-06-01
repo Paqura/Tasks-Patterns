@@ -1,8 +1,8 @@
 import { AnchorBar, TAnchorLink } from '@/components/AnchorBar'
+import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { THeaderData } from '@/components/Header'
 import { PageLayout, TSeo } from '@/components/PageLayout'
-import { PageSectionCard } from '@/components/ui/PageSectionCard'
-import { Heading } from '@/components/ui/typography/Heading'
+import { TSelectOption } from '@/components/ui/Select'
 import { PageAnchorsContextProvider } from '@/utils/anchors'
 import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
@@ -21,6 +21,8 @@ export type TProductPageData = {
     seo: TSeo
     header: THeaderData
     product: TProductData
+    selectProductOptions: TSelectOption<string>[]
+    anyQuestions: TAnyQuestionsData
 }
 
 export type TProductPageProps = TProductPageData
@@ -30,7 +32,13 @@ type TBlocksAcc = {
     blocks: React.ReactElement[]
     anchors: TAnchorLink[]
 }
-export const ProductPage: React.FC<TProductPageProps> = ({ product, header, seo }) => {
+export const ProductPage: React.FC<TProductPageProps> = ({
+    product,
+    header,
+    seo,
+    selectProductOptions,
+    anyQuestions,
+}) => {
     const getAnchorLink = (
         block: { data: { title: string } } & TSectionCardParams
     ): TAnchorLink => ({
@@ -142,9 +150,13 @@ export const ProductPage: React.FC<TProductPageProps> = ({ product, header, seo 
                 />
                 <AnchorBar anchors={blocksAcc.anchors} />
                 {blocksAcc.blocks}
-                <PageSectionCard sectionId={CONTACTS_SECTION_ID}>
-                    <Heading level={2}>Contacts form</Heading>
-                </PageSectionCard>
+
+                <AnyQuestions
+                    selectedProduct={product.title}
+                    sectionId={CONTACTS_SECTION_ID}
+                    selectProductOptions={selectProductOptions}
+                    anyQuestionData={anyQuestions}
+                />
             </PageAnchorsContextProvider>
         </PageLayout>
     )

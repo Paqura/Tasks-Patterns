@@ -6,7 +6,7 @@ import {
     TNewsArticleData,
 } from 'src/utils/serverDataMappers/news-article'
 
-export type TEventFormData = {
+export type TEventConfigData = {
     submit: string
     consentsTerms: string
     subscription: string
@@ -16,82 +16,21 @@ export type TEventFormData = {
     phone: string
     position: string
     title: string
-    slug: string
     successTitle: string
     successDescription: string
-}
-
-export type TEventVideoData = {
-    id: string
-}
-
-export type TEventCalendarData = {
-    title: string
-    description: string
-    button: string
-    calendar: string
+    calendarTitle: string
+    calendarDescription: string
+    calendarButton: string
 }
 
 export type TEventArticleData = TNewsArticleData
 
 export type TEventArticle = {
     isCompleted: boolean
+    slug: string
     article: TEventArticleData
-    form?: TEventFormData
-    video?: TEventVideoData
-    calendar?: TEventCalendarData
-}
-
-const mapEventFormServerData = (
-    serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
-): TEventFormData | undefined => {
-    if (!serverArticleData?.eventForm) {
-        return undefined
-    }
-
-    return {
-        submit: serverArticleData.eventForm.buttonSubmit || '',
-        consentsTerms: serverArticleData.eventForm?.checkboxConsentsTerms || '',
-        subscription: serverArticleData.eventForm?.checkboxSubscription || '',
-        company: serverArticleData.eventForm?.fieldCompany || '',
-        email: serverArticleData.eventForm?.fieldEmail || '',
-        name: serverArticleData.eventForm?.fieldName || '',
-        phone: serverArticleData.eventForm?.fieldPhone || '',
-        position: serverArticleData.eventForm?.fieldPosition || '',
-        title: serverArticleData.eventForm?.title || '',
-        successTitle: serverArticleData.eventForm?.successTitle || '',
-        successDescription: serverArticleData.eventForm?.successDescription || '',
-        slug: serverArticleData?.slug || '',
-    }
-}
-
-const mapEventVideoServerData = (
-    serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
-): TEventVideoData | undefined => {
-    if (!serverArticleData?.eventYoutubeVideoId) {
-        return undefined
-    }
-
-    return {
-        id: serverArticleData.eventYoutubeVideoId || '',
-    }
-}
-
-const mapEventCalendarServerData = (
-    serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
-): TEventCalendarData | undefined => {
-    if (!serverArticleData?.eventCalendar) {
-        return undefined
-    }
-
-    const { url } = mapFilesMediaFile(serverArticleData.eventCalendar?.calendar)
-
-    return {
-        title: serverArticleData.eventCalendar.title || '',
-        description: serverArticleData.eventCalendar?.description || '',
-        button: serverArticleData.eventCalendar?.button || '',
-        calendar: url,
-    }
+    calendar?: string
+    video?: string
 }
 
 export const mapEventArticleServerData = (
@@ -107,8 +46,31 @@ export const mapEventArticleServerData = (
     return {
         isCompleted,
         article,
-        form: mapEventFormServerData(serverArticleData),
-        video: mapEventVideoServerData(serverArticleData),
-        calendar: mapEventCalendarServerData(serverArticleData),
+        slug: serverArticleData?.slug || '',
+        calendar: serverArticleData?.eventCalendar
+            ? mapFilesMediaFile(serverArticleData.eventCalendar).url
+            : undefined,
+        video: serverArticleData?.eventYoutubeVideoId,
+    }
+}
+
+export const mapWebinarConfigServerData = (
+    serverWebinarConfigData?: GetAttributesValues<'api::webinar-config.webinar-config'>
+): TEventConfigData => {
+    return {
+        submit: serverWebinarConfigData?.buttonSubmit || '',
+        consentsTerms: serverWebinarConfigData?.checkboxConsentsTerms || '',
+        subscription: serverWebinarConfigData?.checkboxSubscription || '',
+        company: serverWebinarConfigData?.fieldCompany || '',
+        email: serverWebinarConfigData?.fieldEmail || '',
+        name: serverWebinarConfigData?.fieldName || '',
+        phone: serverWebinarConfigData?.fieldPhone || '',
+        position: serverWebinarConfigData?.fieldPosition || '',
+        title: serverWebinarConfigData?.title || '',
+        successTitle: serverWebinarConfigData?.successTitle || '',
+        successDescription: serverWebinarConfigData?.successDescription || '',
+        calendarTitle: serverWebinarConfigData?.calendarTitle || '',
+        calendarDescription: serverWebinarConfigData?.calendarDescription || '',
+        calendarButton: serverWebinarConfigData?.calendarButton || '',
     }
 }

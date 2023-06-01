@@ -151,3 +151,17 @@ export const fetchAllProductsPage = async () => {
     )
     return response.data.data?.attributes
 }
+
+export const fetchWebinarConfig = async () => {
+    const response = await adminClient.get<Response<'api::webinar-config.webinar-config'>>(
+        `/api/webinar-config`
+    )
+    return response.data.data?.attributes
+}
+
+export const fetchAnyQuestions = async () => {
+    const response = await adminClient.get<Response<'api::any-question.any-question'>>(
+        `/api/any-question`
+    )
+    return response.data.data?.attributes
+}

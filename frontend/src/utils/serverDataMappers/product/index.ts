@@ -1,6 +1,7 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 
 import { TProductData, TProductsBlockData } from '@/components/ProductPage/types'
+import { TSelectOption } from '@/components/ui/Select'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 import { mapFaqBlockServerData } from './blocks/faq'
@@ -94,4 +95,14 @@ export const mapProductServerData = (
         bannerImage: mapImageMediaFile(productData.bannerImage) || { src: '' },
         blocks: mapProductBlocksServerData({ blocks: productData.blocks, products: products }),
     }
+}
+
+export const getSelectProductOptionsServerData = (
+    productData: GetAttributesValues<'api::product.product'>,
+    products?: GetAttributesValues<'api::product.product'>[]
+): TSelectOption<string>[] => {
+    return [productData, ...(products || [])].map(({ title }) => ({
+        value: title || '',
+        label: title || '',
+    }))
 }

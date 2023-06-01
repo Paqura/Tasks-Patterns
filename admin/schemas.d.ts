@@ -830,6 +830,43 @@ export interface ApiAnalyticsPageAnalyticsPage extends SingleTypeSchema {
   };
 }
 
+export interface ApiAnyQuestionAnyQuestion extends SingleTypeSchema {
+  info: {
+    singularName: 'any-question';
+    pluralName: 'any-questions';
+    displayName: 'AnyQuestions';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute & DefaultTo<'Any questions?'>;
+    description: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Fill in the form and our specialists<br/> will contact you shortly'>;
+    feedback: ComponentAttribute<'any-questions.general-questions'> &
+      RequiredAttribute;
+    partnership: ComponentAttribute<'any-questions.partnership'> &
+      RequiredAttribute;
+    pilotApplication: ComponentAttribute<'any-questions.pilot-application'> &
+      RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::any-question.any-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::any-question.any-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiClientClient extends CollectionTypeSchema {
   info: {
     singularName: 'client';
@@ -882,6 +919,76 @@ export interface ApiConfigConfig extends SingleTypeSchema {
       PrivateAttribute;
     updatedBy: RelationAttribute<
       'api::config.config',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiEmailTemplateEmailTemplate extends SingleTypeSchema {
+  info: {
+    singularName: 'email-template';
+    pluralName: 'email-templates';
+    displayName: 'EmailTemplates';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    feedback: ComponentAttribute<'email.email-template'> &
+      RequiredAttribute &
+      DefaultTo<{
+        subject: 'test';
+      }>;
+    partnership: ComponentAttribute<'email.email-template'> & RequiredAttribute;
+    pilotApplication: ComponentAttribute<'email.email-template'> &
+      RequiredAttribute;
+    webinar: ComponentAttribute<'email.email-template'> & RequiredAttribute;
+    webinarUser: ComponentAttribute<'email.email-template'> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::email-template.email-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::email-template.email-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiFeedbackRequestFeedbackRequest
+  extends CollectionTypeSchema {
+  info: {
+    singularName: 'feedback-request';
+    pluralName: 'feedback-requests';
+    displayName: 'FeedbackRequests';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    fullName: StringAttribute & RequiredAttribute;
+    phone: StringAttribute;
+    email: EmailAttribute & RequiredAttribute;
+    comment: TextAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::feedback-request.feedback-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::feedback-request.feedback-request',
       'oneToOne',
       'admin::user'
     > &
@@ -963,16 +1070,16 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     previewImage: MediaAttribute & RequiredAttribute;
     published: DateAttribute & RequiredAttribute;
     title: StringAttribute & RequiredAttribute;
-    isEvent: BooleanAttribute & DefaultTo<false>;
-    eventDate: DateAttribute;
     slug: UIDAttribute<'api::news-item.news-item', 'title'>;
     topic: TextAttribute & RequiredAttribute;
     filesTitle: StringAttribute;
     files: MediaAttribute;
     articleText: RichTextAttribute;
-    eventForm: ComponentAttribute<'webinar.webinar-form'>;
+    isEvent: BooleanAttribute & DefaultTo<false>;
+    eventDate: DateAttribute;
+    eventLink: StringAttribute;
     eventYoutubeVideoId: StringAttribute;
-    eventCalendar: ComponentAttribute<'webinar.webinar-calendar'>;
+    eventCalendar: MediaAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1012,6 +1119,75 @@ export interface ApiNewsPageNewsPage extends SingleTypeSchema {
       PrivateAttribute;
     updatedBy: RelationAttribute<
       'api::news-page.news-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiPartnershipRequestPartnershipRequest
+  extends CollectionTypeSchema {
+  info: {
+    singularName: 'partnership-request';
+    pluralName: 'partnership-requests';
+    displayName: 'PartnershipRequests';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    fullName: StringAttribute & RequiredAttribute;
+    companyName: StringAttribute & RequiredAttribute;
+    phone: StringAttribute;
+    email: EmailAttribute & RequiredAttribute;
+    comment: TextAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::partnership-request.partnership-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::partnership-request.partnership-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiPilotApplicationRequestPilotApplicationRequest
+  extends CollectionTypeSchema {
+  info: {
+    singularName: 'pilot-application-request';
+    pluralName: 'pilot-application-requests';
+    displayName: 'PilotApplicationRequests';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    product: StringAttribute & RequiredAttribute;
+    fullName: StringAttribute & RequiredAttribute;
+    companyName: StringAttribute & RequiredAttribute;
+    phone: StringAttribute;
+    email: EmailAttribute & RequiredAttribute;
+    comment: TextAttribute & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::pilot-application-request.pilot-application-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::pilot-application-request.pilot-application-request',
       'oneToOne',
       'admin::user'
     > &
@@ -1065,6 +1241,67 @@ export interface ApiProductProduct extends CollectionTypeSchema {
   };
 }
 
+export interface ApiWebinarConfigWebinarConfig extends SingleTypeSchema {
+  info: {
+    singularName: 'webinar-config';
+    pluralName: 'webinar-configs';
+    displayName: 'WebinarConfig';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute & DefaultTo<'Registration for the webinar'>;
+    fieldName: StringAttribute & RequiredAttribute & DefaultTo<'Your name'>;
+    fieldCompany: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Company name'>;
+    fieldPosition: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Your position'>;
+    fieldPhone: StringAttribute & RequiredAttribute & DefaultTo<'Your phone'>;
+    fieldEmail: StringAttribute & RequiredAttribute & DefaultTo<'Your email'>;
+    buttonSubmit: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Registration'>;
+    checkboxSubscription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'I agree to receive advertising and information messages.'>;
+    checkboxConsentsTerms: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href="#">privacy policy</a>.'>;
+    successTitle: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Thank you, your application has been sent'>;
+    successDescription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Our specialists will contact you soon.'>;
+    calendarTitle: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Don\u2019t miss <b>the event!</b>'>;
+    calendarDescription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<"Download the event information to add it to your calendar so you don't miss the event">;
+    calendarButton: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Add to my calendar'>;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::webinar-config.webinar-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::webinar-config.webinar-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiWebinarRequestWebinarRequest extends CollectionTypeSchema {
   info: {
     singularName: 'webinar-request';
@@ -1079,10 +1316,11 @@ export interface ApiWebinarRequestWebinarRequest extends CollectionTypeSchema {
     fullName: StringAttribute & RequiredAttribute;
     email: EmailAttribute & RequiredAttribute;
     phone: StringAttribute;
-    eventName: StringAttribute & RequiredAttribute;
-    eventDate: DateAttribute & RequiredAttribute;
     companyName: StringAttribute;
     companyPosition: StringAttribute;
+    eventName: StringAttribute & RequiredAttribute;
+    eventDate: DateAttribute & RequiredAttribute;
+    eventLink: StringAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1159,6 +1397,112 @@ export interface AnalyticsStatisticsSummary extends ComponentSchema {
   };
 }
 
+export interface AnyQuestionsGeneralQuestions extends ComponentSchema {
+  info: {
+    displayName: 'GeneralQuestions';
+  };
+  attributes: {
+    title: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'General<br/> questions'>;
+    description: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<"Have a question? Contact us and&nbsp;we'll&nbsp;help.">;
+    fieldName: StringAttribute & RequiredAttribute & DefaultTo<'Your name'>;
+    fieldPhone: StringAttribute & RequiredAttribute & DefaultTo<'Your phone'>;
+    fieldEmail: StringAttribute & RequiredAttribute & DefaultTo<'Or Email'>;
+    fieldComment: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Your question'>;
+    checkboxConsentsTerms: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
+    checkboxSubscription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'I agree to receive advertising and information messages.'>;
+    buttonSubmit: StringAttribute & RequiredAttribute & DefaultTo<'SEND'>;
+    successTitle: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Thank you, your application has been sent'>;
+    successDescription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Our specialists will contact you soon.'>;
+  };
+}
+
+export interface AnyQuestionsPartnership extends ComponentSchema {
+  info: {
+    displayName: 'Partnership';
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute & DefaultTo<'Partnership'>;
+    description: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<"Let's partner <br/>and make the world <br/>a safer place.">;
+    fieldName: StringAttribute & RequiredAttribute & DefaultTo<'Your name'>;
+    fieldCompanyName: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Company name'>;
+    fieldPhone: StringAttribute & RequiredAttribute & DefaultTo<'Your phone'>;
+    fieldEmail: StringAttribute & RequiredAttribute & DefaultTo<'Or Email'>;
+    fieldComment: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Your question'>;
+    checkboxConsentsTerms: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
+    checkboxSubscription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'I agree to receive advertising and information messages.'>;
+    buttonSubmit: StringAttribute & RequiredAttribute & DefaultTo<'SEND'>;
+    successTitle: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Thank you, your application has been sent'>;
+    successDescription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Our specialists will contact you soon.'>;
+  };
+}
+
+export interface AnyQuestionsPilotApplication extends ComponentSchema {
+  info: {
+    displayName: 'PilotApplication';
+  };
+  attributes: {
+    title: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Pilot<br/> application'>;
+    description: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Test drive our solutions. Get started with a pilot program.'>;
+    fieldProduct: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Select a product'>;
+    fieldCompanyName: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Company name'>;
+    fieldName: StringAttribute & RequiredAttribute & DefaultTo<'Your name'>;
+    fieldPhone: StringAttribute & RequiredAttribute & DefaultTo<'Your phone'>;
+    fieldEmail: StringAttribute & RequiredAttribute & DefaultTo<'Or Email'>;
+    fieldComment: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Your question'>;
+    checkboxConsentsTerms: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
+    checkboxSubscription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'I agree to receive advertising and information messages.'>;
+    buttonSubmit: StringAttribute & RequiredAttribute & DefaultTo<'SEND'>;
+    successTitle: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Thank you, your application has been sent'>;
+    successDescription: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Our specialists will contact you soon.'>;
+  };
+}
+
 export interface ArticleSectionArticleSection extends ComponentSchema {
   info: {
     displayName: 'ArticleSectionItem';
@@ -1174,6 +1518,18 @@ export interface ArticleSectionArticleSection extends ComponentSchema {
         }
       >;
     title: StringAttribute;
+  };
+}
+
+export interface EmailEmailTemplate extends ComponentSchema {
+  info: {
+    displayName: 'EmailTemplate';
+    description: '';
+  };
+  attributes: {
+    subject: StringAttribute & RequiredAttribute;
+    html: TextAttribute & RequiredAttribute;
+    text: TextAttribute & RequiredAttribute;
   };
 }
 
@@ -1384,59 +1740,6 @@ export interface ShareTest extends ComponentSchema {
   attributes: {};
 }
 
-export interface WebinarWebinarCalendar extends ComponentSchema {
-  info: {
-    displayName: 'WebinarCalendar';
-    description: '';
-  };
-  attributes: {
-    title: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'Don\u2019t miss <b>the event!</b>'>;
-    description: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<"Download the event information to add it to your calendar so you don't miss the event">;
-    button: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'Add to my calendar'>;
-    calendar: MediaAttribute & RequiredAttribute;
-  };
-}
-
-export interface WebinarWebinarForm extends ComponentSchema {
-  info: {
-    displayName: 'WebinarForm';
-    description: '';
-  };
-  attributes: {
-    title: StringAttribute & DefaultTo<'Registration for the webinar'>;
-    fieldName: StringAttribute & RequiredAttribute & DefaultTo<'Your name'>;
-    fieldCompany: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'Company name'>;
-    fieldPosition: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'Your position'>;
-    fieldPhone: StringAttribute & RequiredAttribute & DefaultTo<'Your phone'>;
-    fieldEmail: StringAttribute & RequiredAttribute & DefaultTo<'Your email'>;
-    buttonSubmit: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'Registration'>;
-    checkboxSubscription: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'I agree to receive advertising and information messages.'>;
-    checkboxConsentsTerms: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href="#">privacy policy</a>.'>;
-    successTitle: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'Thank you, your application has been sent'>;
-    successDescription: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'Our specialists will contact you soon.'>;
-  };
-}
-
 declare global {
   namespace Strapi {
     interface Schemas {
@@ -1457,20 +1760,30 @@ declare global {
       'api::all-products-page.all-products-page': ApiAllProductsPageAllProductsPage;
       'api::analytic-article.analytic-article': ApiAnalyticArticleAnalyticArticle;
       'api::analytics-page.analytics-page': ApiAnalyticsPageAnalyticsPage;
+      'api::any-question.any-question': ApiAnyQuestionAnyQuestion;
       'api::client.client': ApiClientClient;
       'api::config.config': ApiConfigConfig;
+      'api::email-template.email-template': ApiEmailTemplateEmailTemplate;
+      'api::feedback-request.feedback-request': ApiFeedbackRequestFeedbackRequest;
       'api::header.header': ApiHeaderHeader;
       'api::main-page.main-page': ApiMainPageMainPage;
       'api::news-item.news-item': ApiNewsItemNewsItem;
       'api::news-page.news-page': ApiNewsPageNewsPage;
+      'api::partnership-request.partnership-request': ApiPartnershipRequestPartnershipRequest;
+      'api::pilot-application-request.pilot-application-request': ApiPilotApplicationRequestPilotApplicationRequest;
       'api::product.product': ApiProductProduct;
+      'api::webinar-config.webinar-config': ApiWebinarConfigWebinarConfig;
       'api::webinar-request.webinar-request': ApiWebinarRequestWebinarRequest;
       'about.achievements-item': AboutAchievementsItem;
       'about.employee': AboutEmployee;
       'about.history-item': AboutHistoryItem;
       'analytics.statistics-item': AnalyticsStatisticsItem;
       'analytics.statistics-summary': AnalyticsStatisticsSummary;
+      'any-questions.general-questions': AnyQuestionsGeneralQuestions;
+      'any-questions.partnership': AnyQuestionsPartnership;
+      'any-questions.pilot-application': AnyQuestionsPilotApplication;
       'article-section.article-section': ArticleSectionArticleSection;
+      'email.email-template': EmailEmailTemplate;
       'product.faq-block': ProductFaqBlock;
       'product.faq-item': ProductFaqItem;
       'product.files-block': ProductFilesBlock;
@@ -1487,8 +1800,6 @@ declare global {
       'share.nav-sub-item': ShareNavSubItem;
       'share.seo': ShareSeo;
       'share.test': ShareTest;
-      'webinar.webinar-calendar': WebinarWebinarCalendar;
-      'webinar.webinar-form': WebinarWebinarForm;
     }
   }
 }
