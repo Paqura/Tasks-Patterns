@@ -1360,10 +1360,10 @@ export interface WebinarWebinarCalendar extends ComponentSchema {
   attributes: {
     title: StringAttribute &
       RequiredAttribute &
-      DefaultTo<'Don\u2019t miss <b>the event!</b>'>;
+      DefaultTo<'Don\u2019t miss <mark>the event!</mark>'>;
     description: StringAttribute &
       RequiredAttribute &
-      DefaultTo<"Download the event information to add it to your calendar so you don't miss the event">;
+      DefaultTo<'Download the event information to add it to your calendar so you don\'t miss the event'>;
     button: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Add to my calendar'>;
