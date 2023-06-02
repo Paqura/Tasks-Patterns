@@ -1,3 +1,5 @@
+@import '../../../styles/media';
+
 .container {
     position: relative;
 }
@@ -10,15 +12,18 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 1.6em;
+    text-align: left;
     text-transform: uppercase;
     color: var(--color-black-ui);
+
+    background-color: var(--color-white);
 
     border: 1px solid var(--color-gray-ui);
     border-radius: 4px;
     outline: none;
 }
 
-@mixin input_placeholder {
+@mixin input-placeholder {
     text-transform: uppercase;
     color: var(--color-gray-6x);
 }
@@ -28,11 +33,15 @@
 }
 
 @mixin input_focus {
-    border-color: var(--color-gray-4x);
+    border-color: var(--color-gray-8x);
 }
 
 @mixin input_error {
     border-color: var(--color-error);
+}
+
+@mixin input_filled {
+    border-color: var(--color-gray-4x);
 }
 
 .input {
@@ -46,8 +55,12 @@
         @include input_focus;
     }
 
+    &_filled:not(&_error) {
+        @include input_filled;
+    }
+
     &::placeholder {
-        @include input_placeholder;
+        @include input-placeholder;
     }
 
     &_error {

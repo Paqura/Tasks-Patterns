@@ -110,7 +110,7 @@ export default function EventForm(props: TEventForm) {
                             <InputCheckbox
                                 name={'subscription'}
                                 required
-                                title={props.eventFormData.consentsTerms}
+                                title={props.eventFormData.subscription}
                             />
                         </div>
                         <Button size={'m'} type={'submit'} className={styles.submit}>

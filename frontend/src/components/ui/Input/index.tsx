@@ -20,7 +20,7 @@ interface IProps {
     name: string
     pattern?: RegExp | ValidationValueMessage<RegExp>
     required?: boolean
-    autocomplete?: TAutoCompleteType
+    autoComplete?: TAutoCompleteType
     autofocus?: boolean
     className?: string
 }
@@ -59,14 +59,14 @@ export const Input = ({
     className,
     autofocus,
     pattern,
-    autocomplete: autoComplete,
-    ...props
+    autoComplete = 'off',
+    required,
 }: IProps) => {
     const fieldName = `${name}` as const
     const controller = useController({
         name: fieldName,
         rules: {
-            required: validateRequired(props.required),
+            required: validateRequired(required),
             pattern: pattern || validators[type] || undefined,
         },
         shouldUnregister: true,
@@ -89,6 +89,7 @@ export const Input = ({
         <input
             className={cn(styles.input, className, {
                 [styles.input_error]: Boolean(errorMessage),
+                [styles.input_filled]: Boolean(controllerProps.value),
             })}
             placeholder={placeholder}
             type={'text'}
@@ -105,6 +106,7 @@ export const Input = ({
             id={name}
             className={cn(styles.input, className, {
                 [styles.input_error]: Boolean(errorMessage),
+                [styles.input_filled]: Boolean(controllerProps.value),
             })}
             mask={PHONE_MASK}
             guide={true}

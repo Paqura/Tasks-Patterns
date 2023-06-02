@@ -4,7 +4,7 @@
     position: relative;
 }
 
-.input {
+.textarea {
     height: 115px;
     resize: vertical;
 
@@ -18,8 +18,12 @@
         @include input_focus;
     }
 
+    &_filled:not(&_error) {
+        @include input_filled;
+    }
+
     &::placeholder {
-        @include input_placeholder;
+        @include input-placeholder;
     }
 
     &_error {

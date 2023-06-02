@@ -32,7 +32,10 @@ export const Textarea = ({ placeholder, name, className, autoFocus, required }: 
         <label className={styles.container}>
             <textarea
                 id={fieldName}
-                className={cn(styles.input, className, { [styles.input_error]: !!errorMessage })}
+                className={cn(styles.textarea, className, {
+                    [styles.textarea_error]: Boolean(errorMessage),
+                    [styles.textarea_filled]: Boolean(controllerProps.value),
+                })}
                 placeholder={placeholder}
                 autoFocus={autoFocus}
                 {...controllerProps}
