@@ -42,4 +42,4 @@ jobs:
           username: pts-global+github_actions
           password: ${{ secrets.QUAY_PASSWORD }}
           build-args: |
-            NEXT_PUBLIC_ADMIN_API_URL=https://pts-global-admin-production.csssr.cloud
+            NEXT_PUBLIC_ADMIN_API_URL=http://production.pts-global-admin-production.svc.cluster.local
