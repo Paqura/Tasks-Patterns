@@ -21,17 +21,32 @@
       "type": "text",
       "default": "Bringing experts and enthusiasts together to&nbsp;create cutting-edge cybersecurity technology"
     },
+    "contactButtonText": {
+      "type": "string",
+      "required": true,
+      "default": "Contact us"
+    },
     "headingVideo": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
-    "statistics": {
-      "displayName": "StatisticsSummary",
-      "type": "component",
-      "repeatable": false,
-      "component": "analytics.statistics-summary"
+
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "main.advantages-block",
+        "main.tools-block",
+        "main.products-block",
+        "main.analytics-block",
+        "main.news-block"
+      ]
     }
   }
 }

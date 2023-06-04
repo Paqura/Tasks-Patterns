@@ -5,34 +5,33 @@ import { CardsSlider } from '@/components/ui/CardsSlider'
 import { Link } from '@/components/ui/Link'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
+import { TWithSectionParams } from '@/types'
 
-import { Clients, TClient } from './components/Clients'
+import { Clients, TClientsData } from './components/Clients'
 import styles from './index.module.scss'
 
-const title = 'Our Products'
-const description = `At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.`
-
-export type TProductsBlockData = {
+export type TProductsBlockData = TWithSectionParams<{
+    allProductsLinkText: string
     products: TProductCard[]
-    clients: TClient[]
-}
+    clients?: TClientsData
+}>
 
 type TProps = {
     data: TProductsBlockData
 }
 
 export const Products: React.FC<TProps> = ({ data }) => {
-    const { products, clients } = data
+    const { sectionId, title, description, allProductsLinkText, products, clients } = data
 
     return (
-        <PageSectionCard mode="dark" sectionId="products">
+        <PageSectionCard mode="dark" sectionId={sectionId}>
             <PageSectionCardHeader title={title} description={description} />
             <CardsSlider
                 className={styles.productsList}
                 scrollAreaClassName={styles.productsScrollArea}
                 controls={
                     <Link type="s" href={'/products'}>
-                        All products
+                        {allProductsLinkText}
                     </Link>
                 }
             >
@@ -40,9 +39,11 @@ export const Products: React.FC<TProps> = ({ data }) => {
                     <ProductCard key={index} data={product} />
                 ))}
             </CardsSlider>
-            <div className={styles.clients}>
-                <Clients clients={clients} />
-            </div>
+            {clients && (
+                <div className={styles.clients}>
+                    <Clients data={clients} />
+                </div>
+            )}
         </PageSectionCard>
     )
 }

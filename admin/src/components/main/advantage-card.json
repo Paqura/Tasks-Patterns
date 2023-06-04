@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_main_advantage_cards",
+  "info": {
+    "displayName": "AdvantageCard",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

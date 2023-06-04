@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_main_products_blocks",
+  "info": {
+    "displayName": "ProductsBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string",
+      "required": true,
+      "default": "products"
+    },
+    "title": {
+      "type": "text",
+      "required": true,
+      "default": "Our Products"
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "default": "At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external."
+    },
+    "allProductsLinkText": {
+      "type": "string",
+      "required": true,
+      "default": "All products"
+    },
+    "clients": {
+      "displayName": "Clients",
+      "type": "component",
+      "repeatable": false,
+      "component": "main.clients"
+    }
+  }
+}

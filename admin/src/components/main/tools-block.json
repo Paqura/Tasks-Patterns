@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_main_tools_blocks",
+  "info": {
+    "displayName": "ToolsBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string",
+      "required": true,
+      "default": "tools"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "What we&nbsp;do?"
+    },
+    "description": {
+      "type": "text",
+      "default": "At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external."
+    },
+    "assessmentCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.tool-card",
+      "required": true
+    },
+    "complianceCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.tool-card",
+      "required": true
+    },
+    "monitoringCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.tool-card",
+      "required": true
+    },
+    "trainingCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.tool-card",
+      "required": true
+    }
+  }
+}

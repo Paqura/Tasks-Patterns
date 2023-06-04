@@ -14,13 +14,19 @@ import trackRecordIcon from 'public/images/advantages/proven-track-record.svg'
 
 type TCardType = 'expertise' | 'customer-service' | 'track-record' | 'techology' | 'solutions'
 
-type TProps = {
+export type TAdvantageCard = {
     title: string
     description: string
+}
+
+type TProps = {
+    data: TAdvantageCard
     type: TCardType
 }
 
-export const AdvantageCard: React.FC<TProps> = ({ type, title, description }) => {
+export const AdvantageCard: React.FC<TProps> = ({ type, data }) => {
+    const { title, description } = data
+
     const iconsByType: { [key in TCardType]: string } = {
         expertise: expertiseIcon,
         'customer-service': customerServiceIcon,

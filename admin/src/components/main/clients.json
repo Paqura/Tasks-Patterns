@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_main_clients",
+  "info": {
+    "displayName": "Clients"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Our Clients"
+    },
+    "description": {
+      "type": "text",
+      "default": "Our technology and services are used by&nbsp;more than 2,300 organisations worldwide, including&nbsp;80% of&nbsp;the Expert 400."
+    }
+  }
+}

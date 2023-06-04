@@ -1,0 +1,85 @@
+{
+  "collectionName": "components_main_analytics_blocks",
+  "info": {
+    "displayName": "AnalyticsBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string",
+      "required": true,
+      "default": "analytics"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Analytics"
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "default": "Our team of&nbsp;experts stays up-to-date on&nbsp;the latest threats and trends in&nbsp;the industry, and we&rsquo;re always looking for ways to&nbsp;improve our solutions and services."
+    },
+    "articlesListTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Analytical articles"
+    },
+    "allArticlesLinkText": {
+      "type": "string",
+      "required": true,
+      "default": "All articles"
+    },
+    "statisticsTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Summary statistics for 2022"
+    },
+    "statisticsDescription": {
+      "type": "text",
+      "required": false,
+      "default": "Our software is&nbsp;designed to&nbsp;provide the highest level of&nbsp;protection while minimizing disruption to&nbsp;your business. We&nbsp;use the latest technology and techniques to&nbsp;stay ahead of&nbsp;the ever-evolving threat landscape. And with years of&nbsp;experience working with businesses of&nbsp;all sizes and in&nbsp;all industries, our team of&nbsp;experts has the knowledge and expertise to&nbsp;keep your organization secure."
+    },
+    "contactUsText": {
+      "type": "text",
+      "required": true,
+      "default": "Contact&nbsp;us today to&nbsp;learn more about our cybersecurity solutions and how we&nbsp;can help protect your business."
+    },
+    "contactUsButtonText": {
+      "type": "string",
+      "required": true,
+      "default": "Contact us"
+    },
+    "staisticsCardFirst": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.statistics-item",
+      "required": true
+    },
+    "staisticsCardSecond": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.statistics-item",
+      "required": true
+    },
+    "staisticsCardThird": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.statistics-item",
+      "required": true
+    },
+    "staisticsCardFourth": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.statistics-item",
+      "required": true
+    },
+    "staisticsCardFifth": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.statistics-item",
+      "required": true
+    }
+  }
+}

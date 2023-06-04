@@ -18,20 +18,27 @@ export type TArticle = {
     date?: Date
 }
 
-type TProps = {
+export type TAnalyticArticlesData = {
+    title: string
+    allArticlesLinkText: string
     articles: TArticle[]
 }
 
-export const Articles: React.FC<TProps> = ({ articles }) => {
+type TProps = {
+    data: TAnalyticArticlesData
+}
+
+export const Articles: React.FC<TProps> = ({ data }) => {
+    const { articles, title, allArticlesLinkText } = data
     const showedArticles = articles.slice(0, 3)
 
     return (
         <PageSectionCardGrid className={styles.block}>
             <PageSectionCardGridRightColumn>
                 <div className={styles.header}>
-                    <Heading level={3}>Analytical articles</Heading>
+                    <Heading level={3}>{title}</Heading>
                     <Link type="s" href="/analytics">
-                        All articles
+                        {allArticlesLinkText}
                     </Link>
                 </div>
                 <CardsSlider hideControls scrollAreaClassName={styles.listScrollArea}>

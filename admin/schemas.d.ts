@@ -23,9 +23,9 @@ import {
   DateAttribute,
   UIDAttribute,
   MediaAttribute,
+  DynamicZoneAttribute,
   RichTextAttribute,
   CustomField,
-  DynamicZoneAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
 
@@ -1044,8 +1044,19 @@ export interface ApiMainPageMainPage extends SingleTypeSchema {
       DefaultTo<'Technologically preventing the unacceptable for business and government'>;
     subtitle: TextAttribute &
       DefaultTo<'Bringing experts and enthusiasts together to&nbsp;create cutting-edge cybersecurity technology'>;
+    contactButtonText: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Contact us'>;
     headingVideo: MediaAttribute;
-    statistics: ComponentAttribute<'analytics.statistics-summary'>;
+    blocks: DynamicZoneAttribute<
+      [
+        'main.advantages-block',
+        'main.tools-block',
+        'main.products-block',
+        'main.analytics-block',
+        'main.news-block'
+      ]
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1426,30 +1437,6 @@ export interface AboutHistoryItem extends ComponentSchema {
   };
 }
 
-export interface AnalyticsStatisticsItem extends ComponentSchema {
-  info: {
-    displayName: 'StatisticsItem';
-  };
-  attributes: {
-    value: StringAttribute & RequiredAttribute;
-    title: TextAttribute & RequiredAttribute;
-  };
-}
-
-export interface AnalyticsStatisticsSummary extends ComponentSchema {
-  info: {
-    displayName: 'StatisticsSummary';
-    description: '';
-  };
-  attributes: {
-    first: ComponentAttribute<'analytics.statistics-item'> & RequiredAttribute;
-    second: ComponentAttribute<'analytics.statistics-item'> & RequiredAttribute;
-    third: ComponentAttribute<'analytics.statistics-item'> & RequiredAttribute;
-    fourth: ComponentAttribute<'analytics.statistics-item'> & RequiredAttribute;
-    fifth: ComponentAttribute<'analytics.statistics-item'> & RequiredAttribute;
-  };
-}
-
 export interface AnyQuestionsGeneralQuestions extends ComponentSchema {
   info: {
     displayName: 'GeneralQuestions';
@@ -1583,6 +1570,182 @@ export interface EmailEmailTemplate extends ComponentSchema {
     subject: StringAttribute & RequiredAttribute;
     html: TextAttribute & RequiredAttribute;
     text: TextAttribute & RequiredAttribute;
+  };
+}
+
+export interface MainAdvantageCard extends ComponentSchema {
+  info: {
+    displayName: 'AdvantageCard';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    description: TextAttribute & RequiredAttribute;
+  };
+}
+
+export interface MainAdvantagesBlock extends ComponentSchema {
+  info: {
+    displayName: 'AdvantagesBlock';
+    description: '';
+  };
+  attributes: {
+    sectionId: StringAttribute & RequiredAttribute & DefaultTo<'advantages'>;
+    title: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Why Positive Technologies?'>;
+    description: TextAttribute &
+      DefaultTo<'We&nbsp;have extensive experience in&nbsp;protecting businesses in&nbsp;various sectors of&nbsp;the economy, we&nbsp;know the nature of&nbsp;today&rsquo;s threats and regulatory requirements well&nbsp;&mdash; and we&nbsp;put that experience and that knowledge into everything we&nbsp;do'>;
+    expertiseCard: ComponentAttribute<'main.advantage-card'> &
+      RequiredAttribute;
+    customerServiceCard: ComponentAttribute<'main.advantage-card'> &
+      RequiredAttribute;
+    trackRecordCard: ComponentAttribute<'main.advantage-card'> &
+      RequiredAttribute;
+    technologyCard: ComponentAttribute<'main.advantage-card'> &
+      RequiredAttribute;
+    solutionsCard: ComponentAttribute<'main.advantage-card'> &
+      RequiredAttribute;
+    welcomeToContact: ComponentAttribute<'main.welcome-to-contact'>;
+  };
+}
+
+export interface MainAnalyticsBlock extends ComponentSchema {
+  info: {
+    displayName: 'AnalyticsBlock';
+    description: '';
+  };
+  attributes: {
+    sectionId: StringAttribute & RequiredAttribute & DefaultTo<'analytics'>;
+    title: StringAttribute & RequiredAttribute & DefaultTo<'Analytics'>;
+    description: TextAttribute &
+      RequiredAttribute &
+      DefaultTo<'Our team of&nbsp;experts stays up-to-date on&nbsp;the latest threats and trends in&nbsp;the industry, and we&rsquo;re always looking for ways to&nbsp;improve our solutions and services.'>;
+    articlesListTitle: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Analytical articles'>;
+    allArticlesLinkText: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'All articles'>;
+    statisticsTitle: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Summary statistics for 2022'>;
+    statisticsDescription: TextAttribute &
+      DefaultTo<'Our software is&nbsp;designed to&nbsp;provide the highest level of&nbsp;protection while minimizing disruption to&nbsp;your business. We&nbsp;use the latest technology and techniques to&nbsp;stay ahead of&nbsp;the ever-evolving threat landscape. And with years of&nbsp;experience working with businesses of&nbsp;all sizes and in&nbsp;all industries, our team of&nbsp;experts has the knowledge and expertise to&nbsp;keep your organization secure.'>;
+    contactUsText: TextAttribute &
+      RequiredAttribute &
+      DefaultTo<'Contact&nbsp;us today to&nbsp;learn more about our cybersecurity solutions and how we&nbsp;can help protect your business.'>;
+    contactUsButtonText: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Contact us'>;
+    staisticsCardFirst: ComponentAttribute<'main.statistics-item'> &
+      RequiredAttribute;
+    staisticsCardSecond: ComponentAttribute<'main.statistics-item'> &
+      RequiredAttribute;
+    staisticsCardThird: ComponentAttribute<'main.statistics-item'> &
+      RequiredAttribute;
+    staisticsCardFourth: ComponentAttribute<'main.statistics-item'> &
+      RequiredAttribute;
+    staisticsCardFifth: ComponentAttribute<'main.statistics-item'> &
+      RequiredAttribute;
+  };
+}
+
+export interface MainClients extends ComponentSchema {
+  info: {
+    displayName: 'Clients';
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute & DefaultTo<'Our Clients'>;
+    description: TextAttribute &
+      DefaultTo<'Our technology and services are used by&nbsp;more than 2,300 organisations worldwide, including&nbsp;80% of&nbsp;the Expert 400.'>;
+  };
+}
+
+export interface MainNewsBlock extends ComponentSchema {
+  info: {
+    displayName: 'NewsBlock';
+  };
+  attributes: {
+    sectionId: StringAttribute & RequiredAttribute & DefaultTo<'news'>;
+    title: StringAttribute & RequiredAttribute & DefaultTo<'Events & News'>;
+    description: TextAttribute &
+      DefaultTo<'Stay up-to-date with the latest news and events in&#160;the cybersecurity industry with&#160;us. From webinars and training sessions to&#160;conferences and hackathons, we&#146;ve got you covered with all the latest happenings in&#160;the cybersecurity space.'>;
+    allNewsLinkText: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'All news'>;
+  };
+}
+
+export interface MainProductsBlock extends ComponentSchema {
+  info: {
+    displayName: 'ProductsBlock';
+    description: '';
+  };
+  attributes: {
+    sectionId: StringAttribute & RequiredAttribute & DefaultTo<'products'>;
+    title: TextAttribute & RequiredAttribute & DefaultTo<'Our Products'>;
+    description: TextAttribute &
+      RequiredAttribute &
+      DefaultTo<'At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.'>;
+    allProductsLinkText: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'All products'>;
+    clients: ComponentAttribute<'main.clients'>;
+  };
+}
+
+export interface MainStatisticsItem extends ComponentSchema {
+  info: {
+    displayName: 'StatisticsItem';
+  };
+  attributes: {
+    value: StringAttribute & RequiredAttribute;
+    title: TextAttribute & RequiredAttribute;
+  };
+}
+
+export interface MainToolCard extends ComponentSchema {
+  info: {
+    displayName: 'ToolCard';
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    description: TextAttribute & RequiredAttribute;
+  };
+}
+
+export interface MainToolsBlock extends ComponentSchema {
+  info: {
+    displayName: 'ToolsBlock';
+    description: '';
+  };
+  attributes: {
+    sectionId: StringAttribute & RequiredAttribute & DefaultTo<'tools'>;
+    title: StringAttribute & RequiredAttribute & DefaultTo<'What we&nbsp;do?'>;
+    description: TextAttribute &
+      DefaultTo<'At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.'>;
+    assessmentCard: ComponentAttribute<'main.tool-card'> & RequiredAttribute;
+    complianceCard: ComponentAttribute<'main.tool-card'> & RequiredAttribute;
+    monitoringCard: ComponentAttribute<'main.tool-card'> & RequiredAttribute;
+    trainingCard: ComponentAttribute<'main.tool-card'> & RequiredAttribute;
+  };
+}
+
+export interface MainWelcomeToContact extends ComponentSchema {
+  info: {
+    displayName: 'WelcomeToContact';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Ready to&nbsp;secure your business?'>;
+    accentText: StringAttribute & DefaultTo<'Get&nbsp;in&nbsp;touch'>;
+    description: TextAttribute &
+      RequiredAttribute &
+      DefaultTo<'Contact&nbsp;us today to&nbsp;learn how our cybersecurity solutions can help protect your organization from threats and vulnerabilities. Don&rsquo;t wait until it&rsquo;s too late&nbsp;&mdash; take action now to&nbsp;ensure the safety and integrity of&nbsp;your data.'>;
+    buttonText: StringAttribute & RequiredAttribute & DefaultTo<'Contact us'>;
   };
 }
 
@@ -1831,13 +1994,21 @@ declare global {
       'about.achievements-item': AboutAchievementsItem;
       'about.employee': AboutEmployee;
       'about.history-item': AboutHistoryItem;
-      'analytics.statistics-item': AnalyticsStatisticsItem;
-      'analytics.statistics-summary': AnalyticsStatisticsSummary;
       'any-questions.general-questions': AnyQuestionsGeneralQuestions;
       'any-questions.partnership': AnyQuestionsPartnership;
       'any-questions.pilot-application': AnyQuestionsPilotApplication;
       'article-section.article-section': ArticleSectionArticleSection;
       'email.email-template': EmailEmailTemplate;
+      'main.advantage-card': MainAdvantageCard;
+      'main.advantages-block': MainAdvantagesBlock;
+      'main.analytics-block': MainAnalyticsBlock;
+      'main.clients': MainClients;
+      'main.news-block': MainNewsBlock;
+      'main.products-block': MainProductsBlock;
+      'main.statistics-item': MainStatisticsItem;
+      'main.tool-card': MainToolCard;
+      'main.tools-block': MainToolsBlock;
+      'main.welcome-to-contact': MainWelcomeToContact;
       'product.faq-block': ProductFaqBlock;
       'product.faq-item': ProductFaqItem;
       'product.files-block': ProductFilesBlock;

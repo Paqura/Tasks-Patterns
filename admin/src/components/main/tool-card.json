@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_main_tool_cards",
+  "info": {
+    "displayName": "ToolCard"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

@@ -10,19 +10,21 @@ import { useIsDesktopSmall } from '@/utils/hooks'
 import { ClientCard } from './components/ClientCard'
 import styles from './index.module.scss'
 
-const title = 'Our Clients'
-const descriptionText =
-    'Our technology and services are used by&nbsp;more than 2,300 organisations worldwide, including&nbsp;80% of&nbsp;the Expert 400.'
-
 export type TClient = {
     logo: TImage
     name: string
 }
-type TProps = {
-    clients: TClient[]
+
+export type TClientsData = {
+    title: string
+    description?: string
+    clientsList: TClient[]
 }
 
-export const Clients: React.FC<TProps> = ({ clients }) => {
+type TProps = { data: TClientsData }
+
+export const Clients: React.FC<TProps> = ({ data }) => {
+    const { clientsList: clients, title, description } = data
     const isDesktopSmall = useIsDesktopSmall()
     const clientsPerSlide = isDesktopSmall ? 4 : 6
     const clientsListChunks = chunk(clients, clientsPerSlide)
@@ -33,9 +35,11 @@ export const Clients: React.FC<TProps> = ({ clients }) => {
                 <Heading level={2} className={styles.title}>
                     {title}
                 </Heading>
-                <Text type="pM" className={styles.description}>
-                    {descriptionText}
-                </Text>
+                {description && (
+                    <Text type="pM" className={styles.description}>
+                        {description}
+                    </Text>
+                )}
             </div>
             <div className={styles.listColumn}>
                 <AutoCarousel>

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_main_news_blocks",
+  "info": {
+    "displayName": "NewsBlock"
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string",
+      "required": true,
+      "default": "news"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Events & News"
+    },
+    "description": {
+      "type": "text",
+      "default": "Stay up-to-date with the latest news and events in&#160;the cybersecurity industry with&#160;us. From webinars and training sessions to&#160;conferences and hackathons, we&#146;ve got you covered with all the latest happenings in&#160;the cybersecurity space."
+    },
+    "allNewsLinkText": {
+      "type": "string",
+      "required": true,
+      "default": "All news"
+    }
+  }
+}

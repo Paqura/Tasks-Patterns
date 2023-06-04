@@ -36,3 +36,9 @@ export type TFooterNavItem = {
     name: string
     link: string
 }
+
+export type TWithSectionParams<T = unknown> = T & {
+    sectionId: string
+    title: string
+    description?: string
+}

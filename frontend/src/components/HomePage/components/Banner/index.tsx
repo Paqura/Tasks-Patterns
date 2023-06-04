@@ -14,6 +14,7 @@ export type TBannerData = {
     video?: TVideo
     title: string
     subtitle?: string
+    contactButtonText: string
 }
 
 type TProps = {
@@ -21,7 +22,7 @@ type TProps = {
 }
 
 export const Banner: React.FC<TProps> = ({ data }) => {
-    const { video, title, subtitle } = data
+    const { video, title, subtitle, contactButtonText } = data
     return (
         <div className={styles.banner}>
             {video && (
@@ -44,7 +45,7 @@ export const Banner: React.FC<TProps> = ({ data }) => {
                         </Text>
                     )}
                     <Button className={styles.contactBtn} link={`#${CONTACTS_SECTION_ID}`}>
-                        Contact us
+                        {contactButtonText}
                     </Button>
                 </TypographyTheme>
             </PageSection>

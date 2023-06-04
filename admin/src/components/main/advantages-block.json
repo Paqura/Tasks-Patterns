@@ -1,0 +1,62 @@
+{
+  "collectionName": "components_main_advantages_blocks",
+  "info": {
+    "displayName": "AdvantagesBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string",
+      "required": true,
+      "default": "advantages"
+    },
+    "title": {
+      "type": "string",
+      "default": "Why Positive Technologies?",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "default": "We&nbsp;have extensive experience in&nbsp;protecting businesses in&nbsp;various sectors of&nbsp;the economy, we&nbsp;know the nature of&nbsp;today&rsquo;s threats and regulatory requirements well&nbsp;&mdash; and we&nbsp;put that experience and that knowledge into everything we&nbsp;do"
+    },
+
+    "expertiseCard": {
+      "displayName": "AdvantageCard",
+      "type": "component",
+      "repeatable": false,
+      "component": "main.advantage-card",
+      "required": true
+    },
+    "customerServiceCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.advantage-card",
+      "required": true
+    },
+    "trackRecordCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.advantage-card",
+      "required": true
+    },
+    "technologyCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.advantage-card",
+      "required": true
+    },
+    "solutionsCard": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main.advantage-card",
+      "required": true
+    },
+    "welcomeToContact": {
+      "displayName": "WelcomeToContact",
+      "type": "component",
+      "repeatable": false,
+      "component": "main.welcome-to-contact"
+    }
+  }
+}

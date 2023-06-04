@@ -3,36 +3,34 @@ import React from 'react'
 
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
+import { TWithSectionParams } from '@/types'
 
-import { Articles, TArticle } from './components/Articles'
-import { Statistics, TStatistics } from './components/Statistics'
+import { Articles, TAnalyticArticlesData } from './components/Articles'
+import { Statistics, TStatisticsData } from './components/Statistics'
 import styles from './index.module.scss'
 
 import backgroundIcon from '/public/images/backgrounds/analytics-background.svg'
 
-const title = 'Analytics'
-const description = `Our team of&nbsp;experts stays up-to-date on&nbsp;the latest threats and trends in&nbsp;the industry, and we&rsquo;re always looking for ways to&nbsp;improve our solutions and services.`
-
-export type TAnalyticsBlockData = {
-    articles: TArticle[]
-    statistics: TStatistics
-}
+export type TAnalyticBlocksData = TWithSectionParams<{
+    articles: TAnalyticArticlesData
+    statistics: TStatisticsData
+}>
 
 type TProps = {
-    data: TAnalyticsBlockData
+    data: TAnalyticBlocksData
 }
 
 export const Analytics: React.FC<TProps> = ({ data }) => {
-    const { articles, statistics } = data
+    const { title, description, sectionId, articles, statistics } = data
     return (
-        <PageSectionCard mode="light" className={styles.block} sectionId="analytics">
+        <PageSectionCard mode="light" className={styles.block} sectionId={sectionId}>
             <PageSectionCardHeader title={title} description={description} />
             <div className={styles.articlesList}>
                 <Image src={backgroundIcon} alt="" className={styles.background} />
-                <Articles articles={articles} />
+                <Articles data={articles} />
             </div>
             <div className={styles.statisticsList}>
-                <Statistics statistics={statistics} />
+                <Statistics data={statistics} />
             </div>
         </PageSectionCard>
     )

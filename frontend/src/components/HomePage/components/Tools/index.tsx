@@ -3,38 +3,29 @@ import React from 'react'
 import { CardsSlider } from '@/components/ui/CardsSlider'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
+import { TWithSectionParams } from '@/types'
 
-import { ToolCard } from './components/ToolCard'
+import { TToolCard, ToolCard } from './components/ToolCard'
 import styles from './index.module.scss'
 
-const title = 'What we&nbsp;do?'
-const description = `At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.`
+export type TToolsBlockData = TWithSectionParams<{
+    assessmentCard: TToolCard
+    complianceCard: TToolCard
+    monitoringCard: TToolCard
+    trainingCard: TToolCard
+}>
 
-export const Tools: React.FC = () => {
+export const Tools: React.FC<{ data: TToolsBlockData }> = ({ data }) => {
+    const { title, description, assessmentCard, complianceCard, monitoringCard, trainingCard } =
+        data
     return (
         <PageSectionCard mode="light" sectionId="tools">
             <PageSectionCardHeader title={title} description={description} />
             <CardsSlider scrollAreaClassName={styles.toolsList}>
-                <ToolCard
-                    type="assessment"
-                    title="Assessment"
-                    description="We&nbsp;begin by&nbsp;conducting a&nbsp;thorough assessment of&nbsp;your organization&rsquo;s security posture. This includes vulnerability scanning, penetration testing, and risk analysis. We&nbsp;use this information to&nbsp;develop a&nbsp;customized security plan that meets your specific needs and budget."
-                />
-                <ToolCard
-                    type="compliance"
-                    title="Compliance"
-                    description="We&nbsp;help ensure that your organization is&nbsp;meeting all applicable regulatory requirements, such as&nbsp;HIPAA, PCI&nbsp;DSS, and GDPR. Our compliance management software makes it&nbsp;easy to&nbsp;stay up-to-date with changing regulations and avoid costly fines."
-                />
-                <ToolCard
-                    type="monitoring"
-                    title="Monitoring"
-                    description="Our advanced monitoring software provides real-time visibility into your network activity, allowing&nbsp;us to&nbsp;detect and respond to&nbsp;threats quickly. We&nbsp;use a&nbsp;combination of&nbsp;automated and manual processes to&nbsp;ensure that your network is&nbsp;always protected."
-                />
-                <ToolCard
-                    type="training"
-                    title="Training"
-                    description="We&nbsp;believe that cybersecurity is&nbsp;everyone&rsquo;s responsibility. That&rsquo;s why we&nbsp;offer comprehensive training programs to&nbsp;educate your employees on&nbsp;best practices and help prevent human error from compromising your security."
-                />
+                <ToolCard type="assessment" data={assessmentCard} />
+                <ToolCard type="compliance" data={complianceCard} />
+                <ToolCard type="monitoring" data={monitoringCard} />
+                <ToolCard type="training" data={trainingCard} />
             </CardsSlider>
         </PageSectionCard>
     )

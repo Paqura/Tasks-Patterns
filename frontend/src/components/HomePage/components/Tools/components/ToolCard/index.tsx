@@ -13,13 +13,19 @@ import trainingIcon from 'public/images/tools/training.svg'
 
 type TCardType = 'assessment' | 'compliance' | 'monitoring' | 'training'
 
-type TProps = {
+export type TToolCard = {
     title: string
     description: string
+}
+
+type TProps = {
+    data: TToolCard
     type: TCardType
 }
 
-export const ToolCard: React.FC<TProps> = ({ type, title, description }) => {
+export const ToolCard: React.FC<TProps> = ({ type, data }) => {
+    const { title, description } = data
+
     const iconsByType: { [key in TCardType]: string } = {
         assessment: assessmentIcon,
         compliance: complianceIcon,

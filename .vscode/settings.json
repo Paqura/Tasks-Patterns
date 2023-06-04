@@ -11,6 +11,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": true
   },
-  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "project-relative",
   "scssFormatter.singleQuote": true
 }
