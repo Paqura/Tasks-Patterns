@@ -38,3 +38,19 @@ export const useIsDesktopSmall = () => {
 
     return isDesktopSmall
 }
+
+export const useIsMobile = () => {
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= EScreenEdges.mobile)
+        }
+        window.addEventListener('resize', handleResize)
+        handleResize()
+
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
+    return isMobile
+}

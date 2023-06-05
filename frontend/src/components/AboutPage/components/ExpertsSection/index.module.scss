@@ -82,31 +82,10 @@
     }
 }
 
-.loadMoreBlockCutted {
-    margin-bottom: calc(var(--employees-block-margin-bottom) * -1);
-    padding-bottom: var(--employees-block-margin-bottom);
-    max-height: 1272px;
-
-    @include media_breakpoint_normal_desktop {
-        max-height: 1252px;
-    }
-    
-    @include media_breakpoint_small_desktop {
-        max-height: 1129px;
-    }
+.managersListOverlay {
+    bottom: calc((var(--employees-block-margin-bottom) - 20px) * -1 - 20px);
 }
 
-/*
-    Использование отрицательного margin, padding, переменных --employees-block-margin-bottom и --section-card-padding-bottom
-    нужно для компенсации поведения стилей LoadMore
-
-*/
-
-.loadMoreBlockCuttedLastBlock {
-    margin-bottom: calc(var(--section-card-padding-bottom) * -1);
-    padding-bottom: var(--section-card-padding-bottom);
-}
-
-.loadMoreBlockCutter {
-    height: 340px;
+.expertsListOverlay {
+    bottom: calc(var(--section-card-padding-bottom) * -1);
 }

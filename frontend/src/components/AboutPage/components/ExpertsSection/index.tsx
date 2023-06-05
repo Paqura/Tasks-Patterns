@@ -1,12 +1,10 @@
-import cn from 'classnames'
-
 import { CardsSlider } from '@/components/ui/CardsSlider'
-import { LoadMore } from '@/components/ui/LoadMore'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 
 import { EmployeeCard, TEmployeeCardData } from './components/EmployeeCard'
+import { LoadMore } from './components/LoadMore'
 import styles from './index.module.scss'
 
 export type TExpertsSectionData = {
@@ -44,22 +42,23 @@ export const ExpertsSection: React.FC<TExpertsSectionProps> = ({ data }) => {
                 </Heading>
 
                 <LoadMore
-                    cuttedClassName={styles.loadMoreBlockCutted}
-                    cutterClassName={styles.loadMoreBlockCutter}
-                >
-                    <CardsSlider hideControls scrollAreaClassName={styles.employeeCardsList}>
-                        {managersList.map(({ photo, name, roles }, index) => (
-                            <EmployeeCard
-                                key={index}
-                                data={{
-                                    photo,
-                                    name,
-                                    roles,
-                                }}
-                            />
-                        ))}
-                    </CardsSlider>
-                </LoadMore>
+                    items={managersList}
+                    overlayExtraClassName={styles.managersListOverlay}
+                    render={(itemsToRender) => (
+                        <CardsSlider hideControls scrollAreaClassName={styles.employeeCardsList}>
+                            {itemsToRender.map(({ photo, name, roles }, index) => (
+                                <EmployeeCard
+                                    key={index}
+                                    data={{
+                                        photo,
+                                        name,
+                                        roles,
+                                    }}
+                                />
+                            ))}
+                        </CardsSlider>
+                    )}
+                />
             </div>
 
             <div className={styles.employeesBlock}>
@@ -68,25 +67,23 @@ export const ExpertsSection: React.FC<TExpertsSectionProps> = ({ data }) => {
                 </Heading>
 
                 <LoadMore
-                    cuttedClassName={cn(
-                        styles.loadMoreBlockCutted,
-                        styles.loadMoreBlockCuttedLastBlock
+                    items={expertsList}
+                    overlayExtraClassName={styles.expertsListOverlay}
+                    render={(itemsToRender) => (
+                        <CardsSlider hideControls scrollAreaClassName={styles.employeeCardsList}>
+                            {itemsToRender.map(({ photo, name, roles }, index) => (
+                                <EmployeeCard
+                                    key={index}
+                                    data={{
+                                        photo,
+                                        name,
+                                        roles,
+                                    }}
+                                />
+                            ))}
+                        </CardsSlider>
                     )}
-                    cutterClassName={styles.loadMoreBlockCutter}
-                >
-                    <CardsSlider hideControls scrollAreaClassName={styles.employeeCardsList}>
-                        {expertsList.map(({ photo, name, roles }, index) => (
-                            <EmployeeCard
-                                key={index}
-                                data={{
-                                    photo,
-                                    name,
-                                    roles,
-                                }}
-                            />
-                        ))}
-                    </CardsSlider>
-                </LoadMore>
+                />
             </div>
         </PageSectionCard>
     )
