@@ -1150,6 +1150,36 @@ export interface ApiNewsPageNewsPage extends SingleTypeSchema {
   };
 }
 
+export interface ApiNotFoundNotFound extends SingleTypeSchema {
+  info: {
+    singularName: 'not-found';
+    pluralName: 'not-founds';
+    displayName: 'NotFound';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute & DefaultTo<'404'>;
+    description: RichTextAttribute &
+      DefaultTo<"<p>Oops! Looks like the page you were looking for isn't here.</p>\n<p>Don't worry though, our team of cybersecurity experts is always on the case. While we investigate what happened to the page you were trying to reach, why not check out some of our other resources? From our <a href={'/analytics'}>Analytical Articles</a> page to our suite of <a href={'#'}>cybersecurity solutions</a>, we've got you covered.</p>">;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::not-found.not-found',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::not-found.not-found',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiPartnershipRequestPartnershipRequest
   extends CollectionTypeSchema {
   info: {
@@ -1985,6 +2015,7 @@ declare global {
       'api::main-page.main-page': ApiMainPageMainPage;
       'api::news-item.news-item': ApiNewsItemNewsItem;
       'api::news-page.news-page': ApiNewsPageNewsPage;
+      'api::not-found.not-found': ApiNotFoundNotFound;
       'api::partnership-request.partnership-request': ApiPartnershipRequestPartnershipRequest;
       'api::pilot-application-request.pilot-application-request': ApiPilotApplicationRequestPilotApplicationRequest;
       'api::product.product': ApiProductProduct;

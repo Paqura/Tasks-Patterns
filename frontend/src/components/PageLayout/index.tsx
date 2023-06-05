@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import Head from 'next/head'
 import React from 'react'
 
@@ -12,27 +13,33 @@ export type TSeo = {
 }
 
 type TProps = {
-    seo: TSeo
-    headerData: THeaderData
+    seo?: TSeo
+    headerData?: THeaderData
+    className?: string
+    footerClassName?: string
 }
 
 export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
     seo,
     headerData,
     children,
+    className,
+    footerClassName,
 }) => {
     return (
         <div className={styles.layout}>
-            <Head>
-                <title>{seo.title || 'PT Security'}</title>
-                {seo.description && <meta name="description" content={seo.description} />}
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Header data={headerData} />
-            <main className={styles.main}>
+            {seo && (
+                <Head>
+                    <title>{seo.title || 'PT Security'}</title>
+                    {seo.description && <meta name="description" content={seo.description} />}
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+            )}
+            {headerData && <Header data={headerData} />}
+            <main className={cn(styles.main, className)}>
                 {children}
-                <Footer />
+                <Footer className={footerClassName} />
             </main>
         </div>
     )

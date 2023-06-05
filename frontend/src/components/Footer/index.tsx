@@ -73,9 +73,13 @@ const mockFooter = {
 const copyText = '©Positive Technologies 2023'
 const headerTitle = 'Cyber security market leader'
 
-export const Footer = () => {
+type TProps = {
+    className?: string
+}
+
+export const Footer: React.FC<TProps> = ({ className }) => {
     return (
-        <footer className={styles.wrapper}>
+        <footer className={cn(styles.wrapper, className)}>
             <div className={styles.info}>
                 <div className={styles.head}>
                     <Text type="pM" className={styles.copyright}>

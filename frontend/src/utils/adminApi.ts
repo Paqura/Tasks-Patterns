@@ -172,3 +172,8 @@ export const fetchSearchPage = async () => {
     )
     return response.data.data?.attributes
 }
+
+export const fetchNotFound = async () => {
+    const response = await adminClient.get<Response<'api::not-found.not-found'>>(`/api/not-found`)
+    return response.data.data?.attributes
+}
