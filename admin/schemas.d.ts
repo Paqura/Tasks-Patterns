@@ -1742,6 +1742,7 @@ export interface MainAnalyticsBlock extends ComponentSchema {
       RequiredAttribute;
     staisticsCardFifth: ComponentAttribute<'main.statistics-item'> &
       RequiredAttribute;
+    videoBackground: MediaAttribute;
   };
 }
 

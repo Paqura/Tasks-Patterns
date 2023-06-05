@@ -2,6 +2,7 @@ import { GetAttributesValues } from '@admin/general-schemas'
 
 import { TAnalyticBlocksData } from '@/components/HomePage/components/Analytics'
 import { TStatisticsValue } from '@/components/HomePage/components/Analytics/components/Statistics'
+import { mapVideoMediaFile } from '@/utils/serverDataMappers/media'
 
 type TBackendBlockData = Extract<
     Exclude<GetAttributesValues<'api::main-page.main-page'>['blocks'], undefined>[0],
@@ -43,6 +44,7 @@ export const mapAnalyticsBlockServerData = ({
             description: block.statisticsDescription,
             contactWelcomeText: block.contactUsText || '',
             contactButtonText: block.contactUsButtonText || '',
+            videoBackground: mapVideoMediaFile(block.videoBackground),
             first: mapStatisticsCard(block.staisticsCardFirst),
             second: mapStatisticsCard(block.staisticsCardSecond),
             third: mapStatisticsCard(block.staisticsCardThird),

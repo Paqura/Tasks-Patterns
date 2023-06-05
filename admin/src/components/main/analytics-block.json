@@ -80,6 +80,13 @@
       "repeatable": false,
       "component": "main.statistics-item",
       "required": true
+    },
+    "videoBackground": {
+      "allowedTypes": [
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

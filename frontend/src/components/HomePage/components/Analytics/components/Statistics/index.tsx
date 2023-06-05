@@ -8,6 +8,7 @@ import {
     PageSectionCardGridRightColumn,
 } from '@/components/ui/PageSectionCardGrid'
 import { Text } from '@/components/ui/typography/Text'
+import { TVideo } from '@/types'
 import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
 import { StatisticValueCard } from './components/StatisticValueCard'
@@ -23,6 +24,7 @@ export type TStatisticsData = {
     description?: string
     contactWelcomeText: string
     contactButtonText: string
+    videoBackground?: TVideo
     first: TStatisticsValue
     second: TStatisticsValue
     third: TStatisticsValue
@@ -35,9 +37,20 @@ type TProps = {
 }
 
 export const Statistics: React.FC<TProps> = ({ data }) => {
-    const { title, description, contactWelcomeText, contactButtonText } = data
+    const { title, description, contactWelcomeText, contactButtonText, videoBackground } = data
     return (
         <div className={styles.block}>
+            {videoBackground && (
+                <video
+                    className={styles.videoBg}
+                    muted={true}
+                    loop={true}
+                    autoPlay={true}
+                    playsInline={true}
+                    preload="metadata"
+                    src={videoBackground.src}
+                />
+            )}
             <Text type="postscript" className={styles.title}>
                 {title}
             </Text>
