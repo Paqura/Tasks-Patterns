@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 import { Link } from '@/components/ui/Link'
@@ -23,8 +24,11 @@ type TProps = {
 
 export const ProductCard: React.FC<TProps> = ({ className, data }) => {
     const { icon, title, description, href } = data
+    const productUrl = `/products/${href}`
+
+    const router = useRouter()
     return (
-        <div className={cn(styles.card, className)}>
+        <div className={cn(styles.card, className)} onClick={() => router.push(productUrl)}>
             <div className={styles.content}>
                 <div className={styles.icon}>
                     <Image src={icon.src} alt="" width={icon.width} height={icon.height} />
@@ -37,7 +41,7 @@ export const ProductCard: React.FC<TProps> = ({ className, data }) => {
                 </Text>
             </div>
 
-            <Link href={`/products/${href}`} type="m" className={styles.link}>
+            <Link href={productUrl} type="m" className={styles.link}>
                 <span className={styles.linkText}>Read more</span>
             </Link>
         </div>
