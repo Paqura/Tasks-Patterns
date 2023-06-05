@@ -6,6 +6,8 @@
   display: block;
   cursor: pointer;
 
+  color: var(--color-black-ui);
+
   &::before {
     position: absolute;
     right: 0;

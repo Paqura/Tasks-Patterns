@@ -25,7 +25,7 @@
 .searchBlock {
     position: absolute;
     z-index: 1;
-    top: calc(var(--header-height) + 2px);
+    top: var(--header-height);
     right: 0;
     left: 0;
 

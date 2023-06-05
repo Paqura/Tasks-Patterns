@@ -24,10 +24,7 @@ export const NavMobile = ({ items, searchInputPlaceholder, isOpen, onToggle }: I
     return (
         <div className={styles.wrapper}>
             <button className={styles.button} onClick={handleClick}>
-                <Image
-                    src={isOpen ? close : burger}
-                    alt={isOpen ? 'Закрыть меню' : 'Открыть меню'}
-                />
+                <Image src={isOpen ? close : burger} alt={isOpen ? 'Close' : 'Open'} />
             </button>
 
             {isOpen && (
@@ -36,7 +33,11 @@ export const NavMobile = ({ items, searchInputPlaceholder, isOpen, onToggle }: I
 
                     <div className={styles.nav_list}>
                         {items.map((navItem) => (
-                            <NavMobileItem key={navItem.title} navItem={navItem} />
+                            <NavMobileItem
+                                key={navItem.title}
+                                navItem={navItem}
+                                onClick={handleClick}
+                            />
                         ))}
                     </div>
                 </nav>

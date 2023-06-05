@@ -13,9 +13,10 @@ import angle from '/public/images/common/angle.svg'
 
 interface INavMobileItem {
     navItem: TNavItem
+    onClick: () => void
 }
 
-export const NavMobileItem = ({ navItem }: INavMobileItem) => {
+export const NavMobileItem = ({ navItem, onClick }: INavMobileItem) => {
     const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
     const { title, link, subItems } = navItem
 
@@ -31,7 +32,7 @@ export const NavMobileItem = ({ navItem }: INavMobileItem) => {
                     <Text type="pM">{title}</Text>
                     <Image
                         src={angle}
-                        alt={isSubmenuOpen ? 'Свернуть' : 'Развернуть'}
+                        alt={isSubmenuOpen ? 'Close' : 'Open'}
                         className={styles.icon}
                     />
                 </button>
@@ -40,14 +41,14 @@ export const NavMobileItem = ({ navItem }: INavMobileItem) => {
 
         if (link) {
             return (
-                <NextLink href={link} className={styles.nav_item}>
+                <NextLink href={link} className={styles.nav_item} onClick={onClick}>
                     <Text type="pM">{title}</Text>
                 </NextLink>
             )
         }
 
         return <Text type="pM">{title}</Text>
-    }, [isSubmenuOpen, link, isSubItemsExist, title])
+    }, [isSubmenuOpen, link, isSubItemsExist, title, onClick])
 
     return (
         <div className={cn({ [styles.wrapper_open]: isSubmenuOpen })}>

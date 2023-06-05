@@ -14,7 +14,9 @@ export const SubMenuMobile = ({ subItems }: ISubMenuMobile) => {
         <div className={styles.list}>
             {subItems.map((subItem) => (
                 <NextLink key={subItem.title} href={subItem.link} className={styles.list_item}>
-                    <Text type="headerHeading">{subItem.title}</Text>
+                    <Text type="headerHeading" className={styles.title}>
+                        {subItem.title}
+                    </Text>
                     {subItem.description && (
                         <Text type="pS" className={styles.description}>
                             {subItem.description}

@@ -1,4 +1,3 @@
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import React, { MutableRefObject, useRef, useState } from 'react'
 
 import { Logo } from '@/components/ui/Logo'
@@ -26,16 +25,23 @@ export const Header: React.FC<THeaderProps> = ({ data }) => {
     const headerRef = useRef<HTMLElement | null>(null) as MutableRefObject<HTMLElement>
 
     const handleToggleNav = (isOpen: boolean) => {
-        const headerEl = headerRef.current
-        if (headerEl) {
-            isOpen ? disableBodyScroll(headerEl) : enableBodyScroll(headerEl)
-            setIsNavOpen(isOpen)
+        setIsNavOpen(isOpen)
+
+        const element = document.getElementById('main')
+
+        if (element) {
+            element.style.overflowY = isOpen ? 'hidden' : 'auto'
         }
     }
 
     const handleCloseMenu = () => {
-        enableBodyScroll(headerRef.current)
         setIsNavOpen(false)
+
+        const element = document.getElementById('main')
+
+        if (element) {
+            element.style.overflowY = 'auto'
+        }
     }
 
     useOutsideClick(isNavOpen, headerRef, handleCloseMenu)

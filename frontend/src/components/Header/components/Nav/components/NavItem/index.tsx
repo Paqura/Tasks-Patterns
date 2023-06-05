@@ -28,13 +28,20 @@ export const NavItem: React.FC<INavItem> = ({ navItem, onToggle }) => {
         setIsItemActive(false)
     }
 
+    const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        if (isSubItemsExist) {
+            event.preventDefault()
+        }
+    }
+
     return (
         <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <NextLink
                 href={link}
                 className={cn(styles.nav_item, {
-                    [styles.nav_item_active]: isItemActive && isSubItemsExist,
+                    [styles.nav_item_active]: isItemActive,
                 })}
+                onClick={handleClick}
             >
                 <Text type="pM">{title}</Text>
             </NextLink>

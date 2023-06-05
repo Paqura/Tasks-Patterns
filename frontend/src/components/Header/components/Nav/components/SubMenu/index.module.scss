@@ -3,7 +3,7 @@
 .sub_menu {
   position: absolute;
   z-index: 5;
-  top: calc(var(--header-height) + 2px);
+  top: var(--header-height);
   right: 0;
   left: 0;
   padding: 20px 60px;
@@ -14,6 +14,7 @@
 .sub_menu_items {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  row-gap: 12px;
 }
 
 .sub_menu_item {
@@ -40,6 +41,7 @@
 
 .title {
   margin-bottom: 8px;
+  color: var(--color-black-ui);
 }
 
 .description {

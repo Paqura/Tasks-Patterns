@@ -37,7 +37,7 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
                 </Head>
             )}
             {headerData && <Header data={headerData} />}
-            <main className={cn(styles.main, className)}>
+            <main id="main" className={cn(styles.main, className)}>
                 {children}
                 <Footer className={footerClassName} />
             </main>
