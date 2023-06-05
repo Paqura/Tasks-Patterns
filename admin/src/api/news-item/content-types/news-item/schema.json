@@ -47,8 +47,12 @@
         "files"
       ]
     },
-    "articleText": {
-      "type": "richtext"
+    "content": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     },
     "isEvent": {
       "type": "boolean",

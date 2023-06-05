@@ -1,7 +1,7 @@
 @import '../../styles/media';
 
 .wrapper {
-    padding-bottom: 60px;
+    margin-bottom: 60px;
 
     @include media_breakpoint_small_desktop {
         padding-top: 20px;

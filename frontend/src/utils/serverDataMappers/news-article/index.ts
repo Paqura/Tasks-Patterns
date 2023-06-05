@@ -11,7 +11,7 @@ export type TNewsArticleData = {
     date?: Date
     image?: TImage
     href: string
-    articleText: string
+    content: string
     filesTitle: string
     files: TFileData[]
 }
@@ -20,7 +20,7 @@ export const mapNewsArticleServerData = (
     serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
 ): TNewsArticleData => {
     return {
-        articleText: serverArticleData?.articleText ?? '',
+        content: serverArticleData?.content ?? '',
         files: serverArticleData?.files
             ? mapFilesServerData(serverArticleData?.files as MediaAttributeContent<'files', true>)
             : [],

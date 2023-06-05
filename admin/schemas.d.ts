@@ -24,9 +24,9 @@ import {
   UIDAttribute,
   MediaAttribute,
   RichTextAttribute,
+  CustomField,
   DynamicZoneAttribute,
   ComponentSchema,
-  CustomField,
 } from '@strapi/strapi';
 
 export interface AdminPermission extends CollectionTypeSchema {
@@ -1081,7 +1081,13 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     topic: TextAttribute & RequiredAttribute;
     filesTitle: StringAttribute;
     files: MediaAttribute;
-    articleText: RichTextAttribute;
+    content: RichTextAttribute &
+      CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     isEvent: BooleanAttribute & DefaultTo<false>;
     eventDate: DateAttribute;
     eventLink: StringAttribute;
