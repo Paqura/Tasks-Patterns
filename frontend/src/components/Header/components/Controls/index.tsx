@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
 import { Button } from '@/components/Header/components/Controls/components/Button'
@@ -11,10 +12,9 @@ import styles from './index.module.scss'
 type TControlType = 'language' | 'search' | 'help'
 
 type TControlsProps = {
+    searchInputPlaceholder: string
     isMobileMode: boolean
 }
-
-const searchInputPlaceholder = 'Поиск на ptsecurity.com'
 
 /*
 
@@ -23,7 +23,9 @@ const searchInputPlaceholder = 'Поиск на ptsecurity.com'
 
 */
 
-export const Controls: React.FC<TControlsProps> = ({ isMobileMode }) => {
+export const Controls: React.FC<TControlsProps> = ({ searchInputPlaceholder, isMobileMode }) => {
+    const router = useRouter()
+
     const [activeControl, setActiveControl] = useState<TControlType | null>(null)
     const [searchValue, setSearchValue] = useState<string>('')
 
@@ -50,8 +52,18 @@ export const Controls: React.FC<TControlsProps> = ({ isMobileMode }) => {
     const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        // eslint-disable-next-line no-console
-        console.log('Search for:', searchValue)
+        const trimmedSearchValue = searchValue.trim()
+
+        if (trimmedSearchValue.length === 0) {
+            return
+        }
+
+        const searchQuery = encodeURI(trimmedSearchValue)
+
+        router.push({ pathname: '/search', query: { q: searchQuery } })
+
+        setSearchValue('')
+        setActiveControl(null)
     }
 
     const hasExtraPadding = isMobileMode && activeControl !== 'search'

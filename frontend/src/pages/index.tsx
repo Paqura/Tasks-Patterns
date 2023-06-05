@@ -81,8 +81,6 @@ export default function Home(props: TProps) {
             }
         }) || []
 
-    const headerData: THomePageData['header'] = mapHeaderServerData(props.header)
-
     const statistics: THomePageData['analyticsBlock']['statistics'] = {
         first: {
             title: props.mainPage?.statistics?.first?.title || '',
@@ -118,7 +116,7 @@ export default function Home(props: TProps) {
             productsBlock={{ products, clients }}
             analyticsBlock={{ articles, statistics }}
             newsBlock={{ news }}
-            header={headerData}
+            headerData={mapHeaderServerData(props.header)}
             headingBlock={heading}
         />
     )

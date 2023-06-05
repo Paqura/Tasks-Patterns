@@ -165,3 +165,10 @@ export const fetchAnyQuestions = async () => {
     )
     return response.data.data?.attributes
 }
+
+export const fetchSearchPage = async () => {
+    const response = await adminClient.get<Response<'api::search-page.search-page'>>(
+        `/api/search-page`
+    )
+    return response.data.data?.attributes
+}

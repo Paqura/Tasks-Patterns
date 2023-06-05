@@ -2,8 +2,7 @@ import Head from 'next/head'
 import React from 'react'
 
 import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
-import { TNavItem } from '@/types'
+import { Header, THeaderData } from '@/components/Header'
 
 import styles from './index.module.scss'
 
@@ -14,12 +13,12 @@ export type TSeo = {
 
 type TProps = {
     seo: TSeo
-    navItems: TNavItem[]
+    headerData: THeaderData
 }
 
 export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
     seo,
-    navItems,
+    headerData,
     children,
 }) => {
     return (
@@ -30,7 +29,7 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Header navItems={navItems} />
+            <Header data={headerData} />
             <main className={styles.main}>
                 {children}
                 <Footer />

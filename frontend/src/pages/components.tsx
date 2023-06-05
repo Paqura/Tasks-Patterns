@@ -10,7 +10,7 @@ import { Text } from '@/components/ui/typography/Text'
 
 export default function Components() {
     return (
-        <PageLayout seo={{}} navItems={[]}>
+        <PageLayout seo={{}} headerData={{ navItems: [], searchInputPlaceholder: '' }}>
             <h1>The Components page </h1>
             <PageSectionCard>
                 <Heading level={1}>Heading level 1</Heading>

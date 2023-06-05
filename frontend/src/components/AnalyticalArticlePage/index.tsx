@@ -38,7 +38,7 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
     })
 
     return (
-        <PageLayout seo={props.seo} navItems={props.headerData.navItems}>
+        <PageLayout seo={props.seo} headerData={props.headerData}>
             <PageAnchorsContextProvider>
                 <div className={styles.wrapper}>
                     <HeaderArticle

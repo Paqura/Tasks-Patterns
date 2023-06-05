@@ -11,11 +11,12 @@ import close from 'public/images/menu/close.svg'
 
 interface INavMobile {
     items: TNavItem[]
+    searchInputPlaceholder: string
     isOpen: boolean
     onToggle: (isOpen: boolean) => void
 }
 
-export const NavMobile = ({ items, isOpen, onToggle }: INavMobile) => {
+export const NavMobile = ({ items, searchInputPlaceholder, isOpen, onToggle }: INavMobile) => {
     const handleClick = () => {
         onToggle(!isOpen)
     }
@@ -31,7 +32,7 @@ export const NavMobile = ({ items, isOpen, onToggle }: INavMobile) => {
 
             {isOpen && (
                 <nav className={styles.nav}>
-                    <Controls isMobileMode={true} />
+                    <Controls searchInputPlaceholder={searchInputPlaceholder} isMobileMode={true} />
 
                     <div className={styles.nav_list}>
                         {items.map((navItem) => (

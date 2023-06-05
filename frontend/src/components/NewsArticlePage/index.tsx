@@ -18,7 +18,7 @@ export type TNewsArticlePageData = {
 type TNewsArticlePageProps = TNewsArticlePageData
 export default function NewsArticlePage(props: TNewsArticlePageProps) {
     return (
-        <PageLayout seo={props.seo} navItems={props.headerData.navItems}>
+        <PageLayout seo={props.seo} headerData={props.headerData}>
             <NewsArticleHeader
                 image={props?.newsArticleData?.image ?? { src: '' }}
                 title={props.newsArticleData.title}

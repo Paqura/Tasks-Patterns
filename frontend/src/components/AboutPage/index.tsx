@@ -17,7 +17,7 @@ type TAboutPageProps = TAboutPageData
 
 export const AboutPage: React.FC<TAboutPageProps> = (props) => {
     return (
-        <PageLayout seo={props.seo} navItems={props.headerData.navItems}>
+        <PageLayout seo={props.seo} headerData={props.headerData}>
             <HeadingSection data={props.headingSectionData} />
             <ExpertsSection data={props.expertsSectionData} />
             <HistorySection data={props.historySectionData} />

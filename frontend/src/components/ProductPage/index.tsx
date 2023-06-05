@@ -19,7 +19,7 @@ import { TProductData, TSectionCardParams } from './types'
 
 export type TProductPageData = {
     seo: TSeo
-    header: THeaderData
+    headerData: THeaderData
     product: TProductData
     selectProductOptions: TSelectOption<string>[]
     anyQuestions: TAnyQuestionsData
@@ -33,9 +33,9 @@ type TBlocksAcc = {
     anchors: TAnchorLink[]
 }
 export const ProductPage: React.FC<TProductPageProps> = ({
-    product,
-    header,
     seo,
+    headerData,
+    product,
     selectProductOptions,
     anyQuestions,
 }) => {
@@ -140,7 +140,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
     )
 
     return (
-        <PageLayout seo={seo} navItems={header.navItems}>
+        <PageLayout seo={seo} headerData={headerData}>
             <PageAnchorsContextProvider>
                 <Banner
                     title={product.title}

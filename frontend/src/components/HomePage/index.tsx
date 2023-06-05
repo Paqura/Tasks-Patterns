@@ -19,7 +19,7 @@ export type THomePageData = {
     productsBlock: TProductsBlockData
     newsBlock: TNewsBlockData
     analyticsBlock: TAnalyticsBlockData
-    header: THeaderData
+    headerData: THeaderData
 }
 
 export type THomePageProps = THomePageData
@@ -53,7 +53,7 @@ const anchors = [
 
 export const HomePage: React.FC<THomePageProps> = (props) => {
     return (
-        <PageLayout seo={props.seo} navItems={props.header.navItems}>
+        <PageLayout seo={props.seo} headerData={props.headerData}>
             <PageAnchorsContextProvider>
                 <Banner data={props.headingBlock} />
                 <AnchorBar anchors={anchors} />

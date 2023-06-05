@@ -12,9 +12,16 @@ import styles from './index.module.scss'
 
 export type THeaderData = {
     navItems: TNavItem[]
+    searchInputPlaceholder: string
 }
 
-export const Header: React.FC<THeaderData> = ({ navItems }) => {
+type THeaderProps = {
+    data: THeaderData
+}
+
+export const Header: React.FC<THeaderProps> = ({ data }) => {
+    const { navItems, searchInputPlaceholder } = data
+
     const [isNavOpen, setIsNavOpen] = useState(false)
     const headerRef = useRef<HTMLElement | null>(null) as MutableRefObject<HTMLElement>
 
@@ -40,9 +47,18 @@ export const Header: React.FC<THeaderData> = ({ navItems }) => {
             <header ref={headerRef} className={styles.header} id={NAV_ELEMENT_ID}>
                 <Logo href="/" />
                 {isDesktopSmall ? (
-                    <NavMobile items={navItems} isOpen={isNavOpen} onToggle={handleToggleNav} />
+                    <NavMobile
+                        items={navItems}
+                        searchInputPlaceholder={searchInputPlaceholder}
+                        isOpen={isNavOpen}
+                        onToggle={handleToggleNav}
+                    />
                 ) : (
-                    <Nav items={navItems} onToggle={handleToggleNav} />
+                    <Nav
+                        items={navItems}
+                        searchInputPlaceholder={searchInputPlaceholder}
+                        onToggle={handleToggleNav}
+                    />
                 )}
             </header>
         </>

@@ -1,3 +1,5 @@
+import { getMeilisearchPluginConfig } from './meilisearchPluginConfig';
+
 export default ({ env }) => {
   return {
     'import-export-entries': {
@@ -28,25 +30,7 @@ export default ({ env }) => {
       },
     },
     meilisearch: {
-      config: {
-        host: env('MEILISEARCH_HOST'),
-        apiKey: env('MEILISEARCH_APP_KEY'),
-        'analytic-article': {
-          indexName: 'searchable-items',
-          settings: {
-            searchableAttributes: ['title', 'topic']
-          }
-        },
-        'news-item': {
-          indexName: 'searchable-items',
-          settings: {
-            searchableAttributes: ['title', 'topic']
-          }
-        },
-        'product': {
-          indexName: 'searchable-items',
-        }
-      }
+      config: getMeilisearchPluginConfig(env)
     },
     upload: env.bool('S3_ENABLED')
       ? {

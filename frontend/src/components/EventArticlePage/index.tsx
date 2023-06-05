@@ -25,7 +25,7 @@ export type TEventArticlePageData = {
 type TEventArticlePageProps = TEventArticlePageData
 export default function EventArticlePage(props: TEventArticlePageProps) {
     return (
-        <PageLayout seo={props.seo} navItems={props.headerData.navItems}>
+        <PageLayout seo={props.seo} headerData={props.headerData}>
             <NewsArticleHeader
                 image={props?.eventArticleData?.image ?? { src: '' }}
                 title={props.eventArticleData.title}

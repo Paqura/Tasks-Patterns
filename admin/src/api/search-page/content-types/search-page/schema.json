@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "search_pages",
+  "info": {
+    "singularName": "search-page",
+    "pluralName": "search-pages",
+    "displayName": "SearchPage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Search results for",
+      "required": true
+    },
+    "hasNoResultsTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Nothing found for"
+    },
+    "noResultsBlockTitle": {
+      "type": "string",
+      "required": true,
+      "default": "We couldn’t find any matches for"
+    },
+    "noResultsBlockDescription": {
+      "type": "text",
+      "required": true,
+      "default": "Double check your search for any typos or spelling errors – or try a different search term.<br>Also you can navigate directly to our products via footer section of the website."
+    }
+  }
+}

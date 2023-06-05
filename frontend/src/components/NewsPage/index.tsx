@@ -14,7 +14,7 @@ type TNewsPageProps = TNewsPageData
 
 export const NewsPage: React.FC<TNewsPageProps> = (props) => {
     return (
-        <PageLayout seo={props.seo} navItems={props.headerData.navItems}>
+        <PageLayout seo={props.seo} headerData={props.headerData}>
             <HeadingSection data={props.headingSectionData} />
             <ArticlesList data={props.articlesListData} />
         </PageLayout>

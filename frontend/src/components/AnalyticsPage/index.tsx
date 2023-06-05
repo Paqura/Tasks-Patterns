@@ -14,7 +14,7 @@ type TAnalyticsPageProps = TAnalyticsPageData
 
 export const AnalyticsPage: React.FC<TAnalyticsPageProps> = (props) => {
     return (
-        <PageLayout seo={props.seo} navItems={props.headerData.navItems}>
+        <PageLayout seo={props.seo} headerData={props.headerData}>
             <HeadingSection data={props.headingSectionData} />
             <ArticlesList data={props.articlesListData} />
         </PageLayout>

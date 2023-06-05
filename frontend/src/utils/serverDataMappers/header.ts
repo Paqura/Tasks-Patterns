@@ -17,5 +17,6 @@ export const mapHeaderServerData = (
                         link: subItem.link || '/',
                     })) || [],
             })) || [],
+        searchInputPlaceholder: serverHeaderData?.searchInputPlaceholder || '',
     }
 }

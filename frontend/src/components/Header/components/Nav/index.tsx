@@ -6,10 +6,11 @@ import styles from './index.module.scss'
 
 interface INav {
     items: TNavItem[]
+    searchInputPlaceholder: string
     onToggle: (isOpen: boolean) => void
 }
 
-export const Nav = ({ items, onToggle }: INav) => {
+export const Nav = ({ items, searchInputPlaceholder, onToggle }: INav) => {
     return (
         <>
             <nav className={styles.nav}>
@@ -18,7 +19,7 @@ export const Nav = ({ items, onToggle }: INav) => {
                 ))}
             </nav>
 
-            <Controls isMobileMode={false} />
+            <Controls searchInputPlaceholder={searchInputPlaceholder} isMobileMode={false} />
         </>
     )
 }

@@ -1,7 +1,7 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
-import { ProductPage, TProductPageData } from '@/components/ProductPage'
+import { ProductPage } from '@/components/ProductPage'
 import { TProductData } from '@/components/ProductPage/types'
 import {
     fetchAnyQuestions,
@@ -68,7 +68,6 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
 type TProps = TServerSideProps
 
 export default function Product(props: TProps) {
-    const headerData: TProductPageData['header'] = mapHeaderServerData(props.header)
     const anyQuestions = mapAnyQuestionsServerData(props.anyQuestions)
 
     const product: TProductData = mapProductServerData(props.product, props.allProducts)
@@ -77,10 +76,10 @@ export default function Product(props: TProps) {
     return (
         <ProductPage
             seo={props.config?.seo || {}}
-            header={headerData}
+            headerData={mapHeaderServerData(props.header)}
             product={product}
-            anyQuestions={anyQuestions}
             selectProductOptions={selectProductOptions}
+            anyQuestions={anyQuestions}
         />
     )
 }

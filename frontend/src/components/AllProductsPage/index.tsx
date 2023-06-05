@@ -19,7 +19,7 @@ type TAllProductsPageProps = TAllProductsPageData
 
 export const AllProductsPage: React.FC<TAllProductsPageProps> = (props) => {
     return (
-        <PageLayout seo={props.seo} navItems={props.headerData.navItems}>
+        <PageLayout seo={props.seo} headerData={props.headerData}>
             <HeadingSection data={props.headingSectionData} />
             <PageSection>
                 <TypographyTheme theme="dark">

@@ -1001,9 +1001,16 @@ export interface ApiHeaderHeader extends SingleTypeSchema {
     singularName: 'header';
     pluralName: 'headers';
     displayName: 'Header';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
   };
   attributes: {
     navItem: ComponentAttribute<'share.nav-item', true>;
+    searchInputPlaceholder: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Search on ptsecurity.com'>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1079,7 +1086,7 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     eventDate: DateAttribute;
     eventLink: StringAttribute;
     eventYoutubeVideoId: StringAttribute;
-    eventCalendar: MediaAttribute & RequiredAttribute;
+    eventCalendar: MediaAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1234,6 +1241,46 @@ export interface ApiProductProduct extends CollectionTypeSchema {
       PrivateAttribute;
     updatedBy: RelationAttribute<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiSearchPageSearchPage extends SingleTypeSchema {
+  info: {
+    singularName: 'search-page';
+    pluralName: 'search-pages';
+    displayName: 'SearchPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Search results for'>;
+    hasNoResultsTitle: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Nothing found for'>;
+    noResultsBlockTitle: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'We couldn\u2019t find any matches for'>;
+    noResultsBlockDescription: TextAttribute &
+      RequiredAttribute &
+      DefaultTo<'Double check your search for any typos or spelling errors \u2013 or try a different search term.<br>Also you can navigate directly to our products via footer section of the website.'>;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::search-page.search-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::search-page.search-page',
       'oneToOne',
       'admin::user'
     > &
@@ -1772,6 +1819,7 @@ declare global {
       'api::partnership-request.partnership-request': ApiPartnershipRequestPartnershipRequest;
       'api::pilot-application-request.pilot-application-request': ApiPilotApplicationRequestPilotApplicationRequest;
       'api::product.product': ApiProductProduct;
+      'api::search-page.search-page': ApiSearchPageSearchPage;
       'api::webinar-config.webinar-config': ApiWebinarConfigWebinarConfig;
       'api::webinar-request.webinar-request': ApiWebinarRequestWebinarRequest;
       'about.achievements-item': AboutAchievementsItem;

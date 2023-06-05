@@ -4,7 +4,11 @@
   "info": {
     "singularName": "header",
     "pluralName": "headers",
-    "displayName": "Header"
+    "displayName": "Header",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -12,6 +16,11 @@
       "type": "component",
       "repeatable": true,
       "component": "share.nav-item"
+    },
+    "searchInputPlaceholder": {
+      "type": "string",
+      "default": "Search on ptsecurity.com",
+      "required": true
     }
   }
 }
