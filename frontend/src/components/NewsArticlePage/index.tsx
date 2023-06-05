@@ -1,3 +1,4 @@
+import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { TNewsArticleData } from '@/utils/serverDataMappers/news-article'
 
 import styles from './index.module.scss'
@@ -14,6 +15,7 @@ export type TNewsArticlePageData = {
     seo: TSeo
     headerData: THeaderData
     newsArticleData: TNewsArticleData
+    anyQuestions: TAnyQuestionsData
 }
 type TNewsArticlePageProps = TNewsArticlePageData
 export default function NewsArticlePage(props: TNewsArticlePageProps) {
@@ -42,6 +44,7 @@ export default function NewsArticlePage(props: TNewsArticlePageProps) {
                     </div>
                 </div>
             </PageSectionCard>
+            <AnyQuestions anyQuestionData={props.anyQuestions} />
         </PageLayout>
     )
 }

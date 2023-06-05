@@ -10,7 +10,9 @@ import {
     fetchNews,
     fetchHeader,
     fetchProducts,
+    fetchAnyQuestions,
 } from '@/utils/adminApi'
+import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapMainPageServerData } from '@/utils/serverDataMappers/home'
 
@@ -22,11 +24,12 @@ export type TServerSideProps = {
     header?: GetAttributesValues<'api::header.header'>
     articles?: GetAttributesValues<'api::analytic-article.analytic-article'>[]
     mainPage?: GetAttributesValues<'api::main-page.main-page'>
+    anyQuestions?: GetAttributesValues<'api::any-question.any-question'>
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
-    const [config, products, clients, { news }, header, { articles }, mainPage] = await Promise.all(
-        [
+    const [config, products, clients, { news }, header, { articles }, mainPage, anyQuestions] =
+        await Promise.all([
             fetchConfig(),
             fetchProducts(),
             fetchClients(),
@@ -34,8 +37,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
             fetchHeader(),
             fetchArticles(),
             fetchMainPage(),
-        ]
-    )
+            fetchAnyQuestions(),
+        ])
 
     return {
         props: {
@@ -46,6 +49,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
             header,
             articles,
             mainPage,
+            anyQuestions,
         },
     }
 }
@@ -61,12 +65,15 @@ export default function Home(props: TProps) {
         news: props.news || [],
     })
 
+    const anyQuestions = mapAnyQuestionsServerData(props.anyQuestions, props.products)
+
     return (
         <HomePage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
             headingBlock={headingBlock}
             blocks={blocks}
+            anyQuestions={anyQuestions}
         />
     )
 }

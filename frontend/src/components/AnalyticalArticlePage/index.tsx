@@ -2,11 +2,13 @@ import React from 'react'
 
 import { Aside, TTitleTableOfContent } from '@/components/AnalyticalArticlePage/components/Aside'
 import { AnchorBar } from '@/components/AnchorBar'
+import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import HeaderArticle from '@/components/HeaderArticle'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Text } from '@/components/ui/typography/Text'
 import { PageAnchorsContextProvider } from '@/utils/anchors'
+import { CONTACTS_SECTION_ID } from '@/utils/constants'
 import { formatDate } from '@/utils/date'
 import { useIsDesktopSmall } from '@/utils/hooks'
 
@@ -21,6 +23,7 @@ export type TAnalitycArticlePageData = {
     seo: TSeo
     headerData: THeaderData
     analyticArticleData: TAnalitycArticleData
+    anyQuestions: TAnyQuestionsData
 }
 type TAnalitycArticlePageProps = TAnalitycArticlePageData
 
@@ -77,6 +80,10 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
                         </div>
                     </PageSectionCard>
                 </div>
+                <AnyQuestions
+                    sectionId={CONTACTS_SECTION_ID}
+                    anyQuestionData={props.anyQuestions}
+                />
             </PageAnchorsContextProvider>
         </PageLayout>
     )

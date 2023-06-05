@@ -12,10 +12,7 @@ import {
 } from '@/utils/adminApi'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import {
-    getSelectProductOptionsServerData,
-    mapProductServerData,
-} from '@/utils/serverDataMappers/product'
+import { mapProductServerData } from '@/utils/serverDataMappers/product'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
@@ -68,17 +65,18 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
 type TProps = TServerSideProps
 
 export default function Product(props: TProps) {
-    const anyQuestions = mapAnyQuestionsServerData(props.anyQuestions)
+    const anyQuestions = mapAnyQuestionsServerData(props.anyQuestions, [
+        props.product,
+        ...(props.allProducts || []),
+    ])
 
     const product: TProductData = mapProductServerData(props.product, props.allProducts)
-    const selectProductOptions = getSelectProductOptionsServerData(props.product, props.allProducts)
 
     return (
         <ProductPage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
             product={product}
-            selectProductOptions={selectProductOptions}
             anyQuestions={anyQuestions}
         />
     )

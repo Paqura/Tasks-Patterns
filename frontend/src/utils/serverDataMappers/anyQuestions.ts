@@ -1,11 +1,14 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 
 import { TAnyQuestionsData } from '@/components/AnyQuestions'
+import { getSelectProductOptionsServerData } from '@/utils/serverDataMappers/product'
 
 export const mapAnyQuestionsServerData = (
-    serverData?: GetAttributesValues<'api::any-question.any-question'>
+    serverData?: GetAttributesValues<'api::any-question.any-question'>,
+    products?: GetAttributesValues<'api::product.product'>[]
 ): TAnyQuestionsData => {
     return {
+        selectProductOptions: getSelectProductOptionsServerData(products),
         title: serverData?.title || '',
         description: serverData?.description || '',
         feedback: {

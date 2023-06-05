@@ -2,7 +2,6 @@ import { AnchorBar, TAnchorLink } from '@/components/AnchorBar'
 import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { THeaderData } from '@/components/Header'
 import { PageLayout, TSeo } from '@/components/PageLayout'
-import { TSelectOption } from '@/components/ui/Select'
 import { PageAnchorsContextProvider } from '@/utils/anchors'
 import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
@@ -21,7 +20,6 @@ export type TProductPageData = {
     seo: TSeo
     headerData: THeaderData
     product: TProductData
-    selectProductOptions: TSelectOption<string>[]
     anyQuestions: TAnyQuestionsData
 }
 
@@ -36,7 +34,6 @@ export const ProductPage: React.FC<TProductPageProps> = ({
     seo,
     headerData,
     product,
-    selectProductOptions,
     anyQuestions,
 }) => {
     const getAnchorLink = (
@@ -154,7 +151,6 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                 <AnyQuestions
                     selectedProduct={product.title}
                     sectionId={CONTACTS_SECTION_ID}
-                    selectProductOptions={selectProductOptions}
                     anyQuestionData={anyQuestions}
                 />
             </PageAnchorsContextProvider>

@@ -21,22 +21,22 @@ export type TAnyQuestionsData = {
     feedback: TCommonFormData
     partnership: TCommonFormData
     pilotApplication: TCommonFormData
+    selectProductOptions: TSelectProductOptions
 }
 
 type TAnyQuestionsProps = {
     sectionId?: string
     selectedProduct?: string
-    selectProductOptions: TSelectProductOptions
     anyQuestionData: TAnyQuestionsData
 }
 
 export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
     sectionId,
     selectedProduct,
-    selectProductOptions,
     anyQuestionData,
 }) => {
-    const { title, description, feedback, partnership, pilotApplication } = anyQuestionData
+    const { title, description, feedback, partnership, pilotApplication, selectProductOptions } =
+        anyQuestionData
     const [tab, setTab] = useState<TTypeForm>('feedback')
 
     return (

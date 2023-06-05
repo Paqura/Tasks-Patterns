@@ -98,10 +98,9 @@ export const mapProductServerData = (
 }
 
 export const getSelectProductOptionsServerData = (
-    productData: GetAttributesValues<'api::product.product'>,
     products?: GetAttributesValues<'api::product.product'>[]
 ): TSelectOption<string>[] => {
-    return [productData, ...(products || [])].map(({ title }) => ({
+    return (products || []).map(({ title }) => ({
         value: title || '',
         label: title || '',
     }))

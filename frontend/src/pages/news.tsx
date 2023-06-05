@@ -2,7 +2,15 @@ import { GetAttributesValues, CollectionMetadata } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
 import { NewsPage, TNewsPageData } from '@/components/NewsPage'
-import { fetchHeader, fetchConfig, fetchNews, fetchNewsPage } from '@/utils/adminApi'
+import {
+    fetchHeader,
+    fetchConfig,
+    fetchNews,
+    fetchNewsPage,
+    fetchProducts,
+    fetchAnyQuestions,
+} from '@/utils/adminApi'
+import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
@@ -12,17 +20,22 @@ export type TServerSideProps = {
     newsPage?: GetAttributesValues<'api::news-page.news-page'>
     news?: GetAttributesValues<'api::news-item.news-item'>[]
     pagination: CollectionMetadata['pagination']
+    products?: GetAttributesValues<'api::product.product'>[]
+    anyQuestions?: GetAttributesValues<'api::any-question.any-question'>
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({ query }) => {
     const page = Number(query.page) || 1
 
-    const [config, header, newsPage, { news, pagination }] = await Promise.all([
-        fetchConfig(),
-        fetchHeader(),
-        fetchNewsPage(),
-        fetchNews(page),
-    ])
+    const [config, header, newsPage, { news, pagination }, products, anyQuestions] =
+        await Promise.all([
+            fetchConfig(),
+            fetchHeader(),
+            fetchNewsPage(),
+            fetchNews(page),
+            fetchProducts(),
+            fetchAnyQuestions(),
+        ])
 
     if (pagination.page > pagination.pageCount) {
         return {
@@ -41,6 +54,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
             newsPage,
             news,
             pagination,
+            products,
+            anyQuestions,
         },
     }
 }
@@ -66,12 +81,15 @@ export default function News(props: TProps) {
             }
         }) || []
 
+    const anyQuestions = mapAnyQuestionsServerData(props.anyQuestions, props.products)
+
     return (
         <NewsPage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
             headingSectionData={headingSection}
             articlesListData={{ articles, pagination: props.pagination }}
+            anyQuestions={anyQuestions}
         />
     )
 }

@@ -1,3 +1,4 @@
+import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { THeaderData } from '@/components/Header'
 import { HeadingSection, THeadingSectionData } from '@/components/HeadingSection'
 import { PageLayout, TSeo } from '@/components/PageLayout'
@@ -13,7 +14,9 @@ export type TAboutPageData = {
     historySectionData: THistorySectionData
 }
 
-type TAboutPageProps = TAboutPageData
+type TAboutPageProps = {
+    anyQuestions: TAnyQuestionsData
+} & TAboutPageData
 
 export const AboutPage: React.FC<TAboutPageProps> = (props) => {
     return (
@@ -21,6 +24,7 @@ export const AboutPage: React.FC<TAboutPageProps> = (props) => {
             <HeadingSection data={props.headingSectionData} />
             <ExpertsSection data={props.expertsSectionData} />
             <HistorySection data={props.historySectionData} />
+            <AnyQuestions anyQuestionData={props.anyQuestions} />
         </PageLayout>
     )
 }

@@ -1,3 +1,4 @@
+import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { THeaderData } from '@/components/Header'
 import { HeadingSection, THeadingSectionData } from '@/components/HeadingSection'
 import { PageLayout, TSeo } from '@/components/PageLayout'
@@ -13,6 +14,7 @@ export type TAllProductsPageData = {
     headerData: THeaderData
     headingSectionData: THeadingSectionData
     products: TProductCard[]
+    anyQuestions: TAnyQuestionsData
 }
 
 type TAllProductsPageProps = TAllProductsPageData
@@ -36,6 +38,7 @@ export const AllProductsPage: React.FC<TAllProductsPageProps> = (props) => {
                     </CardsSlider>
                 </TypographyTheme>
             </PageSection>
+            <AnyQuestions anyQuestionData={props.anyQuestions} />
         </PageLayout>
     )
 }
