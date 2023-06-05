@@ -21,26 +21,31 @@ type TProps = {
 
 export const ImagesSlider: React.FC<TProps> = ({ className, slides, scrollAreaClassName }) => {
     const [controlledSwiper, setControlledSwiper] = useState<SwiperClass | null>(null)
+    const [activeSlideIndex, setActiveSlideIndex] = useState<number>(0)
 
     return (
         <div className={cn(styles.slider, className)}>
-            <div className={styles.controlsBlock}>
-                <SliderButtons
-                    className={styles.moveButtons}
-                    disableLeft={false}
-                    disableRight={false}
-                    onLeftClick={() => controlledSwiper?.slidePrev()}
-                    onRightClick={() => controlledSwiper?.slideNext()}
-                />
-            </div>
+            {slides.length > 1 && (
+                <div className={styles.controlsBlock}>
+                    <SliderButtons
+                        className={styles.moveButtons}
+                        disableLeft={activeSlideIndex === 0}
+                        disableRight={activeSlideIndex >= slides.length - 1}
+                        onLeftClick={() => controlledSwiper?.slidePrev()}
+                        onRightClick={() => controlledSwiper?.slideNext()}
+                    />
+                </div>
+            )}
             <div className={scrollAreaClassName}>
                 <Swiper
-                    spaceBetween={20}
                     slidesPerView={1.4}
                     centeredSlides={true}
                     direction="horizontal"
                     onSwiper={setControlledSwiper}
                     modules={[Controller]}
+                    onActiveIndexChange={(swiper) => {
+                        setActiveSlideIndex(swiper.activeIndex)
+                    }}
                 >
                     {slides.map(({ image, caption }, index) => (
                         <SwiperSlide key={index}>

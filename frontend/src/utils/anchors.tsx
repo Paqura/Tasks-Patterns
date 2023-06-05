@@ -17,7 +17,7 @@ export const PageAnchorsContextProvider: React.FC<React.PropsWithChildren> = ({ 
     const [activeLink, setActiveLink] = useState<string | null>(null)
 
     const api = useRef<TAnchorsContextValue['api']>({
-        watchSectionInViewport: (anchor, ref, threshold = 0.55) => {
+        watchSectionInViewport: (anchor, ref, threshold = 0.35) => {
             if (ref.current) {
                 let observer = new IntersectionObserver(
                     (entries) => {

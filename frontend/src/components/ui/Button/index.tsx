@@ -13,6 +13,7 @@ interface IButton {
     type?: 'button' | 'reset' | 'submit'
     link?: string
     size?: 'm' | 's'
+    withIcon?: boolean
     className?: string
     onClick?: React.MouseEventHandler
     download?: boolean
@@ -22,6 +23,7 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
     type = 'button',
     link,
     size = 'm',
+    withIcon = true,
     className,
     children,
     onClick,
@@ -40,7 +42,9 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
         return (
             <>
                 {children}
-                {size === 'm' && <Image className={styles.arrow} src={arrowIcon} alt="" />}
+                {size === 'm' && withIcon && (
+                    <Image className={styles.arrow} src={arrowIcon} alt="" />
+                )}
             </>
         )
     }

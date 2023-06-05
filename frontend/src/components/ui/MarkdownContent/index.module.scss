@@ -44,8 +44,8 @@
         ol {
             margin-bottom: 16px;
 
-            @include text_type_pM;
-            @include text_theme_light_pM;
+            @include text_type_pL;
+            color: var(--color-black-ui);
         }
 
         blockquote {
@@ -67,7 +67,6 @@
         table {
             max-width: 100%;
             border-collapse: collapse;
-            
         }
 
         td,

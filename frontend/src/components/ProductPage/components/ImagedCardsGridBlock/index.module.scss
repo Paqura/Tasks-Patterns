@@ -4,7 +4,7 @@
 .cardsListScrollArea {
     @include subsection-above-offset;
 
-    @include media_breakpoint_mobile {
+    @include media_breakpoint_small_desktop {
         @include include-section-card-horizontal-paddings;
     }
 }
@@ -16,15 +16,25 @@
     list-style: none;
     gap: 20px;
 
-    @include media_breakpoint_mobile {
+    @include media_breakpoint_small_desktop {
         display: flex;
+        width: fit-content;
+        grid-auto-columns: minmax(360px, max-content);
         gap: 12px;
+    }
+
+    @include media_breakpoint_small_desktop {
+        grid-auto-columns: minmax(244px, max-content);
     }
 }
 
 .cardsListItem {
     position: relative;
     display: block;
+
+    @include media_breakpoint_small_desktop {
+        min-width: 360px;
+    }
 
     @include media_breakpoint_mobile {
         min-width: 244px;

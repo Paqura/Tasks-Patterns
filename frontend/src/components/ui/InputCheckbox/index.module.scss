@@ -9,6 +9,11 @@
   cursor: pointer;
   user-select: none;
   align-items: center;
+
+  a {
+    text-decoration: underline;
+    color: inherit;
+  }
 }
 
 .checkboxLabel::before {

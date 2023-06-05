@@ -33,7 +33,7 @@ export const FilesBlock: React.FC<TProps> = ({ data, sectionId, number }) => {
                 number={number}
             />
             <PageSectionCardGrid>
-                <PageSectionCardGridRightColumn>
+                <PageSectionCardGridRightColumn className={styles.listColumn}>
                     <CardsSlider hideControls scrollAreaClassName={styles.listScrollArea}>
                         <ul className={styles.list}>
                             {data.files.map((file, index) => (

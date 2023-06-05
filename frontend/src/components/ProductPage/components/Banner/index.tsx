@@ -30,7 +30,7 @@ export const Banner: React.FC<TProps> = ({ title, subtitle, logo, bannerImage })
                         </Text>
                     )}
                     <Button className={styles.contactBtn} link={`#${CONTACTS_SECTION_ID}`}>
-                        Contact us
+                        Order pilot now
                     </Button>
                 </TypographyTheme>
             </div>

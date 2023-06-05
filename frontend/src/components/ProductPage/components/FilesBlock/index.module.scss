@@ -11,10 +11,16 @@
     }
 }
 
+.listColumn {
+    @include media_breakpoint_small_desktop {
+        grid-column: 1 / span 12
+    }
+}
+
 .listScrollArea {
     @include subsection-above-offset;
 
-    @include media_breakpoint_mobile {
+    @include media_breakpoint_small_desktop {
         @include include-section-card-horizontal-paddings;
     }
 }
@@ -28,5 +34,6 @@
     @include media_breakpoint_small_desktop {
         display: flex;
         gap: 12px;
+        width: fit-content;
     }
 }

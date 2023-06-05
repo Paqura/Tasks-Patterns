@@ -55,7 +55,12 @@ export const LoadMore: React.FC<React.PropsWithChildren<TProps>> = ({
             {children}
             {showCutter && isCutted && (
                 <div className={cn(styles.cutter, cutterClassName)}>
-                    <Button className={styles.button} size="s" onClick={() => setIsCutted(false)}>
+                    <Button
+                        className={styles.button}
+                        size="m"
+                        withIcon={false}
+                        onClick={() => setIsCutted(false)}
+                    >
                         Load more
                     </Button>
                 </div>

@@ -30,12 +30,13 @@
     list-style: none;
     gap: 20px;
 
-    @include media_breakpoint_normal_desktop {
+    @include media_breakpoint_small_desktop {
         gap: 12px;
     }
 
     @include media_breakpoint_mobile {
-        display: flex;
+        width: fit-content;
+        grid-auto-columns: minmax(244px, max-content);
     }
 }
 
@@ -64,10 +65,11 @@
 
 .statisticsList {
     display: flex;
+    width: fit-content;
     list-style: none;
     gap: 20px;
 
-    @include media_breakpoint_normal_desktop {
+    @include media_breakpoint_small_desktop {
         gap: 12px;
     }
 
