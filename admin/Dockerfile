@@ -1,6 +1,6 @@
 FROM node:18-alpine as build
 
-RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
+RUN apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev
 
 WORKDIR /opt/
 
@@ -27,7 +27,10 @@ COPY --from=build /opt/package.json /opt/yarn.lock ./
 
 ENV PATH /opt/app/node_modules/.bin:$PATH
 
-RUN yarn install --production --frozen-lockfile && yarn cache clean
+RUN apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev --virtual .build-deps && \
+    yarn install --production --frozen-lockfile && \
+    yarn cache clean && \
+    apk del .build-deps
 
 COPY --from=build /opt/app ./
 
