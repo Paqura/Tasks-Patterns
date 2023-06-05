@@ -15,12 +15,12 @@ export type TToolsBlockData = TWithSectionParams<{
     trainingCard: TToolCard
 }>
 
-export const Tools: React.FC<{ data: TToolsBlockData }> = ({ data }) => {
+export const Tools: React.FC<{ data: TToolsBlockData; number: number }> = ({ data, number }) => {
     const { title, description, assessmentCard, complianceCard, monitoringCard, trainingCard } =
         data
     return (
         <PageSectionCard mode="light" sectionId="tools">
-            <PageSectionCardHeader title={title} description={description} />
+            <PageSectionCardHeader title={title} description={description} number={number} />
             <CardsSlider scrollAreaClassName={styles.toolsList}>
                 <ToolCard type="assessment" data={assessmentCard} />
                 <ToolCard type="compliance" data={complianceCard} />

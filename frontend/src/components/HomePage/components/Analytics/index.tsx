@@ -17,14 +17,15 @@ export type TAnalyticBlocksData = TWithSectionParams<{
 }>
 
 type TProps = {
+    number: number
     data: TAnalyticBlocksData
 }
 
-export const Analytics: React.FC<TProps> = ({ data }) => {
+export const Analytics: React.FC<TProps> = ({ data, number }) => {
     const { title, description, sectionId, articles, statistics } = data
     return (
         <PageSectionCard mode="light" className={styles.block} sectionId={sectionId}>
-            <PageSectionCardHeader title={title} description={description} />
+            <PageSectionCardHeader title={title} description={description} number={number} />
             <div className={styles.articlesList}>
                 <Image src={backgroundIcon} alt="" className={styles.background} />
                 <Articles data={articles} />

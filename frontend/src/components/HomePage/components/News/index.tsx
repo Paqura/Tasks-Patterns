@@ -15,14 +15,15 @@ export type TNewsBlockData = TWithSectionParams<{
 }>
 
 type TProps = {
+    number: number
     data: TNewsBlockData
 }
 
-export const News: React.FC<TProps> = ({ data }) => {
+export const News: React.FC<TProps> = ({ data, number }) => {
     const { title, description, allNewsLinkText, news } = data
     return (
         <PageSectionCard sectionId="news">
-            <PageSectionCardHeader title={title} description={description} />
+            <PageSectionCardHeader title={title} description={description} number={number} />
             <CardsSlider
                 controls={
                     <Link type="s" href={'/news'}>

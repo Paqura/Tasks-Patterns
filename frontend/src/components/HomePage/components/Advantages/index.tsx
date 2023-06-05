@@ -18,7 +18,10 @@ export type TAdvantagesBlockData = TWithSectionParams<{
     solutionsCard: TAdvantageCard
 }>
 
-export const Advantages: React.FC<{ data: TAdvantagesBlockData }> = ({ data }) => {
+export const Advantages: React.FC<{ data: TAdvantagesBlockData; number: number }> = ({
+    data,
+    number,
+}) => {
     const {
         title,
         description,
@@ -32,7 +35,7 @@ export const Advantages: React.FC<{ data: TAdvantagesBlockData }> = ({ data }) =
     } = data
     return (
         <PageSectionCard mode="dark" sectionId={sectionId}>
-            <PageSectionCardHeader title={title} description={description} />
+            <PageSectionCardHeader title={title} description={description} number={number} />
 
             <CardsSlider hideControls scrollAreaClassName={styles.advantagesList}>
                 <AdvantageCard data={expertiseCard} type="expertise" />

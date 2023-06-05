@@ -66,23 +66,23 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
         (acc, block, index) => {
             switch (block.type) {
                 case 'advantages':
-                    acc.blocks.push(<Advantages key={index} data={block.data} />)
+                    acc.blocks.push(<Advantages key={index} data={block.data} number={index + 1} />)
                     acc.anchors.push(getAnchorLink(block))
                     break
                 case 'tools':
-                    acc.blocks.push(<Tools key={index} data={block.data} />)
+                    acc.blocks.push(<Tools key={index} data={block.data} number={index + 1} />)
                     acc.anchors.push(getAnchorLink(block))
                     break
                 case 'products':
-                    acc.blocks.push(<Products key={index} data={block.data} />)
+                    acc.blocks.push(<Products key={index} data={block.data} number={index + 1} />)
                     acc.anchors.push(getAnchorLink(block))
                     break
                 case 'analytics':
-                    acc.blocks.push(<Analytics key={index} data={block.data} />)
+                    acc.blocks.push(<Analytics key={index} data={block.data} number={index + 1} />)
                     acc.anchors.push(getAnchorLink(block))
                     break
                 case 'news':
-                    acc.blocks.push(<News key={index} data={block.data} />)
+                    acc.blocks.push(<News key={index} data={block.data} number={index + 1} />)
                     acc.anchors.push(getAnchorLink(block))
                     break
                 default:

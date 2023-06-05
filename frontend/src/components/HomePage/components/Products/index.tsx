@@ -17,15 +17,16 @@ export type TProductsBlockData = TWithSectionParams<{
 }>
 
 type TProps = {
+    number: number
     data: TProductsBlockData
 }
 
-export const Products: React.FC<TProps> = ({ data }) => {
+export const Products: React.FC<TProps> = ({ data, number }) => {
     const { sectionId, title, description, allProductsLinkText, products, clients } = data
 
     return (
         <PageSectionCard mode="dark" sectionId={sectionId}>
-            <PageSectionCardHeader title={title} description={description} />
+            <PageSectionCardHeader title={title} description={description} number={number} />
             <CardsSlider
                 className={styles.productsList}
                 scrollAreaClassName={styles.productsScrollArea}
