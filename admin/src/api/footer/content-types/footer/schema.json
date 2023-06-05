@@ -1,0 +1,43 @@
+{
+  "kind": "singleType",
+  "collectionName": "footers",
+  "info": {
+    "singularName": "footer",
+    "pluralName": "footers",
+    "displayName": "Footer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Cyber security market leader"
+    },
+    "copyright": {
+      "type": "string",
+      "default": "©Positive Technologies 2023",
+      "required": true
+    },
+    "productsTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Products"
+    },
+    "company": {
+      "type": "component",
+      "repeatable": false,
+      "component": "footer.nav-block",
+      "required": true
+    },
+    "social": {
+      "type": "component",
+      "repeatable": false,
+      "component": "footer.nav-block",
+      "required": true
+    }
+  }
+}

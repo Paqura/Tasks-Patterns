@@ -1,3 +1,4 @@
+import { TFooterData } from '@/components/Footer'
 import { TEventArticleData, TEventConfigData } from '@/utils/serverDataMappers/event-article'
 
 import styles from './index.module.scss'
@@ -16,6 +17,7 @@ export type TEventArticlePageData = {
     slug: string
     seo: TSeo
     headerData: THeaderData
+    footerData: TFooterData
     eventArticleData: TEventArticleData
     eventConfigData?: TEventConfigData
     eventVideo?: string
@@ -25,7 +27,7 @@ export type TEventArticlePageData = {
 type TEventArticlePageProps = TEventArticlePageData
 export default function EventArticlePage(props: TEventArticlePageProps) {
     return (
-        <PageLayout seo={props.seo} headerData={props.headerData}>
+        <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
             <NewsArticleHeader
                 image={props?.eventArticleData?.image ?? { src: '' }}
                 title={props.eventArticleData.title}

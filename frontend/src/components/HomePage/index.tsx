@@ -1,5 +1,6 @@
 import { AnchorBar, TAnchorLink } from '@/components/AnchorBar'
 import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
+import { TFooterData } from '@/components/Footer'
 import { THeaderData } from '@/components/Header'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 import { TWithSectionParams } from '@/types'
@@ -39,8 +40,9 @@ export type THomePageData = {
     seo: TSeo
     headingBlock: TBannerData
     headerData: THeaderData
+    footerData: TFooterData
     blocks: THomePageBlocksData[]
-    anyQuestions: TAnyQuestionsData
+    anyQuestionsData: TAnyQuestionsData
 }
 
 export type THomePageProps = THomePageData
@@ -95,14 +97,14 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
 
     const anchors = [...blocksAcc.anchors, contactsAcnhor]
     return (
-        <PageLayout seo={props.seo} headerData={props.headerData}>
+        <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
             <PageAnchorsContextProvider>
                 <Banner data={props.headingBlock} />
                 <AnchorBar anchors={anchors} />
                 {blocksAcc.blocks}
                 <AnyQuestions
                     sectionId={CONTACTS_SECTION_ID}
-                    anyQuestionData={props.anyQuestions}
+                    anyQuestionData={props.anyQuestionsData}
                 />
             </PageAnchorsContextProvider>
         </PageLayout>

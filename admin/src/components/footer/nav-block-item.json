@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_footer_nav_block_items",
+  "info": {
+    "displayName": "NavBlockItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

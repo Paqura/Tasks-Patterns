@@ -26,7 +26,7 @@ const mapHistoryItemServerData = (
     }
 }
 
-type TReducedAboutPageData = Omit<TAboutPageData, 'seo' | 'headerData'>
+type TReducedAboutPageData = Omit<TAboutPageData, 'seo' | 'headerData' | 'footerData'>
 
 export const mapAboutPageServerData = (
     serverAboutPageData?: GetAttributesValues<'api::about-page.about-page'>

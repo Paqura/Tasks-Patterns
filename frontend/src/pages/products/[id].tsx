@@ -6,11 +6,13 @@ import { TProductData } from '@/components/ProductPage/types'
 import {
     fetchAnyQuestions,
     fetchConfig,
+    fetchFooter,
     fetchHeader,
     fetchProduct,
     fetchProducts,
 } from '@/utils/adminApi'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapProductServerData } from '@/utils/serverDataMappers/product'
 
@@ -20,6 +22,7 @@ export type TServerSideProps = {
     product: GetAttributesValues<'api::product.product'>
     anyQuestions?: GetAttributesValues<'api::any-question.any-question'>
     allProducts?: GetAttributesValues<'api::product.product'>[]
+    footer?: GetAttributesValues<'api::footer.footer'>
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: string }> = async ({
@@ -43,6 +46,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
             },
         }),
         fetchAnyQuestions(),
+        fetchFooter(),
     ])
 
     if (!product) {
@@ -65,10 +69,9 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
 type TProps = TServerSideProps
 
 export default function Product(props: TProps) {
-    const anyQuestions = mapAnyQuestionsServerData(props.anyQuestions, [
-        props.product,
-        ...(props.allProducts || []),
-    ])
+    const products = [props.product, ...(props.allProducts || [])]
+    const anyQuestionsData = mapAnyQuestionsServerData(props.anyQuestions, products)
+    const footerData = mapFooterServerData(props.footer, products)
 
     const product: TProductData = mapProductServerData(props.product, props.allProducts)
 
@@ -76,8 +79,9 @@ export default function Product(props: TProps) {
         <ProductPage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
+            footerData={footerData}
             product={product}
-            anyQuestions={anyQuestions}
+            anyQuestionsData={anyQuestionsData}
         />
     )
 }

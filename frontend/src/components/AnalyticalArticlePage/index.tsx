@@ -3,6 +3,7 @@ import React from 'react'
 import { Aside, TTitleTableOfContent } from '@/components/AnalyticalArticlePage/components/Aside'
 import { AnchorBar } from '@/components/AnchorBar'
 import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
+import { TFooterData } from '@/components/Footer'
 import HeaderArticle from '@/components/HeaderArticle'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
@@ -22,8 +23,9 @@ import HelpfulFiles from 'src/components/HelpfulFiles'
 export type TAnalitycArticlePageData = {
     seo: TSeo
     headerData: THeaderData
+    footerData: TFooterData
     analyticArticleData: TAnalitycArticleData
-    anyQuestions: TAnyQuestionsData
+    anyQuestionsData: TAnyQuestionsData
 }
 type TAnalitycArticlePageProps = TAnalitycArticlePageData
 
@@ -41,7 +43,7 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
     })
 
     return (
-        <PageLayout seo={props.seo} headerData={props.headerData}>
+        <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
             <PageAnchorsContextProvider>
                 <div className={styles.wrapper}>
                     <HeaderArticle
@@ -82,7 +84,7 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
                 </div>
                 <AnyQuestions
                     sectionId={CONTACTS_SECTION_ID}
-                    anyQuestionData={props.anyQuestions}
+                    anyQuestionData={props.anyQuestionsData}
                 />
             </PageAnchorsContextProvider>
         </PageLayout>

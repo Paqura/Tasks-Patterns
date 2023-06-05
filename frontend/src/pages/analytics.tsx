@@ -9,8 +9,10 @@ import {
     fetchAnalyticsPage,
     fetchProducts,
     fetchAnyQuestions,
+    fetchFooter,
 } from '@/utils/adminApi'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 
 export type TServerSideProps = {
@@ -21,20 +23,29 @@ export type TServerSideProps = {
     pagination: CollectionMetadata['pagination']
     products?: GetAttributesValues<'api::product.product'>[]
     anyQuestions?: GetAttributesValues<'api::any-question.any-question'>
+    footer?: GetAttributesValues<'api::footer.footer'>
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({ query }) => {
     const page = Number(query.page) || 1
 
-    const [config, header, analyticsPage, { articles, pagination }, products, anyQuestions] =
-        await Promise.all([
-            fetchConfig(),
-            fetchHeader(),
-            fetchAnalyticsPage(),
-            fetchArticles(page),
-            fetchProducts(),
-            fetchAnyQuestions(),
-        ])
+    const [
+        config,
+        header,
+        analyticsPage,
+        { articles, pagination },
+        products,
+        anyQuestions,
+        footer,
+    ] = await Promise.all([
+        fetchConfig(),
+        fetchHeader(),
+        fetchAnalyticsPage(),
+        fetchArticles(page),
+        fetchProducts(),
+        fetchAnyQuestions(),
+        fetchFooter(),
+    ])
 
     if (pagination.page > pagination.pageCount) {
         return {
@@ -55,6 +66,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
             pagination,
             products,
             anyQuestions,
+            footer,
         },
     }
 }
@@ -62,6 +74,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
 type TProps = TServerSideProps
 
 export default function Analytics(props: TProps) {
+    const footerData = mapFooterServerData(props.footer, props.products)
+
     const headingSection = {
         title: props.analyticsPage?.title || '',
         description: props.analyticsPage?.description || '',
@@ -83,6 +97,7 @@ export default function Analytics(props: TProps) {
         <AnalyticsPage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
+            footerData={footerData}
             headingSectionData={headingSection}
             articlesListData={{ articles, pagination: props.pagination }}
             anyQuestions={anyQuestions}

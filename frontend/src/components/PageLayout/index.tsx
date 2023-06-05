@@ -2,7 +2,7 @@ import cn from 'classnames'
 import Head from 'next/head'
 import React from 'react'
 
-import { Footer } from '@/components/Footer'
+import { Footer, TFooterData } from '@/components/Footer'
 import { Header, THeaderData } from '@/components/Header'
 
 import styles from './index.module.scss'
@@ -15,6 +15,7 @@ export type TSeo = {
 type TProps = {
     seo?: TSeo
     headerData?: THeaderData
+    footerData?: TFooterData
     className?: string
     footerClassName?: string
 }
@@ -22,6 +23,7 @@ type TProps = {
 export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
     seo,
     headerData,
+    footerData,
     children,
     className,
     footerClassName,
@@ -39,7 +41,7 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
             {headerData && <Header data={headerData} />}
             <main id="main" className={cn(styles.main, className)}>
                 {children}
-                <Footer className={footerClassName} />
+                {footerData && <Footer className={footerClassName} footerData={footerData} />}
             </main>
         </div>
     )

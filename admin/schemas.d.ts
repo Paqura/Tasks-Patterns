@@ -996,6 +996,43 @@ export interface ApiFeedbackRequestFeedbackRequest
   };
 }
 
+export interface ApiFooterFooter extends SingleTypeSchema {
+  info: {
+    singularName: 'footer';
+    pluralName: 'footers';
+    displayName: 'Footer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Cyber security market leader'>;
+    copyright: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'\u00A9Positive Technologies 2023'>;
+    productsTitle: StringAttribute & RequiredAttribute & DefaultTo<'Products'>;
+    company: ComponentAttribute<'footer.nav-block'> & RequiredAttribute;
+    social: ComponentAttribute<'footer.nav-block'> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::footer.footer',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::footer.footer',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiHeaderHeader extends SingleTypeSchema {
   info: {
     singularName: 'header';
@@ -1162,7 +1199,12 @@ export interface ApiNotFoundNotFound extends SingleTypeSchema {
   attributes: {
     title: StringAttribute & RequiredAttribute & DefaultTo<'404'>;
     description: RichTextAttribute &
-      DefaultTo<"<p>Oops! Looks like the page you were looking for isn't here.</p>\n<p>Don't worry though, our team of cybersecurity experts is always on the case. While we investigate what happened to the page you were trying to reach, why not check out some of our other resources? From our <a href={'/analytics'}>Analytical Articles</a> page to our suite of <a href={'#'}>cybersecurity solutions</a>, we've got you covered.</p>">;
+      CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1603,6 +1645,28 @@ export interface EmailEmailTemplate extends ComponentSchema {
   };
 }
 
+export interface FooterNavBlockItem extends ComponentSchema {
+  info: {
+    displayName: 'NavBlockItem';
+    description: '';
+  };
+  attributes: {
+    name: StringAttribute & RequiredAttribute;
+    link: StringAttribute;
+  };
+}
+
+export interface FooterNavBlock extends ComponentSchema {
+  info: {
+    displayName: 'NavBlock';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    items: ComponentAttribute<'footer.nav-block-item', true>;
+  };
+}
+
 export interface MainAdvantageCard extends ComponentSchema {
   info: {
     displayName: 'AdvantageCard';
@@ -2011,6 +2075,7 @@ declare global {
       'api::config.config': ApiConfigConfig;
       'api::email-template.email-template': ApiEmailTemplateEmailTemplate;
       'api::feedback-request.feedback-request': ApiFeedbackRequestFeedbackRequest;
+      'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;
       'api::main-page.main-page': ApiMainPageMainPage;
       'api::news-item.news-item': ApiNewsItemNewsItem;
@@ -2030,6 +2095,8 @@ declare global {
       'any-questions.pilot-application': AnyQuestionsPilotApplication;
       'article-section.article-section': ArticleSectionArticleSection;
       'email.email-template': EmailEmailTemplate;
+      'footer.nav-block-item': FooterNavBlockItem;
+      'footer.nav-block': FooterNavBlock;
       'main.advantage-card': MainAdvantageCard;
       'main.advantages-block': MainAdvantagesBlock;
       'main.analytics-block': MainAnalyticsBlock;

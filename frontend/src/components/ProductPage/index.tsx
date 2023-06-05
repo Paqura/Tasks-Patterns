@@ -1,5 +1,6 @@
 import { AnchorBar, TAnchorLink } from '@/components/AnchorBar'
 import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
+import { TFooterData } from '@/components/Footer'
 import { THeaderData } from '@/components/Header'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 import { PageAnchorsContextProvider } from '@/utils/anchors'
@@ -19,8 +20,9 @@ import { TProductData, TSectionCardParams } from './types'
 export type TProductPageData = {
     seo: TSeo
     headerData: THeaderData
+    footerData: TFooterData
     product: TProductData
-    anyQuestions: TAnyQuestionsData
+    anyQuestionsData: TAnyQuestionsData
 }
 
 export type TProductPageProps = TProductPageData
@@ -33,8 +35,9 @@ type TBlocksAcc = {
 export const ProductPage: React.FC<TProductPageProps> = ({
     seo,
     headerData,
+    footerData,
     product,
-    anyQuestions,
+    anyQuestionsData,
 }) => {
     const getAnchorLink = (
         block: { data: { title: string } } & TSectionCardParams
@@ -137,7 +140,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
     )
 
     return (
-        <PageLayout seo={seo} headerData={headerData}>
+        <PageLayout seo={seo} headerData={headerData} footerData={footerData}>
             <PageAnchorsContextProvider>
                 <Banner
                     title={product.title}
@@ -151,7 +154,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                 <AnyQuestions
                     selectedProduct={product.title}
                     sectionId={CONTACTS_SECTION_ID}
-                    anyQuestionData={anyQuestions}
+                    anyQuestionData={anyQuestionsData}
                 />
             </PageAnchorsContextProvider>
         </PageLayout>

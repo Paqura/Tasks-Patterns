@@ -9,8 +9,10 @@ import {
     fetchNewsPage,
     fetchProducts,
     fetchAnyQuestions,
+    fetchFooter,
 } from '@/utils/adminApi'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
@@ -22,12 +24,13 @@ export type TServerSideProps = {
     pagination: CollectionMetadata['pagination']
     products?: GetAttributesValues<'api::product.product'>[]
     anyQuestions?: GetAttributesValues<'api::any-question.any-question'>
+    footer?: GetAttributesValues<'api::footer.footer'>
 }
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({ query }) => {
     const page = Number(query.page) || 1
 
-    const [config, header, newsPage, { news, pagination }, products, anyQuestions] =
+    const [config, header, newsPage, { news, pagination }, products, anyQuestions, footer] =
         await Promise.all([
             fetchConfig(),
             fetchHeader(),
@@ -35,6 +38,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
             fetchNews(page),
             fetchProducts(),
             fetchAnyQuestions(),
+            fetchFooter(),
         ])
 
     if (pagination.page > pagination.pageCount) {
@@ -56,6 +60,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
             pagination,
             products,
             anyQuestions,
+            footer,
         },
     }
 }
@@ -82,11 +87,13 @@ export default function News(props: TProps) {
         }) || []
 
     const anyQuestions = mapAnyQuestionsServerData(props.anyQuestions, props.products)
+    const footerData = mapFooterServerData(props.footer, props.products)
 
     return (
         <NewsPage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
+            footerData={footerData}
             headingSectionData={headingSection}
             articlesListData={{ articles, pagination: props.pagination }}
             anyQuestions={anyQuestions}

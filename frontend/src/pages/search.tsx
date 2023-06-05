@@ -3,14 +3,23 @@ import { SearchResponse } from 'meilisearch'
 import { GetServerSideProps } from 'next'
 
 import { SearchPage } from '@/components/SearchPage'
-import { fetchHeader, fetchConfig, fetchSearchPage } from '@/utils/adminApi'
+import {
+    fetchHeader,
+    fetchConfig,
+    fetchSearchPage,
+    fetchFooter,
+    fetchProducts,
+} from '@/utils/adminApi'
 import { getSearchResponse, getSearchString } from '@/utils/meilisearchApi'
+import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapSearchResponseServerData } from '@/utils/serverDataMappers/search'
 
 export type TServerSideProps = {
     config?: GetAttributesValues<'api::config.config'>
     header?: GetAttributesValues<'api::header.header'>
+    footer?: GetAttributesValues<'api::footer.footer'>
+    products?: GetAttributesValues<'api::product.product'>[]
     searchPage?: GetAttributesValues<'api::search-page.search-page'>
     searchResponse: SearchResponse | null
 }
@@ -28,9 +37,11 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         }
     }
 
-    const [config, header, searchPage, searchResponse] = await Promise.all([
+    const [config, header, footer, products, searchPage, searchResponse] = await Promise.all([
         fetchConfig(),
         fetchHeader(),
+        fetchFooter(),
+        fetchProducts(),
         fetchSearchPage(),
         getSearchResponse(searchString),
     ])
@@ -39,6 +50,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         props: {
             config,
             header,
+            footer,
+            products,
             searchPage,
             searchResponse,
         },
@@ -63,10 +76,13 @@ export default function Search(props: TProps) {
         noResultsBlockDescription: props.searchPage?.noResultsBlockDescription || '',
     }
 
+    const footerData = mapFooterServerData(props.footer, props.products)
+
     return (
         <SearchPage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
+            footerData={footerData}
             headingSectionData={headingSectionData}
             searchResultsListData={searchResultsListData}
         />

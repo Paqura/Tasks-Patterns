@@ -177,3 +177,8 @@ export const fetchNotFound = async () => {
     const response = await adminClient.get<Response<'api::not-found.not-found'>>(`/api/not-found`)
     return response.data.data?.attributes
 }
+
+export const fetchFooter = async () => {
+    const response = await adminClient.get<Response<'api::footer.footer'>>(`/api/footer`)
+    return response.data.data?.attributes
+}

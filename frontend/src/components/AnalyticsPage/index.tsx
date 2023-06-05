@@ -1,5 +1,6 @@
 import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { ArticlesList, TArticlesListData } from '@/components/ArticlesList'
+import { TFooterData } from '@/components/Footer'
 import { THeaderData } from '@/components/Header'
 import { HeadingSection, THeadingSectionData } from '@/components/HeadingSection'
 import { PageLayout, TSeo } from '@/components/PageLayout'
@@ -8,6 +9,7 @@ import { CONTACTS_SECTION_ID } from '@/utils/constants'
 export type TAnalyticsPageData = {
     seo: TSeo
     headerData: THeaderData
+    footerData: TFooterData
     headingSectionData: THeadingSectionData
     articlesListData: TArticlesListData
     anyQuestions: TAnyQuestionsData

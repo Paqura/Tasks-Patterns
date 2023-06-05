@@ -7,19 +7,22 @@ import {
     fetchAnalyticArticle,
     fetchAnyQuestions,
     fetchConfig,
+    fetchFooter,
     fetchHeader,
     fetchProducts,
 } from '@/utils/adminApi'
 import { mapArticleServerData } from '@/utils/serverDataMappers/analytic-article'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 
 export type TServerSideProps = {
+    article: GetAttributesValues<'api::analytic-article.analytic-article'>
     config?: GetAttributesValues<'api::config.config'>
     header?: GetAttributesValues<'api::header.header'>
-    article: GetAttributesValues<'api::analytic-article.analytic-article'>
-    products?: GetAttributesValues<'api::product.product'>[]
+    footer?: GetAttributesValues<'api::footer.footer'>
     anyQuestions?: GetAttributesValues<'api::any-question.any-question'>
+    products?: GetAttributesValues<'api::product.product'>[]
 }
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
@@ -29,12 +32,13 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             notFound: true,
         }
     }
-    const [article, config, header, products, anyQuestions] = await Promise.all([
+    const [article, config, header, footer, anyQuestions, products] = await Promise.all([
         fetchAnalyticArticle(params.slug),
         fetchConfig(),
         fetchHeader(),
-        fetchProducts(),
+        fetchFooter(),
         fetchAnyQuestions(),
+        fetchProducts(),
     ])
     if (!article) {
         return {
@@ -47,8 +51,9 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             article,
             config,
             header,
-            products,
+            footer,
             anyQuestions,
+            products,
         },
     }
 }
@@ -57,14 +62,16 @@ type TProps = TServerSideProps
 
 export default function AnalyticalArticle(props: TProps) {
     const article = mapArticleServerData(props.article)
-    const anyQuestions = mapAnyQuestionsServerData(props.anyQuestions, props.products)
+    const footerData = mapFooterServerData(props.footer, props.products)
+    const anyQuestionsData = mapAnyQuestionsServerData(props.anyQuestions, props.products)
 
     return (
         <AnalyticalArticlePage
+            analyticArticleData={article}
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
-            analyticArticleData={article}
-            anyQuestions={anyQuestions}
+            footerData={footerData}
+            anyQuestionsData={anyQuestionsData}
         />
     )
 }

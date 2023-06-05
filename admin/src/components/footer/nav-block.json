@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_footer_nav_blocks",
+  "info": {
+    "displayName": "NavBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "footer.nav-block-item"
+    }
+  }
+}
