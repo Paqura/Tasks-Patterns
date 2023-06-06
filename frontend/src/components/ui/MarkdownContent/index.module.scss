@@ -138,18 +138,18 @@
         }
 
         ul {
-            padding-left: 13px;
-
             li {
+                padding-left: 13px;
                 list-style: none;
 
                 &::before {
+                    position: absolute;
+                    margin-top: calc((1.4em - 8px) / 2);
                     margin-right: 5px;
                     margin-left: -13px;
                     display: inline-block;
                     width: 8px;
                     height: 8px;
-                    font-weight: bold;
                     content: '';
                     background-color: var(--color-primary);
                     border-radius: 1px;

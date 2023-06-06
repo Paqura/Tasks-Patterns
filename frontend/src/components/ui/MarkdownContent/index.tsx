@@ -2,8 +2,6 @@ import cn from 'classnames'
 import { marked } from 'marked'
 import React from 'react'
 
-import { sanitizeText } from '@/utils/sanitize'
-
 import styles from './index.module.scss'
 
 type TCardMode = 'light' | 'dark'
@@ -19,7 +17,7 @@ export const MarkdownContent: React.FC<TProps> = ({ children, className, mode = 
         <div
             className={cn(styles.content, styles[`content_mode_${mode}`], className)}
             dangerouslySetInnerHTML={{
-                __html: sanitizeText(marked.parse(children)),
+                __html: marked.parse(children),
             }}
         />
     )
