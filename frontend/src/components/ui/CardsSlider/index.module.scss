@@ -13,7 +13,6 @@
 
 .scrollArea {
     overflow-x: auto;
-    touch-action: pan-x;
 
     @include media_breakpoint_no_touch_devices {
         @include hide-scrollbar;
