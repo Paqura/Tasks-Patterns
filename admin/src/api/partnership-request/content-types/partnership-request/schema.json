@@ -27,9 +27,11 @@
       "type": "email",
       "required": true
     },
-    "comment": {
-      "type": "text",
-      "required": true
+    "address": {
+      "type": "string"
     },
+    "comment": {
+      "type": "text"
+    }
   }
 }

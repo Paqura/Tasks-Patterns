@@ -1238,7 +1238,8 @@ export interface ApiPartnershipRequestPartnershipRequest
     companyName: StringAttribute & RequiredAttribute;
     phone: StringAttribute;
     email: EmailAttribute & RequiredAttribute;
-    comment: TextAttribute & RequiredAttribute;
+    address: StringAttribute;
+    comment: TextAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1273,7 +1274,7 @@ export interface ApiPilotApplicationRequestPilotApplicationRequest
     companyName: StringAttribute & RequiredAttribute;
     phone: StringAttribute;
     email: EmailAttribute & RequiredAttribute;
-    comment: TextAttribute & RequiredAttribute;
+    comment: TextAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -1417,7 +1418,7 @@ export interface ApiWebinarConfigWebinarConfig extends SingleTypeSchema {
       DefaultTo<'Don\u2019t miss <b>the event!</b>'>;
     calendarDescription: StringAttribute &
       RequiredAttribute &
-      DefaultTo<"Download the event information to add it to your calendar so you don't miss the event">;
+      DefaultTo<'Download the event information to add it to your calendar so you don\'t miss the event'>;
     calendarButton: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Add to my calendar'>;
@@ -1519,7 +1520,7 @@ export interface AnyQuestionsGeneralQuestions extends ComponentSchema {
       DefaultTo<'General<br/> questions'>;
     description: StringAttribute &
       RequiredAttribute &
-      DefaultTo<"Have a question? Contact us and&nbsp;we'll&nbsp;help.">;
+      DefaultTo<'Have a question? Contact us and&nbsp;we\'ll&nbsp;help.'>;
     fieldName: StringAttribute & RequiredAttribute & DefaultTo<'Your name'>;
     fieldPhone: StringAttribute & RequiredAttribute & DefaultTo<'Your phone'>;
     fieldEmail: StringAttribute & RequiredAttribute & DefaultTo<'Or Email'>;
@@ -1550,13 +1551,14 @@ export interface AnyQuestionsPartnership extends ComponentSchema {
     title: StringAttribute & RequiredAttribute & DefaultTo<'Partnership'>;
     description: StringAttribute &
       RequiredAttribute &
-      DefaultTo<"Let's partner <br/>and make the world <br/>a safer place.">;
+      DefaultTo<'Let\'s partner <br/>and make the world <br/>a safer place.'>;
     fieldName: StringAttribute & RequiredAttribute & DefaultTo<'Your name'>;
     fieldCompanyName: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Company name'>;
     fieldPhone: StringAttribute & RequiredAttribute & DefaultTo<'Your phone'>;
     fieldEmail: StringAttribute & RequiredAttribute & DefaultTo<'Or Email'>;
+    fieldAddress: StringAttribute & RequiredAttribute & DefaultTo<'Address'>;
     fieldComment: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Your question'>;
@@ -1566,7 +1568,7 @@ export interface AnyQuestionsPartnership extends ComponentSchema {
     checkboxSubscription: StringAttribute &
       RequiredAttribute &
       DefaultTo<'I agree to receive advertising and information messages.'>;
-    buttonSubmit: StringAttribute & RequiredAttribute & DefaultTo<'SEND'>;
+    buttonSubmit: StringAttribute & RequiredAttribute & DefaultTo<'Send'>;
     successTitle: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Thank you, your application has been sent'>;

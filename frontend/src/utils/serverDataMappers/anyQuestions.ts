@@ -32,6 +32,7 @@ export const mapAnyQuestionsServerData = (
             fieldPhone: serverData?.partnership?.fieldPhone || '',
             fieldEmail: serverData?.partnership?.fieldEmail || '',
             fieldComment: serverData?.partnership?.fieldComment || '',
+            fieldAddress: serverData?.partnership?.fieldAddress || '',
             checkboxConsentsTerms: serverData?.partnership?.checkboxConsentsTerms || '',
             checkboxSubscription: serverData?.partnership?.checkboxSubscription || '',
             buttonSubmit: serverData?.partnership?.buttonSubmit || '',

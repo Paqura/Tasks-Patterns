@@ -32,8 +32,7 @@
       "required": true
     },
     "comment": {
-      "type": "text",
-      "required": true
+      "type": "text"
     }
   }
 }

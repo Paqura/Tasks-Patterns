@@ -13,9 +13,17 @@ interface IProps {
     required?: boolean
     autoFocus?: boolean
     className?: string
+    maxLength?: number
 }
 
-export const Textarea = ({ placeholder, name, className, autoFocus, required }: IProps) => {
+export const Textarea = ({
+    placeholder,
+    name,
+    className,
+    autoFocus,
+    required,
+    maxLength,
+}: IProps) => {
     const fieldName = `${name}` as const
     const controller = useController({
         name: fieldName,
@@ -24,6 +32,12 @@ export const Textarea = ({ placeholder, name, className, autoFocus, required }: 
         },
         shouldUnregister: true,
     })
+
+    const handleBlur = (event: React.FormEvent<HTMLTextAreaElement>) => {
+        controllerProps.onChange(event.currentTarget.value.trim())
+        controllerProps.onBlur()
+    }
+
     const controllerProps = controller.field
 
     const errorMessage = controller.fieldState.error?.message
@@ -38,7 +52,9 @@ export const Textarea = ({ placeholder, name, className, autoFocus, required }: 
                 })}
                 placeholder={placeholder}
                 autoFocus={autoFocus}
+                maxLength={maxLength}
                 {...controllerProps}
+                onBlur={handleBlur}
                 value={controllerProps.value || ''}
             />
 

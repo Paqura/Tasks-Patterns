@@ -1,7 +1,7 @@
 @import '../../../../styles/media';
 
 .fields {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 12px;
@@ -12,10 +12,14 @@
     grid-column: 1 / span 2;
 }
 
-@include media_breakpoint_mobile {
+@include media_breakpoint_small_desktop {
     .field {
         grid-column: 1 / span 2;
     }
+}
+
+.hidden {
+    display: none;
 }
 
 .agrees {

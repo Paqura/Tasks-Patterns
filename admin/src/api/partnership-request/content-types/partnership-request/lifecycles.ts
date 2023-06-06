@@ -12,6 +12,7 @@ module.exports = {
         },
         template,
         {
+          address: result.address,
           fullName: result.fullName,
           companyName: result.companyName,
           phone: result.phone,

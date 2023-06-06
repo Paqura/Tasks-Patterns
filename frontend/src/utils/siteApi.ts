@@ -63,6 +63,7 @@ export const postFeedbackRequest = async ({
 }
 
 type TPostPartnershipRequestArg = {
+    address?: string
     fullName?: string
     email?: string
     phone?: string
@@ -71,6 +72,7 @@ type TPostPartnershipRequestArg = {
 }
 
 export const postPartnershipRequest = async ({
+    address,
     fullName,
     email,
     phone,
@@ -78,6 +80,7 @@ export const postPartnershipRequest = async ({
     companyName,
 }: TPostPartnershipRequestArg): Promise<boolean> => {
     const response = await siteApiClient.post('/contacts/partnership', {
+        address,
         fullName,
         email,
         phone,

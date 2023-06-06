@@ -4,6 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { adminClient } from '@/utils/adminApi'
 
 type TPartnershipRequestBody = {
+    address: string
     fullName: string
     companyName: string
     email: string
@@ -18,12 +19,13 @@ type TPartnershipRequest = NextApiRequest & {
 export default async function handler(req: TPartnershipRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
-            const { fullName, companyName, email, phone, comment } = req.body
+            const { address, fullName, companyName, email, phone, comment } = req.body
 
             const response = await adminClient.post<
                 Response<'api::partnership-request.partnership-request'>
             >(`/api/partnership-requests`, {
                 data: {
+                    address,
                     fullName,
                     companyName,
                     email,

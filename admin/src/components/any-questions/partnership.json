@@ -35,6 +35,11 @@
       "required": true,
       "default": "Or Email"
     },
+    "fieldAddress": {
+      "type": "string",
+      "required": true,
+      "default": "Address"
+    },
     "fieldComment": {
       "type": "string",
       "required": true,
@@ -52,7 +57,7 @@
     },
     "buttonSubmit": {
       "type": "string",
-      "default": "SEND",
+      "default": "Send",
       "required": true
     },
     "successTitle": {

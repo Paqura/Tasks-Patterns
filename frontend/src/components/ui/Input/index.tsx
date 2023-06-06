@@ -2,7 +2,6 @@ import cn from 'classnames'
 import React, { useMemo } from 'react'
 import { useController } from 'react-hook-form'
 import { ValidationValueMessage } from 'react-hook-form/dist/types/validator'
-import MaskedInput, { Mask } from 'react-text-mask'
 
 import { InputError } from '@/components/ui/InputError'
 import { validateEmail } from '@/utils/validation/validateEmail'
@@ -23,6 +22,7 @@ interface IProps {
     autoComplete?: TAutoCompleteType
     autofocus?: boolean
     className?: string
+    maxLength?: number
 }
 
 const validators: { [key in TInputType]: ValidationValueMessage<RegExp> | null } = {
@@ -30,27 +30,6 @@ const validators: { [key in TInputType]: ValidationValueMessage<RegExp> | null }
     email: validateEmail,
     tel: validatePhoneNumber,
 }
-
-const PHONE_MASK: Mask = [
-    '+',
-    '7',
-    ' ',
-    '(',
-    /\d/,
-    /\d/,
-    /\d/,
-    ')',
-    ' ',
-    /\d/,
-    /\d/,
-    /\d/,
-    '-',
-    /\d/,
-    /\d/,
-    '-',
-    /\d/,
-    /\d/,
-]
 
 export const Input = ({
     type,
@@ -61,6 +40,7 @@ export const Input = ({
     pattern,
     autoComplete = 'off',
     required,
+    maxLength,
 }: IProps) => {
     const fieldName = `${name}` as const
     const controller = useController({
@@ -72,6 +52,11 @@ export const Input = ({
         shouldUnregister: true,
     })
     const controllerProps = controller.field
+
+    const handleBlur = (event: React.FormEvent<HTMLInputElement>) => {
+        controllerProps.onChange(event.currentTarget.value.trim())
+        controllerProps.onBlur()
+    }
 
     const errorMessage = useMemo(() => {
         const error = controller.fieldState.error
@@ -85,55 +70,23 @@ export const Input = ({
         return error.message || defaultMessage
     }, [controller.fieldState.error])
 
-    const renderInput = () => (
-        <input
-            className={cn(styles.input, className, {
-                [styles.input_error]: Boolean(errorMessage),
-                [styles.input_filled]: Boolean(controllerProps.value),
-            })}
-            placeholder={placeholder}
-            type={'text'}
-            autoFocus={autofocus}
-            autoComplete={autoComplete}
-            defaultValue={''}
-            {...controllerProps}
-            value={controllerProps.value || ''}
-        />
-    )
-
-    const renderTelInput = () => (
-        <MaskedInput
-            id={name}
-            className={cn(styles.input, className, {
-                [styles.input_error]: Boolean(errorMessage),
-                [styles.input_filled]: Boolean(controllerProps.value),
-            })}
-            mask={PHONE_MASK}
-            guide={true}
-            type={'tel'}
-            autoComplete={autoComplete}
-            autoFocus={autofocus}
-            inputMode={'tel'}
-            placeholder={placeholder || ''}
-            {...controllerProps}
-            value={controllerProps.value || ''}
-            render={(ref, props) => {
-                return (
-                    <input
-                        ref={(input) => ref(input as HTMLElement)}
-                        {...props}
-                        defaultValue={''}
-                        value={controllerProps.value || ''}
-                    />
-                )
-            }}
-        />
-    )
-
     return (
         <label className={styles.container}>
-            {type === 'tel' ? renderTelInput() : renderInput()}
-
+            <input
+                className={cn(styles.input, className, {
+                    [styles.input_error]: Boolean(errorMessage),
+                    [styles.input_filled]: Boolean(controllerProps.value),
+                })}
+                placeholder={placeholder}
+                type={'text'}
+                autoFocus={autofocus}
+                autoComplete={autoComplete}
+                defaultValue={''}
+                maxLength={maxLength}
+                {...controllerProps}
+                onBlur={handleBlur}
+                value={controllerProps.value || ''}
+            />
             {errorMessage && <InputError>{errorMessage}</InputError>}
         </label>
     )

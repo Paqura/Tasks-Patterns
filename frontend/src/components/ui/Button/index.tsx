@@ -17,6 +17,7 @@ interface IButton {
     className?: string
     onClick?: React.MouseEventHandler
     download?: boolean
+    disabled?: boolean
 }
 
 export const Button: React.FC<PropsWithChildren<IButton>> = ({
@@ -28,6 +29,7 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
     children,
     onClick,
     download,
+    disabled,
 }) => {
     const theme = useTypographyTheme() || 'light'
 
@@ -53,7 +55,7 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
             {renderContent()}
         </NextLink>
     ) : (
-        <button type={type} className={classNames} onClick={onClick}>
+        <button type={type} className={classNames} onClick={onClick} disabled={disabled}>
             {renderContent()}
         </button>
     )
