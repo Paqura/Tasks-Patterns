@@ -14,15 +14,23 @@ export type TArticlePreviewData = {
     topic: string
     date?: Date
     image?: TImage
+    withImage?: boolean
     href: string
 }
 
 type TArticlePreviewProps = TArticlePreviewData
 
-export const Article: React.FC<TArticlePreviewProps> = ({ title, topic, date, image, href }) => {
+export const Article: React.FC<TArticlePreviewProps> = ({
+    title,
+    topic,
+    date,
+    image,
+    withImage,
+    href,
+}) => {
     return (
-        <article className={cn(styles.article, { [styles.hasImage]: image })}>
-            {image && (
+        <article className={cn(styles.article, { [styles.hasImage]: Boolean(withImage) })}>
+            {withImage && image && (
                 <div className={styles.imageWrapper}>
                     <Image
                         src={image.src}

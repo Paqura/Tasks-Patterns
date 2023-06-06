@@ -6,7 +6,7 @@ import styles from './index.module.scss'
 type TNewsArticleDateProps = {
     date?: Date
 }
-export default function NewsArticleDate(props: TNewsArticleDateProps) {
+export const ArticleDate: React.FC<TNewsArticleDateProps> = (props) => {
     return (
         <Text className={styles.date} type="pM">
             {props.date && formatDate(props.date)}

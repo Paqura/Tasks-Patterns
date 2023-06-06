@@ -29,6 +29,6 @@ export const mapNewsArticleServerData = (
         title: serverArticleData?.title || '',
         topic: serverArticleData?.topic || '',
         filesTitle: serverArticleData?.filesTitle || '',
-        image: mapImageMediaFile(serverArticleData?.previewImage) || { src: '' },
+        image: mapImageMediaFile(serverArticleData?.previewImage) || undefined,
     }
 }

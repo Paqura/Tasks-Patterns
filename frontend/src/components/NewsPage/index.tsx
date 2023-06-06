@@ -20,7 +20,7 @@ export const NewsPage: React.FC<TNewsPageProps> = (props) => {
     return (
         <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
             <HeadingSection data={props.headingSectionData} />
-            <ArticlesList data={props.articlesListData} />
+            <ArticlesList data={props.articlesListData} withImage />
             <AnyQuestions anyQuestionData={props.anyQuestions} />
         </PageLayout>
     )

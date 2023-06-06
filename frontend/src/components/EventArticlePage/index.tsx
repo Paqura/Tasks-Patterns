@@ -1,18 +1,22 @@
+import { ArticleDate } from '@/components/ArticleDate'
+import {
+    ArticleLayoutGrid,
+    ArticleLayoutGridLeftColumn,
+    ArticleLayoutGridRightColumn,
+} from '@/components/ArticleLayout'
+import EventCalendar from '@/components/EventCalendar'
+import EventForm from '@/components/EventForm'
+import EventVideo from '@/components/EventVideo'
 import { TFooterData } from '@/components/Footer'
+import { THeaderData } from '@/components/Header'
 import HelpfulFiles from '@/components/HelpfulFiles'
+import NewsArticleHeader from '@/components/NewsArticleHeader'
+import { PageLayout, TSeo } from '@/components/PageLayout'
+import { MarkdownContent } from '@/components/ui/MarkdownContent'
+import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { TEventArticleData, TEventConfigData } from '@/utils/serverDataMappers/event-article'
 
 import styles from './index.module.scss'
-
-import EventCalendar from 'src/components/EventCalendar'
-import EventForm from 'src/components/EventForm'
-import EventVideo from 'src/components/EventVideo'
-import { THeaderData } from 'src/components/Header'
-import NewsArticle from 'src/components/NewsArticle'
-import NewsArticleDate from 'src/components/NewsArticleDate'
-import NewsArticleHeader from 'src/components/NewsArticleHeader'
-import { PageLayout, TSeo } from 'src/components/PageLayout'
-import { PageSectionCard } from 'src/components/ui/PageSectionCard'
 
 export type TEventArticlePageData = {
     slug: string
@@ -37,12 +41,11 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
             />
 
             <PageSectionCard>
-                <div className={styles.contentWrapper}>
-                    <div className={styles.dateWrap}>
-                        <NewsArticleDate date={props.eventArticleData.date} />
-                    </div>
-
-                    <div className={styles.content}>
+                <ArticleLayoutGrid>
+                    <ArticleLayoutGridLeftColumn className={styles.dateWrap}>
+                        <ArticleDate date={props.eventArticleData.date} />
+                    </ArticleLayoutGridLeftColumn>
+                    <ArticleLayoutGridRightColumn>
                         {props.eventConfigData &&
                             !props.eventIsCompleted &&
                             props.eventHasAllFormData && (
@@ -51,9 +54,7 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
                                     eventConfigData={props.eventConfigData}
                                 />
                             )}
-
-                        <NewsArticle newsArticleData={props.eventArticleData} />
-
+                        <MarkdownContent>{props.eventArticleData.content}</MarkdownContent>
                         {props.eventCompletedVideo && props.eventIsCompleted && (
                             <EventVideo videoId={props.eventCompletedVideo} />
                         )}
@@ -66,18 +67,14 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
                                     calendar={props.eventCalendar}
                                 />
                             )}
-                    </div>
-                </div>
+                    </ArticleLayoutGridRightColumn>
+                </ArticleLayoutGrid>
 
                 {props.eventArticleData.files.length > 0 && (
-                    <div className={styles.helpfulFilesWrap}>
-                        <div className={styles.helpfulFiles}>
-                            <HelpfulFiles
-                                files={props.eventArticleData.files}
-                                title={props.eventArticleData.filesTitle}
-                            />
-                        </div>
-                    </div>
+                    <HelpfulFiles
+                        files={props.eventArticleData.files}
+                        title={props.eventArticleData.filesTitle}
+                    />
                 )}
             </PageSectionCard>
         </PageLayout>

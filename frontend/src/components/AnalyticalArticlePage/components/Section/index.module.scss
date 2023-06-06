@@ -1,9 +1,15 @@
+@import '../../../../styles/media';
+
 .content {
-    position: relative;
-}
-.title {
-    padding-bottom: 20px;
     &:not(:first-of-type) {
-        padding-top: 40px;
+        margin-top: 32px;
+
+        @include media_breakpoint_small_desktop {
+            margin-top: 16px;
+        }
     }
+}
+
+.title {
+    margin-bottom: 16px;
 }

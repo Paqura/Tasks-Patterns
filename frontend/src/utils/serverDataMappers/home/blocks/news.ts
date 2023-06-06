@@ -23,7 +23,7 @@ export const mapNewsBlockServerData = ({
         news: news.map((newsItem) => ({
             title: newsItem.title || '',
             href: `/news/${newsItem.slug}` || '/',
-            image: mapImageMediaFile(newsItem.previewImage) || { src: '' },
+            image: mapImageMediaFile(newsItem.previewImage) || undefined,
             date: newsItem.published,
         })),
     }

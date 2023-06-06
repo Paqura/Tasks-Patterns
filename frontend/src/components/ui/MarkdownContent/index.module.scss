@@ -4,8 +4,6 @@
 @import '../typography/Heading/index.module';
 
 .content {
-    @include subsection-above-offset;
-
     :global {
         h1 {
             @include heading_level_1;

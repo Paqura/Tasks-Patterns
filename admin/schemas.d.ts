@@ -1126,11 +1126,11 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    previewImage: MediaAttribute & RequiredAttribute;
+    previewImage: MediaAttribute;
     published: DateAttribute & RequiredAttribute;
     title: StringAttribute & RequiredAttribute;
-    slug: UIDAttribute<'api::news-item.news-item', 'title'>;
-    topic: TextAttribute & RequiredAttribute;
+    slug: UIDAttribute<'api::news-item.news-item', 'title'> & RequiredAttribute;
+    topic: TextAttribute;
     filesTitle: StringAttribute;
     files: MediaAttribute;
     content: RichTextAttribute &

@@ -15,7 +15,7 @@
     "previewImage": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
@@ -30,11 +30,12 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "title"
+      "targetField": "title",
+      "required": true
     },
     "topic": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "filesTitle": {
       "type": "string"
@@ -44,7 +45,10 @@
       "multiple": true,
       "required": false,
       "allowedTypes": [
-        "files"
+        "files",
+        "images",
+        "videos",
+        "audios"
       ]
     },
     "content": {

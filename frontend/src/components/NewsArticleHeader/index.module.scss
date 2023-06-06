@@ -1,43 +1,34 @@
-
 @import '../../styles/media';
 .banner {
     position: relative;
-    margin-top: calc(var(--section-margin-vertical) * var(--margins-compensate-count) * -0.5);
-    margin-bottom: calc(var(--section-margin-vertical) * var(--margins-compensate-count) * -0.5);
-    padding-top: calc(var(--section-margin-vertical) * (var(--margins-compensate-count) - 1));
-    padding-bottom: calc(var(--section-margin-vertical) * (var(--margins-compensate-count) - 1));
 
+    margin-bottom: calc(var(--section-margin-vertical) * var(--margins-compensate-count) * -1);
+    padding-bottom: calc(var(--section-margin-vertical) * (var(--margins-compensate-count) - 1));
     background: var(--color-black-ui);
+
     --margins-compensate-count: 5;
 
+    @include media_breakpoint_normal_desktop {
+        --margins-compensate-count: 3;
+    }
+
     @include media_breakpoint_small_desktop {
-        --margins-compensate-count: 4;
+        --margins-compensate-count: 3;
     }
 }
 
 .banner img {
     opacity: 0.15;
 }
+
 .imageBg {
     position: absolute;
-    top: -15px;
+    top: 0;
     left: 0;
+
+    bottom: calc(var(--section-margin-vertical) * var(--margins-compensate-count) * -1);
+
     width: 100%;
-    height: calc(100%);
-
+    height: 100%;
     object-fit: cover;
-
-    @include media_breakpoint_mobile {
-        height: calc(480px - 56px);
-    }
-
-    @include media_breakpoint_small_desktop {
-        top: -20px;
-        height: calc(599px - 60px);
-    }
-
-    @include media_breakpoint_normal_desktop {
-        top: -20px;
-        height: calc(623px - 60px);
-    }
 }

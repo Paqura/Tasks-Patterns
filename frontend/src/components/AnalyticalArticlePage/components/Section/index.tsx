@@ -26,9 +26,9 @@ export const Section: React.FC<TProps> = ({ item }) => {
 
     return (
         <div key={item.number} id={sectionId} className={styles.content} ref={ref}>
-            <div className={styles.title}>
-                <Heading level={2}>{item.title}</Heading>
-            </div>
+            <Heading className={styles.title} level={2}>
+                {item.title}
+            </Heading>
             <MarkdownContent>{item.value}</MarkdownContent>
         </div>
     )

@@ -12,7 +12,7 @@ import styles from './index.module.scss'
 export type TNews = {
     title: string
     date?: Date
-    image: TImage
+    image?: TImage
     href: string
     className?: string
 }
@@ -21,13 +21,15 @@ export const NewsCard: React.FC<TNews> = ({ title, date, image, href, className 
     return (
         <NextLink href={href} className={cn(styles.card, className)}>
             <div className={styles.imageWrapper}>
-                <Image
-                    src={image.src}
-                    alt={title}
-                    width={image.width}
-                    height={image.height}
-                    className={styles.image}
-                />
+                {image && (
+                    <Image
+                        src={image.src}
+                        alt={title}
+                        width={image.width}
+                        height={image.height}
+                        className={styles.image}
+                    />
+                )}
             </div>
             <div className={styles.info}>
                 {date && <p className={styles.date}>{formatDate(date)}</p>}

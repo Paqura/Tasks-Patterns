@@ -10,9 +10,10 @@ export type TArticlesListData = {
 
 type TArticlesListProps = {
     data: TArticlesListData
+    withImage?: boolean
 }
 
-export const ArticlesList: React.FC<TArticlesListProps> = ({ data }) => {
+export const ArticlesList: React.FC<TArticlesListProps> = ({ data, withImage }) => {
     return (
         <PageSectionCard mode="light">
             {data.articles.map(({ title, topic, date, image, href }) => (
@@ -23,6 +24,7 @@ export const ArticlesList: React.FC<TArticlesListProps> = ({ data }) => {
                     date={date}
                     image={image}
                     href={href}
+                    withImage={withImage}
                 />
             ))}
 
