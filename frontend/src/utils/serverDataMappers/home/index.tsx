@@ -84,7 +84,7 @@ export const mapMainPageServerData = ({
     clients: GetAttributesValues<'api::client.client'>[]
     articles: GetAttributesValues<'api::analytic-article.analytic-article'>[]
     news: GetAttributesValues<'api::news-item.news-item'>[]
-}): Pick<THomePageData, 'headingBlock' | 'blocks'> => {
+}): Pick<THomePageData, 'headingBlock' | 'blocks' | 'contactsAnchorText'> => {
     return {
         headingBlock: {
             video: mapVideoMediaFile(mainPage?.headingVideo),
@@ -99,5 +99,6 @@ export const mapMainPageServerData = ({
             articles,
             news,
         }),
+        contactsAnchorText: mainPage?.contactsAnchorText || 'Contact',
     }
 }

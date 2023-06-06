@@ -1085,6 +1085,9 @@ export interface ApiMainPageMainPage extends SingleTypeSchema {
     contactButtonText: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Contact us'>;
+    contactsAnchorText: StringAttribute &
+      RequiredAttribute &
+      DefaultTo<'Contact'>;
     headingVideo: MediaAttribute;
     blocks: DynamicZoneAttribute<
       [

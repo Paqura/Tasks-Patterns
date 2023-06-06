@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
 type TProps = TServerSideProps
 
 export default function Home(props: TProps) {
-    const { headingBlock, blocks } = mapMainPageServerData({
+    const { headingBlock, blocks, contactsAnchorText } = mapMainPageServerData({
         mainPage: props.mainPage,
         clients: props.clients || [],
         products: props.products || [],
@@ -90,6 +90,7 @@ export default function Home(props: TProps) {
             headingBlock={headingBlock}
             blocks={blocks}
             anyQuestionsData={anyQuestionsData}
+            contactsAnchorText={contactsAnchorText}
         />
     )
 }

@@ -26,6 +26,11 @@
       "required": true,
       "default": "Contact us"
     },
+    "contactsAnchorText": {
+      "type": "string",
+      "required": true,
+      "default": "Contact"
+    },
     "headingVideo": {
       "type": "media",
       "multiple": false,
@@ -37,7 +42,6 @@
         "audios"
       ]
     },
-
     "blocks": {
       "type": "dynamiczone",
       "components": [

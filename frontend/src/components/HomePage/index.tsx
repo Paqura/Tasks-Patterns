@@ -42,6 +42,7 @@ export type THomePageData = {
     headerData: THeaderData
     footerData: TFooterData
     blocks: THomePageBlocksData[]
+    contactsAnchorText: string
     anyQuestionsData: TAnyQuestionsData
 }
 
@@ -53,16 +54,15 @@ type TBlocksAcc = {
     anchors: TAnchorLink[]
 }
 
-const contactsAcnhor: TAnchorLink = {
-    name: 'Contact',
-    link: 'contact',
-}
-
 export const HomePage: React.FC<THomePageProps> = (props) => {
     const getAnchorLink = (block: { data: TWithSectionParams }): TAnchorLink => ({
         name: block.data.title,
         link: block.data.sectionId,
     })
+    const contactsAnchor: TAnchorLink = {
+        name: props.contactsAnchorText,
+        link: CONTACTS_SECTION_ID,
+    }
 
     const blocksAcc = props.blocks.reduce<TBlocksAcc>(
         (acc, block, index) => {
@@ -95,7 +95,7 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
         { blocks: [], anchors: [], lastNumber: 0 }
     )
 
-    const anchors = [...blocksAcc.anchors, contactsAcnhor]
+    const anchors = [...blocksAcc.anchors, contactsAnchor]
     return (
         <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
             <PageAnchorsContextProvider>
