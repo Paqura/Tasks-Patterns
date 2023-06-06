@@ -34,7 +34,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
         }
     }
 
-    const [config, header, product, allProducts, anyQuestions] = await Promise.all([
+    const [config, header, product, allProducts, anyQuestions, footer] = await Promise.all([
         fetchConfig(),
         fetchHeader(),
         fetchProduct(params.id),
@@ -62,6 +62,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
             product,
             allProducts,
             anyQuestions,
+            footer,
         },
     }
 }

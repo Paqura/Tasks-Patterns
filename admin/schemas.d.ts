@@ -1012,7 +1012,8 @@ export interface ApiFooterFooter extends SingleTypeSchema {
       DefaultTo<'Cyber security market leader'>;
     copyright: StringAttribute &
       RequiredAttribute &
-      DefaultTo<'\u00A9Positive Technologies 2023'>;
+      DefaultTo<'Positive Technologies 2023'>;
+    startYear: IntegerAttribute & RequiredAttribute & DefaultTo<2002>;
     productsTitle: StringAttribute & RequiredAttribute & DefaultTo<'Products'>;
     company: ComponentAttribute<'footer.nav-block'> & RequiredAttribute;
     social: ComponentAttribute<'footer.nav-block'> & RequiredAttribute;

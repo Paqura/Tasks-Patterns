@@ -33,6 +33,11 @@
 .copyright {
   margin-bottom: 40px;
 
+  mark {
+    color: var(--color-red-ui);
+    background-color: initial;
+  }
+
   @include media_breakpoint_mobile {
     margin-bottom: 16px;
   }
@@ -58,24 +63,6 @@
 
   @include media_breakpoint_mobile {
     max-width: 100%;
-  }
-}
-
-.products {
-  @include media_breakpoint_small_desktop {
-    order: 2;
-  }
-}
-
-.company {
-  @include media_breakpoint_small_desktop {
-    order: 1;
-  }
-}
-
-.social {
-  @include media_breakpoint_small_desktop {
-    order: 3;
   }
 }
 

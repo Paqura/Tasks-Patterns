@@ -24,6 +24,7 @@ export const mapFooterServerData = (
     return {
         title: serverFooterData?.title || '',
         copyright: serverFooterData?.copyright || '',
+        startYear: serverFooterData?.startYear || new Date().getFullYear(),
         products: {
             title: serverFooterData?.productsTitle || '',
             navItems: mapProductsToNavItems(serverProductsData || []),
