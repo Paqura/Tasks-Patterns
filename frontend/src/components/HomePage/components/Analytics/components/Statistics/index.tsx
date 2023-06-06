@@ -73,14 +73,14 @@ export const Statistics: React.FC<TProps> = ({ data }) => {
                     </li>
                 </ul>
             </CardsSlider>
-            <PageSectionCardGrid>
+            <PageSectionCardGrid className={styles.section}>
                 <PageSectionCardGridRightColumn className={styles.description}>
                     <Text type="pL" className={styles.descriptionText}>
                         {description}
                     </Text>
                 </PageSectionCardGridRightColumn>
             </PageSectionCardGrid>
-            <PageSectionCardGrid>
+            <PageSectionCardGrid className={styles.section}>
                 <PageSectionCardGridRightColumn className={styles.contactUsText}>
                     <Text type="pL" className={styles.descriptionText}>
                         {contactWelcomeText}
