@@ -3,20 +3,13 @@
 @import '../../../../styles/decorators';
 
 .sectionHeading {
-    margin-bottom: 60px;
-
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto 1fr;
     column-gap: 40px;
     row-gap: 32px;
 
-    @include media_breakpoint_normal_desktop {
-        margin-bottom: 40px;
-    }
-
     @include media_breakpoint_mobile {
-        margin-bottom: 32px;
         display: block;
     }
 }
@@ -51,11 +44,8 @@
     }
 }
 
-.historyBlock {
-    position: relative;
-}
-
 .historyBlockScrollArea {
+    margin-top: 60px;
     margin-right: calc(var(--section-card-padding-left) * -1);
     margin-left: calc(var(--section-card-padding-right) * -1);
     padding-top: 8px;
@@ -63,12 +53,13 @@
     padding-left: var(--section-card-padding-right);
     padding-bottom: 22px;
     display: flex;
-    overflow-y: auto;
 
-    @include hide-scrollbar;
+    @include media_breakpoint_normal_desktop {
+        margin-top: 40px;
+    }
 
     @include media_breakpoint_mobile {
-        margin-bottom: 0;
+        margin-top: 32px;
     }
 }
 

@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
-
+import { CardsSlider } from '@/components/ui/CardsSlider'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
@@ -20,37 +19,6 @@ type THistorySectionProps = {
 export const HistorySection: React.FC<THistorySectionProps> = ({ data }) => {
     const { title, description, historyItems } = data
 
-    const [isShadowVisible, setIsShadowVisible] = useState(false)
-    const contentRef = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        const contentEl = contentRef.current
-
-        if (!contentEl) {
-            return
-        }
-        const handleResize = () => {
-            setIsShadowVisible(contentEl.scrollWidth > contentEl.clientWidth)
-        }
-
-        const handleScroll = () => {
-            const isScrolledTillEnd =
-                contentEl.scrollWidth - contentEl.offsetWidth - contentEl.scrollLeft < 40
-
-            setIsShadowVisible(!isScrolledTillEnd)
-        }
-
-        window.addEventListener('resize', handleResize)
-        contentEl.addEventListener('scroll', handleScroll)
-
-        handleResize()
-
-        return () => {
-            window.removeEventListener('resize', handleResize)
-            contentEl.removeEventListener('scroll', handleScroll)
-        }
-    }, [])
-
     return (
         <PageSectionCard mode={'light'}>
             <div className={styles.sectionHeading}>
@@ -63,15 +31,11 @@ export const HistorySection: React.FC<THistorySectionProps> = ({ data }) => {
                 </Text>
             </div>
 
-            <div className={styles.historyBlock}>
-                <div ref={contentRef} className={styles.historyBlockScrollArea}>
-                    {historyItems.map((historyItem, index) => (
-                        <HistoryItem key={index} data={historyItem} />
-                    ))}
-
-                    {isShadowVisible && <div className={styles.historyBlockShadow} />}
-                </div>
-            </div>
+            <CardsSlider scrollAreaClassName={styles.historyBlockScrollArea}>
+                {historyItems.map((historyItem, index) => (
+                    <HistoryItem key={index} data={historyItem} />
+                ))}
+            </CardsSlider>
         </PageSectionCard>
     )
 }
