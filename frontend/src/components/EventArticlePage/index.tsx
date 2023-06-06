@@ -58,12 +58,14 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
                             <EventVideo videoId={props.eventCompletedVideo} />
                         )}
 
-                        {props.eventCalendar && props.eventConfigData && props.eventIsCompleted && (
-                            <EventCalendar
-                                eventConfigData={props.eventConfigData}
-                                calendar={props.eventCalendar}
-                            />
-                        )}
+                        {props.eventCalendar &&
+                            props.eventConfigData &&
+                            !props.eventIsCompleted && (
+                                <EventCalendar
+                                    eventConfigData={props.eventConfigData}
+                                    calendar={props.eventCalendar}
+                                />
+                            )}
                     </div>
                 </div>
 
