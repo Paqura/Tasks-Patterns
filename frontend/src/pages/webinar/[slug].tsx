@@ -72,9 +72,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
 type TProps = TServerSideProps
 
 export default function EventArticleItem(props: TProps) {
-    const { article, video, calendar, isCompleted, slug } = mapEventArticleServerData(
-        props.newsItem
-    )
+    const { article, completedVideo, calendar, isCompleted, slug, eventHasAllFormData } =
+        mapEventArticleServerData(props.newsItem)
     const eventConfig = mapWebinarConfigServerData(props.webinarConfig)
     const footerData = mapFooterServerData(props.footer, props.products)
 
@@ -86,9 +85,10 @@ export default function EventArticleItem(props: TProps) {
             slug={slug}
             eventArticleData={article}
             eventConfigData={eventConfig}
-            eventVideo={video}
+            eventCompletedVideo={completedVideo}
             eventCalendar={calendar}
             eventIsCompleted={isCompleted}
+            eventHasAllFormData={eventHasAllFormData}
         />
     )
 }

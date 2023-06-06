@@ -13,11 +13,14 @@ module.exports = {
         email: result.email,
         companyName: result.companyName,
         companyPosition: result.companyPosition,
-        eventDate: result.eventDate,
+        eventDate: new Date(result.eventDate).toLocaleDateString('en-EN', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric',
+        }),
         eventName: result.eventName,
         eventLink: result.eventLink,
       };
-
 
       await strapi.plugins['email'].services.email.sendTemplatedEmail(
         {

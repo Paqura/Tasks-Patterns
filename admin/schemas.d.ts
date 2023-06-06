@@ -1139,7 +1139,7 @@ export interface ApiNewsItemNewsItem extends CollectionTypeSchema {
     isEvent: BooleanAttribute & DefaultTo<false>;
     eventDate: DateAttribute;
     eventLink: StringAttribute;
-    eventYoutubeVideoId: StringAttribute;
+    eventCompletedYoutubeVideoId: StringAttribute;
     eventCalendar: MediaAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
@@ -1306,7 +1306,7 @@ export interface ApiProductProduct extends CollectionTypeSchema {
     title: StringAttribute & RequiredAttribute;
     subtitle: TextAttribute;
     icon: MediaAttribute & RequiredAttribute;
-    order: IntegerAttribute;
+    order: IntegerAttribute & RequiredAttribute & DefaultTo<1>;
     slug: UIDAttribute & RequiredAttribute;
     bannerImage: MediaAttribute;
     blocks: DynamicZoneAttribute<
@@ -1415,10 +1415,10 @@ export interface ApiWebinarConfigWebinarConfig extends SingleTypeSchema {
       DefaultTo<'Our specialists will contact you soon.'>;
     calendarTitle: StringAttribute &
       RequiredAttribute &
-      DefaultTo<'Don\u2019t miss <b>the event!</b>'>;
+      DefaultTo<'Don\u2019t miss <mark>the event!</mark>'>;
     calendarDescription: StringAttribute &
       RequiredAttribute &
-      DefaultTo<'Download the event information to add it to your calendar so you don\'t miss the event'>;
+      DefaultTo<"Download the event information to add it to your calendar so you don't miss the event">;
     calendarButton: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Add to my calendar'>;
@@ -1520,7 +1520,7 @@ export interface AnyQuestionsGeneralQuestions extends ComponentSchema {
       DefaultTo<'General<br/> questions'>;
     description: StringAttribute &
       RequiredAttribute &
-      DefaultTo<'Have a question? Contact us and&nbsp;we\'ll&nbsp;help.'>;
+      DefaultTo<"Have a question? Contact us and&nbsp;we'll&nbsp;help.">;
     fieldName: StringAttribute & RequiredAttribute & DefaultTo<'Your name'>;
     fieldPhone: StringAttribute & RequiredAttribute & DefaultTo<'Your phone'>;
     fieldEmail: StringAttribute & RequiredAttribute & DefaultTo<'Or Email'>;
@@ -1551,7 +1551,7 @@ export interface AnyQuestionsPartnership extends ComponentSchema {
     title: StringAttribute & RequiredAttribute & DefaultTo<'Partnership'>;
     description: StringAttribute &
       RequiredAttribute &
-      DefaultTo<'Let\'s partner <br/>and make the world <br/>a safer place.'>;
+      DefaultTo<"Let's partner <br/>and make the world <br/>a safer place.">;
     fieldName: StringAttribute & RequiredAttribute & DefaultTo<'Your name'>;
     fieldCompanyName: StringAttribute &
       RequiredAttribute &

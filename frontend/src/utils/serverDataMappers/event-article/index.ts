@@ -27,10 +27,11 @@ export type TEventArticleData = TNewsArticleData
 
 export type TEventArticle = {
     isCompleted: boolean
+    eventHasAllFormData: boolean
     slug: string
     article: TEventArticleData
     calendar?: string
-    video?: string
+    completedVideo?: string
 }
 
 export const mapEventArticleServerData = (
@@ -43,14 +44,20 @@ export const mapEventArticleServerData = (
     }
     const isCompleted = article.date.getTime() < nowDate.getTime()
 
+    const eventHasAllFormData =
+        !!serverArticleData?.eventLink &&
+        !!serverArticleData?.eventDate &&
+        !!serverArticleData?.title
+
     return {
         isCompleted,
         article,
+        eventHasAllFormData,
         slug: serverArticleData?.slug || '',
         calendar: serverArticleData?.eventCalendar
             ? mapFilesMediaFile(serverArticleData.eventCalendar).url
             : undefined,
-        video: serverArticleData?.eventYoutubeVideoId,
+        completedVideo: serverArticleData?.eventCompletedYoutubeVideoId,
     }
 }
 

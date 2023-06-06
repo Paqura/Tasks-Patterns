@@ -37,14 +37,17 @@ export default function NewsArticlePage(props: TNewsArticlePageProps) {
                         <NewsArticle newsArticleData={props.newsArticleData} />
                     </div>
                 </div>
-                <div className={styles.helpfulFilesWrap}>
-                    <div className={styles.helpfulFiles}>
-                        <HelpfulFiles
-                            files={props.newsArticleData.files}
-                            title={props.newsArticleData.filesTitle}
-                        />
+
+                {props.newsArticleData.files.length > 0 && (
+                    <div className={styles.helpfulFilesWrap}>
+                        <div className={styles.helpfulFiles}>
+                            <HelpfulFiles
+                                files={props.newsArticleData.files}
+                                title={props.newsArticleData.filesTitle}
+                            />
+                        </div>
                     </div>
-                </div>
+                )}
             </PageSectionCard>
             <AnyQuestions anyQuestionData={props.anyQuestionsData} />
         </PageLayout>

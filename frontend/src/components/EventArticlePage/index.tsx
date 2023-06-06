@@ -1,4 +1,5 @@
 import { TFooterData } from '@/components/Footer'
+import HelpfulFiles from '@/components/HelpfulFiles'
 import { TEventArticleData, TEventConfigData } from '@/utils/serverDataMappers/event-article'
 
 import styles from './index.module.scss'
@@ -20,9 +21,10 @@ export type TEventArticlePageData = {
     footerData: TFooterData
     eventArticleData: TEventArticleData
     eventConfigData?: TEventConfigData
-    eventVideo?: string
+    eventCompletedVideo?: string
     eventCalendar?: string
     eventIsCompleted: boolean
+    eventHasAllFormData: boolean
 }
 type TEventArticlePageProps = TEventArticlePageData
 export default function EventArticlePage(props: TEventArticlePageProps) {
@@ -41,26 +43,40 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
                     </div>
 
                     <div className={styles.content}>
-                        {props.eventConfigData && !props.eventIsCompleted && (
-                            <EventForm slug={props.slug} eventConfigData={props.eventConfigData} />
-                        )}
+                        {props.eventConfigData &&
+                            !props.eventIsCompleted &&
+                            props.eventHasAllFormData && (
+                                <EventForm
+                                    slug={props.slug}
+                                    eventConfigData={props.eventConfigData}
+                                />
+                            )}
 
                         <NewsArticle newsArticleData={props.eventArticleData} />
 
-                        {props.eventVideo && !props.eventIsCompleted && (
-                            <EventVideo videoId={props.eventVideo} />
+                        {props.eventCompletedVideo && props.eventIsCompleted && (
+                            <EventVideo videoId={props.eventCompletedVideo} />
                         )}
 
-                        {props.eventCalendar &&
-                            props.eventConfigData &&
-                            !props.eventIsCompleted && (
-                                <EventCalendar
-                                    eventConfigData={props.eventConfigData}
-                                    calendar={props.eventCalendar}
-                                />
-                            )}
+                        {props.eventCalendar && props.eventConfigData && props.eventIsCompleted && (
+                            <EventCalendar
+                                eventConfigData={props.eventConfigData}
+                                calendar={props.eventCalendar}
+                            />
+                        )}
                     </div>
                 </div>
+
+                {props.eventArticleData.files.length > 0 && (
+                    <div className={styles.helpfulFilesWrap}>
+                        <div className={styles.helpfulFiles}>
+                            <HelpfulFiles
+                                files={props.eventArticleData.files}
+                                title={props.eventArticleData.filesTitle}
+                            />
+                        </div>
+                    </div>
+                )}
             </PageSectionCard>
         </PageLayout>
     )

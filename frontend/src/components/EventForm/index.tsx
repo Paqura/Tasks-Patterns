@@ -66,6 +66,7 @@ export default function EventForm(props: TEventForm) {
                                     type="text"
                                     name={'fullName'}
                                     required
+                                    maxLength={250}
                                     placeholder={props.eventConfigData.name}
                                 />
                             </div>
@@ -73,6 +74,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="text"
                                     name={'companyName'}
+                                    maxLength={250}
                                     placeholder={props.eventConfigData.company}
                                 />
                             </div>
@@ -80,6 +82,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="text"
                                     name={'companyPosition'}
+                                    maxLength={250}
                                     placeholder={props.eventConfigData.position}
                                 />
                             </div>
@@ -87,6 +90,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="tel"
                                     name={'phone'}
+                                    maxLength={250}
                                     placeholder={props.eventConfigData.phone}
                                 />
                             </div>
@@ -95,6 +99,7 @@ export default function EventForm(props: TEventForm) {
                                     type="email"
                                     name={'email'}
                                     required
+                                    maxLength={250}
                                     placeholder={props.eventConfigData.email}
                                 />
                             </div>
@@ -111,7 +116,12 @@ export default function EventForm(props: TEventForm) {
                                 title={props.eventConfigData.subscription}
                             />
                         </div>
-                        <Button size={'m'} type={'submit'} className={styles.submit}>
+                        <Button
+                            size={'m'}
+                            type={'submit'}
+                            className={styles.submit}
+                            disabled={context.formState.isSubmitting}
+                        >
                             {props.eventConfigData.submit}
                         </Button>
                     </form>

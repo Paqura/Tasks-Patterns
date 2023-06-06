@@ -68,7 +68,7 @@
     "calendarTitle": {
       "type": "string",
       "required": true,
-      "default": "Don’t miss <b>the event!</b>"
+      "default": "Don’t miss <mark>the event!</mark>"
     },
     "calendarDescription": {
       "type": "string",

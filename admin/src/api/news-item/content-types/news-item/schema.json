@@ -64,12 +64,13 @@
     "eventLink": {
       "type": "string"
     },
-    "eventYoutubeVideoId": {
+    "eventCompletedYoutubeVideoId": {
       "type": "string"
     },
     "eventCalendar": {
       "type": "media",
       "multiple": false,
+      "required": false,
       "allowedTypes": [
         "files"
       ]
