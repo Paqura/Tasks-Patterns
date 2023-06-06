@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import Head from 'next/head'
-import React from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useRef } from 'react'
 
 import { Footer, TFooterData } from '@/components/Footer'
 import { Header, THeaderData } from '@/components/Header'
@@ -28,6 +29,25 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
     className,
     footerClassName,
 }) => {
+    const router = useRouter()
+
+    const mainElementRef = useRef<HTMLElement>(null)
+
+    useEffect(() => {
+        const handleRouteChange = () => {
+            if (mainElementRef.current) {
+                // @ts-expect-error
+                mainElementRef.current.scrollTo({ top: 0, behavior: 'instant' })
+            }
+        }
+
+        router.events.on('routeChangeComplete', handleRouteChange)
+
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChange)
+        }
+    }, [router])
+
     return (
         <div className={styles.layout}>
             {seo && (
@@ -41,7 +61,7 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
                 </Head>
             )}
             {headerData && <Header data={headerData} />}
-            <main id="main" className={cn(styles.main, className)}>
+            <main id="main" ref={mainElementRef} className={cn(styles.main, className)}>
                 {children}
                 {footerData && <Footer className={footerClassName} footerData={footerData} />}
             </main>

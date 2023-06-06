@@ -29,7 +29,11 @@ export const NavMobile = ({ items, searchInputPlaceholder, isOpen, onToggle }: I
 
             {isOpen && (
                 <nav className={styles.nav}>
-                    <Controls searchInputPlaceholder={searchInputPlaceholder} isMobileMode={true} />
+                    <Controls
+                        searchInputPlaceholder={searchInputPlaceholder}
+                        isMobileMode={true}
+                        onToggle={onToggle}
+                    />
 
                     <div className={styles.nav_list}>
                         {items.map((navItem) => (

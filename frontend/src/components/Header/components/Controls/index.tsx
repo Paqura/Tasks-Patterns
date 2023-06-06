@@ -14,6 +14,7 @@ type TControlType = 'language' | 'search' | 'help'
 type TControlsProps = {
     searchInputPlaceholder: string
     isMobileMode: boolean
+    onToggle?: (isOpen: boolean) => void
 }
 
 /*
@@ -23,7 +24,11 @@ type TControlsProps = {
 
 */
 
-export const Controls: React.FC<TControlsProps> = ({ searchInputPlaceholder, isMobileMode }) => {
+export const Controls: React.FC<TControlsProps> = ({
+    searchInputPlaceholder,
+    isMobileMode,
+    onToggle,
+}) => {
     const router = useRouter()
 
     const [activeControl, setActiveControl] = useState<TControlType | null>(null)
@@ -64,6 +69,10 @@ export const Controls: React.FC<TControlsProps> = ({ searchInputPlaceholder, isM
 
         setSearchValue('')
         setActiveControl(null)
+
+        if (onToggle) {
+            onToggle(false)
+        }
     }
 
     const hasExtraPadding = isMobileMode && activeControl !== 'search'
@@ -113,6 +122,7 @@ export const Controls: React.FC<TControlsProps> = ({ searchInputPlaceholder, isM
 
                     <input
                         type="text"
+                        autoFocus
                         value={searchValue}
                         placeholder={searchInputPlaceholder}
                         className={styles.searchInput}
