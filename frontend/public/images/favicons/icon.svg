@@ -1,0 +1,49 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_2150_6567)">
+<g filter="url(#filter0_dddddd_2150_6567)">
+<circle cx="16" cy="16" r="13.25" fill="white"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 22.8734C2.75 25.6676 2.75 27.2209 3.76453 28.2355C4.77905 29.25 6.33237 29.25 9.12656 29.25H22.8734C25.6676 29.25 27.2209 29.25 28.2355 28.2355C29.25 27.2209 29.25 25.6676 29.25 22.8734V9.12656C29.25 6.33237 29.25 4.77905 28.2355 3.76453C27.2209 2.75 25.6676 2.75 22.8734 2.75H9.12656C6.33237 2.75 4.77905 2.75 3.76453 3.76453C2.75 4.77905 2.75 6.33237 2.75 9.12656V22.8734Z" fill="#FC3E24"/>
+<path d="M20.0724 13.9721H23.0666V12.22H20.0724V9.54492H18.1318V16.5874C18.1318 18.5147 19.1175 19.5605 21.1828 19.5605H23.0666V17.804H21.5497C20.53 17.804 20.0724 17.402 20.0724 16.3637V13.9721Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M13.384 12.0862C12.5556 12.0862 11.7992 12.382 11.3136 12.9125L11.1458 12.9128V12.22H9.20508V22.2513H11.1458V18.6743H11.3136C11.7632 19.1519 12.4924 19.5005 13.384 19.5005C15.379 19.5005 16.7403 17.9374 16.7403 15.7933C16.7403 13.6493 15.379 12.0862 13.384 12.0862ZM12.9617 17.7438C11.9041 17.7438 11.1458 16.9235 11.1458 15.7933C11.1458 14.6632 11.9041 13.8429 12.9617 13.8429C14.0265 13.8429 14.7994 14.6632 14.7994 15.7933C14.7994 16.9234 14.0265 17.7438 12.9617 17.7438Z" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_dddddd_2150_6567" x="-2.25" y="-2.5" width="36.5" height="36.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-0.00691814"/>
+<feGaussianBlur stdDeviation="0.0691814"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2150_6567"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-0.0166253"/>
+<feGaussianBlur stdDeviation="0.166253"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0503198 0"/>
+<feBlend mode="normal" in2="effect1_dropShadow_2150_6567" result="effect2_dropShadow_2150_6567"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-0.0313039"/>
+<feGaussianBlur stdDeviation="0.313039"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0417275 0"/>
+<feBlend mode="normal" in2="effect2_dropShadow_2150_6567" result="effect3_dropShadow_2150_6567"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-0.0558408"/>
+<feGaussianBlur stdDeviation="0.558408"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.035 0"/>
+<feBlend mode="normal" in2="effect3_dropShadow_2150_6567" result="effect4_dropShadow_2150_6567"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-0.104444"/>
+<feGaussianBlur stdDeviation="1.04444"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0282725 0"/>
+<feBlend mode="normal" in2="effect4_dropShadow_2150_6567" result="effect5_dropShadow_2150_6567"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-0.25"/>
+<feGaussianBlur stdDeviation="2.5"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0196802 0"/>
+<feBlend mode="normal" in2="effect5_dropShadow_2150_6567" result="effect6_dropShadow_2150_6567"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect6_dropShadow_2150_6567" result="shape"/>
+</filter>
+<clipPath id="clip0_2150_6567">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>

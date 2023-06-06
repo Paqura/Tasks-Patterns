@@ -35,7 +35,9 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
                     <title>{seo.title || 'PT Security'}</title>
                     {seo.description && <meta name="description" content={seo.description} />}
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <link rel="icon" href="/favicon.ico" />
+                    <link rel="icon" href="/images/favicons/favicon.ico" sizes="any" />
+                    <link rel="icon" href="/images/favicons/icon.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/favicons/apple-touch-icon.png" />
                 </Head>
             )}
             {headerData && <Header data={headerData} />}
