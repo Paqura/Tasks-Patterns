@@ -38,13 +38,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
         fetchConfig(),
         fetchHeader(),
         fetchProduct(params.id),
-        fetchProducts({
-            filters: {
-                slug: {
-                    $ne: params.id,
-                },
-            },
-        }),
+        fetchProducts(),
         fetchAnyQuestions(),
         fetchFooter(),
     ])
@@ -70,9 +64,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
 type TProps = TServerSideProps
 
 export default function Product(props: TProps) {
-    const products = [props.product, ...(props.allProducts || [])]
-    const anyQuestionsData = mapAnyQuestionsServerData(props.anyQuestions, products)
-    const footerData = mapFooterServerData(props.footer, products)
+    const anyQuestionsData = mapAnyQuestionsServerData(props.anyQuestions, props.allProducts)
+    const footerData = mapFooterServerData(props.footer, props.allProducts)
 
     const product: TProductData = mapProductServerData(props.product, props.allProducts)
 

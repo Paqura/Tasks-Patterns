@@ -88,12 +88,17 @@ export const mapProductServerData = (
     productData: GetAttributesValues<'api::product.product'>,
     products?: GetAttributesValues<'api::product.product'>[]
 ): TProductData => {
+    const filteredProducts = (products || []).filter(({ slug }) => slug !== productData.slug)
+
     return {
         title: productData.title || '',
         subtitle: productData.subtitle,
         logo: mapImageMediaFile(productData.icon) || { src: '' },
         bannerImage: mapImageMediaFile(productData.bannerImage) || { src: '' },
-        blocks: mapProductBlocksServerData({ blocks: productData.blocks, products: products }),
+        blocks: mapProductBlocksServerData({
+            blocks: productData.blocks,
+            products: filteredProducts,
+        }),
     }
 }
 

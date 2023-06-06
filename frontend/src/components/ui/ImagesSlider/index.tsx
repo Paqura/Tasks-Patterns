@@ -58,20 +58,22 @@ export const ImagesSlider: React.FC<TProps> = ({ className, slides, scrollAreaCl
                                             [styles.slideWrapper_next]: isNext,
                                         })}
                                     >
-                                        <Image
-                                            className={styles.image}
-                                            src={image.src}
-                                            width={image.width}
-                                            height={image.height}
-                                            alt={image.alt || ''}
-                                            onClick={() => {
-                                                if (isNext) {
-                                                    controlledSwiper?.slideNext()
-                                                } else if (isPrev) {
-                                                    controlledSwiper?.slidePrev()
-                                                }
-                                            }}
-                                        />
+                                        <div className={styles.imageWrapper}>
+                                            <Image
+                                                className={styles.image}
+                                                src={image.src}
+                                                width={image.width}
+                                                height={image.height}
+                                                alt={image.alt || ''}
+                                                onClick={() => {
+                                                    if (isNext) {
+                                                        controlledSwiper?.slideNext()
+                                                    } else if (isPrev) {
+                                                        controlledSwiper?.slidePrev()
+                                                    }
+                                                }}
+                                            />
+                                        </div>
                                         {caption && (
                                             <Text type="postscript" className={styles.caption}>
                                                 {caption}
