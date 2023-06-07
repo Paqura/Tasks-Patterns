@@ -7,7 +7,6 @@ export type TFileData = {
 export type TArticleSection = {
     title: string
     value: string
-    number: number
 }
 
 export type TAnalitycArticleData = {

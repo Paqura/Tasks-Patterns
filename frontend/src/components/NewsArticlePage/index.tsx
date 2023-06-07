@@ -1,21 +1,20 @@
 import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { ArticleDate } from '@/components/ArticleDate'
+import { ArticleHeader } from '@/components/ArticleHeader'
 import {
     ArticleLayoutGrid,
     ArticleLayoutGridLeftColumn,
     ArticleLayoutGridRightColumn,
 } from '@/components/ArticleLayout'
 import { TFooterData } from '@/components/Footer'
+import { THeaderData } from '@/components/Header'
+import HelpfulFiles from '@/components/HelpfulFiles'
+import { PageLayout, TSeo } from '@/components/PageLayout'
 import { MarkdownContent } from '@/components/ui/MarkdownContent'
+import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { TNewsArticleData } from '@/utils/serverDataMappers/news-article'
 
 import styles from './index.module.scss'
-
-import { THeaderData } from 'src/components/Header'
-import HelpfulFiles from 'src/components/HelpfulFiles'
-import NewsArticleHeader from 'src/components/NewsArticleHeader'
-import { PageLayout, TSeo } from 'src/components/PageLayout'
-import { PageSectionCard } from 'src/components/ui/PageSectionCard'
 
 export type TNewsArticlePageData = {
     seo: TSeo
@@ -28,7 +27,7 @@ type TNewsArticlePageProps = TNewsArticlePageData
 export default function NewsArticlePage(props: TNewsArticlePageProps) {
     return (
         <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
-            <NewsArticleHeader
+            <ArticleHeader
                 image={props?.newsArticleData?.image}
                 title={props.newsArticleData.title}
                 topic={props.newsArticleData.topic}

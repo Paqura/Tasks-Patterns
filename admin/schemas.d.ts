@@ -779,8 +779,9 @@ export interface ApiAnalyticArticleAnalyticArticle
     published: DateAttribute & RequiredAttribute;
     tag: StringAttribute;
     articleText: ComponentAttribute<'article-section.article-section', true>;
-    slug: UIDAttribute<'api::analytic-article.analytic-article', 'title'>;
-    tableOfContent: StringAttribute;
+    slug: UIDAttribute<'api::analytic-article.analytic-article', 'title'> &
+      RequiredAttribute;
+    tableOfContent: StringAttribute & DefaultTo<'Table of contents'>;
     files: MediaAttribute;
     titleOfHelpfulFiles: StringAttribute;
     createdAt: DateTimeAttribute;
@@ -1627,7 +1628,6 @@ export interface ArticleSectionArticleSection extends ComponentSchema {
     description: '';
   };
   attributes: {
-    number: IntegerAttribute;
     value: RichTextAttribute &
       CustomField<
         'plugin::ckeditor5.CKEditor',

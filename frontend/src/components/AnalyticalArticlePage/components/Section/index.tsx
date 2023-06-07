@@ -9,23 +9,22 @@ import styles from './index.module.scss'
 
 type TProps = {
     item: TArticleSection
+    sectionId: string
 }
 
-export const Section: React.FC<TProps> = ({ item }) => {
+export const Section: React.FC<TProps> = ({ item, sectionId }) => {
     const ref = useRef<HTMLDivElement>(null)
     const { api: anchorsApi } = useAnchors()
 
-    const sectionId = item.number.toString()
-
     useEffect(() => {
         if (anchorsApi) {
-            const unregister = anchorsApi.watchSectionInViewport(sectionId, ref, 0.75)
+            const unregister = anchorsApi.watchSectionInViewport(sectionId, ref)
             return () => unregister()
         }
     }, [sectionId, anchorsApi])
 
     return (
-        <div key={item.number} id={sectionId} className={styles.content} ref={ref}>
+        <div id={sectionId} className={styles.content} ref={ref}>
             <Heading className={styles.title} level={2}>
                 {item.title}
             </Heading>

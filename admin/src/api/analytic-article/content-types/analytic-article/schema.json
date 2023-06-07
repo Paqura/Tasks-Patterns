@@ -34,22 +34,18 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "title"
+      "targetField": "title",
+      "required": true
     },
     "tableOfContent": {
-      "type": "string"
+      "type": "string",
+      "default": "Table of contents"
     },
     "files": {
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "files",
-        "images",
-        "videos",
-        "audios",
-        "files"
-      ]
+      "allowedTypes": ["files", "images", "videos", "audios", "files"]
     },
     "titleOfHelpfulFiles": {
       "type": "string"

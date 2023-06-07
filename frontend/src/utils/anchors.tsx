@@ -1,12 +1,9 @@
-import React, { useContext, useMemo, useRef, useState } from 'react'
+import throttle from 'lodash/throttle'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 type TAnchorsContextValue = {
     api: {
-        watchSectionInViewport: (
-            anchor: string,
-            ref: React.RefObject<HTMLElement>,
-            threshold?: number
-        ) => () => void
+        watchSectionInViewport: (anchor: string, ref: React.RefObject<HTMLElement>) => () => void
         setActive: (anchor: string) => void
     }
     activeLink: string | null
@@ -15,36 +12,64 @@ const PageAnchorsContext = React.createContext<TAnchorsContextValue | undefined>
 
 export const PageAnchorsContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     const [activeLink, setActiveLink] = useState<string | null>(null)
+    const watchedNodesRef = useRef<{ link: string; el: HTMLElement }[]>([])
 
     const api = useRef<TAnchorsContextValue['api']>({
-        watchSectionInViewport: (anchor, ref, threshold = 0.35) => {
+        watchSectionInViewport: (anchor, ref) => {
             if (ref.current) {
-                let observer = new IntersectionObserver(
-                    (entries) => {
-                        if (!entries[0]) {
-                            return
-                        }
-
-                        if (
-                            entries[0].isIntersecting &&
-                            entries[0].intersectionRatio >= threshold
-                        ) {
-                            setActiveLink(anchor)
-                        }
-                    },
-                    {
-                        threshold,
-                        root: document.querySelector('main'),
-                        rootMargin: '-1px',
-                    }
-                )
-                observer.observe(ref.current)
-                return () => observer.disconnect()
+                const anchorTarget = { link: anchor, el: ref.current }
+                watchedNodesRef.current.push(anchorTarget)
+                return () => {
+                    watchedNodesRef.current = watchedNodesRef.current.filter(
+                        (t) => t !== anchorTarget
+                    )
+                }
             }
             return () => {}
         },
         setActive: (link) => setActiveLink(link),
     })
+
+    useEffect(() => {
+        const scrollRoot = document.querySelector('main')
+        if (!scrollRoot) {
+            return
+        }
+
+        const handleScroll = throttle(() => {
+            const viewportCeter = scrollRoot.clientHeight / 2
+
+            const nearestNode = watchedNodesRef.current.reduce<{
+                link: string
+                el: HTMLElement
+            } | null>((prev, current) => {
+                const currentRect = current.el.getBoundingClientRect()
+
+                if (!prev?.el) {
+                    return current
+                }
+
+                const prevRect = prev.el.getBoundingClientRect()
+
+                const nearestEdgeCurrent = Math.min(
+                    Math.abs(viewportCeter - currentRect.top),
+                    Math.abs(viewportCeter - currentRect.bottom)
+                )
+                const nearestEdgePrevious = Math.min(
+                    Math.abs(viewportCeter - prevRect.top),
+                    Math.abs(viewportCeter - prevRect.bottom)
+                )
+
+                return nearestEdgeCurrent < nearestEdgePrevious ? current : prev
+            }, null)
+
+            setActiveLink(nearestNode?.link || null)
+        }, 300)
+
+        scrollRoot?.addEventListener('scroll', handleScroll)
+
+        return () => scrollRoot?.removeEventListener('scroll', handleScroll)
+    }, [])
 
     const context: TAnchorsContextValue = useMemo(() => {
         return {

@@ -28,23 +28,21 @@ export const Aside: React.FC<{ articleHeaders: TTitleTableOfContent[] }> = (prop
                         href={`#${item.link}`}
                         onClick={(e) => handleClick(e, item)}
                     >
-                        <div key={item.name} className={styles.itemWrap}>
-                            <Text
-                                className={cn(styles.itemTitle, {
-                                    [styles.itemTitle_active]: activeLink === item.link,
-                                })}
-                                type="pL"
-                            >
+                        <span
+                            key={item.name}
+                            className={cn(styles.itemWrap, {
+                                [styles.itemWrap_active]: activeLink === item.link,
+                            })}
+                        >
+                            <Text className={styles.itemTitle} type="pL">
                                 {item.name}
                             </Text>
-                            {activeLink === item.link && (
-                                <Image
-                                    className={styles.icon}
-                                    src={arrowRight2}
-                                    alt="Arrow right"
-                                />
-                            )}
-                        </div>
+                            <Image
+                                className={cn(styles.icon)}
+                                src={arrowRight2}
+                                alt="Arrow right"
+                            />
+                        </span>
                     </NextLink>
                 )
             })}

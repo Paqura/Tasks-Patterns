@@ -4,6 +4,7 @@ import { Aside, TTitleTableOfContent } from '@/components/AnalyticalArticlePage/
 import { AnchorBar } from '@/components/AnchorBar'
 import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { ArticleDate } from '@/components/ArticleDate'
+import { ArticleHeader } from '@/components/ArticleHeader'
 import {
     ArticleLayoutGrid,
     ArticleLayoutGridLeftColumn,
@@ -11,7 +12,6 @@ import {
 } from '@/components/ArticleLayout'
 import { TFooterData } from '@/components/Footer'
 import { THeaderData } from '@/components/Header/index'
-import HeaderArticle from '@/components/HeaderArticle'
 import HelpfulFiles from '@/components/HelpfulFiles'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
@@ -36,12 +36,14 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
     const isDesktopSmall = useIsDesktopSmall()
     const regExp = new RegExp(/#+|=|<h[0-9]>|<\/h[0-9]>/g)
 
-    const sortSection = props.analyticArticleData.articleText.sort((a, b) => a.number - b.number)
+    const sections = props.analyticArticleData.articleText
 
-    const tableOfContent = sortSection.map((item): TTitleTableOfContent => {
+    const getSectionId = (index: number) => String(index + 1)
+
+    const tableOfContent = sections.map((item, index): TTitleTableOfContent => {
         return {
             name: item.title.replaceAll(regExp, '').trim(),
-            link: item.number.toString(),
+            link: getSectionId(index),
         }
     })
 
@@ -49,7 +51,7 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
         <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
             <PageAnchorsContextProvider>
                 <div className={styles.wrapper}>
-                    <HeaderArticle
+                    <ArticleHeader
                         title={props.analyticArticleData.title}
                         topic={props.analyticArticleData.topic}
                     />
@@ -61,7 +63,7 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
                                 <ArticleDate date={props.analyticArticleData.published} />
                                 {!isDesktopSmall && (
                                     <div className={styles.aside}>
-                                        <Text className={styles.title} type="postscript">
+                                        <Text className={styles.asideTitle} type="postscript">
                                             {props.analyticArticleData.titleTableOfContent}
                                         </Text>
                                         <Aside articleHeaders={tableOfContent} />
@@ -69,11 +71,13 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
                                 )}
                             </ArticleLayoutGridLeftColumn>
                             <ArticleLayoutGridRightColumn>
-                                <div className={styles.contentWrapper}>
-                                    {sortSection.map((item) => (
-                                        <Section key={item.number} item={item} />
-                                    ))}
-                                </div>
+                                {sections.map((item, index) => (
+                                    <Section
+                                        key={index}
+                                        item={item}
+                                        sectionId={getSectionId(index)}
+                                    />
+                                ))}
                             </ArticleLayoutGridRightColumn>
                         </ArticleLayoutGrid>
 

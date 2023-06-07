@@ -11,7 +11,6 @@ const mapArticleSectionsServerData = (
         return {
             title: item.title || '',
             value: item.value || '',
-            number: item.number || 0,
         }
     })
 }

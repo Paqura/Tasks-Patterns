@@ -6,10 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "number": {
-      "type": "integer",
-      "required": false
-    },
     "value": {
       "type": "customField",
       "options": {

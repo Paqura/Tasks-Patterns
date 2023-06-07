@@ -1,4 +1,5 @@
 import { ArticleDate } from '@/components/ArticleDate'
+import { ArticleHeader } from '@/components/ArticleHeader'
 import {
     ArticleLayoutGrid,
     ArticleLayoutGridLeftColumn,
@@ -10,7 +11,6 @@ import EventVideo from '@/components/EventVideo'
 import { TFooterData } from '@/components/Footer'
 import { THeaderData } from '@/components/Header'
 import HelpfulFiles from '@/components/HelpfulFiles'
-import NewsArticleHeader from '@/components/NewsArticleHeader'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 import { MarkdownContent } from '@/components/ui/MarkdownContent'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
@@ -34,7 +34,7 @@ type TEventArticlePageProps = TEventArticlePageData
 export default function EventArticlePage(props: TEventArticlePageProps) {
     return (
         <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
-            <NewsArticleHeader
+            <ArticleHeader
                 image={props?.eventArticleData?.image ?? { src: '' }}
                 title={props.eventArticleData.title}
                 topic={props.eventArticleData.topic}

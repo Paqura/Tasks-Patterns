@@ -2,14 +2,14 @@
 
 .content {
     &:not(:first-of-type) {
-        margin-top: 32px;
-
-        @include media_breakpoint_small_desktop {
-            margin-top: 16px;
-        }
+        margin-top: 24px;
     }
 }
 
 .title {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+
+    @include media_breakpoint_small_desktop {
+        margin-bottom: 16px;
+    }
 }
