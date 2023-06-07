@@ -65,6 +65,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="text"
                                     name={'fullName'}
+                                    autoComplete={'name'}
                                     required
                                     maxLength={250}
                                     placeholder={props.eventConfigData.name}
@@ -74,6 +75,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="text"
                                     name={'companyName'}
+                                    autoComplete={'organization'}
                                     maxLength={250}
                                     placeholder={props.eventConfigData.company}
                                 />
@@ -82,6 +84,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="text"
                                     name={'companyPosition'}
+                                    autoComplete={'organization-title'}
                                     maxLength={250}
                                     placeholder={props.eventConfigData.position}
                                 />
@@ -90,6 +93,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="tel"
                                     name={'phone'}
+                                    autoComplete={'tel'}
                                     maxLength={250}
                                     placeholder={props.eventConfigData.phone}
                                 />
@@ -98,6 +102,7 @@ export default function EventForm(props: TEventForm) {
                                 <Input
                                     type="email"
                                     name={'email'}
+                                    autoComplete={'email'}
                                     required
                                     maxLength={250}
                                     placeholder={props.eventConfigData.email}

@@ -108,6 +108,7 @@ export const CommonForm: React.FC<TCommonFormProps> = ({
                         <Input
                             type="text"
                             name={'fullName'}
+                            autoComplete={'name'}
                             required
                             placeholder={labels.fieldName}
                             maxLength={250}
@@ -117,6 +118,7 @@ export const CommonForm: React.FC<TCommonFormProps> = ({
                         <Input
                             type="text"
                             name={'companyName'}
+                            autoComplete={'organization'}
                             required={type !== 'feedback'}
                             placeholder={labels.fieldCompanyName}
                             maxLength={250}
@@ -126,6 +128,7 @@ export const CommonForm: React.FC<TCommonFormProps> = ({
                         <Input
                             type="tel"
                             name={'phone'}
+                            autoComplete={'tel'}
                             placeholder={labels.fieldPhone}
                             maxLength={20}
                         />
@@ -134,6 +137,7 @@ export const CommonForm: React.FC<TCommonFormProps> = ({
                         <Input
                             type="email"
                             name={'email'}
+                            autoComplete={'email'}
                             required
                             placeholder={labels.fieldEmail}
                             maxLength={250}
@@ -147,6 +151,7 @@ export const CommonForm: React.FC<TCommonFormProps> = ({
                         <Input
                             type="text"
                             name={'address'}
+                            autoComplete={'url'}
                             placeholder={labels.fieldAddress}
                             maxLength={250}
                         />

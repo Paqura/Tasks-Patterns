@@ -11,7 +11,6 @@ import { validateRequired } from '@/utils/validation/validateRequired'
 import styles from './index.module.scss'
 
 type TInputType = 'text' | 'email' | 'tel'
-type TAutoCompleteType = 'on' | 'off'
 
 interface IProps {
     type: TInputType
@@ -19,7 +18,7 @@ interface IProps {
     name: string
     pattern?: RegExp | ValidationValueMessage<RegExp>
     required?: boolean
-    autoComplete?: TAutoCompleteType
+    autoComplete?: string
     autofocus?: boolean
     className?: string
     maxLength?: number
