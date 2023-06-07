@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { CardsSlider } from '@/components/ui/CardsSlider'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
+import { CONTACTS_SECTION_ID } from '@/utils/constants'
+import { scrollToSection } from '@/utils/scrollToSection'
 import {
     postFeedbackRequest,
     postPartnershipRequest,
@@ -37,7 +39,7 @@ type TAnyQuestionsProps = {
 }
 
 export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
-    sectionId,
+    sectionId = CONTACTS_SECTION_ID,
     selectedProduct,
     anyQuestionData,
 }) => {
@@ -84,6 +86,11 @@ export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
         }
     }
 
+    const getSetTab = (tab: TTypeForm) => () => {
+        setTab(tab)
+        scrollToSection(sectionId)
+    }
+
     return (
         <PageSectionCard mode="light" sectionId={sectionId} className={styles.container}>
             <div className={styles.heading}>
@@ -104,21 +111,21 @@ export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
                             description={feedback.description}
                             value={'feedback'}
                             checked={tab === 'feedback'}
-                            onChange={() => setTab('feedback')}
+                            onChange={getSetTab('feedback')}
                         />
                         <CardRadio
                             title={partnership.title}
                             description={partnership.description}
                             value={'partnership'}
                             checked={tab === 'partnership'}
-                            onChange={() => setTab('partnership')}
+                            onChange={getSetTab('partnership')}
                         />
                         <CardRadio
                             title={pilotApplication.title}
                             description={pilotApplication.description}
                             value={'pilotApplication'}
                             checked={tab === 'pilotApplication'}
-                            onChange={() => setTab('pilotApplication')}
+                            onChange={getSetTab('pilotApplication')}
                         />
                     </CardsSlider>
                 )}

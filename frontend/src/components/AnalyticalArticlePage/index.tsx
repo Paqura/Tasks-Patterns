@@ -9,7 +9,6 @@ import { PageLayout, TSeo } from '@/components/PageLayout'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Text } from '@/components/ui/typography/Text'
 import { PageAnchorsContextProvider } from '@/utils/anchors'
-import { CONTACTS_SECTION_ID } from '@/utils/constants'
 import { formatDate } from '@/utils/date'
 import { useIsDesktopSmall } from '@/utils/hooks'
 
@@ -82,10 +81,7 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
                         </div>
                     </PageSectionCard>
                 </div>
-                <AnyQuestions
-                    sectionId={CONTACTS_SECTION_ID}
-                    anyQuestionData={props.anyQuestionsData}
-                />
+                <AnyQuestions anyQuestionData={props.anyQuestionsData} />
             </PageAnchorsContextProvider>
         </PageLayout>
     )

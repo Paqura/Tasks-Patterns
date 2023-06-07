@@ -102,10 +102,7 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
                 <Banner data={props.headingBlock} />
                 <AnchorBar anchors={anchors} />
                 {blocksAcc.blocks}
-                <AnyQuestions
-                    sectionId={CONTACTS_SECTION_ID}
-                    anyQuestionData={props.anyQuestionsData}
-                />
+                <AnyQuestions anyQuestionData={props.anyQuestionsData} />
             </PageAnchorsContextProvider>
         </PageLayout>
     )
