@@ -121,6 +121,7 @@ export default function EventForm(props: TEventForm) {
                             type={'submit'}
                             className={styles.submit}
                             disabled={context.formState.isSubmitting}
+                            loading={context.formState.isSubmitting}
                         >
                             {props.eventConfigData.submit}
                         </Button>

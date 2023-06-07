@@ -50,6 +50,14 @@ export default function Components() {
                 <Button size="m">Button size m</Button>
                 <br />
                 <Button size="s">Button size s</Button>
+                <br />
+                <Button size="m" loading disabled>
+                    Button size s
+                </Button>
+                <br />
+                <Button size="s" loading disabled>
+                    Button size s
+                </Button>
             </PageSectionCard>
             <PageSectionCard mode="dark">
                 <Link href="#" type="m">
@@ -63,6 +71,14 @@ export default function Components() {
                 <Button size="m">Button size m</Button>
                 <br />
                 <Button size="s">Button size s</Button>
+                <br />
+                <Button size="m" loading disabled>
+                    Button size s
+                </Button>
+                <br />
+                <Button size="s" loading disabled>
+                    Button size s
+                </Button>
             </PageSectionCard>
             <PageSectionCard mode="light">
                 <SliderButtons />

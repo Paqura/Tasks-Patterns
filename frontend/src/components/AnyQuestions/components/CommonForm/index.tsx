@@ -177,6 +177,7 @@ export const CommonForm: React.FC<TCommonFormProps> = ({
                     type={'submit'}
                     className={styles.submit}
                     disabled={context.formState.isSubmitting}
+                    loading={context.formState.isSubmitting}
                 >
                     {labels.buttonSubmit}
                 </Button>

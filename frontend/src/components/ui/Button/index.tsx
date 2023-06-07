@@ -18,6 +18,7 @@ interface IButton {
     onClick?: React.MouseEventHandler
     download?: boolean
     disabled?: boolean
+    loading?: boolean
 }
 
 export const Button: React.FC<PropsWithChildren<IButton>> = ({
@@ -30,6 +31,7 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
     onClick,
     download,
     disabled,
+    loading,
 }) => {
     const theme = useTypographyTheme() || 'light'
 
@@ -37,13 +39,16 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
         className,
         styles.button,
         styles[`button_size_${size}`],
-        styles[`button_theme_${theme}`]
+        styles[`button_theme_${theme}`],
+        { [styles.loading]: loading, [styles.disabled]: disabled }
     )
 
     const renderContent = () => {
+        const content = typeof children === 'string' ? <span>{children}</span> : children
+
         return (
             <>
-                {children}
+                <span>{content}</span>
                 {size === 'm' && withIcon && (
                     <Image className={styles.arrow} src={arrowIcon} alt="" />
                 )}
