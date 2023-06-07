@@ -23,10 +23,9 @@ type TAnchorBar = {
 export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
     const { activeLink, api } = useAnchors()
 
-    const [isShadowvisible, setIsShadowvisible] = useState(false)
+    const [isShadowVisible, setIsShadowVisible] = useState(false)
     const [isSticky, setIsSticky] = useState(false)
 
-    const wrapperRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
     const intersectionSensorRef = useRef<HTMLDivElement>(null)
 
@@ -34,18 +33,20 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
 
     useEffect(() => {
         const contentEl = contentRef.current
-        const wrapperEl = wrapperRef.current
 
-        if (!contentEl || !wrapperEl) {
+        if (!contentEl) {
             return
         }
         const handleResize = () => {
-            setIsShadowvisible(wrapperEl.offsetWidth < contentEl.scrollWidth)
+            setIsShadowVisible(contentEl.offsetWidth < contentEl.scrollWidth)
         }
         const handleScroll = () => {
+            const rightPaddingsValue = 32
             const isScrolledTillEnd =
-                contentEl.scrollLeft === contentEl.scrollWidth - contentEl.offsetWidth
-            setIsShadowvisible(!isScrolledTillEnd)
+                contentEl.scrollWidth - contentEl.offsetWidth - contentEl.scrollLeft <
+                rightPaddingsValue
+
+            setIsShadowVisible(!isScrolledTillEnd)
         }
 
         window.addEventListener('resize', handleResize)
@@ -68,11 +69,7 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
             <PageSection
                 className={cn({ [styles.bar_float]: isFloat, [styles.bar_aligned]: isSticky })}
             >
-                <div
-                    ref={wrapperRef}
-                    className={styles.wrapper}
-                    id={PAGE_SECTIONS_ANCHORS_ELEMENT_ID}
-                >
+                <div className={styles.wrapper} id={PAGE_SECTIONS_ANCHORS_ELEMENT_ID}>
                     <div
                         ref={contentRef}
                         className={styles.content}
@@ -92,7 +89,7 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
                                 </Text>
                             </NextLink>
                         ))}
-                        {isShadowvisible && <div className={styles.shadow} />}
+                        {isShadowVisible && <div className={styles.shadow} />}
                     </div>
                 </div>
             </PageSection>
