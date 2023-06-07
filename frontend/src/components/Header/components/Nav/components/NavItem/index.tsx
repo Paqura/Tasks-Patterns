@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import NextLink from 'next/link'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 import { SubMenu } from '@/components/Header/components/Nav/components/SubMenu'
 import { Text } from '@/components/ui/typography/Text'
@@ -18,14 +18,30 @@ export const NavItem: React.FC<INavItem> = ({ navItem, onToggle }) => {
     const { link, subItems, title } = navItem
     const isSubItemsExist = subItems.length > 0
 
+    const timerRef = useRef<NodeJS.Timeout | null>(null)
+
     const handleMouseEnter = () => {
         isSubItemsExist && onToggle(true)
         setIsItemActive(true)
+
+        if (timerRef.current) {
+            clearTimeout(timerRef.current)
+        }
+    }
+
+    const deactivateItem = () => {
+        isSubItemsExist && onToggle(false)
+        setIsItemActive(false)
     }
 
     const handleMouseLeave = () => {
-        isSubItemsExist && onToggle(false)
-        setIsItemActive(false)
+        if (timerRef.current) {
+            clearTimeout(timerRef.current)
+        }
+
+        timerRef.current = setTimeout(() => {
+            deactivateItem()
+        }, 100)
     }
 
     const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
