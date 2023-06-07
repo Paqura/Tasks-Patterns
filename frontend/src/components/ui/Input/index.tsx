@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useController } from 'react-hook-form'
 import { ValidationValueMessage } from 'react-hook-form/dist/types/validator'
 
@@ -42,6 +42,7 @@ export const Input = ({
     required,
     maxLength,
 }: IProps) => {
+    const [isFocused, setIsFocused] = useState<boolean>(false)
     const fieldName = `${name}` as const
     const controller = useController({
         name: fieldName,
@@ -51,24 +52,30 @@ export const Input = ({
         },
         shouldUnregister: true,
     })
+
     const controllerProps = controller.field
 
     const handleBlur = (event: React.FormEvent<HTMLInputElement>) => {
+        setIsFocused(false)
         controllerProps.onChange(event.currentTarget.value.trim())
         controllerProps.onBlur()
+    }
+
+    const handleFocus = () => {
+        setIsFocused(true)
     }
 
     const errorMessage = useMemo(() => {
         const error = controller.fieldState.error
 
-        if (!error) {
+        if (!error || isFocused) {
             return
         }
 
         const defaultMessage = 'Incorrect value'
 
         return error.message || defaultMessage
-    }, [controller.fieldState.error])
+    }, [controller.fieldState.error, isFocused])
 
     return (
         <label className={styles.container}>
@@ -83,6 +90,7 @@ export const Input = ({
                 autoComplete={autoComplete}
                 defaultValue={''}
                 maxLength={maxLength}
+                onFocus={handleFocus}
                 {...controllerProps}
                 onBlur={handleBlur}
                 value={controllerProps.value || ''}

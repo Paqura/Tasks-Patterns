@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import React from 'react'
+import React, { useState } from 'react'
 import { useController } from 'react-hook-form'
 
 import { InputError } from '@/components/ui/InputError'
@@ -24,6 +24,7 @@ export const Textarea = ({
     required,
     maxLength,
 }: IProps) => {
+    const [isFocused, setIsFocused] = useState<boolean>(false)
     const fieldName = `${name}` as const
     const controller = useController({
         name: fieldName,
@@ -34,13 +35,18 @@ export const Textarea = ({
     })
 
     const handleBlur = (event: React.FormEvent<HTMLTextAreaElement>) => {
+        setIsFocused(false)
         controllerProps.onChange(event.currentTarget.value.trim())
         controllerProps.onBlur()
     }
 
+    const handleFocus = () => {
+        setIsFocused(true)
+    }
+
     const controllerProps = controller.field
 
-    const errorMessage = controller.fieldState.error?.message
+    const errorMessage = isFocused ? null : controller.fieldState.error?.message
 
     return (
         <label className={styles.container}>
@@ -53,6 +59,7 @@ export const Textarea = ({
                 placeholder={placeholder}
                 autoFocus={autoFocus}
                 maxLength={maxLength}
+                onFocus={handleFocus}
                 {...controllerProps}
                 onBlur={handleBlur}
                 value={controllerProps.value || ''}
