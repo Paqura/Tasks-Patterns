@@ -104,6 +104,7 @@
 
     @include media_breakpoint_mobile {
         width: 100%;
+        height: auto;
         max-height: 292px;
 
         border-radius: 8px;
