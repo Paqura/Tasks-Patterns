@@ -1,14 +1,5 @@
-.layout {
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
-    height: 100vh;
-}
-
 .main {
+    margin-top: var(--header-height);
     padding-bottom: 0.01px; /* To fix margin collapse */
-    overflow-y: auto;
     background-color: var(--color-black-ui);
-    scroll-behavior: smooth;
-    scroll-padding-top: var(--anchor-bar-height);
 }

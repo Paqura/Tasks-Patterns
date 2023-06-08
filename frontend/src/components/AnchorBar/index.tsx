@@ -1,5 +1,4 @@
 import cn from 'classnames'
-import NextLink from 'next/link'
 import { MouseEvent, useEffect, useRef, useState } from 'react'
 
 import { PageSection } from '@/components/ui/PageSection'
@@ -76,7 +75,7 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
                         style={{ gridTemplateColumns: `repeat(${anchors.length}, 1fr)` }}
                     >
                         {anchors.map((anchor) => (
-                            <NextLink
+                            <a
                                 key={anchor.link}
                                 href={`#${anchor.link}`}
                                 className={cn(styles.anchor, {
@@ -87,7 +86,7 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
                                 <Text type="pM" className={styles.text}>
                                     {anchor.name}
                                 </Text>
-                            </NextLink>
+                            </a>
                         ))}
                         {isShadowVisible && <div className={styles.shadow} />}
                     </div>

@@ -1,6 +1,9 @@
 @import '../../../../styles/media';
+@import '../../../../styles/offsets';
 
 .content {
+    @include anchor-section-scroll-offset;
+
     &:not(:first-of-type) {
         margin-top: 24px;
     }

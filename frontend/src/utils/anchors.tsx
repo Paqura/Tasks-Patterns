@@ -31,13 +31,13 @@ export const PageAnchorsContextProvider: React.FC<React.PropsWithChildren> = ({ 
     })
 
     useEffect(() => {
-        const scrollRoot = document.querySelector('main')
+        const scrollRoot = document
         if (!scrollRoot) {
             return
         }
 
         const handleScroll = throttle(() => {
-            const viewportCeter = scrollRoot.clientHeight / 2
+            const viewportCeter = window.innerHeight / 2
 
             const nearestNode = watchedNodesRef.current.reduce<{
                 link: string

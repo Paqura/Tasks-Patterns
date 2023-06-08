@@ -8,6 +8,7 @@
     box-sizing: border-box;
     border-radius: 16px;
 
+    @include anchor-section-scroll-offset;
     @include section-card-paddings;
 
     @include media_breakpoint_mobile {

@@ -75,3 +75,7 @@
 @mixin anchor-bar-paddings {
     padding: var(--anchor-bar-padding-vertical) var(--anchor-bar-padding-horizontal);
 }
+
+@mixin anchor-section-scroll-offset {
+    scroll-margin-top: calc(var(--header-height) + var(--anchor-bar-height) + 8px);
+}

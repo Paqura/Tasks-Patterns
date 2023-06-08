@@ -27,20 +27,18 @@ export const Header: React.FC<THeaderProps> = ({ data }) => {
     const handleToggleNav = (isOpen: boolean) => {
         setIsNavOpen(isOpen)
 
-        const element = document.getElementById('main')
-
+        const element = document.body
         if (element) {
-            element.style.overflowY = isOpen ? 'hidden' : 'auto'
+            element.style.overflowY = isOpen ? 'hidden' : ''
         }
     }
 
     const handleCloseMenu = () => {
         setIsNavOpen(false)
 
-        const element = document.getElementById('main')
-
+        const element = document.body
         if (element) {
-            element.style.overflowY = 'auto'
+            element.style.overflowY = ''
         }
     }
 

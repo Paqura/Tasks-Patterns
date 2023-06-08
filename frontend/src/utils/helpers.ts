@@ -31,8 +31,7 @@ export const useObserver = (
             },
             {
                 threshold: 0.3,
-                root: document.querySelector('main'),
-                rootMargin: '-1px',
+                root: window.document,
             }
         )
         observer.observe(ref.current)
