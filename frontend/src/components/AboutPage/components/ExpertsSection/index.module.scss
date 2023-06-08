@@ -79,6 +79,8 @@
     @include media_breakpoint_mobile {
         display: flex;
         gap: 12px;
+
+        @include include-section-card-horizontal-paddings;
     }
 }
 
