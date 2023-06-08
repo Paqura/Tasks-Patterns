@@ -35,6 +35,10 @@
 
         a {
             color: var(--color-red-ui);
+
+            @include media_hover {
+                color: var(--color-error);
+            }
         }
 
         p,

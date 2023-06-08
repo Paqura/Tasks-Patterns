@@ -1,3 +1,5 @@
+@import "../../styles/media.scss";
+
 .attachment {
     position: relative;
     padding: 24px 16px;
@@ -12,6 +14,12 @@
     background-position-x: right;
     background-position-y: bottom;
     border-radius: 8px;
+
+    @include media_hover {
+        & .name {
+            color: var(--color-red-ui);
+        }
+    }
 }
 
 .description {
@@ -26,4 +34,5 @@
 
 .name {
     word-break: break-word;
+    color: var(--color-black-ui);
 }

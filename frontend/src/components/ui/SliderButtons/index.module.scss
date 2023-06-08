@@ -18,6 +18,13 @@
     background: none;
     border: none;
     align-items: center;
+    opacity: 0.8;
+
+    @include media_hover {
+        &:not(:disabled) {
+            opacity: 1;
+        }
+    }
 
     &:disabled {
         cursor: default;
@@ -49,13 +56,17 @@
             }
         }
 
+        &.disabled {
+            border-color: rgba(179, 179, 179, 0.5);
+        }
+
         & .divider {
             border-color: var(--color-gray-ui);
         }
     }
 
     &_dark {
-        border-color: var(--color-border);
+        border-color: var(--color-gray-7x);
 
         @include media_hover {
             &:not(.disabled) {
@@ -64,7 +75,7 @@
         }
 
         & .divider {
-            border-color: var(--color-border);
+            border-color: var(--color-gray-7x);
         }
     }
 }

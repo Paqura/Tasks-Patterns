@@ -55,7 +55,7 @@ export default function Components() {
                     Button size s
                 </Button>
                 <br />
-                <Button size="s" loading disabled>
+                <Button size="s" disabled>
                     Button size s
                 </Button>
             </PageSectionCard>
@@ -76,7 +76,7 @@ export default function Components() {
                     Button size s
                 </Button>
                 <br />
-                <Button size="s" loading disabled>
+                <Button size="s" disabled>
                     Button size s
                 </Button>
             </PageSectionCard>

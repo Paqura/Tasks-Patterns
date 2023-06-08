@@ -39,6 +39,16 @@
         height: 140px;
         flex-shrink: 0;
     }
+
+    @include media_hover {
+        &:not(.checked) {
+            border: 1px solid var(--color-gray-4x);
+
+            &::before {
+                border: 1px solid var(--color-gray-4x);
+            }
+        }
+    }
 }
 
 .title {
@@ -65,6 +75,18 @@
         content: '';
         background-color: var(--color-red-ui);
         border-radius: 50%;
+    }
+
+    @include media_hover {
+        border: 1px solid var(--color-error);
+
+        &::before {
+            border: 1px solid var(--color-error);
+        }
+
+        &::after {
+            background-color: var(--color-error);
+        }
     }
 
     .title {

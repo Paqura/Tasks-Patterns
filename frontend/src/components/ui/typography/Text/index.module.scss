@@ -1,9 +1,15 @@
+@import "../../../../styles/media.scss";
+
 .base {
     font-family: 'TT Positive', sans-serif;
 
     a {
         text-decoration: none;
         color: var(--color-red-ui);
+
+        @include media_hover {
+            color: var(--color-error);
+        }
     }
 }
 

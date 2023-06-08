@@ -1,3 +1,5 @@
+@import '../../../styles/media.scss';
+
 .link {
     font-family: "Biform", sans-serif;
     font-size: 16px;
@@ -9,9 +11,14 @@
     &_light {
         color: var(--color-gray-6x);
 
-        @media (hover: hover) and (pointer: fine) {
-            &:hover {
-                color: var(--color-black-ui);
+        @include media_hover {
+            &.type {
+                &_m {
+                    color: var(--color-black-ui);
+                }
+                &_s {
+                    color: var(--color-red-ui);
+                }
             }
         }
     }
@@ -19,9 +26,14 @@
     &_dark {
         color: var(--color-gray-4x);
 
-        @media (hover: hover) and (pointer: fine) {
-            &:hover {
-                color: var(--color-white);
+        @include media_hover {
+            &.type {
+                &_m {
+                    color: var(--color-white);
+                }
+                &_s {
+                    color: var(--color-red-ui);
+                }
             }
         }
     }

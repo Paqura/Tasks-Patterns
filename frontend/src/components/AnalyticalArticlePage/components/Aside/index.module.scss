@@ -1,3 +1,5 @@
+@import '../../../../styles/media.scss';
+
 .wrapper {
   text-transform: uppercase;
 }
@@ -9,6 +11,12 @@
   flex-direction: row;
   border-bottom: 1px solid var(--color-gray-plus);
   justify-content: space-between;
+
+  @include media_hover {
+    &:not(.itemWrap_active) .itemTitle {
+      color: var(--color-gray-7x);
+    }
+  }
 }
 
 .itemTitle {

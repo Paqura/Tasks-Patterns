@@ -23,9 +23,15 @@
 }
 
 .content {
+    --content-border: 1px solid var(--color-gray-4x);
+
     display: flex;
-    border: 1px solid var(--color-gray-4x);
+    border: var(--content-border);
     border-radius: 4px;
+
+    @include media_hover {
+        --content-border: 1px solid var(--color-gray-6x);
+    }
 }
 
 .item {
@@ -38,17 +44,23 @@
     width: 48px;
     height: 38px;
 
+    @include media_hover {
+        & .itemText {
+            color: var(--color-gray-8x);
+        }
+    }
+
     &:not(:last-child)::after {
         position: absolute;
         right: 0;
         height: 16px;
         content: '';
-        border-right: 1px solid var(--color-gray-4x);
+        border-right: var(--content-border);
     }
 }
 
 .itemText {
-    color: var(--color-black-ui);
+    color: var(--color-gray-6x);
 }
 
 .itemTextActive {

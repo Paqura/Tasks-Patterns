@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import Image from 'next/image'
-import NextLink from 'next/link'
 
+import { Link } from '@/components/ui/Link'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { TImage } from '@/types'
@@ -55,9 +55,9 @@ export const Article: React.FC<TArticlePreviewProps> = ({
                     {topic}
                 </Text>
 
-                <NextLink href={href}>
-                    <Text type="postscript">CONTINUE READING</Text>
-                </NextLink>
+                <Link type="s" href={href}>
+                    CONTINUE READING
+                </Link>
             </div>
         </article>
     )

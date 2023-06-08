@@ -21,4 +21,8 @@
   &:not(:last-child) {
     margin-bottom: 12px;
   }
+
+  @include media_hover {
+    color: var(--color-red-ui)
+  }
 }

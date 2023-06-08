@@ -24,6 +24,12 @@
         width: 220px;
         min-width: 220px;
     }
+
+    @include media_hover {
+        & .link {
+            color: var(--color-white);
+        }
+    }
 }
 
 .content {
