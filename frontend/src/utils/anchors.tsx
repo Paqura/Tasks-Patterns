@@ -27,7 +27,9 @@ export const PageAnchorsContextProvider: React.FC<React.PropsWithChildren> = ({ 
             }
             return () => {}
         },
-        setActive: (link) => setActiveLink(link),
+        setActive: (link) => {
+            setActiveLink(link)
+        },
     })
 
     useEffect(() => {

@@ -62,11 +62,13 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
                             <ArticleLayoutGridLeftColumn className={styles.dateWrap}>
                                 <ArticleDate date={props.analyticArticleData.published} />
                                 {!isDesktopSmall && (
-                                    <div className={styles.aside}>
-                                        <Text className={styles.asideTitle} type="postscript">
-                                            {props.analyticArticleData.titleTableOfContent}
-                                        </Text>
-                                        <Aside articleHeaders={tableOfContent} />
+                                    <div className={styles.asideContainer}>
+                                        <div className={styles.aside}>
+                                            <Text className={styles.asideTitle} type="postscript">
+                                                {props.analyticArticleData.titleTableOfContent}
+                                            </Text>
+                                            <Aside articleHeaders={tableOfContent} />
+                                        </div>
                                     </div>
                                 )}
                             </ArticleLayoutGridLeftColumn>

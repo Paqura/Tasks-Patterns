@@ -1,7 +1,6 @@
 import cn from 'classnames'
 import Image from 'next/image'
-import NextLink from 'next/link'
-import React, { MouseEvent } from 'react'
+import React from 'react'
 
 import { Text } from '@/components/ui/typography/Text'
 import { useAnchors } from '@/utils/anchors'
@@ -14,20 +13,13 @@ export type TTitleTableOfContent = {
     link: string
 }
 export const Aside: React.FC<{ articleHeaders: TTitleTableOfContent[] }> = (props) => {
-    const { activeLink, api } = useAnchors()
+    const { activeLink } = useAnchors()
 
-    const handleClick = (e: MouseEvent<HTMLAnchorElement>, anchor: TTitleTableOfContent) => {
-        api.setActive(anchor.link)
-    }
     return (
         <div className={styles.wrapper}>
             {props.articleHeaders.map((item) => {
                 return (
-                    <NextLink
-                        key={item.name}
-                        href={`#${item.link}`}
-                        onClick={(e) => handleClick(e, item)}
-                    >
+                    <a key={item.link} href={`#${item.link}`}>
                         <span
                             key={item.name}
                             className={cn(styles.itemWrap, {
@@ -43,7 +35,7 @@ export const Aside: React.FC<{ articleHeaders: TTitleTableOfContent[] }> = (prop
                                 alt="Arrow right"
                             />
                         </span>
-                    </NextLink>
+                    </a>
                 )
             })}
         </div>

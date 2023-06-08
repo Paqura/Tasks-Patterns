@@ -7,7 +7,6 @@
 }
 
 @mixin heading_level_1 {
-    
     font-size: 72px;
 
     @include heading_base_styles;
@@ -18,7 +17,6 @@
 }
 
 @mixin heading_level_2 {
-    
     font-size: 40px;
 
     @include heading_base_styles;
@@ -29,7 +27,6 @@
 }
 
 @mixin heading_level_3 {
-    
     font-size: 24px;
 
     @include heading_base_styles;
@@ -53,16 +50,31 @@
     }
 }
 
+@mixin heading_theme_light_1 {
+    color: var(--color-black-ui);
+}
+
+@mixin heading_theme_light_2 {
+    color: var(--color-black-ui);
+}
+
+@mixin heading_theme_light_3 {
+    color: var(--color-black-ui);
+}
+
 .theme {
     &_light {
         &__level_1 {
-            color: var(--color-black-ui);
+            @include heading_theme_light_3;
         }
+
         &__level_2 {
+            @include heading_theme_light_3;
             color: var(--color-black-ui);
         }
+
         &__level_3 {
-            color: var(--color-black-ui);
+            @include heading_theme_light_3;
         }
     }
 
