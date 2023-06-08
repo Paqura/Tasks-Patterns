@@ -83,6 +83,7 @@ export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
 
         if (isSuccess) {
             setIsCompleted(true)
+            scrollToSection(sectionId)
         }
     }
 
