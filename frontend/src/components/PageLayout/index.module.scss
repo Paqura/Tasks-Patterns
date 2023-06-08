@@ -1,5 +1,5 @@
 .main {
     margin-top: var(--header-height);
-    padding-bottom: 0.01px; /* To fix margin collapse */
+    padding: 0.01px 0; /* To fix margin collapse */
     background-color: var(--color-black-ui);
 }
