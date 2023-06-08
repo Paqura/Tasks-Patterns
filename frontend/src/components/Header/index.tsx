@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef, useState } from 'react'
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 
 import { Logo } from '@/components/ui/Logo'
 import { TNavItem } from '@/types'
@@ -41,6 +41,13 @@ export const Header: React.FC<THeaderProps> = ({ data }) => {
             element.style.overflowY = ''
         }
     }
+
+    useEffect(() => {
+        const element = document.body
+        return () => {
+            element.style.overflowY = ''
+        }
+    }, [])
 
     useOutsideClick(isNavOpen, headerRef, handleCloseMenu)
     const isDesktopSmall = useIsDesktopSmall()
