@@ -38,7 +38,7 @@ export const ImagesSlider: React.FC<TProps> = ({ className, slides, scrollAreaCl
             )}
             <div className={scrollAreaClassName}>
                 <Swiper
-                    slidesPerView={1.4}
+                    slidesPerView={1}
                     centeredSlides={true}
                     direction="horizontal"
                     onSwiper={setControlledSwiper}
