@@ -54,9 +54,8 @@ export const Footer: React.FC<TProps> = ({ className, footerData }) => {
                     />
                 </nav>
             </div>
-            <div className={styles.logo}>
-                <Image src={logo} alt="Positive Technologies" />
-            </div>
+
+            <Image src={logo} alt="Positive Technologies" className={styles.logo} />
         </footer>
     )
 }
