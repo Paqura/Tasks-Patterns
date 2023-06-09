@@ -54,7 +54,7 @@ export const NavMobileItem = ({ navItem, onClick }: INavMobileItem) => {
         <div className={cn({ [styles.wrapper_open]: isSubmenuOpen })}>
             {renderNavLink()}
             {isSubItemsExist && isSubmenuOpen && (
-                <SubMenuMobile subItems={subItems} onClick={onClick} />
+                <SubMenuMobile subItems={subItems} anchor={link} onClick={onClick} />
             )}
         </div>
     )
