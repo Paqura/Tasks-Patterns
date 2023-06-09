@@ -94,7 +94,7 @@ export const mapProductServerData = (
         title: productData.title || '',
         subtitle: productData.subtitle,
         logo: mapImageMediaFile(productData.icon) || { src: '' },
-        bannerImage: mapImageMediaFile(productData.bannerImage) || { src: '' },
+        bannerImage: mapImageMediaFile(productData.bannerImage) || null,
         blocks: mapProductBlocksServerData({
             blocks: productData.blocks,
             products: filteredProducts,

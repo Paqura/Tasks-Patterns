@@ -51,6 +51,6 @@ export type TProductData = {
     title: string
     subtitle?: string
     logo: TImage
-    bannerImage: TImage
+    bannerImage: TImage | null
     blocks: TProductsBlockData[]
 }

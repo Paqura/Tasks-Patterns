@@ -15,7 +15,7 @@ type TProps = {
     title: string
     subtitle?: string
     logo: TImage
-    bannerImage: TImage
+    bannerImage: TImage | null
 }
 
 export const Banner: React.FC<TProps> = ({ title, subtitle, logo, bannerImage }) => {
@@ -43,14 +43,16 @@ export const Banner: React.FC<TProps> = ({ title, subtitle, logo, bannerImage })
                     alt={logo.alt || ''}
                     priority
                 />
-                <Image
-                    className={styles.bigLogo}
-                    src={bannerImage.src}
-                    width={logo.width}
-                    height={logo.height}
-                    alt={logo.alt || ''}
-                    priority
-                />
+                {bannerImage && (
+                    <Image
+                        className={styles.bigLogo}
+                        src={bannerImage.src}
+                        width={bannerImage.width}
+                        height={bannerImage.height}
+                        alt={bannerImage.alt || ''}
+                        priority
+                    />
+                )}
             </div>
         </PageSection>
     )
