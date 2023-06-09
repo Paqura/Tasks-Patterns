@@ -27,7 +27,9 @@ type TFormFields = {
 
 export default function EventForm(props: TEventForm) {
     const [isCompleted, setIsCompleted] = useState<boolean>(false)
-    const context = useForm()
+    const context = useForm({
+        shouldFocusError: false,
+    })
 
     const onSubmit = async (data: TFormFields) => {
         const isSuccess = await postWebinarRequest({

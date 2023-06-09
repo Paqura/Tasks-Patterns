@@ -64,6 +64,7 @@ export const CommonForm: React.FC<TCommonFormProps> = ({
     isCompleted,
 }) => {
     const context = useForm({
+        shouldFocusError: false,
         defaultValues: {
             product: selectedProduct,
         },
