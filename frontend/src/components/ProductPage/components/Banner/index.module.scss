@@ -3,6 +3,8 @@
 
 .banner {
     position: relative;
+    margin-top: 0;
+    margin-bottom: 0;
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -18,15 +20,25 @@
 
 .textContent {
     position: relative;
-    margin-top: 180px;
-    margin-bottom: 160px;
+    margin-top: 200px;
+    margin-bottom: 180px;
     box-sizing: content-box;
     max-width: 615px;
     grid-column: 1 / span 6;
 
+    @include media_breakpoint_normal_desktop {
+        margin-top: 110px;
+        margin-bottom: 126px;
+    }
+
+    @include media_breakpoint_small_desktop {
+        margin-top: 96px;
+        margin-bottom: 116px;
+    }
+
     @include media_breakpoint_mobile {
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         max-width: 100%;
     }
 }
