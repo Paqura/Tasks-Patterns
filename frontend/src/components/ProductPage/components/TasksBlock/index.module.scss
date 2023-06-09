@@ -35,8 +35,8 @@
     }
 
     @include media_breakpoint_mobile {
+        display: flex;
         width: fit-content;
-        grid-auto-columns: minmax(244px, max-content);
     }
 }
 
@@ -45,7 +45,7 @@
     display: block;
 
     @include media_breakpoint_mobile {
-        min-width: 244px;
+        width: 244px;
     }
 }
 

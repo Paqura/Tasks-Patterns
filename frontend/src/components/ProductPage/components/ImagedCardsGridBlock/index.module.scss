@@ -19,12 +19,10 @@
     @include media_breakpoint_small_desktop {
         display: flex;
         width: fit-content;
-        grid-auto-columns: minmax(360px, max-content);
-        gap: 12px;
     }
 
-    @include media_breakpoint_small_desktop {
-        grid-auto-columns: minmax(244px, max-content);
+    @include media_breakpoint_mobile {
+        gap: 12px;
     }
 }
 
@@ -33,10 +31,10 @@
     display: block;
 
     @include media_breakpoint_small_desktop {
-        min-width: 360px;
+        width: 360px;
     }
 
     @include media_breakpoint_mobile {
-        min-width: 244px;
+        width: 244px;
     }
 }
