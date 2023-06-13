@@ -3,7 +3,7 @@
 .wrapper {
   display: none;
 
-  @include media_breakpoint_small_desktop {
+  @include media_breakpoint_mobile {
     display: block;
   }
 }

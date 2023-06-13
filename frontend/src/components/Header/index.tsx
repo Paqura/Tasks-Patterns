@@ -3,7 +3,7 @@ import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { Logo } from '@/components/ui/Logo'
 import { TNavItem } from '@/types'
 import { NAV_ELEMENT_ID } from '@/utils/constants'
-import { useIsDesktopSmall, useOutsideClick } from '@/utils/hooks'
+import { useIsMobile, useOutsideClick } from '@/utils/hooks'
 
 import { Nav } from './components/Nav'
 import { NavMobile } from './components/NavMobile'
@@ -33,15 +33,6 @@ export const Header: React.FC<THeaderProps> = ({ data }) => {
         }
     }
 
-    const handleCloseMenu = () => {
-        setIsNavOpen(false)
-
-        const element = document.body
-        if (element) {
-            element.style.overflowY = ''
-        }
-    }
-
     useEffect(() => {
         const element = document.body
         return () => {
@@ -49,15 +40,18 @@ export const Header: React.FC<THeaderProps> = ({ data }) => {
         }
     }, [])
 
-    useOutsideClick(isNavOpen, headerRef, handleCloseMenu)
-    const isDesktopSmall = useIsDesktopSmall()
+    useOutsideClick(isNavOpen, headerRef, () => {
+        handleToggleNav(false)
+    })
+
+    const isMobile = useIsMobile()
 
     return (
         <>
             {isNavOpen && <div className={styles.overlay} />}
             <header ref={headerRef} className={styles.header} id={NAV_ELEMENT_ID}>
                 <Logo href="/" />
-                {isDesktopSmall ? (
+                {isMobile ? (
                     <NavMobile
                         items={navItems}
                         searchInputPlaceholder={searchInputPlaceholder}

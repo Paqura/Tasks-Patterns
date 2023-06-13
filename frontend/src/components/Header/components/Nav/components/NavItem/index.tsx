@@ -61,7 +61,9 @@ export const NavItem: React.FC<INavItem> = ({ navItem, onToggle }) => {
             >
                 <Text type="pM">{title}</Text>
             </NextLink>
-            {isItemActive && isSubItemsExist && <SubMenu subItems={subItems} anchor={link} />}
+            {isItemActive && isSubItemsExist && (
+                <SubMenu subItems={subItems} anchor={link} onClick={deactivateItem} />
+            )}
         </div>
     )
 }

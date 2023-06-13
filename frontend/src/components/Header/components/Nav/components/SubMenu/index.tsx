@@ -10,9 +10,10 @@ import styles from './index.module.scss'
 interface ISubMenu {
     subItems: TNavSubItem[]
     anchor: string | undefined
+    onClick: () => void
 }
 
-export const SubMenu: React.FC<ISubMenu> = ({ subItems, anchor }) => {
+export const SubMenu: React.FC<ISubMenu> = ({ subItems, anchor, onClick }) => {
     return (
         <div className={styles.sub_menu}>
             <div className={styles.sub_menu_items}>
@@ -21,6 +22,7 @@ export const SubMenu: React.FC<ISubMenu> = ({ subItems, anchor }) => {
                         key={subItem.title}
                         href={subItem.link}
                         className={styles.sub_menu_item}
+                        onClick={onClick}
                     >
                         <Text type="headerHeading" className={styles.title}>
                             {subItem.title}
@@ -32,7 +34,7 @@ export const SubMenu: React.FC<ISubMenu> = ({ subItems, anchor }) => {
                 ))}
             </div>
             {anchor && (
-                <Button className={styles.button} link={anchor} size="s">
+                <Button className={styles.button} link={anchor} size="s" onClick={onClick}>
                     Jump to section
                 </Button>
             )}
