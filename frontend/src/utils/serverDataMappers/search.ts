@@ -1,7 +1,6 @@
 import { SearchResponse } from 'meilisearch'
 
 import { TSearchResultItem } from '@/components/SearchPage/components/SearchResultsList'
-import { highlightPreTag } from '@/utils/meilisearchApi'
 
 type TObject = Record<string, unknown>
 
@@ -52,25 +51,43 @@ const flattenObj = (obj: TObject): TObject => {
     return result
 }
 
-const getDescription = (data: TObject, replacement: { from: string; to: string }) => {
+const getDescription = (
+    query: string,
+    data: TObject,
+    replacement: { from: string; to: string }
+): string => {
+    const wordsToSearch = query.split(' ')
     const { from, to } = replacement
+
+    let maxCount = 0
+    let resultKey = ''
 
     for (const [key, value] of Object.entries(data)) {
         if (typeof value === 'string') {
-            if (value.includes(highlightPreTag)) {
-                if (key === from) {
-                    return String(data[to])
-                }
+            let currentCount = 0
 
-                return value
+            wordsToSearch.forEach((word) => {
+                if (value.includes(word)) {
+                    currentCount++
+                }
+            })
+
+            if (currentCount > maxCount) {
+                maxCount = currentCount
+                resultKey = key
             }
         }
     }
 
-    return ''
+    if (resultKey === from) {
+        return String(data[to] ?? '')
+    }
+
+    return String(data[resultKey])
 }
 
 const getSearchResultItem = (
+    query: string,
     type: string,
     data: TObject,
     slug?: string
@@ -78,7 +95,7 @@ const getSearchResultItem = (
     if (type === 'about-page') {
         return {
             title: String(data.title),
-            description: getDescription(data, { from: 'title', to: 'description' }),
+            description: getDescription(query, data, { from: 'title', to: 'description' }),
             href: '/about',
         }
     }
@@ -86,7 +103,7 @@ const getSearchResultItem = (
     if (type === 'analytic-article') {
         return {
             title: String(data.title),
-            description: getDescription(data, { from: 'title', to: 'topic' }),
+            description: getDescription(query, data, { from: 'title', to: 'topic' }),
             href: `/analytics/${slug}`,
         }
     }
@@ -96,7 +113,7 @@ const getSearchResultItem = (
 
         return {
             title: String(data.title),
-            description: getDescription(data, { from: 'title', to: 'topic' }),
+            description: getDescription(query, data, { from: 'title', to: 'topic' }),
             href,
         }
     }
@@ -104,7 +121,7 @@ const getSearchResultItem = (
     if (type === 'product') {
         return {
             title: String(data.title),
-            description: getDescription(data, { from: 'title', to: 'subtitle' }),
+            description: getDescription(query, data, { from: 'title', to: 'subtitle' }),
             href: `/products/${slug}`,
         }
     }
@@ -121,12 +138,13 @@ export const mapSearchResponseServerData = (
 
     const searchResults = searchResponse.hits
         .map((hit) => {
+            const { query } = searchResponse
             // @ts-expect-error
             const { type, slug, data } = hit._formatted
 
             const flattenedObjData = flattenObj(data)
 
-            return getSearchResultItem(type, flattenedObjData, slug)
+            return getSearchResultItem(query, type, flattenedObjData, slug)
         })
         .filter(Boolean) as TSearchResultItem[]
 

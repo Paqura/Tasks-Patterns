@@ -5,7 +5,6 @@ import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 
 import styles from './index.module.scss'
-import { normalizeDescription } from './utils'
 
 export type TSearchResultItem = {
     title: string
@@ -51,7 +50,7 @@ export const SearchResultsList: React.FC<TSearchResultsListProps> = ({ hasNoResu
                             </Link>
 
                             <Text type="pL" className={styles.description}>
-                                {normalizeDescription(description)}
+                                {description}
                             </Text>
                         </div>
                     ))

@@ -27,6 +27,8 @@ export const getSearchResponse = async (searchString: string) => {
         attributesToHighlight: ['data'],
         highlightPreTag,
         highlightPostTag,
+        attributesToCrop: ['*'],
+        cropLength: 50,
     })
 
     return response
