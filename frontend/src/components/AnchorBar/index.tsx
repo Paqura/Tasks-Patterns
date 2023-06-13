@@ -71,8 +71,13 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
                 <div className={styles.wrapper} id={PAGE_SECTIONS_ANCHORS_ELEMENT_ID}>
                     <div
                         ref={contentRef}
-                        className={styles.content}
-                        style={{ gridTemplateColumns: `repeat(${anchors.length}, 1fr)` }}
+                        className={cn(
+                            styles.content,
+                            styles[`contentLayout_${anchors.length <= 6 ? 'grid' : 'scroll'}`]
+                        )}
+                        style={{
+                            gridTemplateColumns: `repeat(${anchors.length}, 1fr)`,
+                        }}
                     >
                         {anchors.map((anchor) => (
                             <a

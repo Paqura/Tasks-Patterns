@@ -19,10 +19,12 @@
 
 .wrapper {
   position: relative;
+  display: flex;
   overflow: hidden;
   height: var(--anchor-bar-height);
   background-color: var(--color-gray-8x);
   border-radius: 16px;
+  justify-content: center;
 
   @include media_breakpoint_mobile {
     border-radius: 8px;
@@ -40,7 +42,6 @@
 
 .content {
   @include anchor-bar-paddings;
-  display: grid;
   overflow-y: auto;
 
   @include media_breakpoint_mobile {
@@ -49,8 +50,26 @@
   }
 }
 
+.contentLayout {
+  &_grid {
+    display: grid;
+    width: 100%;
+
+    @include media_breakpoint_mobile {
+      display: flex;
+      width: 100%;
+    }
+  }
+
+  &_scroll {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+  }
+}
+
 .anchor {
-  padding: 20px;
+  padding: 18px 12px;
   overflow: hidden;
   text-align: center;
   color: var(--color-white);
@@ -60,15 +79,14 @@
     background-color: var(--color-black-ui);
   }
 
-  @include media_breakpoint_small_desktop {
-    min-width: 166px;
-  }
-
   @include media_breakpoint_mobile {
     padding: 10px 12px;
-    min-width: 86px;
     flex: 1 0 auto;
   }
+}
+
+.contentLayout_scroll .anchor {
+  max-width: 240px;
 }
 
 .anchor_active {
@@ -80,6 +98,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  opacity: 0.8;
 }
 
 .shadow {
