@@ -71,6 +71,7 @@
             margin-bottom: 32px;
             padding: 20px 16px;
             background-color: var(--color-gray-plus);
+            border-radius: 8px;
 
             @include media_breakpoint_mobile {
                 margin-top: 24px;

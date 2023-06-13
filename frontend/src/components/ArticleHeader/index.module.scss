@@ -59,7 +59,10 @@
     }
 
     @include media_breakpoint_mobile {
-        padding-top: 40px;
+        padding-top: 32px;
+        padding-bottom: 40px;
+        display: flex;
+        flex-direction: column;
     }
 }
 
