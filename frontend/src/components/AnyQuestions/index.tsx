@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import { CardsSlider } from '@/components/ui/CardsSlider'
+import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { CONTACTS_SECTION_ID } from '@/utils/constants'
@@ -20,8 +21,6 @@ import {
     TSelectProductOptions,
 } from './components/CommonForm'
 import styles from './index.module.scss'
-
-import { PageSectionCard } from 'src/components/ui/PageSectionCard'
 
 export type TAnyQuestionsData = {
     title: string
@@ -93,7 +92,7 @@ export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
     }
 
     return (
-        <PageSectionCard mode="light" sectionId={sectionId} className={styles.container}>
+        <PageSectionCard mode="light" sectionId={sectionId} contentClassName={styles.container}>
             <div className={styles.heading}>
                 <Heading className={styles.title} level={1}>
                     {title}

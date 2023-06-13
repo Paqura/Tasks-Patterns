@@ -26,7 +26,7 @@ export type TFilesBlockData = {
 
 export const FilesBlock: React.FC<TProps> = ({ data, sectionId, number }) => {
     return (
-        <PageSectionCard mode={'light'} sectionId={sectionId} className={styles.block}>
+        <PageSectionCard mode={'light'} sectionId={sectionId} contentClassName={styles.block}>
             <PageSectionCardHeader
                 title={data.title}
                 description={data.description}

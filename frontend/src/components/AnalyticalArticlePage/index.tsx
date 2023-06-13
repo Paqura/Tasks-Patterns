@@ -57,7 +57,7 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
                     />
 
                     {isDesktopSmall && <AnchorBar anchors={tableOfContent} />}
-                    <PageSectionCard className={styles.section}>
+                    <PageSectionCard>
                         <ArticleLayoutGrid>
                             <ArticleLayoutGridLeftColumn className={styles.dateWrap}>
                                 <ArticleDate date={props.analyticArticleData.published} />

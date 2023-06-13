@@ -29,7 +29,7 @@ export const SearchResultsList: React.FC<TSearchResultsListProps> = ({ hasNoResu
     const { searchQuery, searchResults, noResultsBlockTitle, noResultsBlockDescription } = data
 
     return (
-        <PageSectionCard mode="light" className={styles.section}>
+        <PageSectionCard mode="light" contentClassName={styles.section}>
             <div className={styles.list}>
                 {hasNoResults ? (
                     <div className={styles.noResultsBlock}>

@@ -24,7 +24,7 @@ type TProps = {
 export const Analytics: React.FC<TProps> = ({ data, number }) => {
     const { title, description, sectionId, articles, statistics } = data
     return (
-        <PageSectionCard mode="light" className={styles.block} sectionId={sectionId}>
+        <PageSectionCard mode="light" sectionId={sectionId}>
             <PageSectionCardHeader title={title} description={description} number={number} />
             <div className={styles.articlesList}>
                 <Image src={backgroundIcon} alt="" className={styles.background} />
