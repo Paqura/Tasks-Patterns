@@ -6,14 +6,12 @@
     display: flex;
     flex-direction: column;
 
-    :global {
-        .swiper-backface-hidden {
-            padding-right: 15%;
-            padding-left: 15%;
+    .swiperExtraClass {
+        padding-right: 15%;
+        padding-left: 15%;
 
-            @include media_breakpoint_mobile {
-                @include include-section-card-horizontal-paddings;
-            }
+        @include media_breakpoint_mobile {
+            @include include-section-card-horizontal-paddings;
         }
     }
 }

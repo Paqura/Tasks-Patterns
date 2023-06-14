@@ -43,6 +43,7 @@ export const ImagesSlider: React.FC<TProps> = ({ className, slides, scrollAreaCl
                     direction="horizontal"
                     onSwiper={setControlledSwiper}
                     modules={[Controller]}
+                    className={styles.swiperExtraClass}
                     onActiveIndexChange={(swiper) => {
                         setActiveSlideIndex(swiper.activeIndex)
                     }}
