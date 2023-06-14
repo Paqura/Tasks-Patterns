@@ -67,7 +67,7 @@ export default function Product(props: TProps) {
     const anyQuestionsData = mapAnyQuestionsServerData(props.anyQuestions, props.allProducts)
     const footerData = mapFooterServerData(props.footer, props.allProducts)
 
-    const product: TProductData = mapProductServerData(props.product, props.allProducts)
+    const product: TProductData = mapProductServerData(props.product)
 
     return (
         <ProductPage

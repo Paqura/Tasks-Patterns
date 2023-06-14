@@ -15,10 +15,8 @@ import { mapWelcomeToPilotBlockServerData } from './blocks/welcome-to-pilot'
 
 const mapProductBlocksServerData = ({
     blocks,
-    products,
 }: {
     blocks: GetAttributesValues<'api::product.product'>['blocks']
-    products?: GetAttributesValues<'api::product.product'>[]
 }): TProductsBlockData[] => {
     return (
         (blocks
@@ -66,7 +64,7 @@ const mapProductBlocksServerData = ({
                     case 'product.other-products-block':
                         return {
                             type: 'other-products',
-                            data: mapOtherProductsBlockServerData(block, products),
+                            data: mapOtherProductsBlockServerData(block),
                             sectionId: block.sectionId || defaultSectionId,
                         }
                     case 'product.product-overview-block':
@@ -85,11 +83,8 @@ const mapProductBlocksServerData = ({
 }
 
 export const mapProductServerData = (
-    productData: GetAttributesValues<'api::product.product'>,
-    products?: GetAttributesValues<'api::product.product'>[]
+    productData: GetAttributesValues<'api::product.product'>
 ): TProductData => {
-    const filteredProducts = (products || []).filter(({ slug }) => slug !== productData.slug)
-
     return {
         title: productData.title || '',
         subtitle: productData.subtitle,
@@ -97,7 +92,6 @@ export const mapProductServerData = (
         bannerImage: mapImageMediaFile(productData.bannerImage) || null,
         blocks: mapProductBlocksServerData({
             blocks: productData.blocks,
-            products: filteredProducts,
         }),
     }
 }

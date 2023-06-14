@@ -1950,12 +1950,18 @@ export interface ProductImagesSliderBlock extends ComponentSchema {
 export interface ProductOtherProductsBlock extends ComponentSchema {
   info: {
     displayName: 'OtherProductsBlock';
+    description: '';
   };
   attributes: {
     sectionId: StringAttribute & RequiredAttribute;
     title: StringAttribute & RequiredAttribute & DefaultTo<'Our Products'>;
     description: TextAttribute &
       DefaultTo<'At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.'>;
+    products: RelationAttribute<
+      'product.other-products-block',
+      'oneToMany',
+      'api::product.product'
+    >;
   };
 }
 

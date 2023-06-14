@@ -1,7 +1,8 @@
 {
   "collectionName": "components_product_other_products_blocks",
   "info": {
-    "displayName": "OtherProductsBlock"
+    "displayName": "OtherProductsBlock",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -17,6 +18,11 @@
     "description": {
       "type": "text",
       "default": "At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external."
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
     }
   }
 }

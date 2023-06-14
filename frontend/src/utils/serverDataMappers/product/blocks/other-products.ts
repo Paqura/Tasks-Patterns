@@ -9,12 +9,11 @@ type TBackendProductsBlockData = Extract<
 >
 
 export const mapOtherProductsBlockServerData = (
-    block: TBackendProductsBlockData,
-    products?: GetAttributesValues<'api::product.product'>[]
+    block: TBackendProductsBlockData
 ): TOtherProductsBlockData => {
     return {
         title: block.title || '',
         description: block.description,
-        items: products?.map(mapProductCardServerData) || [],
+        items: block.products?.data?.map((p) => mapProductCardServerData(p.attributes)) || [],
     }
 }
