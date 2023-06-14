@@ -145,7 +145,6 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                 <Banner
                     title={product.title}
                     subtitle={product.subtitle}
-                    logo={product.logo}
                     bannerImage={product.bannerImage}
                 />
                 <AnchorBar anchors={blocksAcc.anchors} />

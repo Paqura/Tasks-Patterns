@@ -14,38 +14,16 @@ import styles from './index.module.scss'
 type TProps = {
     title: string
     subtitle?: string
-    logo: TImage
     bannerImage: TImage | null
 }
 
-export const Banner: React.FC<TProps> = ({ title, subtitle, logo, bannerImage }) => {
+export const Banner: React.FC<TProps> = ({ title, subtitle, bannerImage }) => {
     return (
-        <PageSection className={styles.banner}>
-            <div className={styles.textContent}>
-                <TypographyTheme theme="dark">
-                    <Heading level={2}>{title}</Heading>
-                    {subtitle && (
-                        <Text className={styles.description} type="pL">
-                            {subtitle}
-                        </Text>
-                    )}
-                    <Button className={styles.contactBtn} link={`#${CONTACTS_SECTION_ID}`}>
-                        Order pilot now
-                    </Button>
-                </TypographyTheme>
-            </div>
+        <div className={styles.container}>
             <div className={styles.logoWrapper}>
-                <Image
-                    className={styles.smallLogo}
-                    src={logo.src}
-                    width={logo.width}
-                    height={logo.height}
-                    alt={logo.alt || ''}
-                    priority
-                />
                 {bannerImage && (
                     <Image
-                        className={styles.bigLogo}
+                        className={styles.logo}
                         src={bannerImage.src}
                         width={bannerImage.width}
                         height={bannerImage.height}
@@ -54,6 +32,21 @@ export const Banner: React.FC<TProps> = ({ title, subtitle, logo, bannerImage })
                     />
                 )}
             </div>
-        </PageSection>
+            <PageSection className={styles.banner}>
+                <div className={styles.textContent}>
+                    <TypographyTheme theme="dark">
+                        <Heading level={2}>{title}</Heading>
+                        {subtitle && (
+                            <Text className={styles.description} type="pL">
+                                {subtitle}
+                            </Text>
+                        )}
+                        <Button className={styles.contactBtn} link={`#${CONTACTS_SECTION_ID}`}>
+                            Order pilot now
+                        </Button>
+                    </TypographyTheme>
+                </div>
+            </PageSection>
+        </div>
     )
 }
