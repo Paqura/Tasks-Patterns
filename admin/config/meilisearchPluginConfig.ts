@@ -6,7 +6,10 @@ const commonSettings = {
     populate: 'deep',
   },
   settings: {
-    searchableAttributes: ['data']
+    searchableAttributes: ['data'],
+    typoTolerance: {
+      enabled: false
+    },
   },
 };
 

@@ -83,6 +83,10 @@ const getDescription = (
         return String(data[to] ?? '')
     }
 
+    if (resultKey === '') {
+        return '-'
+    }
+
     return String(data[resultKey])
 }
 
