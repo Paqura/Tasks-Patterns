@@ -12,7 +12,6 @@ import logo from '/public/images/logo.svg'
 export type TFooterData = {
     title: string
     copyright: string
-    startYear: number
     products: TNavBlockData
     company: TNavBlockData
     social: TNavBlockData
@@ -24,15 +23,12 @@ type TProps = {
 }
 
 export const Footer: React.FC<TProps> = ({ className, footerData }) => {
-    const nowYear = new Date().getFullYear()
-    const year =
-        nowYear > footerData.startYear ? [footerData.startYear, nowYear].join('—') : String(nowYear)
     return (
         <footer className={cn(styles.wrapper, className)}>
             <div className={styles.info}>
                 <div className={styles.head}>
                     <Text type="pM" className={styles.copyright}>
-                        <mark>©</mark> {footerData.copyright}, {year}.
+                        {footerData.copyright}
                     </Text>
                     <Heading level={2}>{footerData.title}</Heading>
                 </div>

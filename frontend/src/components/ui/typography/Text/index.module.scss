@@ -1,4 +1,4 @@
-@import "../../../../styles/media.scss";
+@import '../../../../styles/media.scss';
 
 .base {
     font-family: 'TT Positive', sans-serif;
@@ -10,6 +10,11 @@
         @include media_hover {
             color: var(--color-error);
         }
+    }
+
+    mark {
+        color: var(--color-red-ui);
+        background-color: initial;
     }
 }
 

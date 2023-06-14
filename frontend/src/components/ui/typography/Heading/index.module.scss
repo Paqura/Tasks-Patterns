@@ -1,5 +1,12 @@
 @import '../../../../styles/media.scss';
 
+.base {
+    mark {
+        color: var(--color-red-ui);
+        background-color: initial;
+    }
+}
+
 @mixin heading_base_styles {
     font-family: 'Biform', sans-serif;
     font-weight: 400;

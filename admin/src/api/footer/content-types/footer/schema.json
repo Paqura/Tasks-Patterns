@@ -22,11 +22,6 @@
       "default": "Positive Technologies 2023",
       "required": true
     },
-    "startYear": {
-      "type": "integer",
-      "required": true,
-      "default": 2002
-    },
     "productsTitle": {
       "type": "string",
       "required": true,

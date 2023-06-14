@@ -18,7 +18,7 @@ export const Heading: React.FC<React.PropsWithChildren<THeadingProps>> = ({
     children,
 }) => {
     const theme = useTypographyTheme()
-    const classNames = cn(className, styles[`level_${level}`], {
+    const classNames = cn(className, styles.base, styles[`level_${level}`], {
         [styles[`theme_${theme}__level_${level}`]]: !!theme,
     })
 
