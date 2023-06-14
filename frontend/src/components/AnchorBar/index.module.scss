@@ -42,7 +42,7 @@
 
 .content {
   @include anchor-bar-paddings;
-  overflow-y: auto;
+  overflow-x: auto;
 
   @include media_breakpoint_mobile {
     display: flex;
@@ -87,6 +87,7 @@
 
 .contentLayout_scroll .anchor {
   max-width: 240px;
+  flex-shrink: 0;
 }
 
 .anchor_active {
