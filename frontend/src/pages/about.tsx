@@ -60,11 +60,11 @@ export default function About(props: TProps) {
         <AboutPage
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
-            footerData={footerData}
             headingSectionData={headingSectionData}
             expertsSectionData={expertsSectionData}
             historySectionData={historySectionData}
             anyQuestions={anyQuestions}
+            footerData={footerData}
         />
     )
 }

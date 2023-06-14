@@ -11,14 +11,12 @@ export type TAboutPageData = {
     seo: TSeo
     headerData: THeaderData
     footerData: TFooterData
+    anyQuestions: TAnyQuestionsData
     headingSectionData: THeadingSectionData
     expertsSectionData: TExpertsSectionData
     historySectionData: THistorySectionData
 }
-
-type TAboutPageProps = {
-    anyQuestions: TAnyQuestionsData
-} & TAboutPageData
+type TAboutPageProps = TAboutPageData
 
 export const AboutPage: React.FC<TAboutPageProps> = (props) => {
     return (

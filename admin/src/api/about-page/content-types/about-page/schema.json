@@ -62,6 +62,26 @@
       "repeatable": true,
       "component": "about.history-item",
       "required": true
+    },
+    "showExpertsSection": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "showExpertsSectionManagersBlock": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "showExpertsSectionExpertsBlock": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "showHistorySection": {
+      "type": "boolean",
+      "default": true,
+      "required": true
     }
   }
 }

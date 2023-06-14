@@ -714,6 +714,14 @@ export interface ApiAboutPageAboutPage extends SingleTypeSchema {
     historySectionDescription: TextAttribute & RequiredAttribute;
     historySectionHistoryItems: ComponentAttribute<'about.history-item', true> &
       RequiredAttribute;
+    showExpertsSection: BooleanAttribute & RequiredAttribute & DefaultTo<true>;
+    showExpertsSectionManagersBlock: BooleanAttribute &
+      RequiredAttribute &
+      DefaultTo<true>;
+    showExpertsSectionExpertsBlock: BooleanAttribute &
+      RequiredAttribute &
+      DefaultTo<true>;
+    showHistorySection: BooleanAttribute & RequiredAttribute & DefaultTo<true>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<

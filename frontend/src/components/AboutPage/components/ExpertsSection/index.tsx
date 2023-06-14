@@ -8,10 +8,13 @@ import { LoadMore } from './components/LoadMore'
 import styles from './index.module.scss'
 
 export type TExpertsSectionData = {
+    isVisible: boolean
     title: string
     description: string
+    isManagersBlockVisible: boolean
     managersBlockTitle: string
     managersList: TEmployeeCardData[]
+    isExpertsBlockVisible: boolean
     expertsBlockTitle: string
     expertsList: TEmployeeCardData[]
 }
@@ -21,8 +24,21 @@ type TExpertsSectionProps = {
 }
 
 export const ExpertsSection: React.FC<TExpertsSectionProps> = ({ data }) => {
-    const { title, description, managersBlockTitle, managersList, expertsBlockTitle, expertsList } =
-        data
+    const {
+        isVisible,
+        title,
+        description,
+        isManagersBlockVisible,
+        managersBlockTitle,
+        managersList,
+        isExpertsBlockVisible,
+        expertsBlockTitle,
+        expertsList,
+    } = data
+
+    if (!isVisible) {
+        return null
+    }
 
     return (
         <PageSectionCard mode={'dark'}>
@@ -36,55 +52,65 @@ export const ExpertsSection: React.FC<TExpertsSectionProps> = ({ data }) => {
                 </Text>
             </div>
 
-            <div className={styles.employeesBlock}>
-                <Heading level={2} className={styles.employeesBlockTitle}>
-                    {managersBlockTitle}
-                </Heading>
+            {isManagersBlockVisible && (
+                <div className={styles.employeesBlock}>
+                    <Heading level={2} className={styles.employeesBlockTitle}>
+                        {managersBlockTitle}
+                    </Heading>
 
-                <LoadMore
-                    items={managersList}
-                    overlayExtraClassName={styles.managersListOverlay}
-                    render={(itemsToRender) => (
-                        <CardsSlider hideControls scrollAreaClassName={styles.employeeCardsList}>
-                            {itemsToRender.map(({ photo, name, roles }, index) => (
-                                <EmployeeCard
-                                    key={index}
-                                    data={{
-                                        photo,
-                                        name,
-                                        roles,
-                                    }}
-                                />
-                            ))}
-                        </CardsSlider>
-                    )}
-                />
-            </div>
+                    <LoadMore
+                        items={managersList}
+                        overlayExtraClassName={styles.managersListOverlay}
+                        render={(itemsToRender) => (
+                            <CardsSlider
+                                hideControls
+                                scrollAreaClassName={styles.employeeCardsList}
+                            >
+                                {itemsToRender.map(({ photo, name, roles }, index) => (
+                                    <EmployeeCard
+                                        key={index}
+                                        data={{
+                                            photo,
+                                            name,
+                                            roles,
+                                        }}
+                                    />
+                                ))}
+                            </CardsSlider>
+                        )}
+                    />
+                </div>
+            )}
 
-            <div className={styles.employeesBlock}>
-                <Heading level={2} className={styles.employeesBlockTitle}>
-                    {expertsBlockTitle}
-                </Heading>
+            {isExpertsBlockVisible && (
+                <div className={styles.employeesBlock}>
+                    <Heading level={2} className={styles.employeesBlockTitle}>
+                        {expertsBlockTitle}
+                    </Heading>
 
-                <LoadMore
-                    items={expertsList}
-                    overlayExtraClassName={styles.expertsListOverlay}
-                    render={(itemsToRender) => (
-                        <CardsSlider hideControls scrollAreaClassName={styles.employeeCardsList}>
-                            {itemsToRender.map(({ photo, name, roles }, index) => (
-                                <EmployeeCard
-                                    key={index}
-                                    data={{
-                                        photo,
-                                        name,
-                                        roles,
-                                    }}
-                                />
-                            ))}
-                        </CardsSlider>
-                    )}
-                />
-            </div>
+                    <LoadMore
+                        items={expertsList}
+                        overlayExtraClassName={styles.expertsListOverlay}
+                        render={(itemsToRender) => (
+                            <CardsSlider
+                                hideControls
+                                scrollAreaClassName={styles.employeeCardsList}
+                            >
+                                {itemsToRender.map(({ photo, name, roles }, index) => (
+                                    <EmployeeCard
+                                        key={index}
+                                        data={{
+                                            photo,
+                                            name,
+                                            roles,
+                                        }}
+                                    />
+                                ))}
+                            </CardsSlider>
+                        )}
+                    />
+                </div>
+            )}
         </PageSectionCard>
     )
 }

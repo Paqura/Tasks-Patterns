@@ -7,6 +7,7 @@ import { HistoryItem, THistoryItemData } from './components/HistoryItem'
 import styles from './index.module.scss'
 
 export type THistorySectionData = {
+    isVisible: boolean
     title: string
     description: string
     historyItems: THistoryItemData[]
@@ -17,7 +18,11 @@ type THistorySectionProps = {
 }
 
 export const HistorySection: React.FC<THistorySectionProps> = ({ data }) => {
-    const { title, description, historyItems } = data
+    const { isVisible, title, description, historyItems } = data
+
+    if (!isVisible) {
+        return null
+    }
 
     return (
         <PageSectionCard mode={'light'}>

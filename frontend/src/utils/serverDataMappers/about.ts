@@ -26,7 +26,10 @@ const mapHistoryItemServerData = (
     }
 }
 
-type TReducedAboutPageData = Omit<TAboutPageData, 'seo' | 'headerData' | 'footerData'>
+type TReducedAboutPageData = Omit<
+    TAboutPageData,
+    'seo' | 'headerData' | 'footerData' | 'anyQuestions'
+>
 
 export const mapAboutPageServerData = (
     serverAboutPageData?: GetAttributesValues<'api::about-page.about-page'>
@@ -37,16 +40,20 @@ export const mapAboutPageServerData = (
             description: serverAboutPageData?.description || '',
         },
         expertsSectionData: {
+            isVisible: Boolean(serverAboutPageData?.showExpertsSection),
             title: serverAboutPageData?.expertsSectionTitle || '',
             description: serverAboutPageData?.expertsSectionDescription || '',
+            isManagersBlockVisible: Boolean(serverAboutPageData?.showExpertsSectionManagersBlock),
             managersBlockTitle: serverAboutPageData?.expertsSectionManagersBlockTitle || '',
             managersList:
                 serverAboutPageData?.expertsSectionManagersList?.map(mapEmployeeServerData) || [],
+            isExpertsBlockVisible: Boolean(serverAboutPageData?.showExpertsSectionExpertsBlock),
             expertsBlockTitle: serverAboutPageData?.expertsSectionExpertsBlockTitle || '',
             expertsList:
                 serverAboutPageData?.expertsSectionExpertsList?.map(mapEmployeeServerData) || [],
         },
         historySectionData: {
+            isVisible: Boolean(serverAboutPageData?.showHistorySection),
             title: serverAboutPageData?.historySectionTitle || '',
             description: serverAboutPageData?.historySectionDescription || '',
             historyItems:
