@@ -32,7 +32,7 @@ export default function NewsArticlePage(props: TNewsArticlePageProps) {
                 title={props.newsArticleData.title}
                 topic={props.newsArticleData.topic}
             />
-            <PageSectionCard>
+            <PageSectionCard hasAnimation={false}>
                 <ArticleLayoutGrid>
                     <ArticleLayoutGridLeftColumn className={styles.dateWrap}>
                         <ArticleDate date={props.newsArticleData.date} />
@@ -49,7 +49,7 @@ export default function NewsArticlePage(props: TNewsArticlePageProps) {
                     />
                 )}
             </PageSectionCard>
-            <AnyQuestions anyQuestionData={props.anyQuestionsData} />
+            <AnyQuestions anyQuestionData={props.anyQuestionsData} hasAnimation={false} />
         </PageLayout>
     )
 }

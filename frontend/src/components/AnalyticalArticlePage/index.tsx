@@ -57,7 +57,7 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
                     />
 
                     {isDesktopSmall && <AnchorBar anchors={tableOfContent} />}
-                    <PageSectionCard>
+                    <PageSectionCard hasAnimation={false}>
                         <ArticleLayoutGrid>
                             <ArticleLayoutGridLeftColumn className={styles.dateWrap}>
                                 <ArticleDate date={props.analyticArticleData.published} />
@@ -91,7 +91,7 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
                         )}
                     </PageSectionCard>
                 </div>
-                <AnyQuestions anyQuestionData={props.anyQuestionsData} />
+                <AnyQuestions anyQuestionData={props.anyQuestionsData} hasAnimation={false} />
             </PageAnchorsContextProvider>
         </PageLayout>
     )

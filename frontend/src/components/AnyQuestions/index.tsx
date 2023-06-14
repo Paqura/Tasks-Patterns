@@ -33,12 +33,14 @@ export type TAnyQuestionsData = {
 
 type TAnyQuestionsProps = {
     sectionId?: string
+    hasAnimation?: boolean
     selectedProduct?: string
     anyQuestionData: TAnyQuestionsData
 }
 
 export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
     sectionId = CONTACTS_SECTION_ID,
+    hasAnimation = true,
     selectedProduct,
     anyQuestionData,
 }) => {
@@ -92,7 +94,12 @@ export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
     }
 
     return (
-        <PageSectionCard mode="light" sectionId={sectionId} contentClassName={styles.container}>
+        <PageSectionCard
+            mode="light"
+            sectionId={sectionId}
+            contentClassName={styles.container}
+            hasAnimation={hasAnimation}
+        >
             <div className={styles.heading}>
                 <Heading className={styles.title} level={1}>
                     {title}
