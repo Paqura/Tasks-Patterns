@@ -12,13 +12,10 @@
     }
 
     @include media_breakpoint_small_desktop {
-        @include include-section-card-horizontal-paddings;
+        @include include-horizontal-paddings(var(--section-margin-horizontal), var(--section-margin-horizontal))
     }
 
     @include media_breakpoint_mobile {
-        margin-right: 0;
-        margin-left: 0;
-
         @include section-card-padding-right;
         @include section-card-padding-left;
     }
