@@ -19,7 +19,7 @@
     "buttonText": {
       "type": "string",
       "required": true,
-      "default": "Order pilot now"
+      "default": "Request a pilot"
     },
     "image": {
       "type": "media",

@@ -42,7 +42,7 @@ export const ProductCard: React.FC<TProps> = ({ className, data }) => {
             </div>
 
             <Link href={productUrl} type="m" className={styles.link}>
-                <span className={styles.linkText}>Read more</span>
+                <span className={styles.linkText}>Learn more</span>
             </Link>
         </div>
     )
