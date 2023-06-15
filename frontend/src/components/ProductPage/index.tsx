@@ -45,6 +45,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
         name: block.data.title,
         link: block.sectionId,
     })
+
     const blocksAcc = product.blocks.reduce<TBlocksAcc>(
         (acc, block, index) => {
             switch (block.type) {
@@ -83,6 +84,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                     acc.lastNumber = acc.lastNumber + 1
                     acc.blocks.push(
                         <FaqBlock
+                            key={index}
                             number={acc.lastNumber}
                             data={block.data}
                             sectionId={block.sectionId}
@@ -147,7 +149,8 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                     subtitle={product.subtitle}
                     bannerImage={product.bannerImage}
                 />
-                <AnchorBar anchors={blocksAcc.anchors} />
+                {/** Пробрасываем key для того чтобы корректно обновился блок якорей при переходе между страницами продуктов */}
+                <AnchorBar anchors={blocksAcc.anchors} key={product.title} />
                 {blocksAcc.blocks}
 
                 <AnyQuestions

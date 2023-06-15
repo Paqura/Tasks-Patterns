@@ -19,6 +19,7 @@
 
 .wrapper {
   position: relative;
+  z-index: 0;
   display: flex;
   overflow: hidden;
   height: var(--anchor-bar-height);
@@ -42,12 +43,6 @@
 
 .content {
   @include anchor-bar-paddings;
-  overflow-x: auto;
-
-  @include media_breakpoint_mobile {
-    display: flex;
-    width: 100%;
-  }
 }
 
 .contentLayout {
@@ -57,14 +52,13 @@
 
     @include media_breakpoint_mobile {
       display: flex;
-      width: 100%;
+      width: fit-content;
     }
   }
 
   &_scroll {
     display: flex;
     width: fit-content;
-    max-width: 100%;
   }
 }
 
@@ -104,10 +98,20 @@
 
 .shadow {
   position: absolute;
+  z-index: 1;
   top: 0;
   right: 0;
   bottom: 0;
   width: 134px;
   pointer-events: none;
-  background: linear-gradient(270deg, var(--color-gray-8x) 0%, rgba(40, 40, 40, 0) 100%);
+
+  &_end {
+    right: 0;
+    background: linear-gradient(270deg, var(--color-gray-8x) 0%, rgba(40, 40, 40, 0) 100%);
+  }
+
+  &_start {
+    left: 0;
+    background: linear-gradient(270deg, rgba(40, 40, 40, 0) 0%, var(--color-gray-8x) 100%);
+  }
 }

@@ -1,5 +1,9 @@
 import cn from 'classnames'
-import { MouseEvent, useEffect, useRef, useState } from 'react'
+import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { FreeMode } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 
 import { PageSection } from '@/components/ui/PageSection'
 import { Text } from '@/components/ui/typography/Text'
@@ -22,45 +26,43 @@ type TAnchorBar = {
 export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
     const { activeLink, api } = useAnchors()
 
-    const [isShadowVisible, setIsShadowVisible] = useState(false)
+    const [shadowState, setShadowState] = useState<{ start: boolean; end: boolean }>({
+        start: false,
+        end: false,
+    })
     const [isSticky, setIsSticky] = useState(false)
 
-    const contentRef = useRef<HTMLDivElement>(null)
+    const swiperRef = useRef<SwiperClass>()
     const intersectionSensorRef = useRef<HTMLDivElement>(null)
 
     useObserver(intersectionSensorRef, setIsSticky, isFloat)
 
     useEffect(() => {
-        const contentEl = contentRef.current
-
-        if (!contentEl) {
-            return
-        }
         const handleResize = () => {
-            setIsShadowVisible(contentEl.offsetWidth < contentEl.scrollWidth)
-        }
-        const handleScroll = () => {
-            const rightPaddingsValue = 32
-            const isScrolledTillEnd =
-                contentEl.scrollWidth - contentEl.offsetWidth - contentEl.scrollLeft <
-                rightPaddingsValue
-
-            setIsShadowVisible(!isScrolledTillEnd)
+            if (!swiperRef.current) {
+                return
+            }
+            swiperRef.current.update()
         }
 
         window.addEventListener('resize', handleResize)
-        contentEl.addEventListener('scroll', handleScroll)
         handleResize()
 
         return () => {
             window.removeEventListener('resize', handleResize)
-            contentEl.removeEventListener('scroll', handleScroll)
         }
     }, [])
 
     const handleClick = (e: MouseEvent<HTMLAnchorElement>, anchor: string) => {
         api.setActive(anchor)
     }
+
+    const updateShadowState = useCallback((swiper: SwiperClass) => {
+        setShadowState({
+            end: !swiper.isEnd,
+            start: !swiper.isBeginning,
+        })
+    }, [])
 
     return (
         <>
@@ -69,32 +71,50 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
                 className={cn({ [styles.bar_float]: isFloat, [styles.bar_aligned]: isSticky })}
             >
                 <div className={styles.wrapper} id={PAGE_SECTIONS_ANCHORS_ELEMENT_ID}>
-                    <div
-                        ref={contentRef}
-                        className={cn(
-                            styles.content,
-                            styles[`contentLayout_${anchors.length <= 6 ? 'grid' : 'scroll'}`]
-                        )}
-                        style={{
-                            gridTemplateColumns: `repeat(${anchors.length}, 1fr)`,
+                    <Swiper
+                        direction={'horizontal'}
+                        slidesPerView={'auto'}
+                        freeMode={true}
+                        modules={[FreeMode]}
+                        allowTouchMove={true}
+                        grabCursor={true}
+                        updateOnWindowResize={true}
+                        onSwiper={(s) => {
+                            swiperRef.current = s
                         }}
+                        onUpdate={updateShadowState}
+                        onFromEdge={updateShadowState}
+                        onToEdge={updateShadowState}
                     >
-                        {anchors.map((anchor) => (
-                            <a
-                                key={anchor.link}
-                                href={`#${anchor.link}`}
-                                className={cn(styles.anchor, {
-                                    [styles.anchor_active]: activeLink === anchor.link,
-                                })}
-                                onClick={(e) => handleClick(e, anchor.link)}
-                            >
-                                <Text type="pM" className={styles.text}>
-                                    {anchor.name}
-                                </Text>
-                            </a>
-                        ))}
-                        {isShadowVisible && <div className={styles.shadow} />}
-                    </div>
+                        <SwiperSlide
+                            className={cn(
+                                styles.content,
+                                styles[`contentLayout_${anchors.length <= 6 ? 'grid' : 'scroll'}`]
+                            )}
+                            style={{
+                                gridTemplateColumns: `repeat(${anchors.length}, 1fr)`,
+                            }}
+                        >
+                            {anchors.map((anchor) => (
+                                <a
+                                    key={anchor.link}
+                                    href={`#${anchor.link}`}
+                                    className={cn(styles.anchor, {
+                                        [styles.anchor_active]: activeLink === anchor.link,
+                                    })}
+                                    onClick={(e) => handleClick(e, anchor.link)}
+                                >
+                                    <Text type="pM" className={styles.text}>
+                                        {anchor.name}
+                                    </Text>
+                                </a>
+                            ))}
+                        </SwiperSlide>
+                    </Swiper>
+                    {shadowState.start && (
+                        <div className={cn(styles.shadow, styles.shadow_start)} />
+                    )}
+                    {shadowState.end && <div className={cn(styles.shadow, styles.shadow_end)} />}
                 </div>
             </PageSection>
         </>
