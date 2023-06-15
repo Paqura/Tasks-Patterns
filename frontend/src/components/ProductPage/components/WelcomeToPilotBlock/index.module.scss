@@ -40,7 +40,7 @@
     display: flex;
     box-sizing: content-box;
     gap: 82px;
-    align-items: flex-end;
+    align-items: center;
 
     @include media_breakpoint_small_desktop {
         padding-top: 80px;

@@ -33,7 +33,7 @@
     @include media_breakpoint_mobile {
         grid-template-columns: 1fr;
         gap: 12px;
-        width: fit-content;
+        width: 100%;
     }
 }
 

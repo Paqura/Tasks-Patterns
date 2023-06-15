@@ -6,7 +6,6 @@ import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { TypographyTheme } from '@/components/ui/typography/TypographyTheme'
 import { TImage } from '@/types'
-import { CONTACTS_SECTION_ID } from '@/utils/constants'
 
 import styles from './index.module.scss'
 
@@ -17,7 +16,7 @@ type TProps = {
 export type TWelcomeToPilotBlockData = {
     title: string
     description: string
-    buttonText: string
+    button: { text: string; link: string } | null
     image: TImage | null
 }
 
@@ -40,9 +39,11 @@ export const WelcomeToPilotBlock: React.FC<TProps> = ({ data }) => {
                         <Text className={styles.description} type="pL">
                             {data.description}
                         </Text>
-                        <Button className={styles.button} size="m" link={`#${CONTACTS_SECTION_ID}`}>
-                            {data.buttonText}
-                        </Button>
+                        {data.button && (
+                            <Button className={styles.button} size="m" link={data.button.link}>
+                                {data.button.text}
+                            </Button>
+                        )}
                     </div>
                 </div>
             </div>

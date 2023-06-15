@@ -13,21 +13,25 @@
     },
     "description": {
       "type": "text",
-      "required": true,
+      "required": false,
       "default": "A&nbsp;flexible mix of&nbsp;components makes PT&nbsp;ISIM easy and quick to&nbsp;deploy, with minimal configuration required, on&nbsp;infrastructures belonging to&nbsp;companies in&nbsp;any industry. Whether rapid or&nbsp;gradual, scaling up&nbsp;is&nbsp;always a&nbsp;smooth process on&nbsp;even the most complex networks."
-    },
-    "buttonText": {
-      "type": "string",
-      "required": true,
-      "default": "Request a pilot"
     },
     "image": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
+    },
+    "buttonText": {
+      "type": "string",
+      "required": false,
+      "default": "Request a pilot"
+    },
+    "buttonLink": {
+      "type": "string",
+      "default": "#contacts"
     }
   }
 }

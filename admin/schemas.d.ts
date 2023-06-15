@@ -2020,12 +2020,10 @@ export interface ProductWelcomeToPilotBlock extends ComponentSchema {
       RequiredAttribute &
       DefaultTo<'Quick start and scalability'>;
     description: TextAttribute &
-      RequiredAttribute &
       DefaultTo<'A&nbsp;flexible mix of&nbsp;components makes PT&nbsp;ISIM easy and quick to&nbsp;deploy, with minimal configuration required, on&nbsp;infrastructures belonging to&nbsp;companies in&nbsp;any industry. Whether rapid or&nbsp;gradual, scaling up&nbsp;is&nbsp;always a&nbsp;smooth process on&nbsp;even the most complex networks.'>;
-    buttonText: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'Order pilot now'>;
-    image: MediaAttribute & RequiredAttribute;
+    image: MediaAttribute;
+    buttonText: StringAttribute & DefaultTo<'Request a pilot'>;
+    buttonLink: StringAttribute & DefaultTo<'#contacts'>;
   };
 }
 

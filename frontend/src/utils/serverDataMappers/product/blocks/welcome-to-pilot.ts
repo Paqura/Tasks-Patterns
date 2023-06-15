@@ -14,7 +14,13 @@ export const mapWelcomeToPilotBlockServerData = (
     return {
         title: block.title || '',
         description: block.description || '',
-        buttonText: block.buttonText || '',
+        button:
+            block.buttonText && block.buttonLink
+                ? {
+                      text: block.buttonText,
+                      link: block.buttonLink,
+                  }
+                : null,
         image: mapImageMediaFile(block.image),
     }
 }
