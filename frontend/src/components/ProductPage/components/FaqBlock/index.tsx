@@ -35,11 +35,6 @@ export const FaqBlock: React.FC<{
                             <FaqItemCard data={item} />
                         </li>
                     ))}
-                    {data.items.map((item, index) => (
-                        <li key={index} className={styles.cardsListItem}>
-                            <FaqItemCard data={item} />
-                        </li>
-                    ))}
                 </ul>
             </LoadMore>
         </PageSectionCard>
