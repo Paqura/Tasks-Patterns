@@ -29,16 +29,18 @@ export const TasksBlock: React.FC<{ data: TProductTasksBlockData; sectionId: str
             <Text className={styles.description} type="pL">
                 {data.description}
             </Text>
-            <CardsSlider scrollAreaClassName={styles.tasksListScrollArea}>
-                <ul className={styles.tasksList}>
-                    {data.tasks.map((task) => (
-                        <li key={task.title} className={styles.taksListItem}>
-                            <ImagedCard data={task} />
-                        </li>
-                    ))}
-                </ul>
-            </CardsSlider>
-            {data.statistics && (
+            {data.tasks && data.tasks.length > 0 && (
+                <CardsSlider scrollAreaClassName={styles.tasksListScrollArea}>
+                    <ul className={styles.tasksList}>
+                        {data.tasks.map((task) => (
+                            <li key={task.title} className={styles.taksListItem}>
+                                <ImagedCard data={task} />
+                            </li>
+                        ))}
+                    </ul>
+                </CardsSlider>
+            )}
+            {data.statistics && data.statistics.values.length > 0 && (
                 <div className={styles.statistics}>
                     <Heading level={2}>{data.statistics.title}</Heading>
                     <CardsSlider scrollAreaClassName={styles.statisticsListScrollArea}>
