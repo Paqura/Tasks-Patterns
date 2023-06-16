@@ -844,6 +844,7 @@ export interface ApiAnyQuestionAnyQuestion extends SingleTypeSchema {
     singularName: 'any-question';
     pluralName: 'any-questions';
     displayName: 'AnyQuestions';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1395,6 +1396,7 @@ export interface ApiWebinarConfigWebinarConfig extends SingleTypeSchema {
     singularName: 'webinar-config';
     pluralName: 'webinar-configs';
     displayName: 'WebinarConfig';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1413,10 +1415,10 @@ export interface ApiWebinarConfigWebinarConfig extends SingleTypeSchema {
     buttonSubmit: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Registration'>;
-    checkboxSubscription: StringAttribute &
+    checkboxSubscription: TextAttribute &
       RequiredAttribute &
       DefaultTo<'I agree to receive advertising and information messages.'>;
-    checkboxConsentsTerms: StringAttribute &
+    checkboxConsentsTerms: TextAttribute &
       RequiredAttribute &
       DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href="#">privacy policy</a>.'>;
     successTitle: StringAttribute &
@@ -1525,6 +1527,7 @@ export interface AboutHistoryItem extends ComponentSchema {
 export interface AnyQuestionsGeneralQuestions extends ComponentSchema {
   info: {
     displayName: 'GeneralQuestions';
+    description: '';
   };
   attributes: {
     title: StringAttribute &
@@ -1539,10 +1542,10 @@ export interface AnyQuestionsGeneralQuestions extends ComponentSchema {
     fieldComment: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Your question'>;
-    checkboxConsentsTerms: StringAttribute &
+    checkboxConsentsTerms: TextAttribute &
       RequiredAttribute &
       DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
-    checkboxSubscription: StringAttribute &
+    checkboxSubscription: TextAttribute &
       RequiredAttribute &
       DefaultTo<'I agree to receive advertising and information messages.'>;
     buttonSubmit: StringAttribute & RequiredAttribute & DefaultTo<'SEND'>;
@@ -1558,6 +1561,7 @@ export interface AnyQuestionsGeneralQuestions extends ComponentSchema {
 export interface AnyQuestionsPartnership extends ComponentSchema {
   info: {
     displayName: 'Partnership';
+    description: '';
   };
   attributes: {
     title: StringAttribute & RequiredAttribute & DefaultTo<'Partnership'>;
@@ -1574,10 +1578,10 @@ export interface AnyQuestionsPartnership extends ComponentSchema {
     fieldComment: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Your question'>;
-    checkboxConsentsTerms: StringAttribute &
+    checkboxConsentsTerms: TextAttribute &
       RequiredAttribute &
       DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
-    checkboxSubscription: StringAttribute &
+    checkboxSubscription: TextAttribute &
       RequiredAttribute &
       DefaultTo<'I agree to receive advertising and information messages.'>;
     buttonSubmit: StringAttribute & RequiredAttribute & DefaultTo<'Send'>;
@@ -1593,6 +1597,7 @@ export interface AnyQuestionsPartnership extends ComponentSchema {
 export interface AnyQuestionsPilotApplication extends ComponentSchema {
   info: {
     displayName: 'PilotApplication';
+    description: '';
   };
   attributes: {
     title: StringAttribute &
@@ -1613,10 +1618,10 @@ export interface AnyQuestionsPilotApplication extends ComponentSchema {
     fieldComment: StringAttribute &
       RequiredAttribute &
       DefaultTo<'Your question'>;
-    checkboxConsentsTerms: StringAttribute &
+    checkboxConsentsTerms: TextAttribute &
       RequiredAttribute &
       DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
-    checkboxSubscription: StringAttribute &
+    checkboxSubscription: TextAttribute &
       RequiredAttribute &
       DefaultTo<'I agree to receive advertising and information messages.'>;
     buttonSubmit: StringAttribute & RequiredAttribute & DefaultTo<'SEND'>;

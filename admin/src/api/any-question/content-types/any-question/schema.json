@@ -4,7 +4,8 @@
   "info": {
     "singularName": "any-question",
     "pluralName": "any-questions",
-    "displayName": "AnyQuestions"
+    "displayName": "AnyQuestions",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false

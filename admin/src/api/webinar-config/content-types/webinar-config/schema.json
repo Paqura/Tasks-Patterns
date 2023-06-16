@@ -4,7 +4,8 @@
   "info": {
     "singularName": "webinar-config",
     "pluralName": "webinar-configs",
-    "displayName": "WebinarConfig"
+    "displayName": "WebinarConfig",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -46,12 +47,12 @@
       "required": true
     },
     "checkboxSubscription": {
-      "type": "string",
+      "type": "text",
       "default": "I agree to receive advertising and information messages.",
       "required": true
     },
     "checkboxConsentsTerms": {
-      "type": "string",
+      "type": "text",
       "default": "I consent to the processing of my personal data in accordance with the terms of the <a href=\"#\">privacy policy</a>.",
       "required": true
     },
