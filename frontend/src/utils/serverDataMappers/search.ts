@@ -1,6 +1,7 @@
 import { SearchResponse } from 'meilisearch'
 
 import { TSearchResultItem } from '@/components/SearchPage/components/SearchResultsList'
+import { highlightPreTag } from '@/utils/meilisearchApi'
 
 type TObject = Record<string, unknown>
 
@@ -56,24 +57,18 @@ const getDescription = (
     data: TObject,
     replacement: { from: string; to: string }
 ): string => {
-    const wordsToSearch = query.split(' ')
     const { from, to } = replacement
 
     let maxCount = 0
     let resultKey = ''
 
-    for (const [key, value] of Object.entries(data)) {
+    const entries = Object.entries(data)
+    for (const [key, value] of entries) {
         if (typeof value === 'string') {
-            let currentCount = 0
+            const higlightsCount = value.match(new RegExp(highlightPreTag, 'g'))?.length || 0
 
-            wordsToSearch.forEach((word) => {
-                if (value.includes(word)) {
-                    currentCount++
-                }
-            })
-
-            if (currentCount > maxCount) {
-                maxCount = currentCount
+            if (higlightsCount > maxCount) {
+                maxCount = higlightsCount
                 resultKey = key
             }
         }
@@ -83,11 +78,7 @@ const getDescription = (
         return String(data[to] ?? '')
     }
 
-    if (resultKey === '') {
-        return '-'
-    }
-
-    return String(data[resultKey])
+    return String(data[resultKey] || entries[0]?.[1] || '')
 }
 
 const getSearchResultItem = (
