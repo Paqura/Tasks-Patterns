@@ -56,7 +56,7 @@ export default function EventForm(props: TEventForm) {
             {isCompleted && (
                 <FormSuccess
                     title={props.eventConfigData.successTitle}
-                    description={props.eventConfigData.successTitle}
+                    description={props.eventConfigData.successDescription}
                 />
             )}
             {isCompleted || (

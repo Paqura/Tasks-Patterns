@@ -82,7 +82,7 @@ export const CommonForm: React.FC<TCommonFormProps> = ({
     }, [feedback, partnership, pilotApplication, type])
 
     if (isCompleted) {
-        return <FormSuccess title={labels.successTitle} description={labels.successTitle} />
+        return <FormSuccess title={labels.successTitle} description={labels.successDescription} />
     }
 
     return (
