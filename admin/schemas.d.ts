@@ -2022,8 +2022,18 @@ export interface ProductWelcomeToPilotBlock extends ComponentSchema {
     description: TextAttribute &
       DefaultTo<'A&nbsp;flexible mix of&nbsp;components makes PT&nbsp;ISIM easy and quick to&nbsp;deploy, with minimal configuration required, on&nbsp;infrastructures belonging to&nbsp;companies in&nbsp;any industry. Whether rapid or&nbsp;gradual, scaling up&nbsp;is&nbsp;always a&nbsp;smooth process on&nbsp;even the most complex networks.'>;
     image: MediaAttribute;
-    buttonText: StringAttribute & DefaultTo<'Request a pilot'>;
-    buttonLink: StringAttribute & DefaultTo<'#contacts'>;
+    button: ComponentAttribute<'share.link'>;
+  };
+}
+
+export interface ShareLink extends ComponentSchema {
+  info: {
+    displayName: 'Link';
+  };
+  attributes: {
+    text: StringAttribute & RequiredAttribute;
+    link: StringAttribute & RequiredAttribute;
+    targetBlank: BooleanAttribute & DefaultTo<false>;
   };
 }
 
@@ -2137,6 +2147,7 @@ declare global {
       'product.product-statistics-item': ProductProductStatisticsItem;
       'product.product-tasks-block': ProductProductTasksBlock;
       'product.welcome-to-pilot-block': ProductWelcomeToPilotBlock;
+      'share.link': ShareLink;
       'share.nav-item': ShareNavItem;
       'share.nav-sub-item': ShareNavSubItem;
       'share.seo': ShareSeo;

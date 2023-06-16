@@ -24,14 +24,11 @@
         "images"
       ]
     },
-    "buttonText": {
-      "type": "string",
-      "required": false,
-      "default": "Request a pilot"
-    },
-    "buttonLink": {
-      "type": "string",
-      "default": "#contacts"
+    "button": {
+      "displayName": "Link",
+      "type": "component",
+      "repeatable": false,
+      "component": "share.link"
     }
   }
 }

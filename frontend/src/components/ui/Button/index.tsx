@@ -12,6 +12,7 @@ import arrowIcon from '/public/images/common/arrows-right.svg'
 interface IButton {
     type?: 'button' | 'reset' | 'submit'
     link?: string
+    isTargetBlank?: boolean
     size?: 'm' | 's'
     withIcon?: boolean
     className?: string
@@ -24,6 +25,7 @@ interface IButton {
 export const Button: React.FC<PropsWithChildren<IButton>> = ({
     type = 'button',
     link,
+    isTargetBlank = false,
     size = 'm',
     withIcon = true,
     className,
@@ -56,7 +58,13 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
         )
     }
     return link ? (
-        <NextLink href={link} className={classNames} onClick={onClick} download={download}>
+        <NextLink
+            href={link}
+            className={classNames}
+            onClick={onClick}
+            download={download}
+            target={isTargetBlank ? '_blank' : undefined}
+        >
             {renderContent()}
         </NextLink>
     ) : (

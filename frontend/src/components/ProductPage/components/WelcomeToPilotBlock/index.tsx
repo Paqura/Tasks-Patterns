@@ -16,7 +16,7 @@ type TProps = {
 export type TWelcomeToPilotBlockData = {
     title: string
     description: string
-    button: { text: string; link: string } | null
+    button: { text: string; link: string; targetBlank: boolean } | null
     image: TImage | null
 }
 
@@ -40,7 +40,12 @@ export const WelcomeToPilotBlock: React.FC<TProps> = ({ data }) => {
                             {data.description}
                         </Text>
                         {data.button && (
-                            <Button className={styles.button} size="m" link={data.button.link}>
+                            <Button
+                                className={styles.button}
+                                size="m"
+                                link={data.button.link}
+                                isTargetBlank={data.button.targetBlank}
+                            >
                                 {data.button.text}
                             </Button>
                         )}
