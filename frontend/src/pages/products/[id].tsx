@@ -71,6 +71,8 @@ export default function Product(props: TProps) {
 
     return (
         <ProductPage
+            //Пробрасываем key для того чтобы next размонтировал и заного смонтировал страницу при переходе между продуктами
+            key={props.product.slug}
             seo={props.config?.seo || {}}
             headerData={mapHeaderServerData(props.header)}
             footerData={footerData}

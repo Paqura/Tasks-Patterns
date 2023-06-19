@@ -149,8 +149,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                     subtitle={product.subtitle}
                     bannerImage={product.bannerImage}
                 />
-                {/** Пробрасываем key для того чтобы корректно обновился блок якорей при переходе между страницами продуктов */}
-                <AnchorBar anchors={blocksAcc.anchors} key={product.title} />
+                <AnchorBar anchors={blocksAcc.anchors} />
                 {blocksAcc.blocks}
 
                 <AnyQuestions
