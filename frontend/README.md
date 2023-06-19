@@ -1,38 +1,138 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PTS Global. Frontend
 
-## Getting Started
+Приложение фронтенд-части сайта.
 
-First, run the development server:
+## Зависимости
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+* NodeJS ^18
+* Yarn
+* NextJS
+* React
+* Typescript
+
+## Локальная разработка
+
+Установить зависимости
+
+```
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Запустить в dev-режиме 
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+yarn dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+При запуске в локальном режиме по умолчанию приложение будет обращаться за данными к админке, запущенной по инструкции в [admin/Readme](../admin/README.md)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Для этого указаны нужные переменные окружения в файле `.env`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Сборка и запуск в prod-режиме
 
-To learn more about Next.js, take a look at the following resources:
+Установить зависимости
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+yarn install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Запустить сборку
 
-## Deploy on Vercel
+```
+yarn build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Запуск 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+yarn start
+```
+
+При запуске в prod-режиме по умолчанию переменные окружения берутся из файла '.env'. Но также можно переменные передать явно при сборке и запуске.
+
+
+## Переменные окружения
+
+`NEXT_PUBLIC_ADMIN_API_URL` - url где развернута админка
+
+`ADMIN_API_KEY` - ключ авторизованного доступа к админке
+
+`MEILISEARCH_HOST` - url где развернут meilisearch
+
+`MEILISEARCH_APP_KEY` - ключ для доступа к meilisearch
+
+`NEXT_PUBLIC_YM_ID` - Счетчик яндекс-метрики. Можно не передавать при локальной разработке.
+
+
+## Получение данных
+
+Все обращения к API админки должны происходить при серверном рендеринге. С клиента запросы к админке уходить не должны.
+
+Если клиент должен обращаться к админке как авторизованный пользователь, то можно при запуске приложения передать переменную окружения `ADMIN_API_KEY`. В ней нужно передать api-ключ сгенерированный в админке. Подробнее читай в [admin/Readme](../admin/README.md)
+
+### Типизация
+
+В проекте админки лежат файлы с типами структуры данных админки. Эти тайпинги подключены в проект как внешняя зависимость.
+
+При изменении структуры данных в админке нужно вручную сгенерировать новые тапинги. Для этого в директории проекта админки нужно выполнить
+
+```
+yarn generate-types
+```
+
+Чтобы использовать сгенерированные типы нужно импортировать утилитарные типы из проекта админки
+
+```
+import { Response } from '@admin/general-schemas'
+
+<...>
+
+const response: Response<'api::product.product'> = await fetchProduct(id)
+```
+
+При этом generic-параметр типа `Response` типизирован и тип `Response<'api::product.product'>` вернет структуру данных сущности продукта.
+
+
+### Ошибки получения данных
+
+При обращении к API strapi возможны следующие ошибки:
+
+
+*403* - В админке не установлены права на обращение к запрашиваемой сушности. О том как устанавливать права читай в [admin/Readme](../admin/README.md)
+
+*404* – Если url сформирован правильно, то такая ошибка говорит, что в админке появилась сущность (обычно в Single Types), у которой есть обязательные поля но нет дефолтного значения. Из-за этого strapi не может создать её в БД и как следствие считает, что её нет. В этому случае нужно посмотреть запрос какой сущности упал, пройти в админку и заполнить данные для этой сущности.
+
+*401* – Если при обращении к API устанавливается некорректный заголовок авторизации. Заголовок авторизации устанавливается если передать переменную окружения ADMIN_API_KEY. Если этот ключ не принадлежит админке, у которой запрашиваются данные, то админке вернет 401. Как сформировать этот ключ читай в [admin/Readme](../admin/README.md)
+
+### Счетчик яндекс-метрики
+
+На тестовых стендах подключен тестовый счетчик яндекс-метрики. 
+На данный момент владелец этого счетчика Evgeny Chirko (https://github.com/packpacka).
+При необходимости можно подключить для тестовых стендов любой другой счетчик через переменную окружения `NEXT_PUBLIC_YM_ID` в [Vault](https://vault.csssr.com:8200/ui/vault/secrets/secret/show/k8s/gke-csssr-testing/pts-global-frontend/everyone/secret)
+
+## Линтинг
+
+Линтинг JS/TS
+
+```
+yarn lint
+```
+
+Линтинг стилей
+
+```
+yarn style-lint
+```
+
+Проверка типов
+
+```
+yarn typechek
+```
+
+Запуск всех проверок
+
+```
+yarn check-all
+```

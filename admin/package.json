@@ -6,7 +6,7 @@
   "scripts": {
     "start": "strapi start",
     "build": "strapi build",
-    "develop:milisearch": "docker run -it --rm -p 7700:7700 getmeili/meilisearch:latest meilisearch --master-key=LCtzumTUyvEzE5eXmHkmxdKLrDNx4ZZMq_q5AUtLSi0 --no-analytics",
+    "develop:meilisearch": "docker run -it --rm -p 7700:7700 getmeili/meilisearch:latest meilisearch --master-key=LCtzumTUyvEzE5eXmHkmxdKLrDNx4ZZMq_q5AUtLSi0 --no-analytics",
     "develop:database": "docker-compose -f ./database/docker-compose.yml up",
     "develop:strapi": "strapi develop",
     "generate-types": "strapi ts:generate-types --verbose "
