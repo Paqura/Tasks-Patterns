@@ -32,8 +32,8 @@ export const SearchResultsList: React.FC<TSearchResultsListProps> = ({ hasNoResu
             <div className={styles.list}>
                 {hasNoResults ? (
                     <div className={styles.noResultsBlock}>
-                        <Heading level={3} className={styles.noResultsBlockTitle}>
-                            {`${noResultsBlockTitle} &quot${searchQuery}&quot`}
+                        <Heading level={3} className={styles.noResultsBlockTitle} disableInjections>
+                            {`${noResultsBlockTitle} "${searchQuery}"`}
                         </Heading>
 
                         <Text type="pL" className={styles.noResultsBlockDescription}>

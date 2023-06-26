@@ -10,12 +10,14 @@ import styles from './index.module.scss'
 type THeadingProps = {
     className?: string
     level: THeadingLevel
+    disableInjections?: boolean
 }
 
 export const Heading: React.FC<React.PropsWithChildren<THeadingProps>> = ({
     level = 1,
     className,
     children,
+    disableInjections,
 }) => {
     const theme = useTypographyTheme()
     const classNames = cn(className, styles.base, styles[`level_${level}`], {
@@ -26,9 +28,11 @@ export const Heading: React.FC<React.PropsWithChildren<THeadingProps>> = ({
         const isStringContent = typeof child === 'string'
 
         if (isStringContent) {
-            return React.createElement('span', {
-                dangerouslySetInnerHTML: { __html: sanitizeText(child) },
-            })
+            return disableInjections
+                ? child
+                : React.createElement('span', {
+                      dangerouslySetInnerHTML: { __html: sanitizeText(child) },
+                  })
         }
         return child
     })
