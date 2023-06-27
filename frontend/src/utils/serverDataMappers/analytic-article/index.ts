@@ -1,11 +1,11 @@
-import { GetAttributesValues, MediaAttributeContent, WithID } from '@admin/general-schemas'
+import { GetAttributesValues, MediaAttributeContent } from '@admin/general-schemas'
 
 import { TAnalitycArticleData, TArticleSection } from '@/components/AnalyticalArticlePage/types'
 
 import { mapFilesServerData } from 'src/utils/serverDataMappers/media'
 
 const mapArticleSectionsServerData = (
-    article: WithID & GetAttributesValues<'article-section.article-section'>[]
+    article: GetAttributesValues<'article-section.article-section'>[]
 ): TArticleSection[] => {
     return article.map((item) => {
         return {
