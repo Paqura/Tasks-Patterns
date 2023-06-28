@@ -1,5 +1,9 @@
 module.exports = {
   async afterCreate(event) {
+    if (!process.env.SMTP_HOST) {
+      return;
+    }
+
     const { result } = event;
 
     try{

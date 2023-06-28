@@ -1,10 +1,16 @@
 module.exports = {
   async afterCreate(event) {
+    if (!process.env.SMTP_HOST) {
+      return;
+    }
+
     const { result } = event;
 
-    try{
+    try {
       const entity = await strapi.db.query('api::email-template.email-template').findOne({});
-      const template = await strapi.db.query('api::email-template.email-template').load(entity, 'feedback', {});
+      const template = await strapi.db
+        .query('api::email-template.email-template')
+        .load(entity, 'feedback', {});
 
       await strapi.plugins['email'].services.email.sendTemplatedEmail(
         {
@@ -18,9 +24,9 @@ module.exports = {
           comment: result.comment,
         }
       );
-    } catch(err) {
+    } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
     }
-  }
+  },
 };
