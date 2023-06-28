@@ -18,7 +18,6 @@ releases:
     cluster: pts-global-production
     static-params:
       environment: production
-      enableGithubAuth: true
 
   pts-global-frontend:
     name: Frontend Testing
@@ -37,4 +36,3 @@ releases:
     cluster: pts-global-production
     static-params:
       environment: production
-      enableGithubAuth: true
