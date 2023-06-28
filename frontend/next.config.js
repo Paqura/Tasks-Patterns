@@ -21,6 +21,10 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: 'storage.yandexcloud.net',
+            },
+            {
+                protocol: 'https',
                 hostname: 'pts-global-admin.storage.yandexcloud.net',
             },
             {
