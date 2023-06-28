@@ -14,6 +14,9 @@ export default ({ env }) => {
               'blob:',
               'dl.airtable.com',
               `${env('S3_BUCKET')}.s3.${env('AWS_REGION')}.amazonaws.com`,
+              ...(env('S3_ENDPOINT')
+                ? [`${env('S3_BUCKET')}.${new URL(env('S3_ENDPOINT'))?.host}`]
+                : []),
             ],
             'media-src': [
               '\'self\'',
@@ -21,6 +24,9 @@ export default ({ env }) => {
               'blob:',
               'dl.airtable.com',
               `${env('S3_BUCKET')}.s3.${env('AWS_REGION')}.amazonaws.com`,
+              ...(env('S3_ENDPOINT')
+                ? [`${env('S3_BUCKET')}.${new URL(env('S3_ENDPOINT'))?.host}`]
+                : []),
             ],
             upgradeInsecureRequests: null,
           },
@@ -30,8 +36,8 @@ export default ({ env }) => {
     {
       name: 'strapi::cors',
       config: {
-        origin: (env('ALLOW_ORIGINS') || '*').split(',')
-      }
+        origin: (env('ALLOW_ORIGINS') || '*').split(','),
+      },
     },
     'strapi::poweredBy',
     'strapi::logger',
