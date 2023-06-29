@@ -13,10 +13,10 @@ export type TProductTasksBlockData = {
     title: string
     description?: string
     tasks: TImagedCard[]
-    statistics?: {
+    statistics: {
         title: string
         values: { value: string; label: string }[]
-    }
+    } | null
 }
 
 export const TasksBlock: React.FC<{ data: TProductTasksBlockData; sectionId: string }> = ({

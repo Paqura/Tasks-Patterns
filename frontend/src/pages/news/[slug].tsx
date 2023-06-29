@@ -1,8 +1,7 @@
-import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 import React from 'react'
 
-import NewsArticlePage from '@/components/NewsArticlePage'
+import NewsArticlePage, { TNewsArticlePageData } from '@/components/NewsArticlePage'
 import {
     fetchAnyQuestions,
     fetchConfig,
@@ -16,14 +15,8 @@ import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapNewsArticleServerData } from '@/utils/serverDataMappers/news-article'
 
-export type TServerSideProps = {
-    config?: GetAttributesValues<'api::config.config'>
-    header?: GetAttributesValues<'api::header.header'>
-    newsItem: GetAttributesValues<'api::news-item.news-item'>
-    products?: GetAttributesValues<'api::product.product'>[]
-    anyQuestions?: GetAttributesValues<'api::any-question.any-question'>
-    footer?: GetAttributesValues<'api::footer.footer'>
-}
+export type TServerSideProps = TNewsArticlePageData
+
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
 }) => {
@@ -54,31 +47,32 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             },
         }
     }
+
+    const anyQuestionsData = mapAnyQuestionsServerData(anyQuestions, products)
+    const footerData = mapFooterServerData(footer, products)
+    const headerData = mapHeaderServerData(header)
+    const newsArticleData = mapNewsArticleServerData(newsItem)
+
     return {
         props: {
-            newsItem,
-            config,
-            header,
-            products,
-            anyQuestions,
-            footer,
+            seo: config?.seo || {},
+            headerData,
+            footerData,
+            newsArticleData,
+            anyQuestionsData,
         },
     }
 }
 type TProps = TServerSideProps
 
 export default function NewsArticleItem(props: TProps) {
-    const article = mapNewsArticleServerData(props.newsItem)
-    const anyQuestionsData = mapAnyQuestionsServerData(props.anyQuestions, props.products)
-    const footerData = mapFooterServerData(props.footer, props.products)
-
     return (
         <NewsArticlePage
-            seo={props.config?.seo || {}}
-            headerData={mapHeaderServerData(props.header)}
-            footerData={footerData}
-            newsArticleData={article}
-            anyQuestionsData={anyQuestionsData}
+            seo={props.seo}
+            headerData={props.headerData}
+            footerData={props.footerData}
+            newsArticleData={props.newsArticleData}
+            anyQuestionsData={props.anyQuestionsData}
         />
     )
 }

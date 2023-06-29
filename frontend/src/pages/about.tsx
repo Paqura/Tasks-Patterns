@@ -1,7 +1,6 @@
-import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
-import { AboutPage } from '@/components/AboutPage'
+import { AboutPage, TAboutPageData } from '@/components/AboutPage'
 import {
     fetchHeader,
     fetchConfig,
@@ -15,14 +14,7 @@ import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestion
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 
-export type TServerSideProps = {
-    config?: GetAttributesValues<'api::config.config'>
-    header?: GetAttributesValues<'api::header.header'>
-    aboutPage?: GetAttributesValues<'api::about-page.about-page'>
-    products?: GetAttributesValues<'api::product.product'>[]
-    anyQuestions?: GetAttributesValues<'api::any-question.any-question'>
-    footer?: GetAttributesValues<'api::footer.footer'>
-}
+export type TServerSideProps = TAboutPageData
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
     const [config, header, aboutPage, products, anyQuestions, footer] = await Promise.all([
@@ -33,15 +25,22 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
         fetchAnyQuestions(),
         fetchFooter(),
     ])
+    const anyQuestionsData = mapAnyQuestionsServerData(anyQuestions, products)
+    const footerData = mapFooterServerData(footer, products)
+    const headerData = mapHeaderServerData(header)
+
+    const { headingSectionData, expertsSectionData, historySectionData } =
+        mapAboutPageServerData(aboutPage)
 
     return {
         props: {
-            config,
-            header,
-            aboutPage,
-            products,
-            anyQuestions,
-            footer,
+            seo: config?.seo || {},
+            headerData,
+            headingSectionData,
+            expertsSectionData,
+            historySectionData,
+            anyQuestions: anyQuestionsData,
+            footerData,
         },
     }
 }
@@ -49,22 +48,15 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
 type TProps = TServerSideProps
 
 export default function About(props: TProps) {
-    const { headingSectionData, expertsSectionData, historySectionData } = mapAboutPageServerData(
-        props.aboutPage
-    )
-
-    const anyQuestions = mapAnyQuestionsServerData(props.anyQuestions, props.products)
-    const footerData = mapFooterServerData(props.footer, props.products)
-
     return (
         <AboutPage
-            seo={props.config?.seo || {}}
-            headerData={mapHeaderServerData(props.header)}
-            headingSectionData={headingSectionData}
-            expertsSectionData={expertsSectionData}
-            historySectionData={historySectionData}
-            anyQuestions={anyQuestions}
-            footerData={footerData}
+            seo={props.seo}
+            headerData={props.headerData}
+            headingSectionData={props.headingSectionData}
+            expertsSectionData={props.expertsSectionData}
+            historySectionData={props.historySectionData}
+            anyQuestions={props.anyQuestions}
+            footerData={props.footerData}
         />
     )
 }

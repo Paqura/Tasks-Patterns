@@ -1,7 +1,6 @@
-import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 
-import { NotFoundPage } from '@/components/NotFoundPage'
+import { NotFoundPage, TNotFoundPageData } from '@/components/NotFoundPage'
 import {
     fetchHeader,
     fetchConfig,
@@ -13,13 +12,7 @@ import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapNotFoundServerData } from '@/utils/serverDataMappers/notFound'
 
-export type TServerSideProps = {
-    config?: GetAttributesValues<'api::config.config'>
-    header?: GetAttributesValues<'api::header.header'>
-    footer?: GetAttributesValues<'api::footer.footer'>
-    notFound?: GetAttributesValues<'api::not-found.not-found'>
-    products?: GetAttributesValues<'api::product.product'>[]
-}
+export type TServerSideProps = TNotFoundPageData
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
     const [config, header, footer, notFound, products] = await Promise.all([
@@ -30,13 +23,16 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
         fetchProducts(),
     ])
 
+    const footerData = mapFooterServerData(footer, products)
+    const headerData = mapHeaderServerData(header)
+    const errorData = mapNotFoundServerData(notFound)
+
     return {
         props: {
-            config,
-            header,
-            footer,
-            notFound,
-            products,
+            seo: config?.seo || {},
+            headerData,
+            footerData,
+            errorData,
         },
     }
 }
@@ -44,15 +40,12 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ()
 type TProps = TServerSideProps
 
 export default function NotFound(props: TProps) {
-    const notFoundErrorData = mapNotFoundServerData(props.notFound)
-    const footerData = mapFooterServerData(props.footer, props.products)
-
     return (
         <NotFoundPage
-            seo={props.config?.seo || {}}
-            headerData={mapHeaderServerData(props.header)}
-            footerData={footerData}
-            errorData={notFoundErrorData}
+            seo={props.seo}
+            headerData={props.headerData}
+            footerData={props.footerData}
+            errorData={props.errorData}
         />
     )
 }

@@ -11,7 +11,7 @@ const mapImageAttributes = (
     src: attrs?.url || '',
     width: attrs?.width,
     height: attrs?.height,
-    alt: attrs?.alt,
+    alt: attrs?.alt || '',
 })
 
 export const mapImageMediaFile = (

@@ -14,7 +14,7 @@ export type TAnalitycArticleData = {
     articleText: TArticleSection[]
     files: TFileData[]
     slug: string
-    published: Date
+    published?: Date
     tag: string
     title: string
     topic: string
