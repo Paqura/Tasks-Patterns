@@ -34,7 +34,7 @@ export const mapAnalyticsBlockServerData = ({
                 return {
                     title: article.title || '',
                     tag: article.tag,
-                    date: article.published && new Date(article.published),
+                    date: article.published && article.published,
                     href: `/analytics/${article.slug}` || '/',
                 }
             }),

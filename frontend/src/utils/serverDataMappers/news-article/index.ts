@@ -8,7 +8,7 @@ import { mapFilesServerData, mapImageMediaFile } from 'src/utils/serverDataMappe
 export type TNewsArticleData = {
     title: string
     topic: string
-    date?: Date
+    date?: string
     image?: TImage
     href: string
     content: string
@@ -25,7 +25,9 @@ export const mapNewsArticleServerData = (
             ? mapFilesServerData(serverArticleData?.files as MediaAttributeContent<'files', true>)
             : [],
         href: serverArticleData?.slug || '',
-        date: serverArticleData?.published ? new Date(serverArticleData?.published) : new Date(),
+        date: serverArticleData?.published
+            ? new Date(serverArticleData?.published).toISOString()
+            : new Date().toISOString(),
         title: serverArticleData?.title || '',
         topic: serverArticleData?.topic || '',
         filesTitle: serverArticleData?.filesTitle || '',

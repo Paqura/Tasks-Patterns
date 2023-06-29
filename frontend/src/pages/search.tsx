@@ -1,8 +1,6 @@
-import { GetAttributesValues } from '@admin/general-schemas'
-import { SearchResponse } from 'meilisearch'
 import { GetServerSideProps } from 'next'
 
-import { SearchPage } from '@/components/SearchPage'
+import { SearchPage, TSearchPageData } from '@/components/SearchPage'
 import {
     fetchHeader,
     fetchConfig,
@@ -15,14 +13,7 @@ import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 import { mapSearchResponseServerData } from '@/utils/serverDataMappers/search'
 
-export type TServerSideProps = {
-    config?: GetAttributesValues<'api::config.config'>
-    header?: GetAttributesValues<'api::header.header'>
-    footer?: GetAttributesValues<'api::footer.footer'>
-    products?: GetAttributesValues<'api::product.product'>[]
-    searchPage?: GetAttributesValues<'api::search-page.search-page'>
-    searchResponse: SearchResponse | null
-}
+export type TServerSideProps = TSearchPageData
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({ query }) => {
     const searchString = getSearchString(query.q)
@@ -46,14 +37,31 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         getSearchResponse(searchString),
     ])
 
+    const footerData = mapFooterServerData(footer, products)
+    const headerData = mapHeaderServerData(header)
+
+    const headingSectionData = {
+        title: searchPage?.title || '',
+        hasNoResultsTitle: searchPage?.hasNoResultsTitle || '',
+        searchQuery: searchResponse?.query || '',
+    }
+
+    const searchResults = mapSearchResponseServerData(searchResponse)
+
+    const searchResultsListData = {
+        searchQuery: searchResponse?.query || '',
+        searchResults,
+        noResultsBlockTitle: searchPage?.noResultsBlockTitle || '',
+        noResultsBlockDescription: searchPage?.noResultsBlockDescription || '',
+    }
+
     return {
         props: {
-            config,
-            header,
-            footer,
-            products,
-            searchPage,
-            searchResponse,
+            seo: config?.seo || {},
+            headerData,
+            footerData,
+            headingSectionData,
+            searchResultsListData,
         },
     }
 }
@@ -61,30 +69,13 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
 type TProps = TServerSideProps
 
 export default function Search(props: TProps) {
-    const headingSectionData = {
-        title: props.searchPage?.title || '',
-        hasNoResultsTitle: props.searchPage?.hasNoResultsTitle || '',
-        searchQuery: props.searchResponse?.query || '',
-    }
-
-    const searchResults = mapSearchResponseServerData(props.searchResponse)
-
-    const searchResultsListData = {
-        searchQuery: props.searchResponse?.query || '',
-        searchResults,
-        noResultsBlockTitle: props.searchPage?.noResultsBlockTitle || '',
-        noResultsBlockDescription: props.searchPage?.noResultsBlockDescription || '',
-    }
-
-    const footerData = mapFooterServerData(props.footer, props.products)
-
     return (
         <SearchPage
-            seo={props.config?.seo || {}}
-            headerData={mapHeaderServerData(props.header)}
-            footerData={footerData}
-            headingSectionData={headingSectionData}
-            searchResultsListData={searchResultsListData}
+            seo={props.seo}
+            headerData={props.headerData}
+            footerData={props.footerData}
+            headingSectionData={props.headingSectionData}
+            searchResultsListData={props.searchResultsListData}
         />
     )
 }

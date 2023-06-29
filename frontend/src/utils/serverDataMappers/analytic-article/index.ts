@@ -28,9 +28,7 @@ export const mapArticleServerData = (
             ? mapFilesServerData(serverArticleData?.files as MediaAttributeContent<'files', true>)
             : [],
         slug: serverArticleData?.slug || '',
-        published: serverArticleData?.published
-            ? new Date(serverArticleData?.published)
-            : new Date(),
+        published: serverArticleData?.published && serverArticleData?.published,
         tag: serverArticleData?.tag || '',
         title: serverArticleData?.title || '',
         topic: serverArticleData?.topic || '',

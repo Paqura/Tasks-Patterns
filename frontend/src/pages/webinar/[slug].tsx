@@ -1,8 +1,7 @@
-import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
 import React from 'react'
 
-import EventArticlePage from '@/components/EventArticlePage'
+import EventArticlePage, { TEventArticlePageData } from '@/components/EventArticlePage'
 import {
     fetchConfig,
     fetchFooter,
@@ -18,14 +17,8 @@ import {
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 
-export type TServerSideProps = {
-    config?: GetAttributesValues<'api::config.config'>
-    header?: GetAttributesValues<'api::header.header'>
-    newsItem: GetAttributesValues<'api::news-item.news-item'>
-    webinarConfig?: GetAttributesValues<'api::webinar-config.webinar-config'>
-    products?: GetAttributesValues<'api::product.product'>[]
-    footer?: GetAttributesValues<'api::footer.footer'>
-}
+export type TServerSideProps = TEventArticlePageData
+
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
 }) => {
@@ -57,38 +50,43 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             },
         }
     }
+    const footerData = mapFooterServerData(footer, products)
+    const headerData = mapHeaderServerData(header)
+
+    const { article, completedVideo, calendar, isCompleted, slug, eventHasAllFormData } =
+        mapEventArticleServerData(newsItem)
+    const eventConfig = mapWebinarConfigServerData(webinarConfig)
 
     return {
         props: {
-            newsItem,
-            config,
-            header,
-            webinarConfig,
-            products,
-            footer,
+            seo: config?.seo || {},
+            headerData,
+            footerData,
+            slug,
+            eventArticleData: article,
+            eventConfigData: eventConfig,
+            eventCompletedVideo: completedVideo,
+            eventCalendar: calendar,
+            eventIsCompleted: isCompleted,
+            eventHasAllFormData,
         },
     }
 }
 type TProps = TServerSideProps
 
 export default function EventArticleItem(props: TProps) {
-    const { article, completedVideo, calendar, isCompleted, slug, eventHasAllFormData } =
-        mapEventArticleServerData(props.newsItem)
-    const eventConfig = mapWebinarConfigServerData(props.webinarConfig)
-    const footerData = mapFooterServerData(props.footer, props.products)
-
     return (
         <EventArticlePage
-            seo={props.config?.seo || {}}
-            headerData={mapHeaderServerData(props.header)}
-            footerData={footerData}
-            slug={slug}
-            eventArticleData={article}
-            eventConfigData={eventConfig}
-            eventCompletedVideo={completedVideo}
-            eventCalendar={calendar}
-            eventIsCompleted={isCompleted}
-            eventHasAllFormData={eventHasAllFormData}
+            seo={props.seo}
+            headerData={props.headerData}
+            footerData={props.footerData}
+            slug={props.slug}
+            eventArticleData={props.eventArticleData}
+            eventConfigData={props.eventConfigData}
+            eventCompletedVideo={props.eventCompletedVideo}
+            eventCalendar={props.eventCalendar}
+            eventIsCompleted={props.eventIsCompleted}
+            eventHasAllFormData={props.eventHasAllFormData}
         />
     )
 }

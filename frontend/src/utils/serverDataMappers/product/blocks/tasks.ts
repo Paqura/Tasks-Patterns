@@ -24,6 +24,6 @@ export const mapProductTasksBlockServerData = (
                           label: statValue.label || '',
                       })),
                   }
-                : undefined,
+                : null,
     }
 }

@@ -40,9 +40,11 @@ export const mapEventArticleServerData = (
     const nowDate = new Date()
     const article = {
         ...mapNewsArticleServerData(serverArticleData),
-        date: serverArticleData?.eventDate ? new Date(serverArticleData?.eventDate) : nowDate,
+        date: serverArticleData?.eventDate
+            ? new Date(serverArticleData?.eventDate).toISOString()
+            : nowDate.toISOString(),
     }
-    const isCompleted = article.date.getTime() < nowDate.getTime()
+    const isCompleted = new Date(article.date).getTime() < nowDate.getTime()
 
     const eventHasAllFormData =
         !!serverArticleData?.eventLink &&

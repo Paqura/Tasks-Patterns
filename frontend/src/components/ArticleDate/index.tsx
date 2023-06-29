@@ -4,7 +4,7 @@ import { formatDate } from '@/utils/date'
 import styles from './index.module.scss'
 
 type TNewsArticleDateProps = {
-    date?: Date
+    date?: Date | string
 }
 export const ArticleDate: React.FC<TNewsArticleDateProps> = (props) => {
     return (
