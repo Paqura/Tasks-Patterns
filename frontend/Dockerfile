@@ -31,10 +31,10 @@ ENV NEXT_PUBLIC_ADMIN_API_URL=$NEXT_PUBLIC_ADMIN_API_URL
 COPY frontend/package.json frontend/yarn.lock ./
 RUN yarn install --frozen-lockfile --production && yarn cache clean
 
+USER node
+
 COPY --from=build /app/frontend/.next .next
 COPY --from=build /app/frontend/public ./public
 COPY --from=build /app/frontend/next.config.js ./
-
-USER node
 
 CMD ["./node_modules/.bin/next", "start"]
