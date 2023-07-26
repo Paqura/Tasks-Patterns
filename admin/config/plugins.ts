@@ -22,8 +22,8 @@ export default ({ env }) => {
           },
         },
         settings: {
-          defaultFrom: env('SMTP_USERNAME'),
-          defaultReplyTo: env('SMTP_USERNAME'),
+          defaultFrom: env('SMTP_FROM', env('SMTP_USERNAME')),
+          defaultReplyTo: env('SMTP_FROM', env('SMTP_USERNAME')),
         },
       } : {
         providerOptions: {},
