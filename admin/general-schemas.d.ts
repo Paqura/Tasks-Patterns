@@ -54,11 +54,24 @@ type ContentAPIDynamicZoneValue<T extends Attribute.Attribute> = T extends Attri
 // Custom GetMediaAttributeValue implementation for the content api
 type ContentAPIDateValue<T extends Attribute.Attribute> = T extends Attribute.Date ? Date : never;
 
+export type ComponentValue<
+  TComponentUID extends Common.UID.Component,
+  TRepeatable extends Utils.Expression.BooleanValue
+> = GetAttributesValues<TComponentUID> extends infer TValues
+  ? Utils.Expression.If<TRepeatable, TValues[], TValues>
+  : never;
+
+type ContentApiComponentValue<T extends Attribute.Attribute> = T extends Attribute.Component<
+  infer TComponentUID,
+  infer TRepeatable
+>
+  ? ComponentValue<TComponentUID, TRepeatable>
+  : never;
+
 // Aggregation of all the custom content api's custom value resolvers
 type ContentAPIValueResolvers<T extends Attribute.Attribute> =
   | Attribute.GetBigIntegerValue<T>
   | Attribute.GetBooleanValue<T>
-  | Attribute.GetComponentValue<T>
   | Attribute.GetDecimalValue<T>
   | Attribute.GetEnumerationValue<T>
   | Attribute.GetEmailValue<T>
@@ -76,6 +89,7 @@ type ContentAPIValueResolvers<T extends Attribute.Attribute> =
   | ContentAPIDynamicZoneValue<T>
   | ContentAPIRelationValue<T>
   | ContentAPIDateValue<T>
+  | ContentApiComponentValue<T>
   | ContentAPIMediaValue<T>;
 
 // Custom GetAttributeValue implementation based on specific content api rules

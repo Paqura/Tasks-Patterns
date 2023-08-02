@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             notFound: true,
         }
     }
-    if (newsItem?.isEvent) {
+    if (!!newsItem?.event) {
         return {
             redirect: {
                 destination: `/webinar/${params.slug}`,

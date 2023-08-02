@@ -20,9 +20,14 @@ const getWebinarData = async (slug: string | string[]) => {
         `/api/news/${slug}`
     )
 
-    const { title: eventName, eventDate, eventLink, isEvent } = response.data.data?.attributes ?? {}
+    const { title: eventName, event } = response.data.data?.attributes ?? {}
 
-    return { eventName, eventDate, eventLink, isEvent }
+    return {
+        eventName,
+        eventDate: event?.date,
+        eventLink: event?.link,
+        isEvent: !!event,
+    }
 }
 
 export default async function handler(req: TWebinarRegistrationRequest, res: NextApiResponse) {

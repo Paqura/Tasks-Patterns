@@ -9,7 +9,7 @@ export type TNewsArticleData = {
     title: string
     topic: string
     date?: string
-    image?: TImage
+    image: TImage | null
     href: string
     content: string
     filesTitle: string
@@ -17,7 +17,7 @@ export type TNewsArticleData = {
 }
 
 export const mapNewsArticleServerData = (
-    serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
+    serverArticleData?: Omit<GetAttributesValues<'api::news-item.news-item'>, 'event'>
 ): TNewsArticleData => {
     return {
         content: serverArticleData?.content ?? '',
@@ -31,6 +31,6 @@ export const mapNewsArticleServerData = (
         title: serverArticleData?.title || '',
         topic: serverArticleData?.topic || '',
         filesTitle: serverArticleData?.filesTitle || '',
-        image: mapImageMediaFile(serverArticleData?.previewImage) || undefined,
+        image: mapImageMediaFile(serverArticleData?.previewImage),
     }
 }

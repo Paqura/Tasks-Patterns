@@ -58,26 +58,11 @@
       },
       "customField": "plugin::ckeditor5.CKEditor"
     },
-    "isEvent": {
-      "type": "boolean",
-      "default": false
-    },
-    "eventDate": {
-      "type": "date"
-    },
-    "eventLink": {
-      "type": "string"
-    },
-    "eventCompletedYoutubeVideoId": {
-      "type": "string"
-    },
-    "eventCalendar": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "files"
-      ]
+    "event": {
+      "displayName": "EventProps",
+      "type": "component",
+      "repeatable": false,
+      "component": "event.event-props"
     }
   }
 }

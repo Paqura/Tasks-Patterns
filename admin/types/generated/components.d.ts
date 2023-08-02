@@ -45,33 +45,21 @@ export interface AnyQuestionsGeneralQuestions extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'General<br/> questions'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'General<br/> questions'>;
     description: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<"Have a question? Contact us and&nbsp;we'll&nbsp;help.">;
-    fieldName: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Your name'>;
-    fieldPhone: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Your phone'>;
-    fieldEmail: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Or Email'>;
-    fieldComment: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Your question'>;
+    fieldName: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Your name'>;
+    fieldPhone: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Your phone'>;
+    fieldEmail: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Or Email'>;
+    fieldComment: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Your question'>;
     checkboxConsentsTerms: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
     checkboxSubscription: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'I agree to receive advertising and information messages.'>;
-    buttonSubmit: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'SEND'>;
+    buttonSubmit: Attribute.String & Attribute.Required & Attribute.DefaultTo<'SEND'>;
     successTitle: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<'Thank you, your application has been sent'>;
@@ -88,39 +76,23 @@ export interface AnyQuestionsPartnership extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Partnership'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Partnership'>;
     description: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<"Let's partner <br/>and make the world <br/>a safer place.">;
-    fieldName: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Your name'>;
-    fieldCompanyName: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Company name'>;
-    fieldPhone: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Your phone'>;
-    fieldEmail: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Or Email'>;
-    fieldAddress: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Address'>;
-    fieldComment: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Your question'>;
+    fieldName: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Your name'>;
+    fieldCompanyName: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Company name'>;
+    fieldPhone: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Your phone'>;
+    fieldEmail: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Or Email'>;
+    fieldAddress: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Address'>;
+    fieldComment: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Your question'>;
     checkboxConsentsTerms: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
     checkboxSubscription: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'I agree to receive advertising and information messages.'>;
-    buttonSubmit: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Send'>;
+    buttonSubmit: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Send'>;
     successTitle: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<'Thank you, your application has been sent'>;
@@ -137,39 +109,23 @@ export interface AnyQuestionsPilotApplication extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Pilot<br/> application'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Pilot<br/> application'>;
     description: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<'Test drive our solutions. Get started with a pilot program.'>;
-    fieldProduct: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Select a product'>;
-    fieldCompanyName: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Company name'>;
-    fieldName: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Your name'>;
-    fieldPhone: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Your phone'>;
-    fieldEmail: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Or Email'>;
-    fieldComment: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Your question'>;
+    fieldProduct: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Select a product'>;
+    fieldCompanyName: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Company name'>;
+    fieldName: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Your name'>;
+    fieldPhone: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Your phone'>;
+    fieldEmail: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Or Email'>;
+    fieldComment: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Your question'>;
     checkboxConsentsTerms: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
     checkboxSubscription: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'I agree to receive advertising and information messages.'>;
-    buttonSubmit: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'SEND'>;
+    buttonSubmit: Attribute.String & Attribute.Required & Attribute.DefaultTo<'SEND'>;
     successTitle: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<'Thank you, your application has been sent'>;
@@ -207,6 +163,21 @@ export interface EmailEmailTemplate extends Schema.Component {
     subject: Attribute.String & Attribute.Required;
     html: Attribute.Text & Attribute.Required;
     text: Attribute.Text & Attribute.Required;
+  };
+}
+
+export interface EventEventProps extends Schema.Component {
+  collectionName: 'components_event_event_props';
+  info: {
+    displayName: 'EventProps';
+    icon: 'calendar';
+  };
+  attributes: {
+    link: Attribute.String;
+    date: Attribute.Date;
+    registrationFinish: Attribute.DateTime & Attribute.Required;
+    calendar: Attribute.Media;
+    completedYoutubeVideoId: Attribute.Text;
   };
 }
 
@@ -253,24 +224,17 @@ export interface MainAdvantagesBlock extends Schema.Component {
     description: '';
   };
   attributes: {
-    sectionId: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'advantages'>;
+    sectionId: Attribute.String & Attribute.Required & Attribute.DefaultTo<'advantages'>;
     title: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<'Why Positive Technologies?'>;
     description: Attribute.Text &
       Attribute.DefaultTo<'We&nbsp;have extensive experience in&nbsp;protecting businesses in&nbsp;various sectors of&nbsp;the economy, we&nbsp;know the nature of&nbsp;today&rsquo;s threats and regulatory requirements well&nbsp;&mdash; and we&nbsp;put that experience and that knowledge into everything we&nbsp;do'>;
-    expertiseCard: Attribute.Component<'main.advantage-card'> &
-      Attribute.Required;
-    customerServiceCard: Attribute.Component<'main.advantage-card'> &
-      Attribute.Required;
-    trackRecordCard: Attribute.Component<'main.advantage-card'> &
-      Attribute.Required;
-    technologyCard: Attribute.Component<'main.advantage-card'> &
-      Attribute.Required;
-    solutionsCard: Attribute.Component<'main.advantage-card'> &
-      Attribute.Required;
+    expertiseCard: Attribute.Component<'main.advantage-card'> & Attribute.Required;
+    customerServiceCard: Attribute.Component<'main.advantage-card'> & Attribute.Required;
+    trackRecordCard: Attribute.Component<'main.advantage-card'> & Attribute.Required;
+    technologyCard: Attribute.Component<'main.advantage-card'> & Attribute.Required;
+    solutionsCard: Attribute.Component<'main.advantage-card'> & Attribute.Required;
     welcomeToContact: Attribute.Component<'main.welcome-to-contact'>;
   };
 }
@@ -282,12 +246,8 @@ export interface MainAnalyticsBlock extends Schema.Component {
     description: '';
   };
   attributes: {
-    sectionId: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'analytics'>;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Analytics'>;
+    sectionId: Attribute.String & Attribute.Required & Attribute.DefaultTo<'analytics'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Analytics'>;
     description: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'Our team of&nbsp;experts stays up-to-date on&nbsp;the latest threats and trends in&nbsp;the industry, and we&rsquo;re always looking for ways to&nbsp;improve our solutions and services.'>;
@@ -305,19 +265,12 @@ export interface MainAnalyticsBlock extends Schema.Component {
     contactUsText: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'Contact&nbsp;us today to&nbsp;learn more about our cybersecurity solutions and how we&nbsp;can help protect your business.'>;
-    contactUsButtonText: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Contact us'>;
-    staisticsCardFirst: Attribute.Component<'main.statistics-item'> &
-      Attribute.Required;
-    staisticsCardSecond: Attribute.Component<'main.statistics-item'> &
-      Attribute.Required;
-    staisticsCardThird: Attribute.Component<'main.statistics-item'> &
-      Attribute.Required;
-    staisticsCardFourth: Attribute.Component<'main.statistics-item'> &
-      Attribute.Required;
-    staisticsCardFifth: Attribute.Component<'main.statistics-item'> &
-      Attribute.Required;
+    contactUsButtonText: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Contact us'>;
+    staisticsCardFirst: Attribute.Component<'main.statistics-item'> & Attribute.Required;
+    staisticsCardSecond: Attribute.Component<'main.statistics-item'> & Attribute.Required;
+    staisticsCardThird: Attribute.Component<'main.statistics-item'> & Attribute.Required;
+    staisticsCardFourth: Attribute.Component<'main.statistics-item'> & Attribute.Required;
+    staisticsCardFifth: Attribute.Component<'main.statistics-item'> & Attribute.Required;
     videoBackground: Attribute.Media;
   };
 }
@@ -328,9 +281,7 @@ export interface MainClients extends Schema.Component {
     displayName: 'Clients';
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Our Clients'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Our Clients'>;
     description: Attribute.Text &
       Attribute.DefaultTo<'Our technology and services are used by&nbsp;more than 2,300 organisations worldwide, including&nbsp;80% of&nbsp;the Expert 400.'>;
   };
@@ -342,17 +293,11 @@ export interface MainNewsBlock extends Schema.Component {
     displayName: 'NewsBlock';
   };
   attributes: {
-    sectionId: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'news'>;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Events & News'>;
+    sectionId: Attribute.String & Attribute.Required & Attribute.DefaultTo<'news'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Events & News'>;
     description: Attribute.Text &
       Attribute.DefaultTo<'Stay up-to-date with the latest news and events in&#160;the cybersecurity industry with&#160;us. From webinars and training sessions to&#160;conferences and hackathons, we&#146;ve got you covered with all the latest happenings in&#160;the cybersecurity space.'>;
-    allNewsLinkText: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'All news'>;
+    allNewsLinkText: Attribute.String & Attribute.Required & Attribute.DefaultTo<'All news'>;
   };
 }
 
@@ -363,12 +308,8 @@ export interface MainProductsBlock extends Schema.Component {
     description: '';
   };
   attributes: {
-    sectionId: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'products'>;
-    title: Attribute.Text &
-      Attribute.Required &
-      Attribute.DefaultTo<'Our Products'>;
+    sectionId: Attribute.String & Attribute.Required & Attribute.DefaultTo<'products'>;
+    title: Attribute.Text & Attribute.Required & Attribute.DefaultTo<'Our Products'>;
     description: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.'>;
@@ -408,12 +349,8 @@ export interface MainToolsBlock extends Schema.Component {
     description: '';
   };
   attributes: {
-    sectionId: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'tools'>;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'What we&nbsp;do?'>;
+    sectionId: Attribute.String & Attribute.Required & Attribute.DefaultTo<'tools'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'What we&nbsp;do?'>;
     description: Attribute.Text &
       Attribute.DefaultTo<'At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.'>;
     assessmentCard: Attribute.Component<'main.tool-card'> & Attribute.Required;
@@ -433,14 +370,11 @@ export interface MainWelcomeToContact extends Schema.Component {
     title: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<'Ready to&nbsp;secure your business?'>;
-    accentText: Attribute.String &
-      Attribute.DefaultTo<'Get&nbsp;in&nbsp;touch'>;
+    accentText: Attribute.String & Attribute.DefaultTo<'Get&nbsp;in&nbsp;touch'>;
     description: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'Contact&nbsp;us today to&nbsp;learn how our cybersecurity solutions can help protect your organization from threats and vulnerabilities. Don&rsquo;t wait until it&rsquo;s too late&nbsp;&mdash; take action now to&nbsp;ensure the safety and integrity of&nbsp;your data.'>;
-    buttonText: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Contact us'>;
+    buttonText: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Contact us'>;
   };
 }
 
@@ -452,9 +386,7 @@ export interface ProductFaqBlock extends Schema.Component {
   };
   attributes: {
     sectionId: Attribute.String & Attribute.Required;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'F.A.Q.'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'F.A.Q.'>;
     description: Attribute.Text &
       Attribute.DefaultTo<'Quick answers to&nbsp;questions you may have. Can&rsquo;t find what you&rsquo;re looking for? Check out our full documentation'>;
     items: Attribute.Component<'product.faq-item', true>;
@@ -481,9 +413,7 @@ export interface ProductFilesBlock extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Helpful info'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Helpful info'>;
     description: Attribute.Text &
       Attribute.Required &
       Attribute.DefaultTo<'At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.'>;
@@ -552,9 +482,7 @@ export interface ProductOtherProductsBlock extends Schema.Component {
   };
   attributes: {
     sectionId: Attribute.String & Attribute.Required;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Our Products'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Our Products'>;
     description: Attribute.Text &
       Attribute.DefaultTo<'At&nbsp;PT&nbsp;Security, we&nbsp;take a&nbsp;comprehensive approach to&nbsp;cybersecurity. Our solutions are designed to&nbsp;protect your business from a&nbsp;wide range of&nbsp;threats, both internal and external.'>;
     products: Attribute.Relation<
@@ -573,9 +501,7 @@ export interface ProductProductOverviewBlock extends Schema.Component {
   };
   attributes: {
     sectionId: Attribute.String & Attribute.Required;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Product Overview'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Product Overview'>;
     content: Attribute.RichText &
       Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -609,10 +535,7 @@ export interface ProductProductTasksBlock extends Schema.Component {
     description: Attribute.Text & Attribute.Required;
     tasks: Attribute.Component<'product.imaged-card', true>;
     statisticsTitile: Attribute.String;
-    statisticsValues: Attribute.Component<
-      'product.product-statistics-item',
-      true
-    >;
+    statisticsValues: Attribute.Component<'product.product-statistics-item', true>;
   };
 }
 
@@ -677,9 +600,7 @@ export interface ShareSeo extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'PT Security'>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'PT Security'>;
     description: Attribute.Text;
   };
 }
@@ -703,6 +624,7 @@ declare module '@strapi/strapi' {
       'any-questions.pilot-application': AnyQuestionsPilotApplication;
       'article-section.article-section': ArticleSectionArticleSection;
       'email.email-template': EmailEmailTemplate;
+      'event.event-props': EventEventProps;
       'footer.nav-block-item': FooterNavBlockItem;
       'footer.nav-block': FooterNavBlock;
       'main.advantage-card': MainAdvantageCard;

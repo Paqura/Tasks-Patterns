@@ -51,13 +51,13 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
 
     const articlesList: TNewsPageData['articlesListData']['articles'] =
         news?.map((article) => {
-            const baseUrl = article.isEvent ? 'webinar' : 'news'
+            const baseUrl = !!article.event ? 'webinar' : 'news'
 
             return {
                 title: article.title || '',
                 topic: article.topic || '',
                 date: article.published && article.published,
-                image: mapImageMediaFile(article.previewImage) || undefined,
+                image: mapImageMediaFile(article.previewImage),
                 href: `/${baseUrl}/${article.slug}` || '/',
             }
         }) || []

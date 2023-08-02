@@ -8,7 +8,7 @@ import { TImage } from '@/types'
 
 import styles from './index.module.scss'
 
-export const ArticleHeader: React.FC<{ image?: TImage; title: string; topic: string }> = (
+export const ArticleHeader: React.FC<{ image: TImage | null; title: string; topic: string }> = (
     props
 ) => {
     return (

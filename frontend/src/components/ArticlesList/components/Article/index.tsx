@@ -13,7 +13,7 @@ export type TArticlePreviewData = {
     title: string
     topic: string
     date?: Date
-    image?: TImage
+    image: TImage | null
     withImage?: boolean
     href: string
 }

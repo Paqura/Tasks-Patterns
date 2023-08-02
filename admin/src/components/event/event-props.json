@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_event_event_props",
+  "info": {
+    "displayName": "EventProps",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "registrationFinish": {
+      "type": "datetime",
+      "required": true
+    },
+    "calendar": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "completedYoutubeVideoId": {
+      "type": "text"
+    }
+  }
+}

@@ -54,6 +54,7 @@ export const AnalyticalArticlePage: React.FC<TAnalitycArticlePageProps> = (props
                     <ArticleHeader
                         title={props.analyticArticleData.title}
                         topic={props.analyticArticleData.topic}
+                        image={null}
                     />
 
                     {isDesktopSmall && <AnchorBar anchors={tableOfContent} />}

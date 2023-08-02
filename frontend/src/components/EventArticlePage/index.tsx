@@ -28,6 +28,7 @@ export type TEventArticlePageData = {
     eventCompletedVideo?: string
     eventCalendar?: string
     eventIsCompleted: boolean
+    eventRegistrationIsFinished: boolean
     eventHasAllFormData: boolean
 }
 type TEventArticlePageProps = TEventArticlePageData
@@ -48,6 +49,7 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
                     <ArticleLayoutGridRightColumn>
                         {props.eventConfigData &&
                             !props.eventIsCompleted &&
+                            !props.eventRegistrationIsFinished &&
                             props.eventHasAllFormData && (
                                 <EventForm
                                     slug={props.slug}

@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
         }
     }
 
-    if (!newsItem?.isEvent) {
+    if (!newsItem.event) {
         return {
             redirect: {
                 destination: `/news/${params.slug}`,
@@ -50,11 +50,20 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             },
         }
     }
+
     const footerData = mapFooterServerData(footer, products)
     const headerData = mapHeaderServerData(header)
 
-    const { article, completedVideo, calendar, isCompleted, slug, eventHasAllFormData } =
-        mapEventArticleServerData(newsItem)
+    const {
+        article,
+        completedVideo,
+        calendar,
+        isCompleted,
+        isRegistrationFinished,
+        slug,
+        eventHasAllFormData,
+    } = mapEventArticleServerData(newsItem)
+
     const eventConfig = mapWebinarConfigServerData(webinarConfig)
 
     return {
@@ -68,6 +77,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             eventCompletedVideo: completedVideo,
             eventCalendar: calendar,
             eventIsCompleted: isCompleted,
+            eventRegistrationIsFinished: isRegistrationFinished,
             eventHasAllFormData,
         },
     }
@@ -86,6 +96,7 @@ export default function EventArticleItem(props: TProps) {
             eventCompletedVideo={props.eventCompletedVideo}
             eventCalendar={props.eventCalendar}
             eventIsCompleted={props.eventIsCompleted}
+            eventRegistrationIsFinished={props.eventRegistrationIsFinished}
             eventHasAllFormData={props.eventHasAllFormData}
         />
     )

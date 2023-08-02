@@ -27,6 +27,7 @@ export type TEventArticleData = TNewsArticleData
 
 export type TEventArticle = {
     isCompleted: boolean
+    isRegistrationFinished: boolean
     eventHasAllFormData: boolean
     slug: string
     article: TEventArticleData
@@ -34,32 +35,48 @@ export type TEventArticle = {
     completedVideo?: string
 }
 
+const FINISH_DATE_TIMEZONE = 3 //Moscow
+const DAY_MS = 24 * 60 * 60 * 1000
+
 export const mapEventArticleServerData = (
     serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
 ): TEventArticle => {
     const nowDate = new Date()
+    //поправка в милисекундах на таймзону сервера относительно таймзоны Москвы
+    const timezoneOffsetFromMsk = (nowDate.getTimezoneOffset() + FINISH_DATE_TIMEZONE * 60) * 1000
+
     const article = {
         ...mapNewsArticleServerData(serverArticleData),
-        date: serverArticleData?.eventDate
-            ? new Date(serverArticleData?.eventDate).toISOString()
+        date: serverArticleData?.event?.date
+            ? new Date(serverArticleData?.event?.date).toISOString()
             : nowDate.toISOString(),
     }
-    const isCompleted = new Date(article.date).getTime() < nowDate.getTime()
+    //Считаем вебинар завершенным по наступлению следующего дня.
+    const isCompleted = new Date(article.date).getTime() + DAY_MS < nowDate.getTime()
+
+    const registrationFinishDate = serverArticleData?.event?.registrationFinish
+        ? new Date(serverArticleData?.event.registrationFinish)
+        : null
+
+    const isRegistrationFinished =
+        !!registrationFinishDate &&
+        registrationFinishDate.getTime() - timezoneOffsetFromMsk < nowDate.getTime()
 
     const eventHasAllFormData =
-        !!serverArticleData?.eventLink &&
-        !!serverArticleData?.eventDate &&
+        !!serverArticleData?.event?.link &&
+        !!serverArticleData?.event?.date &&
         !!serverArticleData?.title
 
     return {
         isCompleted,
+        isRegistrationFinished,
         article,
         eventHasAllFormData,
         slug: serverArticleData?.slug || '',
-        calendar: serverArticleData?.eventCalendar
-            ? mapFilesMediaFile(serverArticleData.eventCalendar).url
+        calendar: serverArticleData?.event?.calendar
+            ? mapFilesMediaFile(serverArticleData.event.calendar).url
             : undefined,
-        completedVideo: serverArticleData?.eventCompletedYoutubeVideoId,
+        completedVideo: serverArticleData?.event?.completedYoutubeVideoId,
     }
 }
 

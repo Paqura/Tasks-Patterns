@@ -63,6 +63,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
                 topic: article.topic || '',
                 date: article.published && article.published,
                 href: `/analytics/${article.slug}` || '/',
+                image: null,
             }
         }) || []
 
