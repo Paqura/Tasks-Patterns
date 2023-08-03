@@ -35,15 +35,12 @@ export type TEventArticle = {
     completedVideo?: string
 }
 
-const FINISH_DATE_TIMEZONE = 3 //Moscow
 const DAY_MS = 24 * 60 * 60 * 1000
 
 export const mapEventArticleServerData = (
     serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
 ): TEventArticle => {
     const nowDate = new Date()
-    //поправка в милисекундах на таймзону сервера относительно таймзоны Москвы
-    const timezoneOffsetFromMsk = (nowDate.getTimezoneOffset() + FINISH_DATE_TIMEZONE * 60) * 1000
 
     const article = {
         ...mapNewsArticleServerData(serverArticleData),
@@ -60,7 +57,8 @@ export const mapEventArticleServerData = (
 
     const isRegistrationFinished =
         !!registrationFinishDate &&
-        registrationFinishDate.getTime() - timezoneOffsetFromMsk < nowDate.getTime()
+        registrationFinishDate.getTime() <
+            nowDate.getTime() + nowDate.getTimezoneOffset() * 60 * 1000
 
     const eventHasAllFormData =
         !!serverArticleData?.event?.link &&
