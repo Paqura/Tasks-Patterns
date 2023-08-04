@@ -57,7 +57,7 @@ export default function EventArticlePage(props: TEventArticlePageProps) {
                                 />
                             )}
                         <MarkdownContent>{props.eventArticleData.content}</MarkdownContent>
-                        {props.eventCompletedVideo && props.eventIsCompleted && (
+                        {props.eventCompletedVideo && (
                             <EventVideo videoId={props.eventCompletedVideo} />
                         )}
 
