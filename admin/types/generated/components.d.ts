@@ -171,10 +171,11 @@ export interface EventEventProps extends Schema.Component {
   info: {
     displayName: 'EventProps';
     icon: 'calendar';
+    description: '';
   };
   attributes: {
     link: Attribute.String;
-    date: Attribute.Date;
+    date: Attribute.DateTime;
     registrationFinish: Attribute.DateTime & Attribute.Required;
     calendar: Attribute.Media;
     completedYoutubeVideoId: Attribute.Text;

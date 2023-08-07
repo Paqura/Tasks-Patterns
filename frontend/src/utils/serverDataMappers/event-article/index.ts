@@ -35,12 +35,11 @@ export type TEventArticle = {
     completedVideo?: string
 }
 
-const DAY_MS = 24 * 60 * 60 * 1000
-
 export const mapEventArticleServerData = (
     serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
 ): TEventArticle => {
     const nowDate = new Date()
+    const serverTimeZoneOffsetMS = nowDate.getTimezoneOffset() * 60 * 1000
 
     const article = {
         ...mapNewsArticleServerData(serverArticleData),
@@ -48,8 +47,9 @@ export const mapEventArticleServerData = (
             ? new Date(serverArticleData?.event?.date).toISOString()
             : nowDate.toISOString(),
     }
-    //Считаем вебинар завершенным по наступлению следующего дня.
-    const isCompleted = new Date(article.date).getTime() + DAY_MS < nowDate.getTime()
+
+    const isCompleted =
+        new Date(article.date).getTime() + serverTimeZoneOffsetMS < nowDate.getTime()
 
     const registrationFinishDate = serverArticleData?.event?.registrationFinish
         ? new Date(serverArticleData?.event.registrationFinish)
@@ -57,8 +57,7 @@ export const mapEventArticleServerData = (
 
     const isRegistrationFinished =
         !!registrationFinishDate &&
-        registrationFinishDate.getTime() <
-            nowDate.getTime() + nowDate.getTimezoneOffset() * 60 * 1000
+        registrationFinishDate.getTime() < nowDate.getTime() + serverTimeZoneOffsetMS
 
     const eventHasAllFormData =
         !!serverArticleData?.event?.link &&
