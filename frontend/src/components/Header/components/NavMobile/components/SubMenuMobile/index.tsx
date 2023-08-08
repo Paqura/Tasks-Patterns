@@ -3,6 +3,7 @@ import NextLink from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { Text } from '@/components/ui/typography/Text'
 import { TNavSubItem } from '@/types'
+import { useTranslate } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
@@ -13,6 +14,7 @@ interface ISubMenuMobile {
 }
 
 export const SubMenuMobile = ({ subItems, anchor, onClick }: ISubMenuMobile) => {
+    const translate = useTranslate()
     return (
         <>
             <div className={styles.list}>
@@ -36,7 +38,7 @@ export const SubMenuMobile = ({ subItems, anchor, onClick }: ISubMenuMobile) => 
             </div>
             {anchor && (
                 <Button className={styles.button} link={anchor} size="s" onClick={onClick}>
-                    Jump to section
+                    {translate('navigation:jumpBtn')}
                 </Button>
             )}
         </>

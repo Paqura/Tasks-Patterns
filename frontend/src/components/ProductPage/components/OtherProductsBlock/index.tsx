@@ -5,6 +5,7 @@ import { CardsSlider } from '@/components/ui/CardsSlider'
 import { Link } from '@/components/ui/Link'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
+import { useTranslate } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
@@ -22,6 +23,7 @@ type TProps = {
 
 export const OtherProductsBlock: React.FC<TProps> = ({ data, sectionId, number }) => {
     const { items, title, description } = data
+    const translate = useTranslate()
 
     return (
         <PageSectionCard mode="dark" sectionId={sectionId}>
@@ -31,7 +33,7 @@ export const OtherProductsBlock: React.FC<TProps> = ({ data, sectionId, number }
                 scrollAreaClassName={styles.productsScrollArea}
                 controls={
                     <Link type="s" href={'/products'}>
-                        View all
+                        {translate('product:viewAllProductsBtn')}
                     </Link>
                 }
             >

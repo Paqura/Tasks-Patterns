@@ -11,6 +11,7 @@ type TProps = {
     className?: string
     cuttedClassName?: string
     cutterClassName?: string
+    btnText: string
 }
 
 export const LoadMore: React.FC<React.PropsWithChildren<TProps>> = ({
@@ -18,6 +19,7 @@ export const LoadMore: React.FC<React.PropsWithChildren<TProps>> = ({
     className,
     cuttedClassName,
     cutterClassName,
+    btnText,
 }) => {
     const theme = useTypographyTheme()
     const [isCutted, setIsCutted] = useState<boolean>(true)
@@ -61,7 +63,7 @@ export const LoadMore: React.FC<React.PropsWithChildren<TProps>> = ({
                         withIcon={false}
                         onClick={() => setIsCutted(false)}
                     >
-                        Load more
+                        {btnText}
                     </Button>
                 </div>
             )}

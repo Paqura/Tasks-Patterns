@@ -1,6 +1,8 @@
 import { ValidationValueMessage } from 'react-hook-form'
 
-export const validatePhoneNumber: ValidationValueMessage<RegExp> = {
-    message: 'Only digits and spaces',
+import { TTranslateFn } from '@/utils/translate'
+
+export const validatePhoneNumber = (t: TTranslateFn): ValidationValueMessage<RegExp> => ({
+    message: t('validation:phoneNumber'),
     value: /^([\+\-\d\s\(\)]){7,20}$/,
-}
+})

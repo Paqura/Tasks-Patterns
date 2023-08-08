@@ -6,6 +6,7 @@ import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { TImage } from '@/types'
 import { formatDate } from '@/utils/date'
+import { useTranslate } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
@@ -28,6 +29,7 @@ export const Article: React.FC<TArticlePreviewProps> = ({
     withImage,
     href,
 }) => {
+    const translate = useTranslate()
     return (
         <article className={cn(styles.article, { [styles.hasImage]: Boolean(withImage) })}>
             {withImage && image && (
@@ -56,7 +58,7 @@ export const Article: React.FC<TArticlePreviewProps> = ({
                 </Text>
 
                 <Link type="s" href={href}>
-                    CONTINUE READING
+                    {translate('articlesList:continueReadingBtn')}
                 </Link>
             </div>
         </article>

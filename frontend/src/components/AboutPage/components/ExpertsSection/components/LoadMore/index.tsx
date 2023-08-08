@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import { Button } from '@/components/ui//Button'
 import { useIsMobile } from '@/utils/hooks'
+import { useTranslate } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
@@ -16,6 +17,7 @@ function LoadMore<T>({ items, overlayExtraClassName, render }: TProps<T>) {
     const isMobile = useIsMobile()
 
     const [loadMore, setLoadMore] = useState<boolean>(false)
+    const translate = useTranslate()
 
     const hasOverflow = !isMobile && items.length > 8
     const showOverlay = hasOverflow && !loadMore
@@ -34,7 +36,7 @@ function LoadMore<T>({ items, overlayExtraClassName, render }: TProps<T>) {
                         withIcon={false}
                         onClick={() => setLoadMore(true)}
                     >
-                        Load more
+                        {translate('aboutUs:expertsLoadMoreBtn')}
                     </Button>
                 </div>
             )}

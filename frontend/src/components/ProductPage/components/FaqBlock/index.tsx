@@ -3,6 +3,7 @@ import React from 'react'
 import { LoadMore } from '@/components/ui/LoadMore'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { PageSectionCardHeader } from '@/components/ui/PageSectionCardHeader'
+import { useTranslate } from '@/utils/translate'
 
 import { FaqItemCard, TFaqItem } from './components/FaqItemCard'
 import styles from './index.module.scss'
@@ -18,6 +19,7 @@ export const FaqBlock: React.FC<{
     sectionId: string
     number: number
 }> = ({ data, sectionId, number }) => {
+    const translate = useTranslate()
     return (
         <PageSectionCard mode={'light'} sectionId={sectionId}>
             <PageSectionCardHeader
@@ -26,6 +28,7 @@ export const FaqBlock: React.FC<{
                 description={data.description}
             />
             <LoadMore
+                btnText={translate('product:faqLoadMoreBtn')}
                 className={styles.cardsListWrapper}
                 cuttedClassName={styles.cardsListWrapper_cutted}
             >

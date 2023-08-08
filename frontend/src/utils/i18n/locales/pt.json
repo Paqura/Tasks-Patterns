@@ -1,0 +1,27 @@
+{
+    "navigation": {
+        "jumpBtn": "Jump to section"
+    },
+    "productCard": {
+        "readMoreBtn": "Learn more"
+    },
+    "product": {
+        "pilotRequestBtn": "Request a pilot",
+        "faqLoadMoreBtn": "Load more",
+        "viewAllProductsBtn": "View all"
+    },
+    "articlesList": {
+        "continueReadingBtn": "Continue reading"
+    },
+    "helpfulFiles": {
+        "heading": "Downloadable files"
+    },
+    "validation": {
+        "required": "Required field",
+        "phoneNumber": "Only digits and spaces",
+        "email": "name@example.com"
+    },
+    "aboutUs": {
+        "expertsLoadMoreBtn": "Load more"
+    }
+}

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useController } from 'react-hook-form'
 
 import { InputError } from '@/components/ui/InputError'
+import { useTranslate } from '@/utils/translate'
 import { validateRequired } from '@/utils/validation/validateRequired'
 
 import styles from './index.module.scss'
@@ -26,10 +27,11 @@ export const Textarea = ({
 }: IProps) => {
     const [isFocused, setIsFocused] = useState<boolean>(false)
     const fieldName = `${name}` as const
+    const translate = useTranslate()
     const controller = useController({
         name: fieldName,
         rules: {
-            required: validateRequired(required),
+            required: validateRequired(translate)(required),
         },
         shouldUnregister: true,
     })

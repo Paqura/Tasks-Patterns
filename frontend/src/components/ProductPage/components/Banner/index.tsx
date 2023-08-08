@@ -8,6 +8,7 @@ import { Text } from '@/components/ui/typography/Text'
 import { TypographyTheme } from '@/components/ui/typography/TypographyTheme'
 import { TImage } from '@/types'
 import { CONTACTS_SECTION_ID } from '@/utils/constants'
+import { useTranslate } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
@@ -18,6 +19,7 @@ type TProps = {
 }
 
 export const Banner: React.FC<TProps> = ({ title, subtitle, bannerImage }) => {
+    const translate = useTranslate()
     return (
         <div className={styles.container}>
             <div className={styles.logoWrapper}>
@@ -42,7 +44,7 @@ export const Banner: React.FC<TProps> = ({ title, subtitle, bannerImage }) => {
                             </Text>
                         )}
                         <Button className={styles.contactBtn} link={`#${CONTACTS_SECTION_ID}`}>
-                            Request a pilot
+                            {translate('product:pilotRequestBtn')}
                         </Button>
                     </TypographyTheme>
                 </div>

@@ -7,6 +7,7 @@ import { Link } from '@/components/ui/Link'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { TImage } from '@/types'
+import { useTranslate } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
@@ -27,6 +28,7 @@ export const ProductCard: React.FC<TProps> = ({ className, data }) => {
     const productUrl = `/products/${href}`
 
     const router = useRouter()
+    const translate = useTranslate()
     return (
         <div className={cn(styles.card, className)} onClick={() => router.push(productUrl)}>
             <div className={styles.content}>
@@ -42,7 +44,7 @@ export const ProductCard: React.FC<TProps> = ({ className, data }) => {
             </div>
 
             <Link href={productUrl} type="m" className={styles.link}>
-                <span className={styles.linkText}>Learn more</span>
+                <span className={styles.linkText}>{translate('productCard:readMoreBtn')}</span>
             </Link>
         </div>
     )

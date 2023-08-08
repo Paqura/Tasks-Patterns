@@ -4,6 +4,7 @@ import { useController } from 'react-hook-form'
 import { ValidationValueMessage } from 'react-hook-form/dist/types/validator'
 
 import { InputError } from '@/components/ui/InputError'
+import { TTranslateFn, useTranslate } from '@/utils/translate'
 import { validateEmail } from '@/utils/validation/validateEmail'
 import { validatePhoneNumber } from '@/utils/validation/validatePhoneNumber'
 import { validateRequired } from '@/utils/validation/validateRequired'
@@ -24,11 +25,13 @@ interface IProps {
     maxLength?: number
 }
 
-const validators: { [key in TInputType]: ValidationValueMessage<RegExp> | null } = {
+const createValidators = (
+    t: TTranslateFn
+): { [key in TInputType]: ValidationValueMessage<RegExp> | null } => ({
     text: null,
-    email: validateEmail,
-    tel: validatePhoneNumber,
-}
+    email: validateEmail(t),
+    tel: validatePhoneNumber(t),
+})
 
 export const Input = ({
     type,
@@ -43,10 +46,13 @@ export const Input = ({
 }: IProps) => {
     const [isFocused, setIsFocused] = useState<boolean>(false)
     const fieldName = `${name}` as const
+    const translate = useTranslate()
+    const validators = useMemo(() => createValidators(translate), [translate])
+
     const controller = useController({
         name: fieldName,
         rules: {
-            required: validateRequired(required),
+            required: validateRequired(translate)(required),
             pattern: pattern || validators[type] || undefined,
         },
         shouldUnregister: true,
