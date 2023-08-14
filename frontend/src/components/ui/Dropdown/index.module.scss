@@ -1,0 +1,26 @@
+@import '../../../components/ui/typography//Text/index.module.scss';
+
+.dropdownList {
+    padding: 16px;
+    background: var(--color-white);
+    outline: none;
+}
+
+.option {
+    position: relative;
+    z-index: 0;
+    display: block;
+
+    cursor: pointer;
+
+    @include text_type_pM;
+
+    &:hover {
+        z-index: 1;
+        color: var(--color-red-ui);
+    }
+
+    & + & {
+        margin-top: 12px;
+    }
+}

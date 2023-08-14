@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { defaultNS, TLocale, TLanguageResource } from '.'
+import { defaultNS, TLocale, TLocaleResource } from '.'
 
 declare module 'i18next' {
     interface CustomTypeOptions {
         defaultNS: typeof defaultNS
-        resources: TLanguageResource
+        resources: TLocaleResource
         lng: TLocale
     }
 }

@@ -1,6 +1,14 @@
+@import '../../../../styles/media.scss';
+
 .controls {
     display: flex;
     gap: 12px;
+    height: 100%;
+    align-items: center;
+
+    @include media_breakpoint_small_desktop {
+        height: auto;
+    }
 
     &.mobileMode {
         justify-content: flex-end;
@@ -84,6 +92,25 @@
 
     .mobileMode & {
         background-color: var(--color-light-gray-ui);
+    }
+}
+
+.buttonWrapper {
+    display: inline-flex;
+    height: 100%;
+    align-items: center;
+    
+    @include media_breakpoint_small_desktop {
+        height: auto;
+    }
+}
+
+.popover {
+    border-top: 1px solid var(--color-gray-2x);
+
+    @include media_breakpoint_small_desktop {
+        background-color: var(--color-light-gray-ui);
+        border-radius: 4px;
     }
 }
 

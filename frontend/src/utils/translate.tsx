@@ -34,7 +34,16 @@ export const TranslationProvider: React.FC<React.PropsWithChildren> = ({ childre
 
 const fallback = (() => '') as TTranslateFn
 
+const useTranslator = () => {
+    return useContext(TranslationContext)
+}
+
+export const useLocale = () => {
+    const { locale } = useRouter()
+    return getLocale(locale)
+}
+
 export const useTranslate = () => {
-    const translator = useContext(TranslationContext)
+    const translator = useTranslator()
     return translator ? translator.t : fallback
 }

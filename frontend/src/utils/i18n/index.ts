@@ -1,4 +1,5 @@
 import i18n from 'i18next'
+import mapValues from 'lodash/mapValues'
 
 import en from './locales/en.json'
 import es from './locales/es.json'
@@ -10,20 +11,37 @@ export const defaultLocale: TLocale = 'en'
 
 export const defaultNS = 'validation'
 
-export type TLanguageResource = typeof en
+export type TLocaleResource = typeof en
 
-export type TLanguageResources = { [key in TLocale]: TLanguageResource }
+type TLocaleConfig = {
+    name: string
+    abbr: string
+    sources: TLocaleResource
+}
+export type TLocaleResources = { [key in TLocale]: TLocaleConfig }
 
-export const locales: TLanguageResources = {
-    en: en,
-    es: es,
-    pt: pt,
+export const locales: TLocaleResources = {
+    en: {
+        name: 'English',
+        abbr: 'En',
+        sources: en,
+    },
+    es: {
+        name: 'Spanish',
+        abbr: 'Sp',
+        sources: es,
+    },
+    pt: {
+        name: 'Portuguese',
+        abbr: 'Pt',
+        sources: pt,
+    },
 }
 
 i18n.init({
     fallbackLng: defaultLocale,
     ns: [defaultNS],
-    resources: locales,
+    resources: mapValues(locales, (l) => l.sources),
     defaultNS: defaultNS,
 })
 

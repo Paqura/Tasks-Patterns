@@ -1,0 +1,206 @@
+.popover {
+  position: absolute;
+  z-index: 15;
+  margin: -9999px 0 0 -9999px;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.children {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.visible {
+  position: absolute;
+  z-index: 1165;
+  margin: 0;
+  visibility: visible;
+}
+
+.animation {
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.direction_bottom-left,
+.direction_bottom-center,
+.direction_bottom-right {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  animation-name: bottomHide;
+}
+
+.direction_bottom-left.visible,
+.direction_bottom-center.visible,
+.direction_bottom-right.visible {
+  animation-name: bottomShow;
+}
+
+.direction_top-left,
+.direction_top-center,
+.direction_top-right {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  animation-name: topHide;
+}
+
+.direction_top-left.visible,
+.direction_top-center.visible,
+.direction_top-right.visible {
+  animation-name: topShow;
+}
+
+.direction_left-center {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  animation-name: leftHide;
+}
+
+.direction_left-center.visible {
+  animation-name: leftShow;
+}
+
+.direction_right-center {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  animation-name: rightHide;
+}
+
+.direction_right-center.visible {
+  animation-name: rightShow;
+}
+
+.withoutAnimation {
+  animation: none;
+}
+
+@keyframes bottomHide {
+  0% {
+    margin: 0;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  99% {
+    margin: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    margin: -9999px 0 0 -9999px;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+@keyframes bottomShow {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes topHide {
+  0% {
+    margin: 0;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  99% {
+    margin: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    margin: -9999px 0 0 -9999px;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+@keyframes topShow {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rightHide {
+  0% {
+    margin: 0;
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  99% {
+    margin: 0;
+    transform: translateX(10px);
+  }
+
+  100% {
+    margin: -9999px 0 0 -9999px;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+@keyframes rightShow {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes leftHide {
+  0% {
+    margin: 0;
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  99% {
+    margin: 0;
+    transform: translateX(-10px);
+  }
+
+  100% {
+    margin: -9999px 0 0 -9999px;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+@keyframes leftShow {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
