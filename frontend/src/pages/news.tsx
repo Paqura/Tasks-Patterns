@@ -1,15 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { NewsPage, TNewsPageData } from '@/components/NewsPage'
-import {
-    fetchHeader,
-    fetchConfig,
-    fetchNews,
-    fetchNewsPage,
-    fetchProducts,
-    fetchAnyQuestions,
-    fetchFooter,
-} from '@/utils/adminApi'
+import { getApi } from '@/utils/adminApi'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
@@ -17,25 +9,29 @@ import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 export type TServerSideProps = TNewsPageData
 
-export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
+    query,
+    locale,
+}) => {
     const page = Number(query.page) || 1
+    const api = getApi(locale)
 
     const [config, header, newsPage, { news, pagination }, products, anyQuestions, footer] =
         await Promise.all([
-            fetchConfig(),
-            fetchHeader(),
-            fetchNewsPage(),
-            fetchNews(page),
-            fetchProducts(),
-            fetchAnyQuestions(),
-            fetchFooter(),
+            api.fetchConfig(),
+            api.fetchHeader(),
+            api.fetchNewsPage(),
+            api.fetchNews(page),
+            api.fetchProducts(),
+            api.fetchAnyQuestions(),
+            api.fetchFooter(),
         ])
 
-    if (pagination.page > pagination.pageCount) {
+    if (pagination.page && pagination.page > 1 && pagination.page > pagination.pageCount) {
         return {
             redirect: {
                 permanent: false,
-                destination: '/news',
+                destination: `/${locale}/news`,
             },
             props: {},
         }

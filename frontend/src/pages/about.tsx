@@ -1,14 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { AboutPage, TAboutPageData } from '@/components/AboutPage'
-import {
-    fetchHeader,
-    fetchConfig,
-    fetchAboutPage,
-    fetchProducts,
-    fetchAnyQuestions,
-    fetchFooter,
-} from '@/utils/adminApi'
+import { getApi } from '@/utils/adminApi'
 import { mapAboutPageServerData } from '@/utils/serverDataMappers/about'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
@@ -16,14 +9,16 @@ import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 
 export type TServerSideProps = TAboutPageData
 
-export const getServerSideProps: GetServerSideProps<TServerSideProps> = async () => {
+export const getServerSideProps: GetServerSideProps<TServerSideProps> = async (params) => {
+    const api = getApi(params.locale)
+
     const [config, header, aboutPage, products, anyQuestions, footer] = await Promise.all([
-        fetchConfig(),
-        fetchHeader(),
-        fetchAboutPage(),
-        fetchProducts(),
-        fetchAnyQuestions(),
-        fetchFooter(),
+        api.fetchConfig(),
+        api.fetchHeader(),
+        api.fetchAboutPage(),
+        api.fetchProducts(),
+        api.fetchAnyQuestions(),
+        api.fetchFooter(),
     ])
     const anyQuestionsData = mapAnyQuestionsServerData(anyQuestions, products)
     const footerData = mapFooterServerData(footer, products)

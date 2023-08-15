@@ -2,14 +2,7 @@ import { GetServerSideProps } from 'next'
 
 import { ProductPage, TProductPageData } from '@/components/ProductPage'
 import { TProductData } from '@/components/ProductPage/types'
-import {
-    fetchAnyQuestions,
-    fetchConfig,
-    fetchFooter,
-    fetchHeader,
-    fetchProduct,
-    fetchProducts,
-} from '@/utils/adminApi'
+import { getApi } from '@/utils/adminApi'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
@@ -21,6 +14,7 @@ export type TServerSideProps = TProductPageData & {
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: string }> = async ({
     params,
+    locale,
 }) => {
     if (!params?.id) {
         return {
@@ -28,13 +22,15 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
         }
     }
 
+    const api = getApi(locale)
+
     const [config, header, product, allProducts, anyQuestions, footer] = await Promise.all([
-        fetchConfig(),
-        fetchHeader(),
-        fetchProduct(params.id),
-        fetchProducts(),
-        fetchAnyQuestions(),
-        fetchFooter(),
+        api.fetchConfig(),
+        api.fetchHeader(),
+        api.fetchProduct(params.id),
+        api.fetchProducts(),
+        api.fetchAnyQuestions(),
+        api.fetchFooter(),
     ])
 
     if (!product) {

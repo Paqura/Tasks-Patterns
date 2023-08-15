@@ -10,76 +10,150 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
       "type": "string",
-      "default": "Registration for the webinar"
+      "default": "Registration for the webinar",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "fieldName": {
       "type": "string",
       "default": "Your name",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "fieldCompany": {
       "type": "string",
       "default": "Company name",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "fieldPosition": {
       "type": "string",
       "default": "Your position",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "fieldPhone": {
       "type": "string",
       "default": "Your phone",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "fieldEmail": {
       "type": "string",
       "default": "Your email",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "buttonSubmit": {
       "type": "string",
       "default": "Registration",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "checkboxSubscription": {
       "type": "text",
       "default": "I agree to receive advertising and information messages.",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "checkboxConsentsTerms": {
       "type": "text",
       "default": "I consent to the processing of my personal data in accordance with the terms of the <a href=\"#\">privacy policy</a>.",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "successTitle": {
       "type": "string",
       "default": "Thank you, your application has been sent",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "successDescription": {
       "type": "string",
       "required": true,
-      "default": "Our specialists will contact you soon."
+      "default": "Our specialists will contact you soon.",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "calendarTitle": {
       "type": "string",
       "required": true,
-      "default": "Don’t miss <mark>the event!</mark>"
+      "default": "Don’t miss <mark>the event!</mark>",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "calendarDescription": {
       "type": "string",
       "default": "Download the event information to add it to your calendar so you don't miss the event",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "calendarButton": {
       "type": "string",
       "default": "Add to my calendar",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

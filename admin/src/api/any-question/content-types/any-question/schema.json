@@ -10,35 +10,64 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
       "type": "string",
       "default": "Any questions?",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "description": {
       "type": "string",
       "required": true,
-      "default": "Fill in the form and our specialists<br/> will contact you shortly"
+      "default": "Fill in the form and our specialists<br/> will contact you shortly",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "feedback": {
       "type": "component",
       "repeatable": false,
       "component": "any-questions.general-questions",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "partnership": {
       "type": "component",
       "repeatable": false,
       "component": "any-questions.partnership",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "pilotApplication": {
       "type": "component",
       "repeatable": false,
       "component": "any-questions.pilot-application",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

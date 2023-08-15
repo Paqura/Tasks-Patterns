@@ -8,7 +8,6 @@
 
 .option {
     position: relative;
-    z-index: 0;
     display: block;
 
     cursor: pointer;
@@ -16,7 +15,6 @@
     @include text_type_pM;
 
     &:hover {
-        z-index: 1;
         color: var(--color-red-ui);
     }
 

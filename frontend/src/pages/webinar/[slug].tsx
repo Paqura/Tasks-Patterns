@@ -2,14 +2,7 @@ import { GetServerSideProps } from 'next'
 import React from 'react'
 
 import EventArticlePage, { TEventArticlePageData } from '@/components/EventArticlePage'
-import {
-    fetchConfig,
-    fetchFooter,
-    fetchHeader,
-    fetchNewsArticle,
-    fetchProducts,
-    fetchWebinarConfig,
-} from '@/utils/adminApi'
+import { getApi } from '@/utils/adminApi'
 import {
     mapEventArticleServerData,
     mapWebinarConfigServerData,
@@ -21,19 +14,22 @@ export type TServerSideProps = TEventArticlePageData
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
+    locale,
 }) => {
+    const api = getApi(locale)
+
     if (!params?.slug) {
         return {
             notFound: true,
         }
     }
     const [newsItem, config, header, webinarConfig, products, footer] = await Promise.all([
-        fetchNewsArticle(params.slug),
-        fetchConfig(),
-        fetchHeader(),
-        fetchWebinarConfig(),
-        fetchProducts(),
-        fetchFooter(),
+        api.fetchNewsArticle(params.slug),
+        api.fetchConfig(),
+        api.fetchHeader(),
+        api.fetchWebinarConfig(),
+        api.fetchProducts(),
+        api.fetchFooter(),
     ])
 
     if (!newsItem) {

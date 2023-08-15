@@ -3,9 +3,8 @@ import mapValues from 'lodash/mapValues'
 
 import en from './locales/en.json'
 import es from './locales/es.json'
-import pt from './locales/pt.json'
 
-export type TLocale = 'en' | 'es' | 'pt'
+export type TLocale = 'en' | 'es'
 
 export const defaultLocale: TLocale = 'en'
 
@@ -28,13 +27,8 @@ export const locales: TLocaleResources = {
     },
     es: {
         name: 'Spanish',
-        abbr: 'Sp',
+        abbr: 'Es',
         sources: es,
-    },
-    pt: {
-        name: 'Portuguese',
-        abbr: 'Pt',
-        sources: pt,
     },
 }
 

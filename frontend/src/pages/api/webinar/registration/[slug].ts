@@ -1,26 +1,25 @@
-import { Response } from '@admin/general-schemas'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { adminClient } from '@/utils/adminApi'
+import { TStrapiApi, getApi } from '@/utils/adminApi'
+import { TLocale } from '@/utils/i18n'
 
-type TWebinarRegistrationRequestBody = {
+export type TWebinarRegistrationRequestBody = {
     fullName: string
     email: string
-    phone: string
-    companyName: string
-    companyPosition: string
+    phone?: string
+    companyName?: string
+    companyPosition?: string
+    locale: TLocale
 }
 
-type TWebinarRegistrationRequest = NextApiRequest & {
+type TWebinarRegistrationRequest = Omit<NextApiRequest, 'body'> & {
     body: TWebinarRegistrationRequestBody
 }
 
-const getWebinarData = async (slug: string | string[]) => {
-    const response = await adminClient.get<Response<'api::news-item.news-item'>>(
-        `/api/news/${slug}`
-    )
+const getWebinarData = async (slug: string, api: TStrapiApi) => {
+    const response = await api.fetchNewsArticle(slug)
 
-    const { title: eventName, event } = response.data.data?.attributes ?? {}
+    const { title: eventName, event } = response || {}
 
     return {
         eventName,
@@ -32,10 +31,12 @@ const getWebinarData = async (slug: string | string[]) => {
 
 export default async function handler(req: TWebinarRegistrationRequest, res: NextApiResponse) {
     const { slug } = req.query
-    if (req.method === 'POST' && slug) {
+    if (req.method === 'POST' && slug && typeof slug === 'string') {
         try {
-            const { fullName, email, phone, companyName, companyPosition } = req.body
-            const { eventName, eventDate, isEvent, eventLink } = await getWebinarData(slug)
+            const { fullName, email, phone, companyName, companyPosition, locale } = req.body
+
+            const api = getApi(locale)
+            const { eventName, eventDate, isEvent, eventLink } = await getWebinarData(slug, api)
 
             if (!isEvent || !eventName || !eventDate || !eventLink) {
                 res.status(405).send({ message: 'Bad event' })
@@ -47,19 +48,15 @@ export default async function handler(req: TWebinarRegistrationRequest, res: Nex
                 return
             }
 
-            const response = await adminClient.post<
-                Response<'api::webinar-request.webinar-request'>
-            >(`/api/webinar-requests`, {
-                data: {
-                    companyName,
-                    companyPosition,
-                    email,
-                    fullName,
-                    phone,
-                    eventDate,
-                    eventName,
-                    eventLink,
-                },
+            const response = await api.createWebinarRequest({
+                companyName,
+                companyPosition,
+                email,
+                fullName,
+                phone,
+                eventDate: new Date(eventDate),
+                eventName,
+                eventLink,
             })
 
             res.status(response.status).json({})

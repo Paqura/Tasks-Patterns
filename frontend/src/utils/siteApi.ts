@@ -1,5 +1,12 @@
 import axios from 'axios'
 
+import { TFeedbackRequestBody } from '@/pages/api/contacts/feedback'
+import { TPartnershipRequestBody } from '@/pages/api/contacts/partnership'
+import { TPilotApplicationRequestBody } from '@/pages/api/contacts/pilot-application'
+import { TWebinarRegistrationRequestBody } from '@/pages/api/webinar/registration/[slug]'
+
+import { TLocale } from './i18n'
+
 const getClient = () => {
     return axios.create({
         baseURL: '/api',
@@ -13,109 +20,43 @@ export const siteApiClient = getClient()
 
 type TPostWebinarRequestArg = {
     slug: string
-    fullName?: string
-    email?: string
-    phone?: string
-    companyName?: string
-    companyPosition?: string
-}
+} & TWebinarRegistrationRequestBody
 
 export const postWebinarRequest = async ({
     slug,
-    fullName,
-    email,
-    phone,
-    companyName,
-    companyPosition,
+    ...restProps
 }: TPostWebinarRequestArg): Promise<boolean> => {
-    const response = await siteApiClient.post(`/webinar/registration/${slug}`, {
-        fullName,
-        email,
-        phone,
-        companyName,
-        companyPosition,
-    })
+    const response = await siteApiClient.post(`/webinar/registration/${slug}`, restProps)
 
     return response.status === 200
 }
 
-type TPostFeedbackRequestArg = {
-    fullName?: string
-    email?: string
-    phone?: string
-    comment?: string
-}
+type TPostFeedbackRequestArg = TFeedbackRequestBody
 
-export const postFeedbackRequest = async ({
-    fullName,
-    email,
-    phone,
-    comment,
-}: TPostFeedbackRequestArg): Promise<boolean> => {
-    const response = await siteApiClient.post('/contacts/feedback', {
-        fullName,
-        email,
-        phone,
-        comment,
-    })
+export const postFeedbackRequest = async (props: TPostFeedbackRequestArg): Promise<boolean> => {
+    const response = await siteApiClient.post('/contacts/feedback', props)
 
     return response.status === 200
 }
 
-type TPostPartnershipRequestArg = {
-    address?: string
-    fullName?: string
-    email?: string
-    phone?: string
-    comment?: string
-    companyName?: string
-}
+type TPostPartnershipRequestArg = TPartnershipRequestBody
 
-export const postPartnershipRequest = async ({
-    address,
-    fullName,
-    email,
-    phone,
-    comment,
-    companyName,
-}: TPostPartnershipRequestArg): Promise<boolean> => {
-    const response = await siteApiClient.post('/contacts/partnership', {
-        address,
-        fullName,
-        email,
-        phone,
-        comment,
-        companyName,
-    })
+export const postPartnershipRequest = async (
+    props: TPostPartnershipRequestArg
+): Promise<boolean> => {
+    const response = await siteApiClient.post('/contacts/partnership', props)
 
     return response.status === 200
 }
 
-type TPostPilotApplicationRequestArg = {
-    product?: string
-    fullName?: string
-    email?: string
-    phone?: string
-    comment?: string
-    companyName?: string
+type TPostPilotApplicationRequestArg = TPilotApplicationRequestBody & {
+    locale: TLocale
 }
 
-export const postPilotApplicationRequest = async ({
-    product,
-    fullName,
-    email,
-    phone,
-    comment,
-    companyName,
-}: TPostPilotApplicationRequestArg): Promise<boolean> => {
-    const response = await siteApiClient.post('/contacts/pilot-application', {
-        product,
-        fullName,
-        email,
-        phone,
-        comment,
-        companyName,
-    })
+export const postPilotApplicationRequest = async (
+    params: TPostPilotApplicationRequestArg
+): Promise<boolean> => {
+    const response = await siteApiClient.post('/contacts/pilot-application', params)
 
     return response.status === 200
 }

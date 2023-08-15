@@ -10,34 +10,63 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
       "type": "string",
       "required": true,
-      "default": "Cyber security market leader"
+      "default": "Cyber security market leader",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "copyright": {
       "type": "string",
       "default": "Positive Technologies 2023",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "productsTitle": {
       "type": "string",
       "required": true,
-      "default": "Products"
+      "default": "Products",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "company": {
       "type": "component",
       "repeatable": false,
       "component": "footer.nav-block",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "social": {
       "type": "component",
       "repeatable": false,
       "component": "footer.nav-block",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

@@ -1,23 +1,19 @@
 import { GetServerSideProps } from 'next'
 
 import { AnalyticsPage, TAnalyticsPageData } from '@/components/AnalyticsPage'
-import {
-    fetchHeader,
-    fetchConfig,
-    fetchArticles,
-    fetchAnalyticsPage,
-    fetchProducts,
-    fetchAnyQuestions,
-    fetchFooter,
-} from '@/utils/adminApi'
+import { getApi } from '@/utils/adminApi'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
 
 export type TServerSideProps = TAnalyticsPageData
 
-export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
+    query,
+    locale,
+}) => {
     const page = Number(query.page) || 1
+    const api = getApi(locale)
 
     const [
         config,
@@ -28,13 +24,13 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         anyQuestions,
         footer,
     ] = await Promise.all([
-        fetchConfig(),
-        fetchHeader(),
-        fetchAnalyticsPage(),
-        fetchArticles(page),
-        fetchProducts(),
-        fetchAnyQuestions(),
-        fetchFooter(),
+        api.fetchConfig(),
+        api.fetchHeader(),
+        api.fetchAnalyticsPage(),
+        api.fetchArticles(page),
+        api.fetchProducts(),
+        api.fetchAnyQuestions(),
+        api.fetchFooter(),
     ])
 
     if (pagination.page > pagination.pageCount) {

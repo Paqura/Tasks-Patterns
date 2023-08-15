@@ -10,26 +10,50 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
       "type": "text",
       "required": true,
-      "default": "Technologically preventing the unacceptable for business and government"
+      "default": "Technologically preventing the unacceptable for business and government",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "subtitle": {
       "type": "text",
-      "default": "Bringing experts and enthusiasts together to&nbsp;create cutting-edge cybersecurity technology"
+      "default": "Bringing experts and enthusiasts together to&nbsp;create cutting-edge cybersecurity technology",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "contactButtonText": {
       "type": "string",
       "required": true,
-      "default": "Contact us"
+      "default": "Contact us",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "contactsAnchorText": {
       "type": "string",
       "required": true,
-      "default": "Contact"
+      "default": "Contact",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "headingVideo": {
       "type": "media",
@@ -40,7 +64,12 @@
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "blocks": {
       "type": "dynamiczone",
@@ -50,7 +79,12 @@
         "main.products-block",
         "main.analytics-block",
         "main.news-block"
-      ]
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

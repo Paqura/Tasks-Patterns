@@ -10,27 +10,51 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
       "type": "string",
       "default": "Search results for",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "hasNoResultsTitle": {
       "type": "string",
       "required": true,
-      "default": "Nothing found for"
+      "default": "Nothing found for",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "noResultsBlockTitle": {
       "type": "string",
       "required": true,
-      "default": "We couldn’t find any matches for"
+      "default": "We couldn’t find any matches for",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "noResultsBlockDescription": {
       "type": "text",
       "required": true,
-      "default": "Double check your search for any typos or spelling errors – or try a different search term.<br>Also you can navigate directly to our products via footer section of the website."
+      "default": "Double check your search for any typos or spelling errors – or try a different search term.<br>Also you can navigate directly to our products via footer section of the website.",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

@@ -10,17 +10,31 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "navItem": {
       "type": "component",
       "repeatable": true,
-      "component": "share.nav-item"
+      "component": "share.nav-item",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "searchInputPlaceholder": {
       "type": "string",
       "default": "Search on ptsecurity.com",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

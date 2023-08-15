@@ -1,27 +1,27 @@
 {
     "navigation": {
-        "jumpBtn": "Jump to section"
+        "jumpBtn": "Saltar a la sección"
     },
     "productCard": {
-        "readMoreBtn": "Learn more"
+        "readMoreBtn": "Aprende más"
     },
     "product": {
-        "pilotRequestBtn": "Request a pilot",
-        "faqLoadMoreBtn": "Load more",
-        "viewAllProductsBtn": "View all"
+        "pilotRequestBtn": "Solicitar un piloto",
+        "faqLoadMoreBtn": "Carga más",
+        "viewAllProductsBtn": "Ver todo"
     },
     "articlesList": {
-        "continueReadingBtn": "Continue reading"
+        "continueReadingBtn": "Sigue leyendo"
     },
     "helpfulFiles": {
-        "heading": "Downloadable files"
+        "heading": "Archivos descargables"
     },
     "validation": {
-        "required": "Required field",
-        "phoneNumber": "Only digits and spaces",
+        "required": "Campo requerido",
+        "phoneNumber": "Solo dígitos y espacios",
         "email": "name@example.com"
     },
     "aboutUs": {
-        "expertsLoadMoreBtn": "Load more"
+        "expertsLoadMoreBtn": "Carga más"
     }
 }

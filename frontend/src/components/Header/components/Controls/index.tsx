@@ -104,7 +104,9 @@ export const Controls: React.FC<TControlsProps> = ({
                         )}
                         isOpened={activeControl === 'language'}
                         className={styles.buttonWrapper}
-                        popoverClassName={styles.popover}
+                        popoverClassName={cn(styles.popover, {
+                            [styles.popover_mobile]: isMobileMode,
+                        })}
                         dropdownOffset={isMobileMode ? 8 : 0}
                     >
                         <Button

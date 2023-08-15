@@ -1,37 +1,35 @@
-import { Response } from '@admin/general-schemas'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { adminClient } from '@/utils/adminApi'
+import { getApi } from '@/utils/adminApi'
+import { TLocale } from '@/utils/i18n'
 
-type TPartnershipRequestBody = {
-    address: string
+export type TPartnershipRequestBody = {
+    address?: string
     fullName: string
     companyName: string
     email: string
-    phone: string
-    comment: string
+    phone?: string
+    comment?: string
+    locale: TLocale
 }
 
-type TPartnershipRequest = NextApiRequest & {
+type TPartnershipRequest = Omit<NextApiRequest, 'body'> & {
     body: TPartnershipRequestBody
 }
 
 export default async function handler(req: TPartnershipRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
-            const { address, fullName, companyName, email, phone, comment } = req.body
+            const { address, fullName, companyName, email, phone, comment, locale } = req.body
 
-            const response = await adminClient.post<
-                Response<'api::partnership-request.partnership-request'>
-            >(`/api/partnership-requests`, {
-                data: {
-                    address,
-                    fullName,
-                    companyName,
-                    email,
-                    phone,
-                    comment,
-                },
+            const api = getApi(locale)
+            const response = await api.createPartnershipRequest({
+                address,
+                fullName,
+                companyName,
+                email,
+                phone,
+                comment,
             })
 
             res.status(response.status).json({})

@@ -9,7 +9,11 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "feedback": {
       "type": "component",
@@ -18,31 +22,56 @@
       "required": true,
       "default": {
         "subject": "test"
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
       }
     },
     "partnership": {
       "type": "component",
       "repeatable": false,
       "component": "email.email-template",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "pilotApplication": {
       "type": "component",
       "repeatable": false,
       "component": "email.email-template",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "webinar": {
       "type": "component",
       "repeatable": false,
       "component": "email.email-template",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "webinarUser": {
       "type": "component",
       "repeatable": false,
       "component": "email.email-template",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

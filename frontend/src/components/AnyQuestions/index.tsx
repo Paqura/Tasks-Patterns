@@ -11,6 +11,7 @@ import {
     postPartnershipRequest,
     postPilotApplicationRequest,
 } from '@/utils/siteApi'
+import { useLocale } from '@/utils/translate'
 
 import { CardRadio } from './components/CardRadio'
 import {
@@ -48,36 +49,40 @@ export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
         anyQuestionData
     const [tab, setTab] = useState<TTypeForm>('feedback')
     const [isCompleted, setIsCompleted] = useState<boolean>(false)
+    const locale = useLocale()
 
     const onSubmit = async (data: TFormFields) => {
         let isSuccess = false
         switch (tab) {
             case 'feedback':
                 isSuccess = await postFeedbackRequest({
-                    fullName: data.fullName,
-                    email: data.email,
-                    phone: data.phone,
-                    comment: data.comment,
+                    fullName: data.fullName || '',
+                    email: data.email || '',
+                    phone: data.phone || '',
+                    comment: data.comment || '',
+                    locale,
                 })
                 break
             case 'partnership':
                 isSuccess = await postPartnershipRequest({
                     address: data.address,
-                    fullName: data.fullName,
-                    email: data.email,
+                    fullName: data.fullName || '',
+                    email: data.email || '',
                     phone: data.phone,
-                    companyName: data.companyName,
+                    companyName: data.companyName || '',
                     comment: data.comment,
+                    locale,
                 })
                 break
             case 'pilotApplication':
                 isSuccess = await postPilotApplicationRequest({
-                    product: data.product,
-                    fullName: data.fullName,
-                    email: data.email,
-                    phone: data.phone,
-                    companyName: data.companyName,
+                    product: data.product || '',
+                    fullName: data.fullName || '',
+                    email: data.email || '',
+                    phone: data.phone || '',
+                    companyName: data.companyName || '',
                     comment: data.comment,
+                    locale,
                 })
                 break
         }

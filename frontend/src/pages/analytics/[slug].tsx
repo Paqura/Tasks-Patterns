@@ -3,14 +3,7 @@ import { GetServerSideProps } from 'next'
 import React from 'react'
 
 import { AnalyticalArticlePage } from '@/components/AnalyticalArticlePage'
-import {
-    fetchAnalyticArticle,
-    fetchAnyQuestions,
-    fetchConfig,
-    fetchFooter,
-    fetchHeader,
-    fetchProducts,
-} from '@/utils/adminApi'
+import { getApi } from '@/utils/adminApi'
 import { mapArticleServerData } from '@/utils/serverDataMappers/analytic-article'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
@@ -26,19 +19,21 @@ export type TServerSideProps = {
 }
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
+    locale,
 }) => {
     if (!params?.slug) {
         return {
             notFound: true,
         }
     }
+    const api = getApi(locale)
     const [article, config, header, footer, anyQuestions, products] = await Promise.all([
-        fetchAnalyticArticle(params.slug),
-        fetchConfig(),
-        fetchHeader(),
-        fetchFooter(),
-        fetchAnyQuestions(),
-        fetchProducts(),
+        api.fetchAnalyticArticle(params.slug),
+        api.fetchConfig(),
+        api.fetchHeader(),
+        api.fetchFooter(),
+        api.fetchAnyQuestions(),
+        api.fetchProducts(),
     ])
     if (!article) {
         return {

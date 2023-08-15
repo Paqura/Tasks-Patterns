@@ -1,13 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { SearchPage, TSearchPageData } from '@/components/SearchPage'
-import {
-    fetchHeader,
-    fetchConfig,
-    fetchSearchPage,
-    fetchFooter,
-    fetchProducts,
-} from '@/utils/adminApi'
+import { getApi } from '@/utils/adminApi'
 import { getSearchResponse, getSearchString } from '@/utils/meilisearchApi'
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
@@ -15,7 +9,12 @@ import { mapSearchResponseServerData } from '@/utils/serverDataMappers/search'
 
 export type TServerSideProps = TSearchPageData
 
-export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
+    query,
+    locale,
+}) => {
+    const api = getApi(locale)
+
     const searchString = getSearchString(query.q)
 
     if (!searchString) {
@@ -29,11 +28,11 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
     }
 
     const [config, header, footer, products, searchPage, searchResponse] = await Promise.all([
-        fetchConfig(),
-        fetchHeader(),
-        fetchFooter(),
-        fetchProducts(),
-        fetchSearchPage(),
+        api.fetchConfig(),
+        api.fetchHeader(),
+        api.fetchFooter(),
+        api.fetchProducts(),
+        api.fetchSearchPage(),
         getSearchResponse(searchString),
     ])
 

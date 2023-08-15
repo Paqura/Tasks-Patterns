@@ -9,6 +9,7 @@ import { InputCheckbox } from '@/components/ui/InputCheckbox'
 import { Heading } from '@/components/ui/typography/Heading'
 import { TEventConfigData } from '@/utils/serverDataMappers/event-article'
 import { postWebinarRequest } from '@/utils/siteApi'
+import { useLocale } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
@@ -30,19 +31,25 @@ export default function EventForm(props: TEventForm) {
     const context = useForm({
         shouldFocusError: false,
     })
+    const locale = useLocale()
 
     const onSubmit = async (data: TFormFields) => {
-        const isSuccess = await postWebinarRequest({
-            slug: props.slug,
-            fullName: data.fullName,
-            email: data.email,
-            phone: data.phone,
-            companyName: data.companyName,
-            companyPosition: data.companyPosition,
-        })
+        try {
+            const isSuccess = await postWebinarRequest({
+                slug: props.slug,
+                fullName: data.fullName || '',
+                email: data.email || '',
+                phone: data.phone,
+                companyName: data.companyName,
+                companyPosition: data.companyPosition,
+                locale: locale,
+            })
 
-        if (isSuccess) {
-            setIsCompleted(true)
+            if (isSuccess) {
+                setIsCompleted(true)
+            }
+        } catch {
+            return true
         }
     }
 
