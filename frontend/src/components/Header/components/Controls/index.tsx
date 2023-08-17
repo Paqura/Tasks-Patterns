@@ -7,7 +7,7 @@ import { Close } from '@/components/Header/components/Controls/components/icons/
 // import { Question } from '@/components/Header/components/Controls/components/icons/Question'
 import { Search } from '@/components/Header/components/Controls/components/icons/Search'
 import { Dropdown } from '@/components/ui/Dropdown'
-import { TLocale, locales } from '@/utils/i18n'
+import { TLocale, defaultLocale, locales } from '@/utils/i18n'
 import { useLocale } from '@/utils/translate'
 
 import styles from './index.module.scss'
@@ -83,10 +83,12 @@ export const Controls: React.FC<TControlsProps> = ({
     const showButtons = !(isMobileMode && activeControl === 'search')
     const buttonSize = isMobileMode ? 'l' : 'm'
 
-    const localeDropdownOptions = (Object.keys(locales) as TLocale[]).map((locale) => ({
-        label: locales[locale].name,
-        value: locale,
-    }))
+    const localeDropdownOptions = (Object.keys(locales) as TLocale[])
+        .filter((l) => (router.locales || [defaultLocale]).includes(l))
+        .map((locale) => ({
+            label: locales[locale].name,
+            value: locale,
+        }))
 
     return (
         <div
@@ -97,28 +99,30 @@ export const Controls: React.FC<TControlsProps> = ({
         >
             {showButtons && (
                 <>
-                    <Dropdown
-                        options={localeDropdownOptions}
-                        renderOption={(item) => (
-                            <a href={`/${item.value}${router.asPath}`}>{item.label}</a>
-                        )}
-                        isOpened={activeControl === 'language'}
-                        className={styles.buttonWrapper}
-                        popoverClassName={cn(styles.popover, {
-                            [styles.popover_mobile]: isMobileMode,
-                        })}
-                        dropdownOffset={isMobileMode ? 8 : 0}
-                    >
-                        <Button
-                            isActive={activeControl === 'language'}
-                            size={buttonSize}
-                            onClick={() => handleControlClick('language')}
+                    {localeDropdownOptions.length > 1 && (
+                        <Dropdown
+                            options={localeDropdownOptions}
+                            renderOption={(item) => (
+                                <a href={`/${item.value}${router.asPath}`}>{item.label}</a>
+                            )}
+                            isOpened={activeControl === 'language'}
+                            className={styles.buttonWrapper}
+                            popoverClassName={cn(styles.popover, {
+                                [styles.popover_mobile]: isMobileMode,
+                            })}
+                            dropdownOffset={isMobileMode ? 8 : 0}
                         >
-                            <span className={styles.languageValue}>
-                                {locales[currentLocale].abbr}
-                            </span>
-                        </Button>
-                    </Dropdown>
+                            <Button
+                                isActive={activeControl === 'language'}
+                                size={buttonSize}
+                                onClick={() => handleControlClick('language')}
+                            >
+                                <span className={styles.languageValue}>
+                                    {locales[currentLocale].abbr}
+                                </span>
+                            </Button>
+                        </Dropdown>
+                    )}
 
                     <Button
                         isActive={activeControl === 'search'}
