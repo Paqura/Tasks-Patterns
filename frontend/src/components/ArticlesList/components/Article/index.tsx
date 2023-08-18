@@ -58,7 +58,7 @@ export const Article: React.FC<TArticlePreviewProps> = ({
                 </Text>
 
                 <Link type="s" href={href}>
-                    {translate('articlesList:continueReadingBtn')}
+                    {translate('articlesList.continueReadingBtn')}
                 </Link>
             </div>
         </article>

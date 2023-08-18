@@ -38,7 +38,7 @@ export const SubMenuMobile = ({ subItems, anchor, onClick }: ISubMenuMobile) => 
             </div>
             {anchor && (
                 <Button className={styles.button} link={anchor} size="s" onClick={onClick}>
-                    {translate('navigation:jumpBtn')}
+                    {translate('navigation.jumpBtn')}
                 </Button>
             )}
         </>

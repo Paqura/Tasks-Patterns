@@ -1,27 +1,13 @@
 {
-    "navigation": {
-        "jumpBtn": "Saltar a la sección"
-    },
-    "productCard": {
-        "readMoreBtn": "Aprende más"
-    },
-    "product": {
-        "pilotRequestBtn": "Solicitar un piloto",
-        "faqLoadMoreBtn": "Carga más",
-        "viewAllProductsBtn": "Ver todo"
-    },
-    "articlesList": {
-        "continueReadingBtn": "Sigue leyendo"
-    },
-    "helpfulFiles": {
-        "heading": "Archivos descargables"
-    },
-    "validation": {
-        "required": "Campo requerido",
-        "phoneNumber": "Solo dígitos y espacios",
-        "email": "name@example.com"
-    },
-    "aboutUs": {
-        "expertsLoadMoreBtn": "Carga más"
-    }
+    "navigation.jumpBtn": "Jump to section",
+    "productCard.readMoreBtn": "Learn more",
+    "product.pilotRequestBtn": "Request a pilot",
+    "product.faqLoadMoreBtn": "Load more",
+    "product.viewAllProductsBtn": "View all",
+    "articlesList.continueReadingBtn": "Continue reading",
+    "helpfulFiles.heading": "Downloadable files",
+    "validation.required": "Required field",
+    "validation.phoneNumber": "Only digits and spaces",
+    "validation.email": "name@example.com",
+    "aboutUs.expertsLoadMoreBtn": "Load more"
 }

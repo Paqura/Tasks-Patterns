@@ -8,9 +8,11 @@ export type TLocale = 'en' | 'es'
 
 export const defaultLocale: TLocale = 'en'
 
-export const defaultNS = 'validation'
+export const defaultNS = 'root'
 
-export type TLocaleResource = typeof en
+export type TLocaleResource = {
+    root: typeof en
+}
 
 type TLocaleConfig = {
     name: string
@@ -23,12 +25,12 @@ export const locales: TLocaleResources = {
     en: {
         name: 'English',
         abbr: 'En',
-        sources: en,
+        sources: { root: en },
     },
     es: {
         name: 'Spanish',
         abbr: 'Es',
-        sources: es,
+        sources: { root: es },
     },
 }
 

@@ -33,7 +33,7 @@ export const OtherProductsBlock: React.FC<TProps> = ({ data, sectionId, number }
                 scrollAreaClassName={styles.productsScrollArea}
                 controls={
                     <Link type="s" href={'/products'}>
-                        {translate('product:viewAllProductsBtn')}
+                        {translate('product.viewAllProductsBtn')}
                     </Link>
                 }
             >

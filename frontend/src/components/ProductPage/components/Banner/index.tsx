@@ -44,7 +44,7 @@ export const Banner: React.FC<TProps> = ({ title, subtitle, bannerImage }) => {
                             </Text>
                         )}
                         <Button className={styles.contactBtn} link={`#${CONTACTS_SECTION_ID}`}>
-                            {translate('product:pilotRequestBtn')}
+                            {translate('product.pilotRequestBtn')}
                         </Button>
                     </TypographyTheme>
                 </div>

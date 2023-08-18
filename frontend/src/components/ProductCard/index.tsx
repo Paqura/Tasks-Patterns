@@ -44,7 +44,7 @@ export const ProductCard: React.FC<TProps> = ({ className, data }) => {
             </div>
 
             <Link href={productUrl} type="m" className={styles.link}>
-                <span className={styles.linkText}>{translate('productCard:readMoreBtn')}</span>
+                <span className={styles.linkText}>{translate('productCard.readMoreBtn')}</span>
             </Link>
         </div>
     )

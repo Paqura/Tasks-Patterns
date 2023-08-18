@@ -36,7 +36,7 @@ function LoadMore<T>({ items, overlayExtraClassName, render }: TProps<T>) {
                         withIcon={false}
                         onClick={() => setLoadMore(true)}
                     >
-                        {translate('aboutUs:expertsLoadMoreBtn')}
+                        {translate('aboutUs.expertsLoadMoreBtn')}
                     </Button>
                 </div>
             )}

@@ -28,7 +28,7 @@ export const FaqBlock: React.FC<{
                 description={data.description}
             />
             <LoadMore
-                btnText={translate('product:faqLoadMoreBtn')}
+                btnText={translate('product.faqLoadMoreBtn')}
                 className={styles.cardsListWrapper}
                 cuttedClassName={styles.cardsListWrapper_cutted}
             >

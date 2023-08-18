@@ -1,27 +1,13 @@
 {
-    "navigation": {
-        "jumpBtn": "Jump to section"
-    },
-    "productCard": {
-        "readMoreBtn": "Learn more"
-    },
-    "product": {
-        "pilotRequestBtn": "Request a pilot",
-        "faqLoadMoreBtn": "Load more",
-        "viewAllProductsBtn": "View all"
-    },
-    "articlesList": {
-        "continueReadingBtn": "Continue reading"
-    },
-    "helpfulFiles": {
-        "heading": "Downloadable files"
-    },
-    "validation": {
-        "required": "Required field",
-        "phoneNumber": "Only digits and spaces",
-        "email": "name@example.com"
-    },
-    "aboutUs": {
-        "expertsLoadMoreBtn": "Load more"
-    }
+    "navigation.jumpBtn": "Jump to section",
+    "productCard.readMoreBtn": "Learn more",
+    "product.pilotRequestBtn": "Request a pilot",
+    "product.faqLoadMoreBtn": "Load more",
+    "product.viewAllProductsBtn": "View all",
+    "articlesList.continueReadingBtn": "Continue reading",
+    "helpfulFiles.heading": "Downloadable files",
+    "validation.required": "Required field",
+    "validation.phoneNumber": "Only digits and spaces",
+    "validation.email": "name@example.com",
+    "aboutUs.expertsLoadMoreBtn": "Load more"
 }

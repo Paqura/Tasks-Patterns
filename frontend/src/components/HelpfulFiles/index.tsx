@@ -14,7 +14,7 @@ export default function HelpfulFiles(props: { files: TFileData[]; title: string 
     return (
         <ArticleLayoutGrid className={styles.helpfulFiles}>
             <ArticleLayoutGridRightColumn>
-                <Heading level={2}>{translate('helpfulFiles:heading')}</Heading>
+                <Heading level={2}>{translate('helpfulFiles.heading')}</Heading>
                 <Heading className={styles.description} level={3}>
                     {props.title}
                 </Heading>
