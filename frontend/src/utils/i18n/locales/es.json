@@ -1,13 +1,13 @@
 {
-    "navigation.jumpBtn": "Jump to section",
+    "navigation.jumpBtn": "Saltar a la sección",
     "productCard.readMoreBtn": "Learn more",
-    "product.pilotRequestBtn": "Request a pilot",
-    "product.faqLoadMoreBtn": "Load more",
-    "product.viewAllProductsBtn": "View all",
-    "articlesList.continueReadingBtn": "Continue reading",
-    "helpfulFiles.heading": "Downloadable files",
-    "validation.required": "Required field",
-    "validation.phoneNumber": "Only digits and spaces",
+    "product.pilotRequestBtn": "Aprende más",
+    "product.faqLoadMoreBtn": "Carga más",
+    "product.viewAllProductsBtn": "Ver todo",
+    "articlesList.continueReadingBtn": "Sigue leyendo",
+    "helpfulFiles.heading": "Archivos descargables",
+    "validation.required": "Campo requerido",
+    "validation.phoneNumber": "Sólo dígitos y espacios",
     "validation.email": "name@example.com",
-    "aboutUs.expertsLoadMoreBtn": "Load more"
+    "aboutUs.expertsLoadMoreBtn": "Carga más"
 }
