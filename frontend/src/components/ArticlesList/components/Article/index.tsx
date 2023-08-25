@@ -6,7 +6,7 @@ import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 import { TImage } from '@/types'
 import { formatDate } from '@/utils/date'
-import { useTranslate } from '@/utils/translate'
+import { useLocale, useTranslate } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
@@ -30,6 +30,8 @@ export const Article: React.FC<TArticlePreviewProps> = ({
     href,
 }) => {
     const translate = useTranslate()
+    const locale = useLocale()
+
     return (
         <article className={cn(styles.article, { [styles.hasImage]: Boolean(withImage) })}>
             {withImage && image && (
@@ -45,7 +47,7 @@ export const Article: React.FC<TArticlePreviewProps> = ({
             )}
 
             <Text type="pM" className={styles.date}>
-                {date && formatDate(date)}
+                {date && formatDate(date, locale)}
             </Text>
 
             <div className={styles.content}>

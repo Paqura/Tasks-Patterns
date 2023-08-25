@@ -6,6 +6,7 @@ import React from 'react'
 import { Text } from '@/components/ui/typography/Text'
 import { TImage } from '@/types'
 import { formatDate } from '@/utils/date'
+import { useLocale } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
@@ -18,6 +19,7 @@ export type TNews = {
 }
 
 export const NewsCard: React.FC<TNews> = ({ title, date, image, href, className }) => {
+    const locale = useLocale()
     return (
         <NextLink href={href} className={cn(styles.card, className)}>
             <div className={styles.imageWrapper}>
@@ -32,7 +34,7 @@ export const NewsCard: React.FC<TNews> = ({ title, date, image, href, className 
                 )}
             </div>
             <div className={styles.info}>
-                {date && <p className={styles.date}>{formatDate(date)}</p>}
+                {date && <p className={styles.date}>{formatDate(date, locale)}</p>}
                 <Text type="pM" className={styles.text}>
                     {title}
                 </Text>
