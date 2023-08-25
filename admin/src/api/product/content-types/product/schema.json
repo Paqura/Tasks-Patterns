@@ -37,7 +37,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -55,7 +57,7 @@
       }
     },
     "slug": {
-      "type": "uid",
+      "type": "string",
       "required": true,
       "pluginOptions": {
         "i18n": {
@@ -67,7 +69,9 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": true
