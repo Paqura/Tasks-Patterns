@@ -10,6 +10,7 @@ export type TSearchResultItem = {
     title: string
     description: string
     href: string
+    locale?: string
 }
 
 export type TSearchResultsListData = {
@@ -26,7 +27,6 @@ type TSearchResultsListProps = {
 
 export const SearchResultsList: React.FC<TSearchResultsListProps> = ({ hasNoResults, data }) => {
     const { searchQuery, searchResults, noResultsBlockTitle, noResultsBlockDescription } = data
-
     return (
         <PageSectionCard mode="light" contentClassName={styles.section}>
             <div className={styles.list}>
@@ -41,9 +41,9 @@ export const SearchResultsList: React.FC<TSearchResultsListProps> = ({ hasNoResu
                         </Text>
                     </div>
                 ) : (
-                    searchResults.map(({ title, description, href }, index) => (
+                    searchResults.map(({ title, description, href, locale }, index) => (
                         <div key={index} className={styles.item}>
-                            <Link href={href}>
+                            <Link href={href} locale={locale}>
                                 <Text type="pL" className={styles.title}>
                                     {title}
                                 </Text>

@@ -87,15 +87,14 @@ const getSearchResultItem = (
     data: TObject,
     slug?: string
 ): TSearchResultItem | undefined => {
-    const locale = data.locale
-    const getPathWithLocale = (pathName: string) => {
-        return locale ? `/${locale}${pathName}` : pathName
-    }
+    const locale = data.locale as string
+
     if (type === 'about-page') {
         return {
             title: String(data.title),
             description: getDescription(query, data, { from: 'title', to: 'description' }),
-            href: getPathWithLocale('/about'),
+            href: '/about',
+            locale: locale,
         }
     }
 
@@ -103,7 +102,8 @@ const getSearchResultItem = (
         return {
             title: String(data.title),
             description: getDescription(query, data, { from: 'title', to: 'topic' }),
-            href: getPathWithLocale(`/analytics/${slug}`),
+            href: `/analytics/${slug}`,
+            locale: locale,
         }
     }
 
@@ -113,7 +113,8 @@ const getSearchResultItem = (
         return {
             title: String(data.title),
             description: getDescription(query, data, { from: 'title', to: 'topic' }),
-            href,
+            href: href,
+            locale: locale,
         }
     }
 
@@ -121,7 +122,8 @@ const getSearchResultItem = (
         return {
             title: String(data.title),
             description: getDescription(query, data, { from: 'title', to: 'subtitle' }),
-            href: getPathWithLocale(`/products/${slug}`),
+            href: `/products/${slug}`,
+            locale: locale,
         }
     }
 
