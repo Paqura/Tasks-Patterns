@@ -12,6 +12,7 @@ interface IProps<TValueType> {
     onSelect?: (value: TValueType) => void
     isOpened: boolean
     dropdownOffset?: number
+    openInProtal?: boolean
 }
 
 export type TDropdownItem<TValueType> = {
@@ -28,6 +29,7 @@ export function Dropdown<TValueType>({
     children,
     isOpened,
     dropdownOffset = 0,
+    openInProtal,
 }: React.PropsWithChildren<IProps<TValueType>>) {
     const containerRef = useRef<HTMLDivElement>(null)
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -39,8 +41,9 @@ export function Dropdown<TValueType>({
                 visible={isOpened}
                 anchor={containerRef}
                 childContent={dropdownRef}
-                directions={['bottom-right', 'top-right']}
+                directions={['bottom-right', 'bottom-left']}
                 offset={dropdownOffset}
+                isPortal={openInProtal}
             >
                 <div className={cn(styles.dropdownList, popoverClassName)} ref={dropdownRef}>
                     {options.map((option, index) => {

@@ -262,8 +262,6 @@ export const getPositionInLayout = ({
                     ...position,
                     left: viewportDimensions.right - popupSize.width - CALENDAR_RIGHT_OFFSET,
                 }
-            } else if (position.left < 0) {
-                bestPosition = { ...position, left: 0 }
             } else {
                 bestPosition = position
             }
@@ -273,7 +271,6 @@ export const getPositionInLayout = ({
             break
         }
     }
-
     return {
         direction: bestDirection,
         anchorLeft: absoluteAnchorDimensions.left,

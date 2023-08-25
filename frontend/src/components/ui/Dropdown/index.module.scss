@@ -1,5 +1,9 @@
 @import '../../../components/ui/typography//Text/index.module.scss';
 
+.dropdown {
+    position: relative;
+}
+
 .dropdownList {
     padding: 16px;
     background: var(--color-white);

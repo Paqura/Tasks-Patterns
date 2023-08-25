@@ -111,6 +111,7 @@ export const Controls: React.FC<TControlsProps> = ({
                                 [styles.popover_mobile]: isMobileMode,
                             })}
                             dropdownOffset={isMobileMode ? 8 : 0}
+                            openInProtal={!isMobileMode}
                         >
                             <Button
                                 isActive={activeControl === 'language'}
