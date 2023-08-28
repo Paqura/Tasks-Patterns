@@ -35,13 +35,13 @@ export const getMeilisearchPluginConfig = (env) => {
       transformEntry({ entry }) {
         const { id, slug, ...rest } = entry;
 
-        const type = rest.isEvent ? 'webinars-item' : 'news-item' ;
+        const type = rest.event ? 'webinars-item' : 'news-item' ;
 
         return {
           id,
           type,
           slug,
-          data: transformData(rest, ['id', 'createdAt', 'updatedAt', 'published', 'files', 'previewImage', 'isEvent', 'eventDate', 'eventYoutubeVideoId', 'eventLink', 'eventCalendar'])
+          data: transformData(rest, ['id', 'createdAt', 'updatedAt', 'published', 'files', 'previewImage', 'calendar'])
         };
       }
     },
