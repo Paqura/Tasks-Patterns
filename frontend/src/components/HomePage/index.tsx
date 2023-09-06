@@ -1,3 +1,5 @@
+import Head from 'next/head'
+
 import { AnchorBar, TAnchorLink } from '@/components/AnchorBar'
 import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { TFooterData } from '@/components/Footer'
@@ -98,6 +100,14 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
     const anchors = [...blocksAcc.anchors, contactsAnchor]
     return (
         <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
+            <Head>
+                {process.env.NEXT_PUBLIC_YANDEX_VERIFICATION_ID && (
+                    <meta
+                        name="yandex-verification"
+                        content={process.env.NEXT_PUBLIC_YANDEX_VERIFICATION_ID}
+                    />
+                )}
+            </Head>
             <PageAnchorsContextProvider>
                 <Banner data={props.headingBlock} />
                 <AnchorBar anchors={anchors} />
