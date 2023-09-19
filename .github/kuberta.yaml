@@ -21,7 +21,9 @@ releases:
 
   pts-global-admin-staging:
     name: Admin Staging
-    autodeploy-on: default
+    autodeploy-on:
+      push:
+        - main
     cluster: pts-global-production
     static-params:
       environment: staging
@@ -49,3 +51,17 @@ releases:
     cluster: pts-global-production
     static-params:
       environment: production
+
+  pts-global-frontend-staging:
+    name: Frontend Staging
+    autodeploy-on:
+      push:
+        - main
+    cluster: pts-global-production
+    static-params:
+      environment: staging
+    chart: oci://quay.csssr.cloud/charts/pts-global-frontend@~1.0.0
+    builds:
+      - workflow: build-docker-image-frontend.yaml
+        values:
+          image.tag: build-{{ .Build.RunID }}
