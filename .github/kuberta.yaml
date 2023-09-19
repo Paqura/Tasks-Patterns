@@ -21,11 +21,16 @@ releases:
 
   pts-global-admin-staging:
     name: Admin Staging
-    base: pts-global-admin
+    autodeploy-on: default
     cluster: pts-global-production
     static-params:
       environment: staging
       enableGithubAuth: true
+    chart: oci://quay.csssr.cloud/charts/pts-global-admin@~1.0.0
+    builds:
+      - workflow: build-docker-image-admin.yaml
+        values:
+          image.tag: build-{{ .Build.RunID }}
 
   pts-global-frontend:
     name: Frontend Testing
