@@ -62,6 +62,6 @@ releases:
       environment: staging
     chart: oci://quay.csssr.cloud/charts/pts-global-frontend@~1.0.0
     builds:
-      - workflow: build-docker-image-frontend.yaml
+      - workflow: build-docker-image-frontend-staging.yaml
         values:
           image.tag: build-{{ .Build.RunID }}
