@@ -1,4 +1,4 @@
-name: Build frontend docker image
+name: Build frontend staging docker image
 on:
   workflow_dispatch:
     inputs:
@@ -30,4 +30,5 @@ jobs:
           username: pts-global+github_actions
           password: ${{ secrets.QUAY_PASSWORD }}
           build-args: |
-            NEXT_PUBLIC_ADMIN_API_URL=https://preproduction.pts-global-admin.csssr.cloud
+            NEXT_PUBLIC_ADMIN_API_URL=http://pts-global-admin-staging-main.pts-global-admin-staging.svc.cluster.local
+
