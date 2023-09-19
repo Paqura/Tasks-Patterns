@@ -19,6 +19,14 @@ releases:
     static-params:
       environment: production
 
+  pts-global-admin-staging:
+    name: Admin Staging
+    base: pts-global-admin
+    cluster: pts-global-production
+    static-params:
+      environment: staging
+      enableGithubAuth: true
+
   pts-global-frontend:
     name: Frontend Testing
     autodeploy-on: default
