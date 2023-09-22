@@ -766,7 +766,7 @@ export interface ApiAnalyticArticleAnalyticArticle extends Schema.CollectionType
     description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   pluginOptions: {
     i18n: {
@@ -807,7 +807,7 @@ export interface ApiAnalyticArticleAnalyticArticle extends Schema.CollectionType
           localized: true;
         };
       }>;
-    slug: Attribute.UID<'api::analytic-article.analytic-article', 'title'> &
+    slug: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -835,6 +835,7 @@ export interface ApiAnalyticArticleAnalyticArticle extends Schema.CollectionType
       }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::analytic-article.analytic-article',
       'oneToOne',
@@ -1384,7 +1385,7 @@ export interface ApiNewsItemNewsItem extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   pluginOptions: {
     i18n: {
@@ -1412,7 +1413,13 @@ export interface ApiNewsItemNewsItem extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    slug: Attribute.UID<'api::news-item.news-item', 'title'> & Attribute.Required;
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     topic: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1437,7 +1444,12 @@ export interface ApiNewsItemNewsItem extends Schema.CollectionType {
         {
           preset: 'toolbar';
         }
-      >;
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     event: Attribute.Component<'event.event-props'> &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1446,6 +1458,7 @@ export interface ApiNewsItemNewsItem extends Schema.CollectionType {
       }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::news-item.news-item', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::news-item.news-item', 'oneToOne', 'admin::user'> &
@@ -1759,7 +1772,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<1>;
-    slug: Attribute.UID &
+    slug: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1783,7 +1796,12 @@ export interface ApiProductProduct extends Schema.CollectionType {
         'product.other-products-block',
         'product.product-overview-block'
       ]
-    >;
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::product.product', 'oneToOne', 'admin::user'> &
