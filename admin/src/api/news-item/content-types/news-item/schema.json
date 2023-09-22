@@ -49,8 +49,12 @@
     },
     "slug": {
       "type": "string",
-      "targetField": "title",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "topic": {
       "type": "text",
