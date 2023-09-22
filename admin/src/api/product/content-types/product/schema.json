@@ -90,6 +90,11 @@
         "product.other-products-block",
         "product.product-overview-block"
       ]
+    },
+    "pluginOptions": {
+      "i18n": {
+        "localized": true
+      }
     }
   }
 }
