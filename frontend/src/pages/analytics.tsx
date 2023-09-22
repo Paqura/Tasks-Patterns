@@ -33,11 +33,11 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         api.fetchFooter(),
     ])
 
-    if (pagination.page > pagination.pageCount) {
+    if (pagination.page && pagination.page > 1 && pagination.page > pagination.pageCount) {
         return {
             redirect: {
                 permanent: false,
-                destination: '/analytics',
+                destination: `${locale}/analytics`,
             },
             props: {},
         }

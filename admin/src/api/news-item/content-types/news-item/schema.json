@@ -48,9 +48,13 @@
       }
     },
     "slug": {
-      "type": "uid",
-      "targetField": "title",
-      "required": true
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "topic": {
       "type": "text",
@@ -89,6 +93,11 @@
       "type": "customField",
       "options": {
         "preset": "toolbar"
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
       },
       "customField": "plugin::ckeditor5.CKEditor"
     },

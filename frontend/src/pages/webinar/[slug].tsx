@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
     if (!newsItem.event) {
         return {
             redirect: {
-                destination: `/news/${params.slug}`,
+                destination: `${locale}/news/${params.slug}`,
                 permanent: true,
             },
         }

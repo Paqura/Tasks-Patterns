@@ -8,7 +8,7 @@ COPY ./package.json ./yarn.lock ./
 
 ENV PATH /opt/node_modules/.bin:$PATH
 
-RUN yarn config set network-timeout 600000 -g && yarn install --frozen-lockfile && yarn cache clean
+RUN yarn config set network-timeout 600000 -g && yarn add node-gyp && yarn install --frozen-lockfile && yarn cache clean
 
 WORKDIR /opt/app
 

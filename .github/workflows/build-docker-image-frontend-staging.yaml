@@ -1,0 +1,34 @@
+name: Build frontend staging docker image
+on:
+  workflow_dispatch:
+    inputs:
+      kuberta_system:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: docker://quay.csssr.cloud/csssr/kuberta-init-workflow:v1
+
+      - name: Download CSSSR actions
+        uses: actions/checkout@v2
+        with:
+          repository: CSSSR/actions
+          ssh-key: ${{ secrets.DOWNLOAD_ACTIONS_SSH_KEY }}
+          path: actions
+
+      - uses: docker://quay.csssr.cloud/csssr/github-info:v1
+        id: gh
+
+      - name: Build and push docker image
+        uses: ./actions/build-docker-image/v1beta1
+        with:
+          file: frontend/Dockerfile
+          image: quay.csssr.cloud/pts-global/frontend:build-${{ github.run_id }}
+          username: pts-global+github_actions
+          password: ${{ secrets.QUAY_PASSWORD }}
+          build-args: |
+            NEXT_PUBLIC_ADMIN_API_URL=http://pts-global-admin-staging-main.pts-global-admin-staging.svc.cluster.local
+
