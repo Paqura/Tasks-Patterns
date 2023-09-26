@@ -557,6 +557,19 @@ export interface ProductWelcomeToPilotBlock extends Schema.Component {
   };
 }
 
+export interface ShareContentBlock extends Schema.Component {
+  collectionName: 'components_share_content_blocks';
+  info: {
+    displayName: 'ContentBlock';
+    description: '';
+  };
+  attributes: {
+    content: Attribute.RichText;
+    backgroundImage: Attribute.Media;
+    theme: Attribute.Enumeration<['light', 'dark']> & Attribute.DefaultTo<'light'>;
+  };
+}
+
 export interface ShareLink extends Schema.Component {
   collectionName: 'components_share_links';
   info: {
@@ -650,6 +663,7 @@ declare module '@strapi/strapi' {
       'product.product-statistics-item': ProductProductStatisticsItem;
       'product.product-tasks-block': ProductProductTasksBlock;
       'product.welcome-to-pilot-block': ProductWelcomeToPilotBlock;
+      'share.content-block': ShareContentBlock;
       'share.link': ShareLink;
       'share.nav-item': ShareNavItem;
       'share.nav-sub-item': ShareNavSubItem;

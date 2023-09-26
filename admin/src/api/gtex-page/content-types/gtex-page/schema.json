@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "gtex_pages",
+  "info": {
+    "singularName": "gtex-page",
+    "pluralName": "gtex-pages",
+    "displayName": "GtexPage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pageBackgroundVideo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "share.content-block"
+      ]
+    }
+  }
+}

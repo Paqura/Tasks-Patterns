@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_share_content_blocks",
+  "info": {
+    "displayName": "ContentBlock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "light",
+        "dark"
+      ],
+      "default": "light"
+    },
+    "content": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}

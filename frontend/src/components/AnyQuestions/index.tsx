@@ -37,6 +37,7 @@ type TAnyQuestionsProps = {
     hasAnimation?: boolean
     selectedProduct?: string
     anyQuestionData: TAnyQuestionsData
+    showSlider?: boolean
 }
 
 export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
@@ -44,6 +45,7 @@ export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
     hasAnimation = true,
     selectedProduct,
     anyQuestionData,
+    showSlider = true,
 }) => {
     const { title, description, feedback, partnership, pilotApplication, selectProductOptions } =
         anyQuestionData
@@ -112,35 +114,36 @@ export const AnyQuestions: React.FC<TAnyQuestionsProps> = ({
                 <Text type={'pL'}>{description}</Text>
             </div>
             <div className={styles.content}>
-                {isCompleted || (
-                    <CardsSlider
-                        hideControls
-                        className={styles.radioGroupWrapper}
-                        scrollAreaClassName={styles.radioGroup}
-                    >
-                        <CardRadio
-                            title={feedback.title}
-                            description={feedback.description}
-                            value={'feedback'}
-                            checked={tab === 'feedback'}
-                            onChange={getSetTab('feedback')}
-                        />
-                        <CardRadio
-                            title={partnership.title}
-                            description={partnership.description}
-                            value={'partnership'}
-                            checked={tab === 'partnership'}
-                            onChange={getSetTab('partnership')}
-                        />
-                        <CardRadio
-                            title={pilotApplication.title}
-                            description={pilotApplication.description}
-                            value={'pilotApplication'}
-                            checked={tab === 'pilotApplication'}
-                            onChange={getSetTab('pilotApplication')}
-                        />
-                    </CardsSlider>
-                )}
+                {isCompleted ||
+                    (showSlider && (
+                        <CardsSlider
+                            hideControls
+                            className={styles.radioGroupWrapper}
+                            scrollAreaClassName={styles.radioGroup}
+                        >
+                            <CardRadio
+                                title={feedback.title}
+                                description={feedback.description}
+                                value={'feedback'}
+                                checked={tab === 'feedback'}
+                                onChange={getSetTab('feedback')}
+                            />
+                            <CardRadio
+                                title={partnership.title}
+                                description={partnership.description}
+                                value={'partnership'}
+                                checked={tab === 'partnership'}
+                                onChange={getSetTab('partnership')}
+                            />
+                            <CardRadio
+                                title={pilotApplication.title}
+                                description={pilotApplication.description}
+                                value={'pilotApplication'}
+                                checked={tab === 'pilotApplication'}
+                                onChange={getSetTab('pilotApplication')}
+                            />
+                        </CardsSlider>
+                    ))}
                 <CommonForm
                     type={tab}
                     feedback={feedback}

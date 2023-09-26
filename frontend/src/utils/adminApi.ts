@@ -241,6 +241,17 @@ export const getApi = (locale?: string) => {
                 }
             )
         },
+
+        fetchGtex: async () => {
+            try {
+                const response = await client.get<Response<'api::gtex-page.gtex-page'>>(
+                    `/api/gtex-page`
+                )
+                return response.data.data?.attributes
+            } catch {
+                return null
+            }
+        },
     }
 }
 

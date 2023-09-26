@@ -1251,6 +1251,30 @@ export interface ApiFooterFooter extends Schema.SingleType {
   };
 }
 
+export interface ApiGtexPageGtexPage extends Schema.SingleType {
+  collectionName: 'gtex_pages';
+  info: {
+    singularName: 'gtex-page';
+    pluralName: 'gtex-pages';
+    displayName: 'GtexPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    pageBackgroundVideo: Attribute.Media;
+    blocks: Attribute.DynamicZone<['share.content-block']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::gtex-page.gtex-page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::gtex-page.gtex-page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHeaderHeader extends Schema.SingleType {
   collectionName: 'headers';
   info: {
@@ -2139,6 +2163,7 @@ declare module '@strapi/strapi' {
       'api::email-template.email-template': ApiEmailTemplateEmailTemplate;
       'api::feedback-request.feedback-request': ApiFeedbackRequestFeedbackRequest;
       'api::footer.footer': ApiFooterFooter;
+      'api::gtex-page.gtex-page': ApiGtexPageGtexPage;
       'api::header.header': ApiHeaderHeader;
       'api::main-page.main-page': ApiMainPageMainPage;
       'api::news-item.news-item': ApiNewsItemNewsItem;
