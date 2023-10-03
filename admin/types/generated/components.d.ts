@@ -432,7 +432,6 @@ export interface ProductImageSlide extends Schema.Component {
   attributes: {
     image: Attribute.Media & Attribute.Required;
     caption: Attribute.Text;
-    theme: Attribute.Enumeration<['light', 'dark']> & Attribute.DefaultTo<'light'>;
   };
 }
 
@@ -574,7 +573,8 @@ export interface ShareContentBlock extends Schema.Component {
           preset: 'toolbar';
         }
       >;
-    theme: Attribute.Enumeration<['light', 'dark']> & Attribute.DefaultTo<'light'>;
+    theme: Attribute.Enumeration<['light', 'dark', 'transparent-light', 'transparent-dark']> &
+      Attribute.DefaultTo<'light'>;
   };
 }
 
@@ -615,6 +615,46 @@ export interface ShareNavSubItem extends Schema.Component {
   };
 }
 
+export interface ShareRichSliderItem extends Schema.Component {
+  collectionName: 'components_share_rich_slider_items';
+  info: {
+    displayName: 'RichSliderItem';
+    description: '';
+  };
+  attributes: {
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+  };
+}
+
+export interface ShareRichSlider extends Schema.Component {
+  collectionName: 'components_share_rich_sliders';
+  info: {
+    displayName: 'RichSlider';
+    description: '';
+  };
+  attributes: {
+    richSlider: Attribute.Component<'share.rich-slider-item', true>;
+    theme: Attribute.Enumeration<['light', 'dark', 'transparent-light', 'transparent-dark']>;
+  };
+}
+
+export interface ShareSectionStart extends Schema.Component {
+  collectionName: 'components_share_section_starts';
+  info: {
+    displayName: 'SectionStart';
+  };
+  attributes: {
+    backgroundVideo: Attribute.Media;
+    backgroundImage: Attribute.Media;
+  };
+}
+
 export interface ShareSeo extends Schema.Component {
   collectionName: 'components_share_seos';
   info: {
@@ -635,7 +675,8 @@ export interface ShareSliderBlock extends Schema.Component {
   };
   attributes: {
     slides: Attribute.Component<'product.image-slide', true>;
-    theme: Attribute.Enumeration<['light', 'dark']> & Attribute.DefaultTo<'light'>;
+    theme: Attribute.Enumeration<['light', 'dark', 'transparent-light', 'transparent-dark']> &
+      Attribute.DefaultTo<'light'>;
   };
 }
 
@@ -687,6 +728,9 @@ declare module '@strapi/strapi' {
       'share.link': ShareLink;
       'share.nav-item': ShareNavItem;
       'share.nav-sub-item': ShareNavSubItem;
+      'share.rich-slider-item': ShareRichSliderItem;
+      'share.rich-slider': ShareRichSlider;
+      'share.section-start': ShareSectionStart;
       'share.seo': ShareSeo;
       'share.slider-block': ShareSliderBlock;
       'share.test': ShareTest;

@@ -1,15 +1,16 @@
 {
-  "collectionName": "components_share_slider_blocks",
+  "collectionName": "components_share_rich_sliders",
   "info": {
-    "displayName": "SliderBlock",
+    "displayName": "RichSlider",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "slides": {
+    "richSlider": {
+      "displayName": "RichSliderItem",
       "type": "component",
       "repeatable": true,
-      "component": "product.image-slide"
+      "component": "share.rich-slider-item"
     },
     "theme": {
       "type": "enumeration",
@@ -18,8 +19,7 @@
         "dark",
         "transparent-light",
         "transparent-dark"
-      ],
-      "default": "light"
+      ]
     }
   }
 }

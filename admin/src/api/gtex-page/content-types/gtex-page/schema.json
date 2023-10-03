@@ -24,7 +24,9 @@
       "type": "dynamiczone",
       "components": [
         "share.content-block",
-        "share.slider-block"
+        "share.slider-block",
+        "share.rich-slider",
+        "share.section-start"
       ]
     },
     "pageBackgroundImage": {

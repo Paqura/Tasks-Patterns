@@ -16,14 +16,6 @@
     },
     "caption": {
       "type": "text"
-    },
-    "theme": {
-      "type": "enumeration",
-      "enum": [
-        "light",
-        "dark"
-      ],
-      "default": "light"
     }
   }
 }

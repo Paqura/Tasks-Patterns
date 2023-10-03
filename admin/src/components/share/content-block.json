@@ -25,7 +25,9 @@
       "type": "enumeration",
       "enum": [
         "light",
-        "dark"
+        "dark",
+        "transparent-light",
+        "transparent-dark"
       ],
       "default": "light"
     }

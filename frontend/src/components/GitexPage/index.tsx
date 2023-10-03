@@ -1,38 +1,52 @@
 import cn from 'classnames'
 import Image from 'next/image'
-import NextLink from 'next/link'
 
-import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { PageLayout, TSeo } from '@/components/PageLayout'
-import { ImagesSlider, TSlide } from '@/components/ui/ImagesSlider'
 import { MarkdownContent } from '@/components/ui/MarkdownContent'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { TImage, TVideo } from '@/types'
 
+import { AnyQuestions, TAnyQuestionsData } from './components/AnyQuestions'
+import { Header } from './components/Header'
+import { ImagesSlider, TSlide } from './components/ImagesSlider'
+import { PageBackground } from './components/PageBackground'
+import { RichSlider } from './components/RichSlider'
 import styles from './index.module.scss'
 
-type TCardMode = 'light' | 'dark'
+export type TThemeMode = 'light' | 'dark' | 'transparent-light' | 'transparent-dark'
 
 type TBlockRichText = {
     type: 'richText'
-    theme: TCardMode
+    theme: TThemeMode
     content: string
     backgroundImage: TImage | null
 }
 
 type TBlockSlider = {
     type: 'slider'
-    theme: TCardMode
+    theme: TThemeMode
     slides: TSlide[]
 }
 
-type TBlock = TBlockRichText | TBlockSlider
+type TBlockRichSlider = {
+    type: 'richSlider'
+    theme: TThemeMode
+    slides: string[]
+}
 
-type TGitexData = {
+type TBlock = TBlockRichText | TBlockSlider | TBlockRichSlider
+
+export type TGitexData = {
     backgroundVideo: TVideo | null
     backgroundImage: TImage | null
+    sections: Array<{
+        background: {
+            image: TImage | null
+            video: TVideo | null
+        }
 
-    blocks: TBlock[]
+        blocks: TBlock[]
+    }>
 }
 
 export type TGitexPageProps = {
@@ -44,82 +58,127 @@ export type TGitexPageProps = {
 export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps) => {
     return (
         <PageLayout seo={seo} className={styles.root}>
-            <header className={styles.header}>
-                <NextLink href="/" className={styles.logo}>
-                    <Image
-                        className={styles.image}
-                        fill
-                        src="/images/logo/logoDesktop.svg"
-                        alt={''}
-                    />
-                </NextLink>
-            </header>
+            <PageBackground
+                backgroundImage={gitexData.backgroundImage}
+                backgroundVideo={gitexData.backgroundVideo}
+            />
 
-            {gitexData.backgroundVideo?.src && (
-                <video muted loop autoPlay playsInline preload="metadata" className={styles.video}>
-                    <source src={gitexData.backgroundVideo.src} />
-                </video>
-            )}
-
-            {gitexData.backgroundImage?.src && (
-                <Image
-                    src={gitexData.backgroundImage.src}
-                    width={gitexData.backgroundImage.width}
-                    height={gitexData.backgroundImage.height}
-                    className={styles.image}
-                    alt=""
-                />
-            )}
+            <Header />
 
             <div className={styles.content}>
-                {gitexData.blocks.map((block, idx) => {
-                    switch (block.type) {
-                        case 'richText':
-                            return (
-                                <PageSectionCard
-                                    mode={block.theme}
-                                    key={idx}
-                                    sectionId={String(idx)}
-                                >
-                                    <MarkdownContent
-                                        mode={block.theme}
-                                        className={cn({
-                                            [styles.markdownDark]: block.theme === 'dark',
-                                        })}
-                                    >
-                                        {block.content}
-                                    </MarkdownContent>
+                {gitexData.sections.map((section, idx) => (
+                    <div className={styles.section} key={idx}>
+                        {section.background.video?.src && (
+                            <video
+                                muted
+                                loop
+                                autoPlay
+                                playsInline
+                                preload="metadata"
+                                className={styles.sectionVideo}
+                            >
+                                <source src={section.background.video.src} />
+                            </video>
+                        )}
 
-                                    {block.backgroundImage && (
-                                        <Image
-                                            className={styles.blockImage}
-                                            alt=""
-                                            src={block.backgroundImage.src}
-                                            fill
+                        {section.background.image && (
+                            <Image
+                                src={section.background.image.src}
+                                width={section.background.image.width}
+                                height={section.background.image.height}
+                                className={styles.sectionImage}
+                                unoptimized
+                                alt=""
+                            />
+                        )}
+
+                        {section.blocks.map((block) => {
+                            const mode =
+                                block.theme === 'light' || block.theme === 'dark'
+                                    ? block.theme
+                                    : 'light'
+
+                            switch (block.type) {
+                                case 'richText':
+                                    return (
+                                        <PageSectionCard
+                                            mode={mode}
+                                            key={idx}
+                                            sectionId={String(idx)}
+                                            sectionClassName={cn(styles.card, {
+                                                [styles.transparentLight]:
+                                                    block.theme === 'transparent-light',
+                                                [styles.transparentDark]:
+                                                    block.theme === 'transparent-dark',
+                                            })}
+                                            contentClassName={styles.content}
+                                        >
+                                            <MarkdownContent
+                                                mode={mode}
+                                                className={cn({
+                                                    [styles.markdownDark]: block.theme === 'dark',
+                                                    [styles.transparentLight]:
+                                                        block.theme === 'transparent-light',
+                                                    [styles.transparentDark]:
+                                                        block.theme === 'transparent-dark',
+                                                })}
+                                            >
+                                                {block.content}
+                                            </MarkdownContent>
+
+                                            {block.backgroundImage && (
+                                                <Image
+                                                    className={styles.blockImage}
+                                                    alt=""
+                                                    src={block.backgroundImage.src}
+                                                    fill
+                                                    unoptimized
+                                                />
+                                            )}
+                                        </PageSectionCard>
+                                    )
+
+                                case 'richSlider':
+                                    return (
+                                        <RichSlider
+                                            theme={block.theme}
+                                            sectionId="richSlider"
+                                            data={block.slides}
+                                            key={idx}
                                         />
-                                    )}
-                                </PageSectionCard>
-                            )
+                                    )
 
-                        case 'slider':
-                            return (
-                                <PageSectionCard
-                                    key={idx}
-                                    mode={block.theme}
-                                    sectionId={String(idx)}
-                                >
-                                    <ImagesSlider
-                                        slides={block.slides}
-                                        scrollAreaClassName={styles.sliderScrollArea}
-                                    />
-                                </PageSectionCard>
-                            )
-                        default:
-                            return null
-                    }
-                })}
+                                case 'slider':
+                                    return (
+                                        <PageSectionCard
+                                            key={idx}
+                                            mode={mode}
+                                            sectionId={String(idx)}
+                                            sectionClassName={cn(styles.card, {
+                                                [styles.transparentLight]:
+                                                    block.theme === 'transparent-light',
+                                                [styles.transparentDark]:
+                                                    block.theme === 'transparent-dark',
+                                            })}
+                                            contentClassName={cn(
+                                                styles.sliderContent,
+                                                styles.content
+                                            )}
+                                        >
+                                            <ImagesSlider
+                                                slides={block.slides}
+                                                scrollAreaClassName={styles.sliderScrollArea}
+                                            />
+                                        </PageSectionCard>
+                                    )
+                                default:
+                                    return null
+                            }
+                        })}
+                    </div>
+                ))}
 
-                <AnyQuestions showSlider={false} anyQuestionData={anyQuestionsData} />
+                <AnyQuestions sectionClassName={styles.card} anyQuestionData={anyQuestionsData} />
             </div>
         </PageLayout>
     )

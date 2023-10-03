@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_share_section_starts",
+  "info": {
+    "displayName": "SectionStart"
+  },
+  "options": {},
+  "attributes": {
+    "backgroundVideo": {
+      "allowedTypes": [
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "backgroundImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
