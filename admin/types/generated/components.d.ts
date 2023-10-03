@@ -427,10 +427,12 @@ export interface ProductImageSlide extends Schema.Component {
   collectionName: 'components_product_image_slides';
   info: {
     displayName: 'ImageSlide';
+    description: '';
   };
   attributes: {
     image: Attribute.Media & Attribute.Required;
     caption: Attribute.Text;
+    theme: Attribute.Enumeration<['light', 'dark']> & Attribute.DefaultTo<'light'>;
   };
 }
 
@@ -565,7 +567,6 @@ export interface ShareContentBlock extends Schema.Component {
   };
   attributes: {
     backgroundImage: Attribute.Media;
-    theme: Attribute.Enumeration<['light', 'dark']> & Attribute.DefaultTo<'light'>;
     content: Attribute.RichText &
       Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -573,6 +574,7 @@ export interface ShareContentBlock extends Schema.Component {
           preset: 'toolbar';
         }
       >;
+    theme: Attribute.Enumeration<['light', 'dark']> & Attribute.DefaultTo<'light'>;
   };
 }
 
@@ -625,6 +627,18 @@ export interface ShareSeo extends Schema.Component {
   };
 }
 
+export interface ShareSliderBlock extends Schema.Component {
+  collectionName: 'components_share_slider_blocks';
+  info: {
+    displayName: 'SliderBlock';
+    description: '';
+  };
+  attributes: {
+    slides: Attribute.Component<'product.image-slide', true>;
+    theme: Attribute.Enumeration<['light', 'dark']> & Attribute.DefaultTo<'light'>;
+  };
+}
+
 export interface ShareTest extends Schema.Component {
   collectionName: 'components_share_tests';
   info: {
@@ -674,6 +688,7 @@ declare module '@strapi/strapi' {
       'share.nav-item': ShareNavItem;
       'share.nav-sub-item': ShareNavSubItem;
       'share.seo': ShareSeo;
+      'share.slider-block': ShareSliderBlock;
       'share.test': ShareTest;
     }
   }

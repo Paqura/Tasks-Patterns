@@ -4,6 +4,7 @@ import NextLink from 'next/link'
 
 import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
 import { PageLayout, TSeo } from '@/components/PageLayout'
+import { ImagesSlider, TSlide } from '@/components/ui/ImagesSlider'
 import { MarkdownContent } from '@/components/ui/MarkdownContent'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { TImage, TVideo } from '@/types'
@@ -12,11 +13,20 @@ import styles from './index.module.scss'
 
 type TCardMode = 'light' | 'dark'
 
-type TBlock = {
+type TBlockRichText = {
+    type: 'richText'
     theme: TCardMode
     content: string
     backgroundImage: TImage | null
 }
+
+type TBlockSlider = {
+    type: 'slider'
+    theme: TCardMode
+    slides: TSlide[]
+}
+
+type TBlock = TBlockRichText | TBlockSlider
 
 type TGitexData = {
     backgroundVideo: TVideo | null
@@ -52,31 +62,62 @@ export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps)
             )}
 
             {gitexData.backgroundImage?.src && (
-                <Image src={gitexData.backgroundImage.src} fill className={styles.image} alt="" />
+                <Image
+                    src={gitexData.backgroundImage.src}
+                    width={gitexData.backgroundImage.width}
+                    height={gitexData.backgroundImage.height}
+                    className={styles.image}
+                    alt=""
+                />
             )}
 
             <div className={styles.content}>
-                {gitexData.blocks.map((block, idx) => (
-                    <PageSectionCard mode={block.theme} key={idx} sectionId={String(idx)}>
-                        <MarkdownContent
-                            mode={block.theme}
-                            className={cn({
-                                [styles.markdownDark]: block.theme === 'dark',
-                            })}
-                        >
-                            {block.content}
-                        </MarkdownContent>
+                {gitexData.blocks.map((block, idx) => {
+                    switch (block.type) {
+                        case 'richText':
+                            return (
+                                <PageSectionCard
+                                    mode={block.theme}
+                                    key={idx}
+                                    sectionId={String(idx)}
+                                >
+                                    <MarkdownContent
+                                        mode={block.theme}
+                                        className={cn({
+                                            [styles.markdownDark]: block.theme === 'dark',
+                                        })}
+                                    >
+                                        {block.content}
+                                    </MarkdownContent>
 
-                        {block.backgroundImage && (
-                            <Image
-                                className={styles.blockImage}
-                                alt=""
-                                src={block.backgroundImage.src}
-                                fill
-                            />
-                        )}
-                    </PageSectionCard>
-                ))}
+                                    {block.backgroundImage && (
+                                        <Image
+                                            className={styles.blockImage}
+                                            alt=""
+                                            src={block.backgroundImage.src}
+                                            fill
+                                        />
+                                    )}
+                                </PageSectionCard>
+                            )
+
+                        case 'slider':
+                            return (
+                                <PageSectionCard
+                                    key={idx}
+                                    mode={block.theme}
+                                    sectionId={String(idx)}
+                                >
+                                    <ImagesSlider
+                                        slides={block.slides}
+                                        scrollAreaClassName={styles.sliderScrollArea}
+                                    />
+                                </PageSectionCard>
+                            )
+                        default:
+                            return null
+                    }
+                })}
 
                 <AnyQuestions showSlider={false} anyQuestionData={anyQuestionsData} />
             </div>

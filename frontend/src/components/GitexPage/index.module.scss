@@ -1,6 +1,17 @@
 @import '../../styles/media';
 @import '../../styles/offsets';
 
+
+.sliderScrollArea {
+    @include subsection-above-offset;
+    @include exclude-section-card-horizontal-paddings;
+
+    @include media_breakpoint_mobile {
+        @include section-card-padding-left;
+        @include section-card-padding-right;
+    }
+}
+
 .root {
     overflow: hidden;
     min-height: calc(100vh - var(--header-height));

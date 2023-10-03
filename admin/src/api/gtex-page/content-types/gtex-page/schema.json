@@ -23,15 +23,17 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "share.content-block"
+        "share.content-block",
+        "share.slider-block"
       ]
     },
     "pageBackgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

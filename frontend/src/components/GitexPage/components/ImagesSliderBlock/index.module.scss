@@ -1,0 +1,12 @@
+@import '../../../../styles/offsets';
+@import '../../../../styles/media';
+
+.sliderScrollArea {
+    @include subsection-above-offset;
+    @include exclude-section-card-horizontal-paddings;
+
+    @include media_breakpoint_mobile {
+        @include section-card-padding-left;
+        @include section-card-padding-right;
+    }
+}
