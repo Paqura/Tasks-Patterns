@@ -20,6 +20,7 @@ type TBlock = {
 
 type TGitexData = {
     backgroundVideo: TVideo | null
+    backgroundImage: TImage | null
 
     blocks: TBlock[]
 }
@@ -48,6 +49,10 @@ export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps)
                 <video muted loop autoPlay playsInline preload="metadata" className={styles.video}>
                     <source src={gitexData.backgroundVideo.src} />
                 </video>
+            )}
+
+            {gitexData.backgroundImage?.src && (
+                <Image src={gitexData.backgroundImage.src} fill className={styles.image} alt="" />
             )}
 
             <div className={styles.content}>

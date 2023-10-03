@@ -8,6 +8,7 @@ export const mapGitexServerData = (
     serverData: GetAttributesValues<'api::gtex-page.gtex-page'>
 ): TGitexPageProps['gitexData'] => {
     return {
+        backgroundImage: mapImageMediaFile(serverData.pageBackgroundImage),
         backgroundVideo: mapVideoMediaFile(serverData.pageBackgroundVideo),
         blocks: (serverData.blocks ?? []).map((block) => ({
             theme: block.theme ?? 'light',

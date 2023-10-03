@@ -564,9 +564,15 @@ export interface ShareContentBlock extends Schema.Component {
     description: '';
   };
   attributes: {
-    content: Attribute.RichText;
     backgroundImage: Attribute.Media;
     theme: Attribute.Enumeration<['light', 'dark']> & Attribute.DefaultTo<'light'>;
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
   };
 }
 

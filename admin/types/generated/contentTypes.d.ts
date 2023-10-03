@@ -1265,6 +1265,7 @@ export interface ApiGtexPageGtexPage extends Schema.SingleType {
   attributes: {
     pageBackgroundVideo: Attribute.Media;
     blocks: Attribute.DynamicZone<['share.content-block']>;
+    pageBackgroundImage: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
