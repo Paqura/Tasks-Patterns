@@ -1055,6 +1055,7 @@ export interface ApiEmailTemplateEmailTemplate extends Schema.SingleType {
     singularName: 'email-template';
     pluralName: 'email-templates';
     displayName: 'EmailTemplates';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1101,6 +1102,12 @@ export interface ApiEmailTemplateEmailTemplate extends Schema.SingleType {
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
+        };
+      }>;
+    gitexUser: Attribute.Component<'share.gitext-user'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
         };
       }>;
     createdAt: Attribute.DateTime;
@@ -1251,6 +1258,39 @@ export interface ApiFooterFooter extends Schema.SingleType {
   };
 }
 
+export interface ApiGitexInviteRequestGitexInviteRequest extends Schema.CollectionType {
+  collectionName: 'gitex_invite_requests';
+  info: {
+    singularName: 'gitex-invite-request';
+    pluralName: 'gitex-invite-requests';
+    displayName: 'GitexInviteRequest';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    company: Attribute.String;
+    email: Attribute.Email;
+    fullName: Attribute.String;
+    message: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gitex-invite-request.gitex-invite-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gitex-invite-request.gitex-invite-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGtexPageGtexPage extends Schema.SingleType {
   collectionName: 'gtex_pages';
   info: {
@@ -1265,7 +1305,13 @@ export interface ApiGtexPageGtexPage extends Schema.SingleType {
   attributes: {
     pageBackgroundVideo: Attribute.Media;
     blocks: Attribute.DynamicZone<
-      ['share.content-block', 'share.slider-block', 'share.rich-slider', 'share.section-start']
+      [
+        'share.content-block',
+        'share.slider-block',
+        'share.rich-slider',
+        'share.section-start',
+        'share.invite-form'
+      ]
     >;
     pageBackgroundImage: Attribute.Media;
     createdAt: Attribute.DateTime;
@@ -2166,6 +2212,7 @@ declare module '@strapi/strapi' {
       'api::email-template.email-template': ApiEmailTemplateEmailTemplate;
       'api::feedback-request.feedback-request': ApiFeedbackRequestFeedbackRequest;
       'api::footer.footer': ApiFooterFooter;
+      'api::gitex-invite-request.gitex-invite-request': ApiGitexInviteRequestGitexInviteRequest;
       'api::gtex-page.gtex-page': ApiGtexPageGtexPage;
       'api::header.header': ApiHeaderHeader;
       'api::main-page.main-page': ApiMainPageMainPage;

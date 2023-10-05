@@ -252,6 +252,17 @@ export const getApi = (locale?: string) => {
                 return null
             }
         },
+
+        createGitexInviteRequest: async (
+            data: GetAttributesValues<'api::gitex-invite-request.gitex-invite-request'>
+        ) => {
+            return await client.post<Response<'api::gitex-invite-request.gitex-invite-request'>>(
+                `/api/gitex-invite-requests`,
+                {
+                    data,
+                }
+            )
+        },
     }
 }
 

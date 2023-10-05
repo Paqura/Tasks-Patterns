@@ -61,6 +61,25 @@ const mapBlock = (
         }
     }
 
+    if (block.__component === 'share.invite-form') {
+        return {
+            type: 'inviteForm',
+            companyPlaceholder: block.companyPlaceholder ?? '',
+            companyRequired: block.companyRequired ?? true,
+            emailPlaceholder: block.emailPlaceholder ?? '',
+            emailRequired: block.emailRequired ?? true,
+            messagePlaceholder: block.messagePlaceholder ?? '',
+            messageRequired: block.messageRequired ?? true,
+            namePlaceholder: block.namePlaceholder ?? '',
+            nameRequired: block.nameRequired ?? true,
+            backgroundImage: mapImageMediaFile(block.backgroundImage),
+            successMessageDescription: block.successMessageDescription ?? '',
+            successMessageTitle: block.successMessageTitle ?? '',
+            submitButtonText: block.submitButtonText ?? '',
+            checkboxConsentsTerms: block.checkboxConsentsTerms ?? '',
+        }
+    }
+
     throw new Error('Unexpected component')
 }
 

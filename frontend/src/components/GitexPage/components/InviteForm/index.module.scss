@@ -1,4 +1,4 @@
-@import '../../../../../../styles/media';
+@import '../../../../styles/media';
 
 .fields {
     margin-bottom: 20px;
@@ -23,11 +23,5 @@
 }
 
 .agrees {
-    margin-bottom: 32px;
-    display: grid;
-    row-gap: 20px;
-}
-
-.submit {
-    width: 100%;
+    grid-column: 1 / 3;
 }

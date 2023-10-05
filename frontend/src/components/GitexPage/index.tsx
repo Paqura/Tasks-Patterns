@@ -1,14 +1,18 @@
 import cn from 'classnames'
 import Image from 'next/image'
+import { useState } from 'react'
 
 import { PageLayout, TSeo } from '@/components/PageLayout'
 import { MarkdownContent } from '@/components/ui/MarkdownContent'
 import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { TImage, TVideo } from '@/types'
+import { postGitexInviteRequest } from '@/utils/siteApi'
+import { useLocale } from '@/utils/translate'
 
 import { AnyQuestions, TAnyQuestionsData } from './components/AnyQuestions'
 import { Header } from './components/Header'
 import { ImagesSlider, TSlide } from './components/ImagesSlider'
+import { InviteForm, TGitexInviteFormFields, TInviteFormData } from './components/InviteForm'
 import { PageBackground } from './components/PageBackground'
 import { RichSlider } from './components/RichSlider'
 import styles from './index.module.scss'
@@ -34,7 +38,13 @@ type TBlockRichSlider = {
     slides: string[]
 }
 
-type TBlock = TBlockRichText | TBlockSlider | TBlockRichSlider
+type TBlockInviteForm = {
+    type: 'inviteForm'
+
+    backgroundImage: TImage | null
+} & TInviteFormData
+
+type TBlock = TBlockRichText | TBlockSlider | TBlockRichSlider | TBlockInviteForm
 
 export type TGitexData = {
     backgroundVideo: TVideo | null
@@ -56,6 +66,22 @@ export type TGitexPageProps = {
 }
 
 export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps) => {
+    const [isCompleted, setIsCompleted] = useState(false)
+    const locale = useLocale()
+
+    const onSubmit = async (data: TGitexInviteFormFields) => {
+        const isSuccess = await postGitexInviteRequest({
+            fullName: data.fullName || '',
+            email: data.email || '',
+            company: data.company || '',
+            message: data.message || '',
+            locale,
+        })
+        if (isSuccess) {
+            setIsCompleted(true)
+        }
+    }
+
     return (
         <PageLayout seo={seo} className={styles.root}>
             <PageBackground
@@ -92,7 +118,30 @@ export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps)
                             />
                         )}
 
-                        {section.blocks.map((block) => {
+                        {section.blocks.map((block, blockIdx) => {
+                            if (block.type === 'inviteForm') {
+                                const { backgroundImage, ...formData } = block
+                                return (
+                                    <PageSectionCard key={blockIdx} sectionId="inviteForm">
+                                        <InviteForm
+                                            isCompleted={isCompleted}
+                                            onSubmit={onSubmit}
+                                            formData={formData}
+                                        />
+
+                                        {block.backgroundImage && (
+                                            <Image
+                                                className={styles.blockImage}
+                                                alt=""
+                                                src={block.backgroundImage.src}
+                                                fill
+                                                unoptimized
+                                            />
+                                        )}
+                                    </PageSectionCard>
+                                )
+                            }
+
                             const mode =
                                 block.theme === 'light' || block.theme === 'dark'
                                     ? block.theme

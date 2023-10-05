@@ -18,7 +18,8 @@
       "required": false,
       "allowedTypes": [
         "videos"
-      ]
+      ],
+      "pluginOptions": {}
     },
     "blocks": {
       "type": "dynamiczone",
@@ -26,8 +27,10 @@
         "share.content-block",
         "share.slider-block",
         "share.rich-slider",
-        "share.section-start"
-      ]
+        "share.section-start",
+        "share.invite-form"
+      ],
+      "pluginOptions": {}
     },
     "pageBackgroundImage": {
       "type": "media",
@@ -35,7 +38,8 @@
       "required": false,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "pluginOptions": {}
     }
   }
 }

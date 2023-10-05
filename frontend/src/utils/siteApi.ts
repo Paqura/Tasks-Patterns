@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 import { TFeedbackRequestBody } from '@/pages/api/contacts/feedback'
+import { TGitexInviteRequestBody } from '@/pages/api/contacts/gitex'
 import { TPartnershipRequestBody } from '@/pages/api/contacts/partnership'
 import { TPilotApplicationRequestBody } from '@/pages/api/contacts/pilot-application'
 import { TWebinarRegistrationRequestBody } from '@/pages/api/webinar/registration/[slug]'
@@ -57,6 +58,16 @@ export const postPilotApplicationRequest = async (
     params: TPostPilotApplicationRequestArg
 ): Promise<boolean> => {
     const response = await siteApiClient.post('/contacts/pilot-application', params)
+
+    return response.status === 200
+}
+
+type TPostGitexInviteRequestArg = TGitexInviteRequestBody
+
+export const postGitexInviteRequest = async (
+    props: TPostGitexInviteRequestArg
+): Promise<boolean> => {
+    const response = await siteApiClient.post('/contacts/gitex', props)
 
     return response.status === 200
 }
