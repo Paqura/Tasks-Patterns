@@ -1,0 +1,45 @@
+{
+  "kind": "singleType",
+  "collectionName": "gtex_pages",
+  "info": {
+    "singularName": "gtex-page",
+    "pluralName": "gtex-pages",
+    "displayName": "GtexPage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pageBackgroundVideo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ],
+      "pluginOptions": {}
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "share.content-block",
+        "share.slider-block",
+        "share.rich-slider",
+        "share.section-start",
+        "share.invite-form"
+      ],
+      "pluginOptions": {}
+    },
+    "pageBackgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {}
+    }
+  }
+}

@@ -11,6 +11,11 @@ releases:
       - workflow: build-docker-image-admin.yaml
         values:
           image.tag: build-{{ .Build.RunID }}
+    params:
+      requestLimitMb:
+        type: string
+        default: 5
+        description: Limit for HTTP request size in megabytes
 
   pts-global-admin-production:
     name: Admin Production

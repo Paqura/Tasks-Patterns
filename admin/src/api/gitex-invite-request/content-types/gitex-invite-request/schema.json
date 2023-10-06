@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gitex_invite_requests",
+  "info": {
+    "singularName": "gitex-invite-request",
+    "pluralName": "gitex-invite-requests",
+    "displayName": "GitexInviteRequest",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "company": {
+      "type": "string",
+      "pluginOptions": {}
+    },
+    "email": {
+      "type": "email",
+      "pluginOptions": {}
+    },
+    "fullName": {
+      "type": "string",
+      "pluginOptions": {}
+    },
+    "message": {
+      "type": "text",
+      "pluginOptions": {}
+    }
+  }
+}

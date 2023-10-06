@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_share_rich_slider_items",
+  "info": {
+    "displayName": "RichSliderItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}

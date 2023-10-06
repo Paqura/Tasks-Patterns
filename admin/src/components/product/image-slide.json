@@ -1,17 +1,18 @@
 {
   "collectionName": "components_product_image_slides",
   "info": {
-    "displayName": "ImageSlide"
+    "displayName": "ImageSlide",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "caption": {
       "type": "text"
