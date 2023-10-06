@@ -4,7 +4,8 @@
   "info": {
     "singularName": "email-template",
     "pluralName": "email-templates",
-    "displayName": "EmailTemplates"
+    "displayName": "EmailTemplates",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -72,6 +73,17 @@
           "localized": true
         }
       }
+    },
+    "gitexUser": {
+      "displayName": "GitextUser",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "component": "share.gitext-user"
     }
   }
 }

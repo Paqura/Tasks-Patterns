@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_share_rich_sliders",
+  "info": {
+    "displayName": "RichSlider",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "richSlider": {
+      "displayName": "RichSliderItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "share.rich-slider-item"
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "light",
+        "dark",
+        "transparent-light",
+        "transparent-dark"
+      ]
+    }
+  }
+}

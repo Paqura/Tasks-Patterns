@@ -1,0 +1,78 @@
+@import '../../styles/media';
+@import '../../styles/offsets';
+
+
+.sliderScrollArea {
+    @include media_breakpoint_mobile {
+        @include section-card-padding-left;
+        @include section-card-padding-right;
+    }
+}
+
+.root {
+    overflow: hidden;
+    margin-inline: auto;
+
+    max-width: 600px;
+    min-height: calc(100vh - var(--header-height));
+}
+
+
+.card {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-inline: 0;
+    margin-block: 18px;
+}
+
+.content {
+    // padding: 20px;
+}
+
+.sliderContent {
+    padding-inline: 8px;
+    padding-block: 4px;
+}
+
+.blockImage {
+    z-index: -1;
+    border-radius: inherit;
+}
+
+.markdownDark :global {
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--color-white);
+    }
+}
+
+
+.section {
+    position: relative;
+    padding: 20px;
+}
+
+.sectionImage,
+.sectionVideo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+}
+
+.transparentLight {
+    & > * {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: var(--color-white) !important;
+        background-color: transparent;
+    }
+}
+
+.transparentDark {
+    & > * {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: var(--color-dark) !important;
+        background-color: transparent;
+    }
+}

@@ -11,6 +11,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": true
   },
+  "scssFormatter.singleQuote": true,
   "javascript.preferences.importModuleSpecifier": "project-relative",
-  "scssFormatter.singleQuote": true
+  "typescript.tsdk": "frontend/node_modules/typescript/lib"
 }

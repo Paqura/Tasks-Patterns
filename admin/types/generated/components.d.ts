@@ -427,6 +427,7 @@ export interface ProductImageSlide extends Schema.Component {
   collectionName: 'components_product_image_slides';
   info: {
     displayName: 'ImageSlide';
+    description: '';
   };
   attributes: {
     image: Attribute.Media & Attribute.Required;
@@ -557,6 +558,67 @@ export interface ProductWelcomeToPilotBlock extends Schema.Component {
   };
 }
 
+export interface ShareContentBlock extends Schema.Component {
+  collectionName: 'components_share_content_blocks';
+  info: {
+    displayName: 'ContentBlock';
+    description: '';
+  };
+  attributes: {
+    backgroundImage: Attribute.Media;
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    theme: Attribute.Enumeration<['light', 'dark', 'transparent-light', 'transparent-dark']> &
+      Attribute.DefaultTo<'light'>;
+  };
+}
+
+export interface ShareGitextUser extends Schema.Component {
+  collectionName: 'components_share_gitext_users';
+  info: {
+    displayName: 'GitextUser';
+    description: '';
+  };
+  attributes: {
+    subject: Attribute.Text & Attribute.DefaultTo<'Gitex_promo_landing_request'>;
+    html: Attribute.Text &
+      Attribute.DefaultTo<'<h3>\u041F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u043C!</h3> <p>\u041D\u0430 \u0441\u0430\u0439\u0442\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C <%= fullName %>,  \u043E\u0442\u043F\u0440\u0430\u0432\u0438\u043B \u0437\u0430\u044F\u0432\u043A\u0443 \u043D\u0430 \u043C\u0435\u0440\u043E\u043F\u0440\u0438\u044F\u0442\u0438\u0435 Gitex. <p>\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F:</p> <p>Email: <%= email %></p> <p>Company: <%= company %></p> <blockquote><%= message %></blockquote>'>;
+    text: Attribute.Text &
+      Attribute.DefaultTo<'\u041F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u043C! \u041D\u0430 \u0441\u0430\u0439\u0442\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C <%= fullName %> \u043E\u0442\u043F\u0440\u0430\u0432\u0438\u043B \u0437\u0430\u044F\u0432\u043A\u0443 \u043D\u0430 \u043C\u0435\u0440\u043E\u043F\u0440\u0438\u044F\u0442\u0438\u0435 Gitex. \u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F: Email: <%= email %> Company: <%= company %> <%= message %>'>;
+  };
+}
+
+export interface ShareInviteForm extends Schema.Component {
+  collectionName: 'components_share_invite_forms';
+  info: {
+    displayName: 'InviteForm';
+    description: '';
+  };
+  attributes: {
+    companyPlaceholder: Attribute.Text & Attribute.DefaultTo<'Company'>;
+    namePlaceholder: Attribute.Text & Attribute.DefaultTo<'Your name'>;
+    emailPlaceholder: Attribute.Text & Attribute.DefaultTo<'Email'>;
+    messagePlaceholder: Attribute.Text &
+      Attribute.DefaultTo<'We are thrilled to invite you to visit our booth at GITEX Global any day of the event from October 16 to October 20 between 11:00 AM and 5:00 PM.   Please let us know which day and time suit you best, and we will get back to you shortly. '>;
+    companyRequired: Attribute.Boolean & Attribute.DefaultTo<true>;
+    messageRequired: Attribute.Boolean & Attribute.DefaultTo<true>;
+    nameRequired: Attribute.Boolean & Attribute.DefaultTo<true>;
+    emailRequired: Attribute.Boolean & Attribute.DefaultTo<true>;
+    backgroundImage: Attribute.Media;
+    successMessageTitle: Attribute.Text & Attribute.DefaultTo<'Thank you for your email.'>;
+    successMessageDescription: Attribute.Text &
+      Attribute.DefaultTo<'Our local representative will get back to you shortly.'>;
+    submitButtonText: Attribute.Text & Attribute.DefaultTo<'Submit'>;
+    checkboxConsentsTerms: Attribute.Text &
+      Attribute.DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
+  };
+}
+
 export interface ShareLink extends Schema.Component {
   collectionName: 'components_share_links';
   info: {
@@ -594,6 +656,46 @@ export interface ShareNavSubItem extends Schema.Component {
   };
 }
 
+export interface ShareRichSliderItem extends Schema.Component {
+  collectionName: 'components_share_rich_slider_items';
+  info: {
+    displayName: 'RichSliderItem';
+    description: '';
+  };
+  attributes: {
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+  };
+}
+
+export interface ShareRichSlider extends Schema.Component {
+  collectionName: 'components_share_rich_sliders';
+  info: {
+    displayName: 'RichSlider';
+    description: '';
+  };
+  attributes: {
+    richSlider: Attribute.Component<'share.rich-slider-item', true>;
+    theme: Attribute.Enumeration<['light', 'dark', 'transparent-light', 'transparent-dark']>;
+  };
+}
+
+export interface ShareSectionStart extends Schema.Component {
+  collectionName: 'components_share_section_starts';
+  info: {
+    displayName: 'SectionStart';
+  };
+  attributes: {
+    backgroundVideo: Attribute.Media;
+    backgroundImage: Attribute.Media;
+  };
+}
+
 export interface ShareSeo extends Schema.Component {
   collectionName: 'components_share_seos';
   info: {
@@ -603,6 +705,19 @@ export interface ShareSeo extends Schema.Component {
   attributes: {
     title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'PT Security'>;
     description: Attribute.Text;
+  };
+}
+
+export interface ShareSliderBlock extends Schema.Component {
+  collectionName: 'components_share_slider_blocks';
+  info: {
+    displayName: 'SliderBlock';
+    description: '';
+  };
+  attributes: {
+    slides: Attribute.Component<'product.image-slide', true>;
+    theme: Attribute.Enumeration<['light', 'dark', 'transparent-light', 'transparent-dark']> &
+      Attribute.DefaultTo<'light'>;
   };
 }
 
@@ -650,10 +765,17 @@ declare module '@strapi/strapi' {
       'product.product-statistics-item': ProductProductStatisticsItem;
       'product.product-tasks-block': ProductProductTasksBlock;
       'product.welcome-to-pilot-block': ProductWelcomeToPilotBlock;
+      'share.content-block': ShareContentBlock;
+      'share.gitext-user': ShareGitextUser;
+      'share.invite-form': ShareInviteForm;
       'share.link': ShareLink;
       'share.nav-item': ShareNavItem;
       'share.nav-sub-item': ShareNavSubItem;
+      'share.rich-slider-item': ShareRichSliderItem;
+      'share.rich-slider': ShareRichSlider;
+      'share.section-start': ShareSectionStart;
       'share.seo': ShareSeo;
+      'share.slider-block': ShareSliderBlock;
       'share.test': ShareTest;
     }
   }

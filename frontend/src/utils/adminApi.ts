@@ -241,6 +241,28 @@ export const getApi = (locale?: string) => {
                 }
             )
         },
+
+        fetchGtex: async () => {
+            try {
+                const response = await client.get<Response<'api::gtex-page.gtex-page'>>(
+                    `/api/gtex-page`
+                )
+                return response.data.data?.attributes
+            } catch {
+                return null
+            }
+        },
+
+        createGitexInviteRequest: async (
+            data: GetAttributesValues<'api::gitex-invite-request.gitex-invite-request'>
+        ) => {
+            return await client.post<Response<'api::gitex-invite-request.gitex-invite-request'>>(
+                `/api/gitex-invite-requests`,
+                {
+                    data,
+                }
+            )
+        },
     }
 }
 
