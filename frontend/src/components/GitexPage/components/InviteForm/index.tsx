@@ -26,6 +26,8 @@ export type TInviteFormData = {
     successMessageDescription: string
 
     checkboxConsentsTerms: string
+
+    recipientEmail: string
 }
 
 export type TSelectProductOptions = TSelectOption<string>[]
@@ -37,6 +39,7 @@ export type TGitexInviteFormFields = {
     fullName: string
     email: string
     message: string
+    recipientEmail: string
 }
 
 type TInviteFormProps = {
@@ -48,6 +51,10 @@ type TInviteFormProps = {
 export const InviteForm = ({ isCompleted, onSubmit, formData }: TInviteFormProps) => {
     const context = useForm<TGitexInviteFormFields>({
         shouldFocusError: false,
+
+        defaultValues: {
+            recipientEmail: formData.recipientEmail,
+        },
     })
 
     if (isCompleted) {

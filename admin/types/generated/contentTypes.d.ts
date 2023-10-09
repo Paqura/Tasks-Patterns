@@ -1274,6 +1274,7 @@ export interface ApiGitexInviteRequestGitexInviteRequest extends Schema.Collecti
     email: Attribute.Email;
     fullName: Attribute.String;
     message: Attribute.Text;
+    recipientEmail: Attribute.Email & Attribute.DefaultTo<'ileonov@ptsecurity.global'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

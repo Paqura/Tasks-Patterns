@@ -8,6 +8,7 @@ export type TGitexInviteRequestBody = {
     email: string
     company: string
     message: string
+    recipientEmail: string
     locale: TLocale
 }
 
@@ -18,13 +19,14 @@ type TGitexInviteRequest = Omit<NextApiRequest, 'body'> & {
 export default async function handler(req: TGitexInviteRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
-            const { fullName, email, company, message, locale } = req.body
+            const { fullName, email, company, message, recipientEmail, locale } = req.body
 
             const api = getApi(locale)
             const response = await api.createGitexInviteRequest({
                 email,
                 fullName,
                 company,
+                recipientEmail,
                 message,
             })
 
