@@ -616,6 +616,7 @@ export interface ShareInviteForm extends Schema.Component {
     submitButtonText: Attribute.Text & Attribute.DefaultTo<'Submit'>;
     checkboxConsentsTerms: Attribute.Text &
       Attribute.DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
+    recipientEmail: Attribute.Email & Attribute.DefaultTo<'ileonov@ptsecurity.global'>;
   };
 }
 

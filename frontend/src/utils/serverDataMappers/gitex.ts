@@ -77,6 +77,7 @@ const mapBlock = (
             successMessageTitle: block.successMessageTitle ?? '',
             submitButtonText: block.submitButtonText ?? '',
             checkboxConsentsTerms: block.checkboxConsentsTerms ?? '',
+            recipientEmail: block.recipientEmail ?? '',
         }
     }
 
