@@ -23,6 +23,11 @@ releases:
     cluster: pts-global-production
     static-params:
       environment: production
+    params:
+      requestLimitMb:
+        type: string
+        default: 15
+        description: Limit for HTTP request size in megabytes
 
   pts-global-admin-staging:
     name: Admin Staging

@@ -75,6 +75,8 @@ export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps)
             email: data.email || '',
             company: data.company || '',
             message: data.message || '',
+            recipientEmail: data.recipientEmail || '',
+
             locale,
         })
         if (isSuccess) {
@@ -91,7 +93,7 @@ export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps)
 
             <Header />
 
-            <div className={styles.content}>
+            <div>
                 {gitexData.sections.map((section, idx) => (
                     <div className={styles.section} key={idx}>
                         {section.background.video?.src && (
@@ -122,7 +124,11 @@ export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps)
                             if (block.type === 'inviteForm') {
                                 const { backgroundImage, ...formData } = block
                                 return (
-                                    <PageSectionCard key={blockIdx} sectionId="inviteForm">
+                                    <PageSectionCard
+                                        sectionClassName={styles.card}
+                                        key={blockIdx}
+                                        sectionId="inviteForm"
+                                    >
                                         <InviteForm
                                             isCompleted={isCompleted}
                                             onSubmit={onSubmit}
@@ -152,7 +158,7 @@ export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps)
                                     return (
                                         <PageSectionCard
                                             mode={mode}
-                                            key={idx}
+                                            key={`${idx}-${blockIdx}`}
                                             sectionId={String(idx)}
                                             sectionClassName={cn(styles.card, {
                                                 [styles.transparentLight]:
@@ -160,7 +166,6 @@ export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps)
                                                 [styles.transparentDark]:
                                                     block.theme === 'transparent-dark',
                                             })}
-                                            contentClassName={styles.content}
                                         >
                                             <MarkdownContent
                                                 mode={mode}
@@ -193,14 +198,14 @@ export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps)
                                             theme={block.theme}
                                             sectionId="richSlider"
                                             data={block.slides}
-                                            key={idx}
+                                            key={`${idx}-${blockIdx}`}
                                         />
                                     )
 
                                 case 'slider':
                                     return (
                                         <PageSectionCard
-                                            key={idx}
+                                            key={`${idx}-${blockIdx}`}
                                             mode={mode}
                                             sectionId={String(idx)}
                                             sectionClassName={cn(styles.card, {
@@ -209,10 +214,7 @@ export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps)
                                                 [styles.transparentDark]:
                                                     block.theme === 'transparent-dark',
                                             })}
-                                            contentClassName={cn(
-                                                styles.sliderContent,
-                                                styles.content
-                                            )}
+                                            contentClassName={cn(styles.sliderContent)}
                                         >
                                             <ImagesSlider
                                                 slides={block.slides}

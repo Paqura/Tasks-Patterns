@@ -6,6 +6,8 @@ module.exports = {
 
     const { result } = event;
 
+    if (!result.recipientEmail) return;
+
     try {
       const entity = await strapi.db.query('api::email-template.email-template').findOne({});
       const template = await strapi.db
@@ -14,7 +16,7 @@ module.exports = {
 
       await strapi.plugins['email'].services.email.sendTemplatedEmail(
         {
-          to: process.env.REQUESTS_EMAIL,
+          to: result.recipientEmail,
         },
         template,
         {

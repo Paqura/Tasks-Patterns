@@ -61,6 +61,10 @@
     "checkboxConsentsTerms": {
       "type": "text",
       "default": "I consent to the processing of my personal data in accordance with the terms of the <a href=\\\"#\\\">privacy policy</a>."
+    },
+    "recipientEmail": {
+      "type": "email",
+      "default": "ileonov@ptsecurity.global"
     }
   }
 }
