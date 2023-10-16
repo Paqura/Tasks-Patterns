@@ -8,6 +8,7 @@ import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { TImage, TVideo } from '@/types'
 import { postGitexInviteRequest } from '@/utils/siteApi'
 import { useLocale } from '@/utils/translate'
+import { useYaMetricaGitex } from '@/utils/yaMetrica/gitex'
 
 import { AnyQuestions, TAnyQuestionsData } from './components/AnyQuestions'
 import { Header } from './components/Header'
@@ -68,6 +69,8 @@ export type TGitexPageProps = {
 export const GitexPage = ({ seo, gitexData, anyQuestionsData }: TGitexPageProps) => {
     const [isCompleted, setIsCompleted] = useState(false)
     const locale = useLocale()
+
+    useYaMetricaGitex()
 
     const onSubmit = async (data: TGitexInviteFormFields) => {
         const isSuccess = await postGitexInviteRequest({
