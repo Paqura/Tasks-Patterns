@@ -242,26 +242,23 @@ export const getApi = (locale?: string) => {
             )
         },
 
-        fetchGtex: async () => {
+        fetchSpecialPage: async (slug: string) => {
             try {
-                const response = await client.get<Response<'api::gtex-page.gtex-page'>>(
-                    `/api/gtex-page`
-                )
+                const response = await client.get<Response<'api::sp.sp'>>(`/api/sps/${slug}`)
                 return response.data.data?.attributes
             } catch {
                 return null
             }
         },
 
-        createGitexInviteRequest: async (
-            data: GetAttributesValues<'api::gitex-invite-request.gitex-invite-request'>
+        createSpecialPageInviteRequest: async (
+            data: GetAttributesValues<'api::special-pages-invites-request.special-pages-invites-request'>
         ) => {
-            return await client.post<Response<'api::gitex-invite-request.gitex-invite-request'>>(
-                `/api/gitex-invite-requests`,
-                {
-                    data,
-                }
-            )
+            return await client.post<
+                Response<'api::special-pages-invites-request.special-pages-invites-request'>
+            >(`/api/special-pages-invites-requests`, {
+                data,
+            })
         },
     }
 }

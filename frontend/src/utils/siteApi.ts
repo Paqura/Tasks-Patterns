@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 import { TFeedbackRequestBody } from '@/pages/api/contacts/feedback'
-import { TGitexInviteRequestBody } from '@/pages/api/contacts/gitex'
 import { TPartnershipRequestBody } from '@/pages/api/contacts/partnership'
 import { TPilotApplicationRequestBody } from '@/pages/api/contacts/pilot-application'
+import { TSpecialPageInviteRequestBody } from '@/pages/api/contacts/specialPage'
 import { TWebinarRegistrationRequestBody } from '@/pages/api/webinar/registration/[slug]'
 
 import { TLocale } from './i18n'
@@ -62,12 +62,12 @@ export const postPilotApplicationRequest = async (
     return response.status === 200
 }
 
-type TPostGitexInviteRequestArg = TGitexInviteRequestBody
+type TPostSpecialPageInviteRequestArg = TSpecialPageInviteRequestBody
 
-export const postGitexInviteRequest = async (
-    props: TPostGitexInviteRequestArg
+export const postSpecialPageInviteRequest = async (
+    props: TPostSpecialPageInviteRequestArg
 ): Promise<boolean> => {
-    const response = await siteApiClient.post('/contacts/gitex', props)
+    const response = await siteApiClient.post('/contacts/specialPage', props)
 
     return response.status === 200
 }

@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "special_page_email_templates",
+  "info": {
+    "singularName": "special-page-email-template",
+    "pluralName": "special-page-email-templates",
+    "displayName": "SpecialPageEmailTemplate",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subject": {
+      "type": "text",
+      "default": "Subject"
+    },
+    "html": {
+      "type": "text",
+      "default": "<h3>Приветствуем!111</h3> <p>На сайте пользователь <%= fullName %>  из компании <%= company %>  оставил обратную связь.<p> <p>Контакты пользователя:</p> <p>Email: <%= email %> <p>Текст обращения:</p> <blockquote><%= message %></blockquote>"
+    },
+    "text": {
+      "type": "text",
+      "default": "Приветствуем!123 На сайте пользователь <%= fullName %> из компании <%= company %> оставил обратную связь. Контакты пользователя: Email: <%= email %> Текст обращения: <%= message %>"
+    },
+    "templateName": {
+      "type": "text"
+    }
+  }
+}

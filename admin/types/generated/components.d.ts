@@ -578,21 +578,6 @@ export interface ShareContentBlock extends Schema.Component {
   };
 }
 
-export interface ShareGitextUser extends Schema.Component {
-  collectionName: 'components_share_gitext_users';
-  info: {
-    displayName: 'GitextUser';
-    description: '';
-  };
-  attributes: {
-    subject: Attribute.Text & Attribute.DefaultTo<'Gitex_promo_landing_request'>;
-    html: Attribute.Text &
-      Attribute.DefaultTo<'<h3>\u041F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u043C!</h3> <p>\u041D\u0430 \u0441\u0430\u0439\u0442\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C <%= fullName %>,  \u043E\u0442\u043F\u0440\u0430\u0432\u0438\u043B \u0437\u0430\u044F\u0432\u043A\u0443 \u043D\u0430 \u043C\u0435\u0440\u043E\u043F\u0440\u0438\u044F\u0442\u0438\u0435 Gitex. <p>\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F:</p> <p>Email: <%= email %></p> <p>Company: <%= company %></p> <blockquote><%= message %></blockquote>'>;
-    text: Attribute.Text &
-      Attribute.DefaultTo<'\u041F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u043C! \u041D\u0430 \u0441\u0430\u0439\u0442\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C <%= fullName %> \u043E\u0442\u043F\u0440\u0430\u0432\u0438\u043B \u0437\u0430\u044F\u0432\u043A\u0443 \u043D\u0430 \u043C\u0435\u0440\u043E\u043F\u0440\u0438\u044F\u0442\u0438\u0435 Gitex. \u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F: Email: <%= email %> Company: <%= company %> <%= message %>'>;
-  };
-}
-
 export interface ShareInviteForm extends Schema.Component {
   collectionName: 'components_share_invite_forms';
   info: {
@@ -617,6 +602,7 @@ export interface ShareInviteForm extends Schema.Component {
     checkboxConsentsTerms: Attribute.Text &
       Attribute.DefaultTo<'I consent to the processing of my personal data in accordance with the terms of the <a href=\\"#\\">privacy policy</a>.'>;
     recipientEmail: Attribute.Email & Attribute.DefaultTo<'ileonov@ptsecurity.global'>;
+    emailTemplateName: Attribute.Text;
   };
 }
 
@@ -767,7 +753,6 @@ declare module '@strapi/strapi' {
       'product.product-tasks-block': ProductProductTasksBlock;
       'product.welcome-to-pilot-block': ProductWelcomeToPilotBlock;
       'share.content-block': ShareContentBlock;
-      'share.gitext-user': ShareGitextUser;
       'share.invite-form': ShareInviteForm;
       'share.link': ShareLink;
       'share.nav-item': ShareNavItem;
