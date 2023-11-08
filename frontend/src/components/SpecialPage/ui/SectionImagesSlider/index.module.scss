@@ -1,0 +1,14 @@
+@import '../../../../styles/media';
+@import '../../../../styles/offsets';
+
+.sliderScrollArea {
+    @include media_breakpoint_mobile {
+        @include section-card-padding-left;
+        @include section-card-padding-right;
+    }
+}
+
+.sliderContent {
+    padding-inline: 8px;
+    padding-block: 4px;
+}

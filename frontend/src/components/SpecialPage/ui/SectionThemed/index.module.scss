@@ -1,0 +1,23 @@
+.card {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-inline: 0;
+    margin-block: 18px;
+}
+
+.transparentLight {
+    & > * {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: var(--color-white) !important;
+        background-color: transparent;
+    }
+}
+
+.transparentDark {
+    & > * {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: var(--color-dark) !important;
+        background-color: transparent;
+    }
+}

@@ -1,0 +1,30 @@
+@import '../../../../styles/media';
+
+.root {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-inline: 0;
+    margin-block: 18px;
+}
+
+.container {
+    padding: 16px 24px;
+    display: block;
+    background-color: var(--color-white);
+    grid-gap: 40px;
+}
+
+.heading {
+    grid-column: 1 / span 5;
+    margin-bottom: 32px;
+}
+
+.title {
+    margin-bottom: 16px;
+    font-size: 40px;
+}
+
+.content {
+    grid-column: 7 / span 6;
+}

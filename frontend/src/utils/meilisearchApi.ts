@@ -15,21 +15,28 @@ export const getSearchString = (query: string | string[] | undefined): string | 
     return trimmedValue
 }
 
-export const getSearchResponse = async (searchString: string) => {
-    const client = new MeiliSearch({
-        host: process.env.MEILISEARCH_HOST || '',
-        apiKey: process.env.MEILISEARCH_APP_KEY,
-    })
+export const getSearchResponse = async (searchString: string, locale?: string) => {
+    try {
+        const client = new MeiliSearch({
+            host: process.env.MEILISEARCH_HOST || '',
+            apiKey: process.env.MEILISEARCH_APP_KEY,
+        })
 
-    const index = client.index('searchable-items')
+        const index = client.index('searchable-items')
 
-    const response = await index.search(searchString, {
-        attributesToHighlight: ['data'],
-        highlightPreTag,
-        highlightPostTag,
-        attributesToCrop: ['*'],
-        cropLength: 50,
-    })
+        const response = await index.search(searchString, {
+            attributesToHighlight: ['data'],
+            highlightPreTag,
+            highlightPostTag,
+            attributesToCrop: ['*'],
+            cropLength: 50,
+            filter: locale && `locale = ${locale}`,
+        })
 
-    return response
+        return response
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error)
+        return null
+    }
 }
