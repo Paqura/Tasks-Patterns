@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "special_pages_invites_requests",
+  "info": {
+    "singularName": "special-pages-invites-request",
+    "pluralName": "special-pages-invites-requests",
+    "displayName": "SpecialPagesInvitesRequest",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "company": {
+      "type": "text"
+    },
+    "fullName": {
+      "type": "text"
+    },
+    "message": {
+      "type": "text"
+    },
+    "email": {
+      "type": "email"
+    },
+    "recipientEmail": {
+      "type": "email"
+    },
+    "emailTemplateName": {
+      "type": "text",
+      "required": true
+    },
+    "pageSlug": {
+      "type": "text"
+    }
+  }
+}

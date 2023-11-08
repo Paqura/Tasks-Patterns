@@ -1,0 +1,11 @@
+.root {
+    overflow: hidden;
+    margin-inline: auto;
+
+    max-width: 600px;
+    min-height: calc(100vh - var(--header-height));
+}
+.section {
+    position: relative;
+    padding: 20px;
+}

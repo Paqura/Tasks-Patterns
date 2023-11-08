@@ -22,7 +22,6 @@
     },
     "plugins": ["react", "@typescript-eslint", "react-hooks", "import"],
     "rules": {
-        "no-restricted-imports": [1, { "patterns": ["../"] }],
         "no-console": "error",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",

@@ -1,0 +1,26 @@
+.markdown {
+    position: relative;
+    z-index: 1;
+}
+
+.transparentLight {
+    & > * {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: var(--color-white) !important;
+        background-color: transparent;
+    }
+}
+
+.transparentDark {
+    & > * {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: var(--color-dark) !important;
+        background-color: transparent;
+    }
+}
+
+.markdownDark :global {
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--color-white);
+    }
+}

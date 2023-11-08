@@ -65,6 +65,9 @@
     "recipientEmail": {
       "type": "email",
       "default": "ileonov@ptsecurity.global"
+    },
+    "emailTemplateName": {
+      "type": "text"
     }
   }
 }

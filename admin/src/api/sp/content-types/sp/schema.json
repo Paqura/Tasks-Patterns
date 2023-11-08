@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sps",
+  "info": {
+    "singularName": "sp",
+    "pluralName": "sps",
+    "displayName": "SpecialPage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pageBackgroundVideo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "pageBackgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "share.section-start",
+        "share.content-block",
+        "share.invite-form",
+        "share.rich-slider",
+        "share.slider-block"
+      ]
+    },
+    "slug": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

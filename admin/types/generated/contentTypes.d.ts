@@ -1104,12 +1104,6 @@ export interface ApiEmailTemplateEmailTemplate extends Schema.SingleType {
           localized: true;
         };
       }>;
-    gitexUser: Attribute.Component<'share.gitext-user'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::email-template.email-template', 'oneToOne', 'admin::user'> &
@@ -1255,73 +1249,6 @@ export interface ApiFooterFooter extends Schema.SingleType {
       Attribute.Private;
     localizations: Attribute.Relation<'api::footer.footer', 'oneToMany', 'api::footer.footer'>;
     locale: Attribute.String;
-  };
-}
-
-export interface ApiGitexInviteRequestGitexInviteRequest extends Schema.CollectionType {
-  collectionName: 'gitex_invite_requests';
-  info: {
-    singularName: 'gitex-invite-request';
-    pluralName: 'gitex-invite-requests';
-    displayName: 'GitexInviteRequest';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    company: Attribute.String;
-    email: Attribute.Email;
-    fullName: Attribute.String;
-    message: Attribute.Text;
-    recipientEmail: Attribute.Email & Attribute.DefaultTo<'ileonov@ptsecurity.global'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::gitex-invite-request.gitex-invite-request',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::gitex-invite-request.gitex-invite-request',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiGtexPageGtexPage extends Schema.SingleType {
-  collectionName: 'gtex_pages';
-  info: {
-    singularName: 'gtex-page';
-    pluralName: 'gtex-pages';
-    displayName: 'GtexPage';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    pageBackgroundVideo: Attribute.Media;
-    blocks: Attribute.DynamicZone<
-      [
-        'share.content-block',
-        'share.slider-block',
-        'share.rich-slider',
-        'share.section-start',
-        'share.invite-form'
-      ]
-    >;
-    pageBackgroundImage: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::gtex-page.gtex-page', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::gtex-page.gtex-page', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
   };
 }
 
@@ -1951,6 +1878,108 @@ export interface ApiSearchPageSearchPage extends Schema.SingleType {
   };
 }
 
+export interface ApiSpSp extends Schema.CollectionType {
+  collectionName: 'sps';
+  info: {
+    singularName: 'sp';
+    pluralName: 'sps';
+    displayName: 'SpecialPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    pageBackgroundVideo: Attribute.Media;
+    pageBackgroundImage: Attribute.Media;
+    blocks: Attribute.DynamicZone<
+      [
+        'share.section-start',
+        'share.content-block',
+        'share.invite-form',
+        'share.rich-slider',
+        'share.slider-block'
+      ]
+    >;
+    slug: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::sp.sp', 'oneToOne', 'admin::user'> & Attribute.Private;
+    updatedBy: Attribute.Relation<'api::sp.sp', 'oneToOne', 'admin::user'> & Attribute.Private;
+  };
+}
+
+export interface ApiSpecialPageEmailTemplateSpecialPageEmailTemplate extends Schema.CollectionType {
+  collectionName: 'special_page_email_templates';
+  info: {
+    singularName: 'special-page-email-template';
+    pluralName: 'special-page-email-templates';
+    displayName: 'SpecialPageEmailTemplate';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    subject: Attribute.Text;
+    html: Attribute.Text;
+    text: Attribute.Text;
+    templateName: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::special-page-email-template.special-page-email-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::special-page-email-template.special-page-email-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSpecialPagesInvitesRequestSpecialPagesInvitesRequest
+  extends Schema.CollectionType {
+  collectionName: 'special_pages_invites_requests';
+  info: {
+    singularName: 'special-pages-invites-request';
+    pluralName: 'special-pages-invites-requests';
+    displayName: 'SpecialPagesInvitesRequest';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    company: Attribute.Text;
+    fullName: Attribute.Text;
+    message: Attribute.Text;
+    email: Attribute.Email;
+    recipientEmail: Attribute.Email;
+    emailTemplateName: Attribute.Text & Attribute.Required;
+    pageSlug: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::special-pages-invites-request.special-pages-invites-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::special-pages-invites-request.special-pages-invites-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiWebinarConfigWebinarConfig extends Schema.SingleType {
   collectionName: 'webinar_configs';
   info: {
@@ -2213,8 +2242,6 @@ declare module '@strapi/strapi' {
       'api::email-template.email-template': ApiEmailTemplateEmailTemplate;
       'api::feedback-request.feedback-request': ApiFeedbackRequestFeedbackRequest;
       'api::footer.footer': ApiFooterFooter;
-      'api::gitex-invite-request.gitex-invite-request': ApiGitexInviteRequestGitexInviteRequest;
-      'api::gtex-page.gtex-page': ApiGtexPageGtexPage;
       'api::header.header': ApiHeaderHeader;
       'api::main-page.main-page': ApiMainPageMainPage;
       'api::news-item.news-item': ApiNewsItemNewsItem;
@@ -2224,6 +2251,9 @@ declare module '@strapi/strapi' {
       'api::pilot-application-request.pilot-application-request': ApiPilotApplicationRequestPilotApplicationRequest;
       'api::product.product': ApiProductProduct;
       'api::search-page.search-page': ApiSearchPageSearchPage;
+      'api::sp.sp': ApiSpSp;
+      'api::special-page-email-template.special-page-email-template': ApiSpecialPageEmailTemplateSpecialPageEmailTemplate;
+      'api::special-pages-invites-request.special-pages-invites-request': ApiSpecialPagesInvitesRequestSpecialPagesInvitesRequest;
       'api::webinar-config.webinar-config': ApiWebinarConfigWebinarConfig;
       'api::webinar-request.webinar-request': ApiWebinarRequestWebinarRequest;
     }
