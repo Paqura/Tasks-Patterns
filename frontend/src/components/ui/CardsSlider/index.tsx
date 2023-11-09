@@ -47,7 +47,7 @@ export const CardsSlider: React.FC<React.PropsWithChildren<TProps>> = ({
             500,
             {
                 leading: false,
-            }
+            },
         )
         window.addEventListener('resize', handleResize)
         return () => {
@@ -81,7 +81,7 @@ export const CardsSlider: React.FC<React.PropsWithChildren<TProps>> = ({
             const visibleWidth = containerRef.current?.clientWidth
             const newScrollPos = Math.max(
                 Math.ceil(currentScrollPos - visibleWidth * scrollStepRatio),
-                0
+                0,
             )
             if (currentScrollPos !== newScrollPos) {
                 el.scroll({
@@ -101,7 +101,7 @@ export const CardsSlider: React.FC<React.PropsWithChildren<TProps>> = ({
             const maxScrollPosition = fullWidth - visibleWidth
             const newScrollPos = Math.min(
                 Math.ceil(currentScrollPos + visibleWidth * scrollStepRatio),
-                maxScrollPosition
+                maxScrollPosition,
             )
 
             if (currentScrollPos !== newScrollPos) {

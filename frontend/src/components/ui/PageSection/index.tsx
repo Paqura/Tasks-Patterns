@@ -15,5 +15,5 @@ export const PageSection = React.forwardRef<HTMLDivElement, React.PropsWithChild
                 {children}
             </section>
         )
-    }
+    },
 )

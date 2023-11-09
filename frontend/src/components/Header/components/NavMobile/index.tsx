@@ -9,14 +9,14 @@ import styles from './index.module.scss'
 import burger from 'public/images/menu/burger.svg'
 import close from 'public/images/menu/close.svg'
 
-interface INavMobile {
+type TNavMobileProps = {
     items: TNavItem[]
     searchInputPlaceholder: string
     isOpen: boolean
     onToggle: (isOpen: boolean) => void
 }
 
-export const NavMobile = ({ items, searchInputPlaceholder, isOpen, onToggle }: INavMobile) => {
+export const NavMobile = ({ items, searchInputPlaceholder, isOpen, onToggle }: TNavMobileProps) => {
     const handleClick = () => {
         onToggle(!isOpen)
     }

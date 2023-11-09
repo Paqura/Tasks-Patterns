@@ -3,9 +3,9 @@ import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 
-import { EmployeeCard, TEmployeeCardData } from './components/EmployeeCard'
-import { LoadMore } from './components/LoadMore'
 import styles from './index.module.scss'
+import { EmployeeCard, TEmployeeCardData } from './ui/EmployeeCard'
+import { LoadMore } from './ui/LoadMore'
 
 export type TExpertsSectionData = {
     isVisible: boolean

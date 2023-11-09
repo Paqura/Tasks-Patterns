@@ -13,7 +13,7 @@ import styles from './index.module.scss'
 
 type TInputType = 'text' | 'email' | 'tel'
 
-interface IProps {
+type TInputProps = {
     type: TInputType
     placeholder?: string
     name: string
@@ -26,7 +26,7 @@ interface IProps {
 }
 
 const createValidators = (
-    t: TTranslateFn
+    t: TTranslateFn,
 ): { [key in TInputType]: ValidationValueMessage<RegExp> | null } => ({
     text: null,
     email: validateEmail(t),
@@ -43,7 +43,7 @@ export const Input = ({
     autoComplete = 'off',
     required,
     maxLength,
-}: IProps) => {
+}: TInputProps) => {
     const [isFocused, setIsFocused] = useState<boolean>(false)
     const fieldName = `${name}` as const
     const translate = useTranslate()

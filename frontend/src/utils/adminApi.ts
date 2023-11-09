@@ -69,7 +69,7 @@ export const getApi = (locale?: string) => {
                         },
                         ...params,
                     },
-                }
+                },
             )
             return response.data.data?.map((item) => item.attributes)
         },
@@ -77,7 +77,7 @@ export const getApi = (locale?: string) => {
         fetchProduct: async (id: string, publicationState: TPublicationState) => {
             try {
                 const response = await client.get<Response<'api::product.product'>>(
-                    getUrlWithPublicationState(`/api/products/${id}`, publicationState)
+                    getUrlWithPublicationState(`/api/products/${id}`, publicationState),
                 )
                 return response.data.data?.attributes
             } catch {
@@ -86,9 +86,8 @@ export const getApi = (locale?: string) => {
         },
 
         fetchClients: async () => {
-            const response = await client.get<ResponseCollection<'api::client.client'>>(
-                `/api/clients`
-            )
+            const response =
+                await client.get<ResponseCollection<'api::client.client'>>(`/api/clients`)
             return response.data.data?.map((item) => item.attributes)
         },
 
@@ -106,9 +105,8 @@ export const getApi = (locale?: string) => {
         fetchArticles: async (page: number = 1, pageSize: number = 5) => {
             const url = `/api/analytic-articles?pagination[page]=${page}&pagination[pageSize]=${pageSize}&sort=published%3Adesc`
 
-            const response = await client.get<
-                ResponseCollection<'api::analytic-article.analytic-article'>
-            >(url)
+            const response =
+                await client.get<ResponseCollection<'api::analytic-article.analytic-article'>>(url)
 
             return {
                 articles: response.data.data?.map((item) => item.attributes),
@@ -117,23 +115,22 @@ export const getApi = (locale?: string) => {
         },
 
         fetchMainPage: async () => {
-            const response = await client.get<Response<'api::main-page.main-page'>>(
-                `/api/main-page`
-            )
+            const response =
+                await client.get<Response<'api::main-page.main-page'>>(`/api/main-page`)
             return response.data.data?.attributes
         },
 
         fetchAnalyticsPage: async () => {
-            const response = await client.get<Response<'api::analytics-page.analytics-page'>>(
-                `/api/analytics-page`
-            )
+            const response =
+                await client.get<Response<'api::analytics-page.analytics-page'>>(
+                    `/api/analytics-page`,
+                )
             return response.data.data?.attributes
         },
 
         fetchNewsPage: async () => {
-            const response = await client.get<Response<'api::news-page.news-page'>>(
-                `/api/news-page`
-            )
+            const response =
+                await client.get<Response<'api::news-page.news-page'>>(`/api/news-page`)
             return response.data.data?.attributes
         },
 
@@ -151,7 +148,7 @@ export const getApi = (locale?: string) => {
         fetchNewsArticle: async (id: string, publicationState: TPublicationState) => {
             try {
                 const response = await client.get<Response<'api::news-item.news-item'>>(
-                    getUrlWithPublicationState(`/api/news/${id}`, publicationState)
+                    getUrlWithPublicationState(`/api/news/${id}`, publicationState),
                 )
                 return response.data.data?.attributes
             } catch {
@@ -160,44 +157,42 @@ export const getApi = (locale?: string) => {
         },
 
         fetchAboutPage: async () => {
-            const response = await client.get<Response<'api::about-page.about-page'>>(
-                `/api/about-page`
-            )
+            const response =
+                await client.get<Response<'api::about-page.about-page'>>(`/api/about-page`)
             return response.data.data?.attributes
         },
 
         fetchAllProductsPage: async () => {
-            const response = await client.get<Response<'api::all-products-page.all-products-page'>>(
-                `/api/all-products-page`
-            )
+            const response =
+                await client.get<Response<'api::all-products-page.all-products-page'>>(
+                    `/api/all-products-page`,
+                )
             return response.data.data?.attributes
         },
 
         fetchWebinarConfig: async () => {
-            const response = await client.get<Response<'api::webinar-config.webinar-config'>>(
-                `/api/webinar-config`
-            )
+            const response =
+                await client.get<Response<'api::webinar-config.webinar-config'>>(
+                    `/api/webinar-config`,
+                )
             return response.data.data?.attributes
         },
 
         fetchAnyQuestions: async () => {
-            const response = await client.get<Response<'api::any-question.any-question'>>(
-                `/api/any-question`
-            )
+            const response =
+                await client.get<Response<'api::any-question.any-question'>>(`/api/any-question`)
             return response.data.data?.attributes
         },
 
         fetchSearchPage: async () => {
-            const response = await client.get<Response<'api::search-page.search-page'>>(
-                `/api/search-page`
-            )
+            const response =
+                await client.get<Response<'api::search-page.search-page'>>(`/api/search-page`)
             return response.data.data?.attributes
         },
 
         fetchNotFound: async () => {
-            const response = await client.get<Response<'api::not-found.not-found'>>(
-                `/api/not-found`
-            )
+            const response =
+                await client.get<Response<'api::not-found.not-found'>>(`/api/not-found`)
             return response.data.data?.attributes
         },
 
@@ -207,17 +202,17 @@ export const getApi = (locale?: string) => {
         },
 
         createWebinarRequest: async (
-            data: GetAttributesValues<'api::webinar-request.webinar-request'>
+            data: GetAttributesValues<'api::webinar-request.webinar-request'>,
         ) => {
             return await client.post<Response<'api::webinar-request.webinar-request'>>(
                 `/api/webinar-requests`,
                 {
                     data,
-                }
+                },
             )
         },
         createPilotRequest: async (
-            data: GetAttributesValues<'api::pilot-application-request.pilot-application-request'>
+            data: GetAttributesValues<'api::pilot-application-request.pilot-application-request'>,
         ) => {
             return await client.post<
                 Response<'api::pilot-application-request.pilot-application-request'>
@@ -226,30 +221,30 @@ export const getApi = (locale?: string) => {
             })
         },
         createPartnershipRequest: async (
-            data: GetAttributesValues<'api::partnership-request.partnership-request'>
+            data: GetAttributesValues<'api::partnership-request.partnership-request'>,
         ) => {
             return await client.post<Response<'api::partnership-request.partnership-request'>>(
                 `/api/partnership-requests`,
                 {
                     data,
-                }
+                },
             )
         },
         createFeedbackRequest: async (
-            data: GetAttributesValues<'api::feedback-request.feedback-request'>
+            data: GetAttributesValues<'api::feedback-request.feedback-request'>,
         ) => {
             return await client.post<Response<'api::feedback-request.feedback-request'>>(
                 `/api/feedback-requests`,
                 {
                     data,
-                }
+                },
             )
         },
 
         fetchSpecialPage: async (slug: string, publicationState: TPublicationState) => {
             try {
                 const response = await client.get<Response<'api::sp.sp'>>(
-                    getUrlWithPublicationState(`/api/sps/${slug}`, publicationState)
+                    getUrlWithPublicationState(`/api/sps/${slug}`, publicationState),
                 )
                 return response.data.data?.attributes
             } catch {
@@ -258,7 +253,7 @@ export const getApi = (locale?: string) => {
         },
 
         createSpecialPageInviteRequest: async (
-            data: GetAttributesValues<'api::special-pages-invites-request.special-pages-invites-request'>
+            data: GetAttributesValues<'api::special-pages-invites-request.special-pages-invites-request'>,
         ) => {
             return await client.post<
                 Response<'api::special-pages-invites-request.special-pages-invites-request'>

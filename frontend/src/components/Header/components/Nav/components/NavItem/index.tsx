@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import NextLink from 'next/link'
-import React, { useState, useRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { SubMenu } from '@/components/Header/components/Nav/components/SubMenu'
 import { Text } from '@/components/ui/typography/Text'
@@ -8,12 +8,12 @@ import { TNavItem } from '@/types'
 
 import styles from './index.module.scss'
 
-interface INavItem {
+type TNavItemProps = {
     navItem: TNavItem
     onToggle: (isOpen: boolean) => void
 }
 
-export const NavItem: React.FC<INavItem> = ({ navItem, onToggle }) => {
+export const NavItem = ({ navItem, onToggle }: TNavItemProps) => {
     const [isItemActive, setIsItemActive] = useState(false)
     const { link, subItems, title } = navItem
     const isSubItemsExist = subItems.length > 0

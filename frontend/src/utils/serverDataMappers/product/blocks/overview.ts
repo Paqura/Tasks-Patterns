@@ -8,7 +8,7 @@ type TBackendProductsBlockData = Extract<
 >
 
 export const mapOverviewBlockServerData = (
-    block: TBackendProductsBlockData
+    block: TBackendProductsBlockData,
 ): TOverviewBlockData => {
     return {
         title: block.title || '',

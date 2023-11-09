@@ -21,7 +21,7 @@ export const PageAnchorsContextProvider: React.FC<React.PropsWithChildren> = ({ 
                 watchedNodesRef.current.push(anchorTarget)
                 return () => {
                     watchedNodesRef.current = watchedNodesRef.current.filter(
-                        (t) => t !== anchorTarget
+                        (t) => t !== anchorTarget,
                     )
                 }
             }
@@ -55,11 +55,11 @@ export const PageAnchorsContextProvider: React.FC<React.PropsWithChildren> = ({ 
 
                 const nearestEdgeCurrent = Math.min(
                     Math.abs(viewportCeter - currentRect.top),
-                    Math.abs(viewportCeter - currentRect.bottom)
+                    Math.abs(viewportCeter - currentRect.bottom),
                 )
                 const nearestEdgePrevious = Math.min(
                     Math.abs(viewportCeter - prevRect.top),
-                    Math.abs(viewportCeter - prevRect.bottom)
+                    Math.abs(viewportCeter - prevRect.bottom),
                 )
 
                 return nearestEdgeCurrent < nearestEdgePrevious ? current : prev

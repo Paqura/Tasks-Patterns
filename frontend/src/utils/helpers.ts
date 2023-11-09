@@ -12,7 +12,7 @@ export const isInViewPort = (element: HTMLElement): boolean => {
 export const useObserver = (
     ref: RefObject<HTMLDivElement>,
     callback: Dispatch<SetStateAction<boolean>>,
-    isFloat = true
+    isFloat = true,
 ) => {
     useEffect(() => {
         if (!isFloat || !ref.current) {
@@ -32,7 +32,7 @@ export const useObserver = (
             {
                 threshold: 0.3,
                 root: window.document,
-            }
+            },
         )
         observer.observe(ref.current)
 

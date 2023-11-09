@@ -20,7 +20,7 @@ type TWebinarRegistrationRequest = Omit<NextApiRequest, 'body'> & {
 const getWebinarData = async (
     slug: string,
     api: TStrapiApi,
-    publicationState: TPublicationState
+    publicationState: TPublicationState,
 ) => {
     const response = await api.fetchNewsArticle(slug, publicationState)
 
@@ -44,7 +44,7 @@ export default async function handler(req: TWebinarRegistrationRequest, res: Nex
             const { eventName, eventDate, isEvent, eventLink } = await getWebinarData(
                 slug,
                 api,
-                getPublicationStateFromQuery(req.query)
+                getPublicationStateFromQuery(req.query),
             )
 
             if (!isEvent || !eventName || !eventDate || !eventLink) {

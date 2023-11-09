@@ -9,7 +9,7 @@ import styles from './index.module.scss'
 
 import arrowIcon from '/public/images/common/arrows-right.svg'
 
-interface IButton {
+type TButtonProps = {
     type?: 'button' | 'reset' | 'submit'
     link?: string
     isTargetBlank?: boolean
@@ -22,7 +22,7 @@ interface IButton {
     loading?: boolean
 }
 
-export const Button: React.FC<PropsWithChildren<IButton>> = ({
+export const Button = ({
     type = 'button',
     link,
     isTargetBlank = false,
@@ -34,7 +34,7 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
     download,
     disabled,
     loading,
-}) => {
+}: PropsWithChildren<TButtonProps>) => {
     const theme = useTypographyTheme() || 'light'
 
     const classNames = cn(
@@ -42,7 +42,7 @@ export const Button: React.FC<PropsWithChildren<IButton>> = ({
         styles.button,
         styles[`button_size_${size}`],
         styles[`button_theme_${theme}`],
-        { [styles.loading]: loading, [styles.disabled]: disabled }
+        { [styles.loading]: loading, [styles.disabled]: disabled },
     )
 
     const renderContent = () => {

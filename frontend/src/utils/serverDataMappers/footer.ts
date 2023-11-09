@@ -10,7 +10,7 @@ const mapNavItems = (items: GetAttributesValues<'footer.nav-block-item'>[]): TFo
     }))
 
 const mapProductsToNavItems = (
-    products: GetAttributesValues<'api::product.product'>[]
+    products: GetAttributesValues<'api::product.product'>[],
 ): TFooterNavItem[] =>
     products.map((item) => ({
         name: item?.title || '',
@@ -19,7 +19,7 @@ const mapProductsToNavItems = (
 
 export const mapFooterServerData = (
     serverFooterData?: GetAttributesValues<'api::footer.footer'>,
-    serverProductsData?: GetAttributesValues<'api::product.product'>[]
+    serverProductsData?: GetAttributesValues<'api::product.product'>[],
 ): TFooterData => {
     return {
         title: serverFooterData?.title || '',

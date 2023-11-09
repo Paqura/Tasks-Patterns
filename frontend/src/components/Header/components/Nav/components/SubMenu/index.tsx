@@ -1,5 +1,4 @@
 import NextLink from 'next/link'
-import React from 'react'
 
 import { Button } from '@/components/ui/Button'
 import { Text } from '@/components/ui/typography/Text'
@@ -8,13 +7,13 @@ import { useTranslate } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
-interface ISubMenu {
+type TSubMenuProps = {
     subItems: TNavSubItem[]
     anchor: string | undefined
     onClick: () => void
 }
 
-export const SubMenu: React.FC<ISubMenu> = ({ subItems, anchor, onClick }) => {
+export const SubMenu = ({ subItems, anchor, onClick }: TSubMenuProps) => {
     const translate = useTranslate()
     return (
         <div className={styles.sub_menu}>
@@ -35,6 +34,7 @@ export const SubMenu: React.FC<ISubMenu> = ({ subItems, anchor, onClick }) => {
                     </NextLink>
                 ))}
             </div>
+
             {anchor && (
                 <Button className={styles.button} link={anchor} size="s" onClick={onClick}>
                     {translate('navigation.jumpBtn')}

@@ -43,7 +43,7 @@ export const postFeedbackRequest = async (props: TPostFeedbackRequestArg): Promi
 type TPostPartnershipRequestArg = TPartnershipRequestBody
 
 export const postPartnershipRequest = async (
-    props: TPostPartnershipRequestArg
+    props: TPostPartnershipRequestArg,
 ): Promise<boolean> => {
     const response = await siteApiClient.post('/contacts/partnership', props)
 
@@ -55,7 +55,7 @@ type TPostPilotApplicationRequestArg = TPilotApplicationRequestBody & {
 }
 
 export const postPilotApplicationRequest = async (
-    params: TPostPilotApplicationRequestArg
+    params: TPostPilotApplicationRequestArg,
 ): Promise<boolean> => {
     const response = await siteApiClient.post('/contacts/pilot-application', params)
 
@@ -65,7 +65,7 @@ export const postPilotApplicationRequest = async (
 type TPostSpecialPageInviteRequestArg = TSpecialPageInviteRequestBody
 
 export const postSpecialPageInviteRequest = async (
-    props: TPostSpecialPageInviteRequestArg
+    props: TPostSpecialPageInviteRequestArg,
 ): Promise<boolean> => {
     const response = await siteApiClient.post('/contacts/specialPage', props)
 

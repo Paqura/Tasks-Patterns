@@ -9,7 +9,7 @@ type TBackendProductsBlockData = Extract<
 >
 
 export const mapOtherProductsBlockServerData = (
-    block: TBackendProductsBlockData
+    block: TBackendProductsBlockData,
 ): TOtherProductsBlockData => {
     return {
         title: block.title || '',

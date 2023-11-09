@@ -9,7 +9,7 @@ import { TImage } from '@/types'
 import styles from './index.module.scss'
 
 export const ArticleHeader: React.FC<{ image: TImage | null; title: string; topic: string }> = (
-    props
+    props,
 ) => {
     return (
         <div className={styles.banner}>

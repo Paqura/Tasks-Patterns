@@ -5,7 +5,7 @@ import { TAnalitycArticleData, TArticleSection } from '@/components/AnalyticalAr
 import { mapFilesServerData } from 'src/utils/serverDataMappers/media'
 
 const mapArticleSectionsServerData = (
-    article: GetAttributesValues<'article-section.article-section'>[]
+    article: GetAttributesValues<'article-section.article-section'>[],
 ): TArticleSection[] => {
     return article.map((item) => {
         return {
@@ -16,7 +16,7 @@ const mapArticleSectionsServerData = (
 }
 
 export const mapArticleServerData = (
-    serverArticleData?: GetAttributesValues<'api::analytic-article.analytic-article'>
+    serverArticleData?: GetAttributesValues<'api::analytic-article.analytic-article'>,
 ): TAnalitycArticleData => {
     return {
         titleTableOfContent: serverArticleData?.tableOfContent || '',

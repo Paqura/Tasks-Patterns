@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { Controller } from 'swiper'
 import 'swiper/css'
-import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react'
+import { Controller } from 'swiper/modules'
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 
 import { SliderButtons } from '@/components/ui/SliderButtons'
 import { Text } from '@/components/ui/typography/Text'

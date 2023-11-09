@@ -55,7 +55,7 @@ const flattenObj = (obj: TObject): TObject => {
 const getDescription = (
     query: string,
     data: TObject,
-    replacement: { from: string; to: string }
+    replacement: { from: string; to: string },
 ): string => {
     const { from, to } = replacement
 
@@ -85,7 +85,7 @@ const getSearchResultItem = (
     query: string,
     type: string,
     data: TObject,
-    slug?: string
+    slug?: string,
 ): TSearchResultItem | undefined => {
     const locale = data.locale as string
 
@@ -131,7 +131,7 @@ const getSearchResultItem = (
 }
 
 export const mapSearchResponseServerData = (
-    searchResponse?: SearchResponse | null
+    searchResponse?: SearchResponse | null,
 ): TSearchResultItem[] => {
     if (!searchResponse) {
         return []

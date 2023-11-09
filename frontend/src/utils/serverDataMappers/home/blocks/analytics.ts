@@ -10,7 +10,7 @@ type TBackendBlockData = Extract<
 >
 
 const mapStatisticsCard = (
-    data?: GetAttributesValues<'main.statistics-item'>
+    data?: GetAttributesValues<'main.statistics-item'>,
 ): TStatisticsValue => ({
     title: data?.title || '',
     value: data?.value || '',

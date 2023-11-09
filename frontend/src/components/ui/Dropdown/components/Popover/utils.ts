@@ -134,18 +134,18 @@ const getPopupPosition = ({
 const getViewportFactor = (
     popupPosition: TPopupPosition,
     viewportDimensions: TViewportDimensions,
-    popupSize: TPopupSize
+    popupSize: TPopupSize,
 ) => {
     const viewportOffset = 10
     const intersectionLeft = Math.max(popupPosition.left, viewportDimensions.left + viewportOffset)
     const intersectionRight = Math.min(
         popupPosition.left + popupSize.width,
-        viewportDimensions.right - viewportOffset
+        viewportDimensions.right - viewportOffset,
     )
     const intersectionTop = Math.max(popupPosition.top, viewportDimensions.top + viewportOffset)
     const intersectionBottom = Math.min(
         popupPosition.top + popupSize.height,
-        viewportDimensions.bottom - viewportOffset
+        viewportDimensions.bottom - viewportOffset,
     )
 
     if (intersectionLeft < intersectionRight && intersectionTop < intersectionBottom) {
@@ -245,7 +245,7 @@ export const getPositionInLayout = ({
         const viewportFactor = getViewportFactor(
             absolutePosition || position,
             viewportDimensions,
-            popupSize
+            popupSize,
         )
 
         if (

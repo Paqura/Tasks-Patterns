@@ -13,7 +13,7 @@ import styles from './index.module.scss'
 export type TNews = {
     title: string
     date?: Date
-    image?: TImage
+    image: TImage | null
     href: string
     className?: string
 }

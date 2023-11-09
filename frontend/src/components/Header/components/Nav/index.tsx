@@ -4,13 +4,13 @@ import { TNavItem } from '@/types'
 
 import styles from './index.module.scss'
 
-interface INav {
+type TNavProps = {
     items: TNavItem[]
     searchInputPlaceholder: string
     onToggle: (isOpen: boolean) => void
 }
 
-export const Nav = ({ items, searchInputPlaceholder, onToggle }: INav) => {
+export const Nav = ({ items, searchInputPlaceholder, onToggle }: TNavProps) => {
     return (
         <>
             <nav className={styles.nav}>

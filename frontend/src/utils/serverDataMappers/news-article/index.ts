@@ -17,7 +17,7 @@ export type TNewsArticleData = {
 }
 
 export const mapNewsArticleServerData = (
-    serverArticleData?: Omit<GetAttributesValues<'api::news-item.news-item'>, 'event'>
+    serverArticleData?: Omit<GetAttributesValues<'api::news-item.news-item'>, 'event'>,
 ): TNewsArticleData => {
     return {
         content: serverArticleData?.content ?? '',

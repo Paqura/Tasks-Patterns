@@ -33,7 +33,7 @@ export const SliderButtons: React.FC<TProps> = ({
                     [styles[`theme_${theme}`]]: !!theme,
                     [styles.disabled]: disableLeft && disableRight,
                 },
-                className
+                className,
             )}
         >
             <button className={styles.button} onClick={onLeftClick} disabled={disableLeft}>

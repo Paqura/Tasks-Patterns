@@ -5,7 +5,7 @@ import { EScreenEdges } from '@/types'
 export const useOutsideClick = (
     conditionFlag: boolean,
     ref: MutableRefObject<HTMLElement>,
-    callback: () => void
+    callback: () => void,
 ) => {
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {

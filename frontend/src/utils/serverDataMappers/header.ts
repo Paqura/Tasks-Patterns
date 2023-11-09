@@ -3,7 +3,7 @@ import { GetAttributesValues } from '@admin/general-schemas'
 import { THeaderData } from '@/components/Header'
 
 export const mapHeaderServerData = (
-    serverHeaderData?: GetAttributesValues<'api::header.header'>
+    serverHeaderData?: GetAttributesValues<'api::header.header'>,
 ): THeaderData => {
     return {
         navItems:

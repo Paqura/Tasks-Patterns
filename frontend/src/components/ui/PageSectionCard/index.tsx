@@ -54,7 +54,7 @@ export const PageSectionCard: React.FC<React.PropsWithChildren<TProps>> = ({
                     }
                 }
             },
-            { rootMargin: '0px 0px 0px 0px' }
+            { rootMargin: '0px 0px 0px 0px' },
         )
 
         observer.observe(contentRef.current)
@@ -85,7 +85,7 @@ export const PageSectionCard: React.FC<React.PropsWithChildren<TProps>> = ({
                     {
                         [styles.animation]: hasAnimation,
                     },
-                    contentClassName
+                    contentClassName,
                 )}
             >
                 <TypographyTheme theme={mode}>{children}</TypographyTheme>

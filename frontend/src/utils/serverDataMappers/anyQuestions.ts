@@ -5,7 +5,7 @@ import { getSelectProductOptionsServerData } from '@/utils/serverDataMappers/pro
 
 export const mapAnyQuestionsServerData = (
     serverData?: GetAttributesValues<'api::any-question.any-question'>,
-    products?: GetAttributesValues<'api::product.product'>[]
+    products?: GetAttributesValues<'api::product.product'>[],
 ): TAnyQuestionsData => {
     return {
         selectProductOptions: getSelectProductOptionsServerData(products),

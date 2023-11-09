@@ -7,13 +7,13 @@ import { useTranslate } from '@/utils/translate'
 
 import styles from './index.module.scss'
 
-interface ISubMenuMobile {
+type TSubMenuMobile = {
     subItems: TNavSubItem[]
     anchor: string | undefined
     onClick: () => void
 }
 
-export const SubMenuMobile = ({ subItems, anchor, onClick }: ISubMenuMobile) => {
+export const SubMenuMobile = ({ subItems, anchor, onClick }: TSubMenuMobile) => {
     const translate = useTranslate()
     return (
         <>

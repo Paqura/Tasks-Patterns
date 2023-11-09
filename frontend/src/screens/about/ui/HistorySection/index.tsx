@@ -3,8 +3,8 @@ import { PageSectionCard } from '@/components/ui/PageSectionCard'
 import { Heading } from '@/components/ui/typography/Heading'
 import { Text } from '@/components/ui/typography/Text'
 
-import { HistoryItem, THistoryItemData } from './components/HistoryItem'
 import styles from './index.module.scss'
+import { HistoryItem, THistoryItemData } from './ui/HistoryItem'
 
 export type THistorySectionData = {
     isVisible: boolean

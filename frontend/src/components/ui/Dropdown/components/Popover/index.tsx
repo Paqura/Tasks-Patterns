@@ -159,7 +159,7 @@ export const Popover = ({
                         [styles.visible]: visible,
                     },
                     styles[`direction_${direction}`],
-                    className
+                    className,
                 )}
                 style={style}
                 onClick={propagateClick ? undefined : preventRootClickPropagation}

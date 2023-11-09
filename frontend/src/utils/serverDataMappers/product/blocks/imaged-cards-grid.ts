@@ -9,7 +9,7 @@ type TBackendImagedCardsGridBlockData = Extract<
 >
 
 export const mapImagedCardsGridBlockServerData = (
-    block: TBackendImagedCardsGridBlockData
+    block: TBackendImagedCardsGridBlockData,
 ): TImagedCardsGridBlockData => {
     return {
         title: block.title || '',

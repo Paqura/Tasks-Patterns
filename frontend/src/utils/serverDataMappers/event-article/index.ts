@@ -36,7 +36,7 @@ export type TEventArticle = {
 }
 
 export const mapEventArticleServerData = (
-    serverArticleData?: GetAttributesValues<'api::news-item.news-item'>
+    serverArticleData?: GetAttributesValues<'api::news-item.news-item'>,
 ): TEventArticle => {
     const nowDate = new Date()
     const serverTimeZoneOffsetMS = nowDate.getTimezoneOffset() * 60 * 1000
@@ -78,7 +78,7 @@ export const mapEventArticleServerData = (
 }
 
 export const mapWebinarConfigServerData = (
-    serverWebinarConfigData?: GetAttributesValues<'api::webinar-config.webinar-config'>
+    serverWebinarConfigData?: GetAttributesValues<'api::webinar-config.webinar-config'>,
 ): TEventConfigData => {
     return {
         submit: serverWebinarConfigData?.buttonSubmit || '',

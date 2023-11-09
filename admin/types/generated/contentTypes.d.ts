@@ -23,6 +23,7 @@ export interface AdminPermission extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 1;
       }>;
+    actionParameters: Attribute.JSON & Attribute.DefaultTo<{}>;
     subject: Attribute.String &
       Attribute.SetMinMaxLength<{
         minLength: 1;
@@ -1922,9 +1923,11 @@ export interface ApiSpecialPageEmailTemplateSpecialPageEmailTemplate extends Sch
     draftAndPublish: false;
   };
   attributes: {
-    subject: Attribute.Text;
-    html: Attribute.Text;
-    text: Attribute.Text;
+    subject: Attribute.Text & Attribute.DefaultTo<'Subject'>;
+    html: Attribute.Text &
+      Attribute.DefaultTo<'<h3>\u041F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u043C!111</h3> <p>\u041D\u0430 \u0441\u0430\u0439\u0442\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C <%= fullName %>  \u0438\u0437 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438 <%= company %>  \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0431\u0440\u0430\u0442\u043D\u0443\u044E \u0441\u0432\u044F\u0437\u044C.<p> <p>\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F:</p> <p>Email: <%= email %> <p>\u0422\u0435\u043A\u0441\u0442 \u043E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u044F:</p> <blockquote><%= message %></blockquote>'>;
+    text: Attribute.Text &
+      Attribute.DefaultTo<'\u041F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u043C!123 \u041D\u0430 \u0441\u0430\u0439\u0442\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C <%= fullName %> \u0438\u0437 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438 <%= company %> \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0431\u0440\u0430\u0442\u043D\u0443\u044E \u0441\u0432\u044F\u0437\u044C. \u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F: Email: <%= email %> \u0422\u0435\u043A\u0441\u0442 \u043E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u044F: <%= message %>'>;
     templateName: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2216,7 +2219,7 @@ export interface ApiWebinarRequestWebinarRequest extends Schema.CollectionType {
   };
 }
 
-declare module '@strapi/strapi' {
+declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
       'admin::permission': AdminPermission;

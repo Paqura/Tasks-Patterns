@@ -36,7 +36,6 @@ export const PageLayout: React.FC<React.PropsWithChildren<TProps>> = ({
     useEffect(() => {
         const handleRouteChange = () => {
             if (mainElementRef.current) {
-                // @ts-expect-error
                 window.scrollTo({ top: 0, behavior: 'instant' })
             }
         }

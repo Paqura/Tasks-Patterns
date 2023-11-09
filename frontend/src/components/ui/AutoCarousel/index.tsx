@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import React, { useLayoutEffect, useState } from 'react'
-import { Autoplay, Pagination } from 'swiper'
 import 'swiper/css'
+import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import styles from './index.module.scss'
@@ -35,7 +35,7 @@ export const AutoCarousel: React.FC<React.PropsWithChildren<TProps>> = ({
                   renderBullet: function (index: number, className: string) {
                       return `
                         <span class="${cn(className, styles.bullet)}">
-                            <span 
+                            <span
                                 class="${styles.bulletProgress}"
                                 style="transition-duration: ${slideLifetime}ms"
                             ></span>

@@ -1,12 +1,26 @@
+import Image from 'next/image'
 import NextLink from 'next/link'
-import React from 'react'
+
+import { TImage } from '@/types'
 
 import styles from './index.module.scss'
 
-interface ILogo {
+type TLogoProps = {
     href?: string
+    image: TImage
 }
 
-export const Logo = ({ href }: ILogo) => {
-    return href ? <NextLink href="/" className={styles.logo} /> : <div className={styles.logo} />
+export const Logo = ({ href, image }: TLogoProps) => {
+    const imageElement = (
+        <Image className={styles.image} fill src={image.src} alt={image.alt ?? ''} />
+    )
+
+    if (href)
+        return (
+            <NextLink href="/" className={styles.logo}>
+                {imageElement}
+            </NextLink>
+        )
+
+    return <div className={styles.logo}>{imageElement}</div>
 }

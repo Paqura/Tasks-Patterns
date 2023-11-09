@@ -6,7 +6,7 @@ const mapImageAttributes = (
     attrs: Exclude<
         Exclude<MediaAttributeContent<'images', false>, undefined>['data'],
         undefined
-    >['attributes']
+    >['attributes'],
 ): TImage => ({
     src: attrs?.url || '',
     width: attrs?.width,
@@ -15,7 +15,7 @@ const mapImageAttributes = (
 })
 
 export const mapImageMediaFile = (
-    serverMediaField: MediaAttributeContent<'images', false> | undefined
+    serverMediaField: MediaAttributeContent<'images', false> | undefined,
 ): TImage | null => {
     return serverMediaField?.data?.attributes
         ? mapImageAttributes(serverMediaField?.data?.attributes)
@@ -23,7 +23,7 @@ export const mapImageMediaFile = (
 }
 
 export const mapFilesMediaFile = (
-    serverMediaField: MediaAttributeContent<'files', false> | undefined
+    serverMediaField: MediaAttributeContent<'files', false> | undefined,
 ): TFile => {
     const attrs = serverMediaField?.data?.attributes
     return {
@@ -34,7 +34,7 @@ export const mapFilesMediaFile = (
 }
 
 export const mapFilesServerData = (
-    serverFilesData: MediaAttributeContent<'files', true> | undefined
+    serverFilesData: MediaAttributeContent<'files', true> | undefined,
 ): TFile[] => {
     return (
         serverFilesData?.data?.map((item) => {
@@ -47,7 +47,7 @@ export const mapFilesServerData = (
     )
 }
 export const mapMultipleImageMediaFile = (
-    serverMediaField: MediaAttributeContent<'images', true> | undefined
+    serverMediaField: MediaAttributeContent<'images', true> | undefined,
 ): TImage[] => {
     return (
         (serverMediaField?.data
@@ -59,7 +59,7 @@ export const mapMultipleImageMediaFile = (
 }
 
 export const mapVideoMediaFile = (
-    serverMediaField: MediaAttributeContent<'videos', false> | undefined
+    serverMediaField: MediaAttributeContent<'videos', false> | undefined,
 ): TVideo => {
     const attrs = serverMediaField?.data?.attributes
     return {

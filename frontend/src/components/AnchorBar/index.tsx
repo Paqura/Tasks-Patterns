@@ -1,8 +1,8 @@
 import cn from 'classnames'
 import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
-import { FreeMode } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/free-mode'
+import { FreeMode } from 'swiper/modules'
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 
 import { PageSection } from '@/components/ui/PageSection'
@@ -89,7 +89,7 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBar) => {
                         <SwiperSlide
                             className={cn(
                                 styles.content,
-                                styles[`contentLayout_${anchors.length <= 6 ? 'grid' : 'scroll'}`]
+                                styles[`contentLayout_${anchors.length <= 6 ? 'grid' : 'scroll'}`],
                             )}
                             style={{
                                 gridTemplateColumns: `repeat(${anchors.length}, 1fr)`,

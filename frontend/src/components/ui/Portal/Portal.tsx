@@ -22,7 +22,7 @@ const usePortalNode = () => {
     return rootElemRef.current
 }
 
-export const Portal: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const Portal = ({ children }: React.PropsWithChildren) => {
     const portalNode = usePortalNode()
 
     if (portalNode) {

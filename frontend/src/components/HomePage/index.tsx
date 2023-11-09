@@ -94,7 +94,7 @@ export const HomePage: React.FC<THomePageProps> = (props) => {
             }
             return acc
         },
-        { blocks: [], anchors: [], lastNumber: 0 }
+        { blocks: [], anchors: [], lastNumber: 0 },
     )
 
     const anchors = [...blocksAcc.anchors, contactsAnchor]

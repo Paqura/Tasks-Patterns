@@ -1,12 +1,12 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 
-import { TAboutPageData } from '@/components/AboutPage'
-import { TEmployeeCardData } from '@/components/AboutPage/components/ExpertsSection/components/EmployeeCard'
-import { THistoryItemData } from '@/components/AboutPage/components/HistorySection/components/HistoryItem'
+import { TAboutScreenData } from '@/screens/about'
+import { TEmployeeCardData } from '@/screens/about/ui/ExpertsSection/ui/EmployeeCard'
+import { THistoryItemData } from '@/screens/about/ui/HistorySection/ui/HistoryItem'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 const mapEmployeeServerData = (
-    serverEmployeeData: GetAttributesValues<'about.employee'>
+    serverEmployeeData: GetAttributesValues<'about.employee'>,
 ): TEmployeeCardData => {
     return {
         photo: mapImageMediaFile(serverEmployeeData.photo) || { src: '' },
@@ -16,7 +16,7 @@ const mapEmployeeServerData = (
 }
 
 const mapHistoryItemServerData = (
-    serverHistoryItemData: GetAttributesValues<'about.history-item'>
+    serverHistoryItemData: GetAttributesValues<'about.history-item'>,
 ): THistoryItemData => {
     return {
         date: serverHistoryItemData.date || '',
@@ -27,12 +27,12 @@ const mapHistoryItemServerData = (
 }
 
 type TReducedAboutPageData = Omit<
-    TAboutPageData,
+    TAboutScreenData,
     'seo' | 'headerData' | 'footerData' | 'anyQuestions'
 >
 
 export const mapAboutPageServerData = (
-    serverAboutPageData?: GetAttributesValues<'api::about-page.about-page'>
+    serverAboutPageData?: GetAttributesValues<'api::about-page.about-page'>,
 ): TReducedAboutPageData => {
     return {
         headingSectionData: {

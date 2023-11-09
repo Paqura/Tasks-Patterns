@@ -18,7 +18,7 @@ export const Pagination: React.FC<TPaginationProps> = ({ page, pageCount }) => {
 
     const { showLeftDots, showRightDots, leftNumbers, rightNumbers } = getPaginationParams(
         page,
-        pageCount
+        pageCount,
     )
 
     if (!showPagination) {

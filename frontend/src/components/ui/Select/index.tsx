@@ -1,6 +1,5 @@
 import { Listbox } from '@headlessui/react'
 import cn from 'classnames'
-import React from 'react'
 import { useController } from 'react-hook-form'
 
 import { InputError } from '@/components/ui/InputError'
@@ -9,7 +8,7 @@ import { validateRequired } from '@/utils/validation/validateRequired'
 
 import styles from './index.module.scss'
 
-interface IProps<TValueType> {
+type TSelectProps<TValueType> = {
     placeholder?: string
     name: string
     required?: boolean
@@ -28,7 +27,7 @@ export function Select<TValueType>({
     className,
     required,
     options,
-}: IProps<TValueType>) {
+}: TSelectProps<TValueType>) {
     const fieldName = `${name}` as const
     const translate = useTranslate()
     const controller = useController({

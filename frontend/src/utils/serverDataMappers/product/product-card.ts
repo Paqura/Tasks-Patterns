@@ -4,7 +4,7 @@ import { TProductCard } from '@/components/ProductCard'
 import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
 
 export const mapProductCardServerData = (
-    product: GetAttributesValues<'api::product.product'>
+    product: GetAttributesValues<'api::product.product'>,
 ): TProductCard => {
     return {
         title: product.title || '',

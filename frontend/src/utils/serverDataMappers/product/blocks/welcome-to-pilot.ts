@@ -9,7 +9,7 @@ type TBackendTasksBlockData = Extract<
 >
 
 export const mapWelcomeToPilotBlockServerData = (
-    block: TBackendTasksBlockData
+    block: TBackendTasksBlockData,
 ): TWelcomeToPilotBlockData => {
     return {
         title: block.title || '',

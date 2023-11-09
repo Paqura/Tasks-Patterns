@@ -86,7 +86,7 @@ type TSectionMeta = {
 }
 
 export const mapSpecialPageServerData = (
-    serverData: GetAttributesValues<'api::sp.sp'>
+    serverData: GetAttributesValues<'api::sp.sp'>,
 ): TSpecialPageData => {
     const blocksData: TSpecialPageData['sections'] = []
 

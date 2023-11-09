@@ -4,10 +4,10 @@ import { THeaderData } from '@/components/Header'
 import { HeadingSection, THeadingSectionData } from '@/components/HeadingSection'
 import { PageLayout, TSeo } from '@/components/PageLayout'
 
-import { ExpertsSection, TExpertsSectionData } from './components/ExpertsSection'
-import { HistorySection, THistorySectionData } from './components/HistorySection'
+import { ExpertsSection, TExpertsSectionData } from './ui/ExpertsSection'
+import { HistorySection, THistorySectionData } from './ui/HistorySection'
 
-export type TAboutPageData = {
+export type TAboutScreenData = {
     seo: TSeo
     headerData: THeaderData
     footerData: TFooterData
@@ -16,9 +16,10 @@ export type TAboutPageData = {
     expertsSectionData: TExpertsSectionData
     historySectionData: THistorySectionData
 }
-type TAboutPageProps = TAboutPageData
 
-export const AboutPage: React.FC<TAboutPageProps> = (props) => {
+type TAboutScreenProps = TAboutScreenData
+
+export const AboutScreen = (props: TAboutScreenProps) => {
     return (
         <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
             <HeadingSection data={props.headingSectionData} />

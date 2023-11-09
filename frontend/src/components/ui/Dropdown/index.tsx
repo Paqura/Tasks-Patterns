@@ -1,10 +1,10 @@
 import cn from 'classnames'
-import React, { useRef } from 'react'
+import React, { PropsWithChildren, useRef } from 'react'
 
 import { Popover } from './components/Popover'
 import styles from './index.module.scss'
 
-interface IProps<TValueType> {
+type TDropdownProps<TValueType> = {
     className?: string
     popoverClassName?: string
     renderOption?: (option: TDropdownItem<TValueType>) => React.ReactNode
@@ -30,7 +30,7 @@ export function Dropdown<TValueType>({
     isOpened,
     dropdownOffset = 0,
     openInProtal,
-}: React.PropsWithChildren<IProps<TValueType>>) {
+}: PropsWithChildren<TDropdownProps<TValueType>>) {
     const containerRef = useRef<HTMLDivElement>(null)
     const dropdownRef = useRef<HTMLDivElement>(null)
 

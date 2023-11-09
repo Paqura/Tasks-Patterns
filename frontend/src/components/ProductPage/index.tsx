@@ -40,7 +40,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
     anyQuestionsData,
 }) => {
     const getAnchorLink = (
-        block: { data: { title: string } } & TSectionCardParams
+        block: { data: { title: string } } & TSectionCardParams,
     ): TAnchorLink => ({
         name: block.data.title,
         link: block.sectionId,
@@ -52,7 +52,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                 case 'tasks':
                     acc.lastNumber = acc.lastNumber + 1
                     acc.blocks.push(
-                        <TasksBlock key={index} data={block.data} sectionId={block.sectionId} />
+                        <TasksBlock key={index} data={block.data} sectionId={block.sectionId} />,
                     )
                     acc.anchors.push(getAnchorLink(block))
                     break
@@ -64,7 +64,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                             key={index}
                             data={block.data}
                             sectionId={block.sectionId}
-                        />
+                        />,
                     )
                     acc.anchors.push(getAnchorLink(block))
                     break
@@ -76,7 +76,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                             key={index}
                             data={block.data}
                             sectionId={block.sectionId}
-                        />
+                        />,
                     )
                     acc.anchors.push(getAnchorLink(block))
                     break
@@ -88,7 +88,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                             number={acc.lastNumber}
                             data={block.data}
                             sectionId={block.sectionId}
-                        />
+                        />,
                     )
                     acc.anchors.push(getAnchorLink(block))
                     break
@@ -105,7 +105,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                             key={index}
                             data={block.data}
                             sectionId={block.sectionId}
-                        />
+                        />,
                     )
                     acc.anchors.push(getAnchorLink(block))
                     break
@@ -117,7 +117,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                             key={index}
                             data={block.data}
                             sectionId={block.sectionId}
-                        />
+                        />,
                     )
                     acc.anchors.push(getAnchorLink(block))
                     break
@@ -129,7 +129,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
                             key={index}
                             data={block.data}
                             sectionId={block.sectionId}
-                        />
+                        />,
                     )
                     acc.anchors.push(getAnchorLink(block))
                     break
@@ -138,7 +138,7 @@ export const ProductPage: React.FC<TProductPageProps> = ({
             }
             return acc
         },
-        { blocks: [], anchors: [], lastNumber: 0 }
+        { blocks: [], anchors: [], lastNumber: 0 },
     )
 
     return (

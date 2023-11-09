@@ -42,6 +42,6 @@ export const Heading: React.FC<React.PropsWithChildren<THeadingProps>> = ({
         {
             className: classNames,
         },
-        sanitazedContent
+        sanitazedContent,
     )
 }

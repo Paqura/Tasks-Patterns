@@ -11,12 +11,12 @@ import styles from './index.module.scss'
 
 import angle from '/public/images/common/angle.svg'
 
-interface INavMobileItem {
+type TNavMobileItemProps = {
     navItem: TNavItem
     onClick: () => void
 }
 
-export const NavMobileItem = ({ navItem, onClick }: INavMobileItem) => {
+export const NavMobileItem = ({ navItem, onClick }: TNavMobileItemProps) => {
     const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
     const { title, link, subItems } = navItem
 

@@ -8,7 +8,7 @@ import { validateRequired } from '@/utils/validation/validateRequired'
 
 import styles from './index.module.scss'
 
-interface IProps {
+type TTextareaProps = {
     placeholder?: string
     name: string
     required?: boolean
@@ -24,7 +24,7 @@ export const Textarea = ({
     autoFocus,
     required,
     maxLength,
-}: IProps) => {
+}: TTextareaProps) => {
     const [isFocused, setIsFocused] = useState<boolean>(false)
     const fieldName = `${name}` as const
     const translate = useTranslate()

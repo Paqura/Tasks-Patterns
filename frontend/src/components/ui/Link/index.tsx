@@ -25,7 +25,7 @@ export const Link: React.FC<React.PropsWithChildren<TLinkProps>> = ({
                 styles.link,
                 styles[`type_${type}`],
                 { [styles[`theme_${theme}`]]: !!theme },
-                className
+                className,
             )}
             {...otherProps}
         >
