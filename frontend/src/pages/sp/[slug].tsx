@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next'
 
 import { SpecialPage, TSpecialPageProps } from '@/components/SpecialPage'
 import { getApi } from '@/utils/adminApi'
+import { getPublicationStateFromQuery } from '@/utils/publicationState'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapSpecialPageServerData } from '@/utils/serverDataMappers/special'
 
@@ -10,6 +11,7 @@ export type TServerSideProps = TSpecialPageProps
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     locale,
     params,
+    query,
 }) => {
     if (!params?.slug) {
         return {
@@ -23,7 +25,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
         api.fetchConfig(),
         api.fetchProducts(),
         api.fetchAnyQuestions(),
-        api.fetchSpecialPage(params.slug),
+        api.fetchSpecialPage(params.slug, getPublicationStateFromQuery(query)),
     ])
 
     if (specialData == null)

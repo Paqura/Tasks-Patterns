@@ -246,9 +246,11 @@ export const getApi = (locale?: string) => {
             )
         },
 
-        fetchSpecialPage: async (slug: string) => {
+        fetchSpecialPage: async (slug: string, publicationState: TPublicationState) => {
             try {
-                const response = await client.get<Response<'api::sp.sp'>>(`/api/sps/${slug}`)
+                const response = await client.get<Response<'api::sp.sp'>>(
+                    getUrlWithPublicationState(`/api/sps/${slug}`, publicationState)
+                )
                 return response.data.data?.attributes
             } catch {
                 return null
