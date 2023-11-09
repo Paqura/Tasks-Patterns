@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next'
 import { ProductPage, TProductPageData } from '@/components/ProductPage'
 import { TProductData } from '@/components/ProductPage/types'
 import { getApi } from '@/utils/adminApi'
+import { getPublicationStateFromQuery } from '@/utils/publicationState'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
@@ -15,6 +16,7 @@ export type TServerSideProps = TProductPageData & {
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: string }> = async ({
     params,
     locale,
+    query,
 }) => {
     if (!params?.id) {
         return {
@@ -27,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
     const [config, header, product, allProducts, anyQuestions, footer] = await Promise.all([
         api.fetchConfig(),
         api.fetchHeader(),
-        api.fetchProduct(params.id),
+        api.fetchProduct(params.id, getPublicationStateFromQuery(query)),
         api.fetchProducts(),
         api.fetchAnyQuestions(),
         api.fetchFooter(),

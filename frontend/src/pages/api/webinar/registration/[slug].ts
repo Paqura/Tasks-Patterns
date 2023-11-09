@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import { TStrapiApi, getApi } from '@/utils/adminApi'
 import { TLocale } from '@/utils/i18n'
+import { TPublicationState, getPublicationStateFromQuery } from '@/utils/publicationState'
 
 export type TWebinarRegistrationRequestBody = {
     fullName: string
@@ -16,8 +17,12 @@ type TWebinarRegistrationRequest = Omit<NextApiRequest, 'body'> & {
     body: TWebinarRegistrationRequestBody
 }
 
-const getWebinarData = async (slug: string, api: TStrapiApi) => {
-    const response = await api.fetchNewsArticle(slug)
+const getWebinarData = async (
+    slug: string,
+    api: TStrapiApi,
+    publicationState: TPublicationState
+) => {
+    const response = await api.fetchNewsArticle(slug, publicationState)
 
     const { title: eventName, event } = response || {}
 
@@ -36,7 +41,11 @@ export default async function handler(req: TWebinarRegistrationRequest, res: Nex
             const { fullName, email, phone, companyName, companyPosition, locale } = req.body
 
             const api = getApi(locale)
-            const { eventName, eventDate, isEvent, eventLink } = await getWebinarData(slug, api)
+            const { eventName, eventDate, isEvent, eventLink } = await getWebinarData(
+                slug,
+                api,
+                getPublicationStateFromQuery(req.query)
+            )
 
             if (!isEvent || !eventName || !eventDate || !eventLink) {
                 res.status(405).send({ message: 'Bad event' })

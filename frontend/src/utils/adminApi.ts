@@ -2,6 +2,8 @@ import { GetAttributesValues, Response, ResponseCollection } from '@admin/genera
 import axios from 'axios'
 import { stringify } from 'qs'
 
+import { TPublicationState, getUrlWithPublicationState } from './publicationState'
+
 export const paramsSerializer = (params: Record<string, unknown>) =>
     stringify(params, {
         arrayFormat: 'brackets',
@@ -72,10 +74,10 @@ export const getApi = (locale?: string) => {
             return response.data.data?.map((item) => item.attributes)
         },
 
-        fetchProduct: async (id: string) => {
+        fetchProduct: async (id: string, publicationState: TPublicationState) => {
             try {
                 const response = await client.get<Response<'api::product.product'>>(
-                    `/api/products/${id}`
+                    getUrlWithPublicationState(`/api/products/${id}`, publicationState)
                 )
                 return response.data.data?.attributes
             } catch {
@@ -135,20 +137,21 @@ export const getApi = (locale?: string) => {
             return response.data.data?.attributes
         },
 
-        fetchAnalyticArticle: async (id: string) => {
+        fetchAnalyticArticle: async (id: string, publicationState: TPublicationState) => {
             try {
                 const response = await client.get<
                     Response<'api::analytic-article.analytic-article'>
-                >(`/api/analytic-articles/${id}`)
+                >(getUrlWithPublicationState(`/api/analytic-articles/${id}`, publicationState))
                 return response.data.data?.attributes
             } catch {
                 return null
             }
         },
-        fetchNewsArticle: async (id: string) => {
+
+        fetchNewsArticle: async (id: string, publicationState: TPublicationState) => {
             try {
                 const response = await client.get<Response<'api::news-item.news-item'>>(
-                    `/api/news/${id}`
+                    getUrlWithPublicationState(`/api/news/${id}`, publicationState)
                 )
                 return response.data.data?.attributes
             } catch {
@@ -202,6 +205,7 @@ export const getApi = (locale?: string) => {
             const response = await client.get<Response<'api::footer.footer'>>(`/api/footer`)
             return response.data.data?.attributes
         },
+
         createWebinarRequest: async (
             data: GetAttributesValues<'api::webinar-request.webinar-request'>
         ) => {
@@ -242,9 +246,11 @@ export const getApi = (locale?: string) => {
             )
         },
 
-        fetchSpecialPage: async (slug: string) => {
+        fetchSpecialPage: async (slug: string, publicationState: TPublicationState) => {
             try {
-                const response = await client.get<Response<'api::sp.sp'>>(`/api/sps/${slug}`)
+                const response = await client.get<Response<'api::sp.sp'>>(
+                    getUrlWithPublicationState(`/api/sps/${slug}`, publicationState)
+                )
                 return response.data.data?.attributes
             } catch {
                 return null
