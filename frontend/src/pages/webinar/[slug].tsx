@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
-import React from 'react'
 
 import EventArticlePage, { TEventArticlePageData } from '@/components/EventArticlePage'
 import { getApi } from '@/utils/adminApi'
+import { getPublicationStateFromQuery } from '@/utils/publicationState'
 import {
     mapEventArticleServerData,
     mapWebinarConfigServerData,
@@ -15,6 +15,7 @@ export type TServerSideProps = TEventArticlePageData
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
     locale,
+    query,
 }) => {
     const api = getApi(locale)
 
@@ -24,7 +25,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
         }
     }
     const [newsItem, config, header, webinarConfig, products, footer] = await Promise.all([
-        api.fetchNewsArticle(params.slug),
+        api.fetchNewsArticle(params.slug, getPublicationStateFromQuery(query)),
         api.fetchConfig(),
         api.fetchHeader(),
         api.fetchWebinarConfig(),

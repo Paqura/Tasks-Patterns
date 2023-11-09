@@ -1,9 +1,9 @@
 import { GetAttributesValues } from '@admin/general-schemas'
 import { GetServerSideProps } from 'next'
-import React from 'react'
 
 import { AnalyticalArticlePage } from '@/components/AnalyticalArticlePage'
 import { getApi } from '@/utils/adminApi'
+import { getPublicationStateFromQuery } from '@/utils/publicationState'
 import { mapArticleServerData } from '@/utils/serverDataMappers/analytic-article'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
@@ -17,9 +17,11 @@ export type TServerSideProps = {
     anyQuestions?: GetAttributesValues<'api::any-question.any-question'>
     products?: GetAttributesValues<'api::product.product'>[]
 }
+
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
     locale,
+    query,
 }) => {
     if (!params?.slug) {
         return {
@@ -28,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
     }
     const api = getApi(locale)
     const [article, config, header, footer, anyQuestions, products] = await Promise.all([
-        api.fetchAnalyticArticle(params.slug),
+        api.fetchAnalyticArticle(params.slug, getPublicationStateFromQuery(query)),
         api.fetchConfig(),
         api.fetchHeader(),
         api.fetchFooter(),

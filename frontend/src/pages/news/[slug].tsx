@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
-import React from 'react'
 
 import NewsArticlePage, { TNewsArticlePageData } from '@/components/NewsArticlePage'
 import { getApi } from '@/utils/adminApi'
+import { getPublicationStateFromQuery } from '@/utils/publicationState'
 import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
@@ -13,6 +13,7 @@ export type TServerSideProps = TNewsArticlePageData
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
     locale,
+    query,
 }) => {
     if (!params?.slug) {
         return {
@@ -23,7 +24,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
     const api = getApi(locale)
 
     const [newsItem, config, header, products, anyQuestions, footer] = await Promise.all([
-        api.fetchNewsArticle(params.slug),
+        api.fetchNewsArticle(params.slug, getPublicationStateFromQuery(query)),
         api.fetchConfig(),
         api.fetchHeader(),
         api.fetchProducts(),
