@@ -19,7 +19,6 @@
             "@/*": ["./src/*"],
             "@admin/*": ["../admin/*"],
             "react": ["node_modules/@types/react"]
-
         },
         "noImplicitAny": true
     },

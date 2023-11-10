@@ -1,11 +1,11 @@
 import { GetServerSideProps } from 'next'
 
 import { AboutScreen, TAboutScreenData } from '@/screens/about'
-import { getApi } from '@/utils/adminApi'
-import { mapAboutPageServerData } from '@/utils/serverDataMappers/about'
-import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
+import { getApi } from '@/shared/lib/adminApi'
+import { mapAboutPageServerData } from '@/shared/lib/serverDataMappers/about'
+import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
 
 export type TServerSideProps = TAboutScreenData
 

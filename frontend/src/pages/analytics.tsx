@@ -1,12 +1,13 @@
 import { GetServerSideProps } from 'next'
 
-import { AnalyticsPage, TAnalyticsPageData } from '@/components/AnalyticsPage'
-import { getApi } from '@/utils/adminApi'
-import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
+import { AnalyticsScreen, TAnalyticsScreenProps } from '@/screens/analytics'
+import { getApi } from '@/shared/lib/adminApi'
+import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { TArticlePreviewData } from '@/shared/ui/project/ArticlesList/ui/Article'
 
-export type TServerSideProps = TAnalyticsPageData
+export type TServerSideProps = TAnalyticsScreenProps
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
     query,
@@ -52,7 +53,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         description: analyticsPage?.description || '',
     }
 
-    const articlesList: TAnalyticsPageData['articlesListData']['articles'] =
+    const articlesList: TArticlePreviewData[] =
         articles?.map((article) => {
             return {
                 title: article.title || '',
@@ -79,7 +80,7 @@ type TProps = TServerSideProps
 
 export default function Analytics(props: TProps) {
     return (
-        <AnalyticsPage
+        <AnalyticsScreen
             seo={props.seo}
             headerData={props.headerData}
             footerData={props.footerData}

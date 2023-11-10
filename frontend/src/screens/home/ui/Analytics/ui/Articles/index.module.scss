@@ -1,0 +1,40 @@
+@import "@/styles/offsets";
+@import "@/styles/media";
+
+.block {
+    @include subsection-above-offset;
+
+    @include media_breakpoint_small_desktop {
+        display: block;
+    }
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.listScrollArea {
+    margin-top: 16px;
+
+    @include media_breakpoint_mobile {
+        @include include-section-card-horizontal-paddings;
+    }
+}
+
+.list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+
+    @include media_breakpoint_small_desktop {
+        width: fit-content;
+        gap: 12px;
+    }
+}
+
+.listItem {
+    @include media_breakpoint_mobile {
+        min-width: 230px;
+    }
+}

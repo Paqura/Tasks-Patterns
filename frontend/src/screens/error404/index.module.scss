@@ -1,0 +1,45 @@
+@import '@/styles/media.scss';
+@import '@/styles/offsets.scss';
+
+.page {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 87px;
+    right: 0;
+    display: block;
+    width: 572px;
+    height: 837px;
+    content: '';
+    background-image: url('/images/404/background.svg');
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 572px 837px;
+
+    @include media_breakpoint_normal_desktop {
+      top: 46px;
+      width: 491px;
+      height: 688px;
+      background-size: 491px 688px;
+    }
+
+    @include media_breakpoint_small_desktop {
+      top: 132px;
+      width: 406px;
+      height: 570px;
+      background-size: 406px 570px;
+    }
+
+    @include media_breakpoint_mobile {
+      display: none;
+    }
+  }
+
+  .footer {
+    position: relative;
+    z-index: 1;
+    background: none;
+  }
+}
+

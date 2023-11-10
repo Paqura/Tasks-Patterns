@@ -1,0 +1,6 @@
+@import '@/styles/media.scss';
+
+.section {
+  margin: var(--section-margin-vertical) var(--section-margin-horizontal);
+  max-width: 100%;
+}

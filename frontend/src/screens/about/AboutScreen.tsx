@@ -1,8 +1,8 @@
-import { AnyQuestions, TAnyQuestionsData } from '@/components/AnyQuestions'
-import { TFooterData } from '@/components/Footer'
-import { THeaderData } from '@/components/Header'
-import { HeadingSection, THeadingSectionData } from '@/components/HeadingSection'
-import { PageLayout, TSeo } from '@/components/PageLayout'
+import { HeadingSection, THeadingSectionData } from '@/shared/ui/project/HeadingSection'
+import { PageLayout, TSeo } from '@/shared/ui/project/PageLayout'
+import { AnyQuestions, TAnyQuestionsData } from '@/widgets/AnyQuestions'
+import { TFooterData } from '@/widgets/Footer'
+import { THeaderData } from '@/widgets/Header'
 
 import { ExpertsSection, TExpertsSectionData } from './ui/ExpertsSection'
 import { HistorySection, THistorySectionData } from './ui/HistorySection'

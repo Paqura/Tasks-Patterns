@@ -1,15 +1,14 @@
 import { GetServerSideProps } from 'next'
 
-import { ProductPage, TProductPageData } from '@/components/ProductPage'
-import { TProductData } from '@/components/ProductPage/types'
-import { getApi } from '@/utils/adminApi'
-import { getPublicationStateFromQuery } from '@/utils/publicationState'
-import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapProductServerData } from '@/utils/serverDataMappers/product'
+import { ProductScreen, type TProductData, type TProductScreenProps } from '@/screens/product'
+import { getApi } from '@/shared/lib/adminApi'
+import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
+import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { mapProductServerData } from '@/shared/lib/serverDataMappers/product'
 
-export type TServerSideProps = TProductPageData & {
+export type TServerSideProps = TProductScreenProps & {
     slug: string
 }
 
@@ -62,7 +61,7 @@ type TProps = TServerSideProps
 
 export default function Product(props: TProps) {
     return (
-        <ProductPage
+        <ProductScreen
             //Пробрасываем key для того чтобы next размонтировал и заного смонтировал страницу при переходе между продуктами
             key={props.slug}
             seo={props.seo}

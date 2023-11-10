@@ -1,0 +1,11 @@
+@import '@/styles/offsets';
+
+.slider {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .swiperExtraClass {
+        @include include-section-card-horizontal-paddings;
+    }
+}

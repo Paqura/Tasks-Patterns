@@ -1,0 +1,91 @@
+@import '@/styles/media';
+
+.carousel {
+    :global {
+        .swiper-pagination {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            right: 0px;
+            display: flex;
+            max-width: 100%;
+            height: auto;
+            justify-content: flex-end;
+            gap: 10px;
+
+            @include media_breakpoint_small_desktop {
+                position: relative;
+                top: initial;
+                bottom: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.slide {
+    padding-top: 16px;
+    padding-bottom: 0;
+
+    @include media_breakpoint_small_desktop {
+        padding-top: 0;
+        padding-bottom: 16px;
+    }
+
+    @include media_breakpoint_mobile {
+        padding-top: 0;
+        padding-bottom: 12px;
+    }
+
+    &_hidden {
+        visibility: hidden;
+    }
+}
+
+.bullet {
+    position: relative;
+    margin-right: 0;
+    margin-left: 0;
+    display: block;
+    box-sizing: content-box;
+    min-width: 60px;
+    height: 2px;
+    cursor: pointer;
+    background-color: var(--color-border);
+    background-clip: content-box;
+    border-radius: 1px;
+
+    @include media_breakpoint_small_desktop {
+        width: auto;
+        flex-grow: 1;
+    }
+}
+
+.bulletProgress {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 100%;
+    background-color: var(--color-primary);
+    transition-property: none;
+
+    &_active {
+        width: 100%;
+        transition-timing-function: linear;
+        transition-property: width;
+    }
+}
+
+.animationStarted {
+    :global {
+        .swiper-pagination-bullet-active {
+            :local {
+                .bulletProgress {
+                    width: 100%;
+                    transition-timing-function: linear;
+                    transition-property: width;
+                }
+            }
+        }
+    }
+}

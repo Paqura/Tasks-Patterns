@@ -1,0 +1,81 @@
+@import "@/styles/media";
+
+.buttons {
+    position: relative;
+    display: inline-flex;
+    width: max-content;
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 4px;
+    align-items: center;
+}
+
+.button {
+    position: relative;
+    padding: 8px;
+    display: inline-flex;
+    cursor: pointer;
+    background: none;
+    border: none;
+    align-items: center;
+    opacity: 0.8;
+
+    @include media_hover {
+        &:not(:disabled) {
+            opacity: 1;
+        }
+    }
+
+    &:disabled {
+        cursor: default;
+        opacity: 0.2;
+    }
+
+    & img {
+        width: 18px;
+        height: 19px;
+    }
+}
+
+.divider {
+    position: absolute;
+    left: 50%;
+    display: block;
+    width: 1px;
+    height: 16px;
+    border-left: 1px solid;
+}
+
+.theme {
+    &_light {
+        border-color: var(--color-gray-ui);
+
+        @include media_hover {
+            &:not(.disabled) {
+                border-color: var(--color-gray-4x);
+            }
+        }
+
+        &.disabled {
+            border-color: rgba(179, 179, 179, 0.5);
+        }
+
+        & .divider {
+            border-color: var(--color-gray-ui);
+        }
+    }
+
+    &_dark {
+        border-color: var(--color-gray-7x);
+
+        @include media_hover {
+            &:not(.disabled) {
+                border-color: var(--color-gray-6x);
+            }
+        }
+
+        & .divider {
+            border-color: var(--color-gray-7x);
+        }
+    }
+}

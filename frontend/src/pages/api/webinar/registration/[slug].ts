@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { TStrapiApi, getApi } from '@/utils/adminApi'
-import { TLocale } from '@/utils/i18n'
-import { TPublicationState, getPublicationStateFromQuery } from '@/utils/publicationState'
+import { TStrapiApi, getApi } from '@/shared/lib/adminApi'
+import { TLocale } from '@/shared/lib/i18n'
+import { TPublicationState, getPublicationStateFromQuery } from '@/shared/lib/publicationState'
 
 export type TWebinarRegistrationRequestBody = {
     fullName: string

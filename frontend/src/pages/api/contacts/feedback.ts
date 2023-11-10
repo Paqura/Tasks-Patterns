@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { getApi } from '@/utils/adminApi'
-import { TLocale } from '@/utils/i18n'
+import { getApi } from '@/shared/lib/adminApi'
+import { TLocale } from '@/shared/lib/i18n'
 
 export type TFeedbackRequestBody = {
     fullName: string

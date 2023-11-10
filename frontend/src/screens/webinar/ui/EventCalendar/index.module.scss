@@ -1,0 +1,50 @@
+@import '@/styles/media';
+
+.calendar {
+    margin-top: 60px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: var(--color-white);
+    background-image: url('/images/webinar/calendar.svg');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 229px;
+    border-radius: 12px;
+
+    @include media_breakpoint_small_desktop {
+        margin-top: 40px;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-top: 32px;
+        padding: 20px;
+        background-image: url('/images/webinar/calendarMobile.svg');
+        background-size: 134px;
+    }
+}
+
+.title {
+    margin-bottom: 16px;
+    color: var(--color-gray-8x);
+
+    mark {
+        white-space: nowrap;
+        color: var(--color-primary);
+        background: none;
+    }
+}
+
+.description {
+    margin-bottom: 40px;
+    max-width: 350px;
+    color: var(--color-gray-6x);
+
+    @include media_breakpoint_mobile {
+        margin-bottom: 16px;
+    }
+}
+
+.button {
+    margin-right: auto;
+    width: auto;
+}

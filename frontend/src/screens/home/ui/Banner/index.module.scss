@@ -1,0 +1,67 @@
+@import '@/styles/media';
+@import '@/styles/offsets';
+
+.banner {
+    position: relative;
+    padding-top: 326px;
+    padding-bottom: 334px;
+
+    @include media_breakpoint_normal_desktop {
+        padding-top: 224px;
+        padding-bottom: 124px;
+    }
+
+    @include media_breakpoint_mobile {
+        padding-top: 36px;
+        padding-bottom: 40px;
+    }
+}
+
+.textContent {
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-right: 120px;
+    padding-left: 120px;
+    box-sizing: content-box;
+    max-width: 615px;
+
+    @include media_breakpoint_normal_desktop {
+        padding-right: 148px;
+        padding-left: 148px;
+    }
+
+    @include media_breakpoint_small_desktop {
+        padding-right: 120px;
+        padding-left: 120px;
+    }
+
+    @include media_breakpoint_mobile {
+        padding-right: 20px;
+        padding-left: 20px;
+        max-width: 100%;
+    }
+}
+
+.description {
+    margin-top: 16px;
+    color: var(--color-gray-8x);
+}
+
+.contactBtn {
+    margin-top: 32px;
+}
+
+.videoBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 180px);
+    background: var(--color-light-gray-ui);
+    object-fit: cover;
+
+    @include media_breakpoint_mobile {
+        height: calc(100% + 140px);
+    }
+}

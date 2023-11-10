@@ -1,0 +1,42 @@
+@import "@/styles/media.scss";
+@import "@/styles/offsets.scss";
+
+.card {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 158px;
+    text-align: left;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    justify-content: space-between;
+
+    @include media_breakpoint_mobile {
+        padding: 16px;
+        height: 122px;
+    }
+}
+
+.logo {
+    position: relative;
+    padding: 16px 0;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+
+    @include media_breakpoint_mobile {
+        padding: 8px 0;
+    }
+
+    & img {
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
+    }
+}

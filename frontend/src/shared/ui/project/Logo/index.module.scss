@@ -1,0 +1,11 @@
+@import "@/styles/media";
+
+.logo {
+  display: flex;
+  width: 250px;
+  height: 22px;
+  background-image: url('/images/logo/logoDesktop.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  align-items: center;
+}

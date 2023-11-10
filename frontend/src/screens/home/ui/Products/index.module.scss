@@ -1,0 +1,29 @@
+@import '@/styles/media.scss';
+@import '@/styles/offsets.scss';
+
+.productsList {
+    @include media_breakpoint_mobile {
+        @include subsection-above-offset;
+    }
+}
+
+.productsScrollArea {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+
+    @include subsection-above-offset;
+    @include include-section-card-horizontal-paddings;
+
+    @include media_breakpoint_small_desktop {
+        gap: 12px;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-top: 0;
+    }
+}
+
+.clients {
+    @include subsection-above-offset;
+}

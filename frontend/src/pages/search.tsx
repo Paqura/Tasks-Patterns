@@ -1,13 +1,13 @@
 import { GetServerSideProps } from 'next'
 
-import { SearchPage, TSearchPageData } from '@/components/SearchPage'
-import { getApi } from '@/utils/adminApi'
-import { getSearchResponse, getSearchString } from '@/utils/meilisearchApi'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapSearchResponseServerData } from '@/utils/serverDataMappers/search'
+import { SearchScreen, TSearchScreenProps } from '@/screens/search'
+import { getApi } from '@/shared/lib/adminApi'
+import { getSearchResponse, getSearchString } from '@/shared/lib/meilisearchApi'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { mapSearchResponseServerData } from '@/shared/lib/serverDataMappers/search'
 
-export type TServerSideProps = TSearchPageData
+export type TServerSideProps = TSearchScreenProps
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
     query,
@@ -69,7 +69,7 @@ type TProps = TServerSideProps
 
 export default function Search(props: TProps) {
     return (
-        <SearchPage
+        <SearchScreen
             seo={props.seo}
             headerData={props.headerData}
             footerData={props.footerData}

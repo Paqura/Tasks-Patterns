@@ -1,0 +1,99 @@
+@import '@/styles/media';
+@import '@/styles/offsets';
+
+.banner {
+    position: relative;
+    margin-top: calc(var(--section-margin-vertical) * var(--margins-compensate-count) * -1);
+    margin-bottom: calc(var(--section-margin-vertical) * var(--margins-compensate-count) * -1);
+    padding-top: calc(var(--section-margin-vertical) * (var(--margins-compensate-count) - 1));
+    padding-right: var(--section-margin-horizontal);
+    padding-left: var(--section-margin-horizontal);
+    padding-bottom: calc(var(--section-margin-vertical) * (var(--margins-compensate-count) - 1));
+
+    display: flex;
+    background-color: var(--color-gray-ui);
+    gap: 82px;
+
+    --margins-compensate-count: 5;
+
+    @include media_breakpoint_normal_desktop {
+        --margins-compensate-count: 3;
+    }
+
+    @include media_breakpoint_small_desktop {
+        --margins-compensate-count: 2;
+        gap: 75px;
+    }
+
+    @include media_breakpoint_mobile {
+        flex-direction: column;
+        gap: 24px;
+    }
+}
+
+.content {
+    padding-top: 60px;
+    padding-right: var(--section-card-padding-right);
+    padding-left: var(--section-card-padding-left);
+    padding-bottom: 60px;
+
+    display: flex;
+    box-sizing: content-box;
+    gap: 82px;
+    align-items: center;
+
+    @include media_breakpoint_small_desktop {
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        gap: 75px;
+    }
+
+    @include media_breakpoint_mobile {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        flex-direction: column;
+        gap: 24px;
+        align-self: flex-start;
+    }
+}
+
+.description {
+    margin-top: 24px;
+    max-width: 496px;
+
+    @include media_breakpoint_small_desktop {
+        max-width: 510px;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-top: 16px;
+        max-width: 100%;
+    }
+}
+
+.button {
+    margin-top: 24px;
+}
+
+.imageWrapper {
+    width: 260px;
+    height: auto;
+
+    @include media_breakpoint_mobile {
+        width: auto;
+        height: 221px;
+    }
+}
+
+.image {
+    object-fit: contain;
+    width: 260px;
+    height: max-content;
+
+    @include media_breakpoint_mobile {
+        align-self: flex-start;
+        width: min-content;
+        height: 221px;
+    }
+}
