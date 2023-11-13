@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import { FreeMode } from 'swiper/modules'
@@ -8,6 +8,7 @@ import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 import { useAnchors } from '@/shared/lib/anchors'
 import { PAGE_SECTIONS_ANCHORS_ELEMENT_ID } from '@/shared/lib/constants'
 import { useObserver } from '@/shared/lib/helpers'
+import { useIsMobile } from '@/shared/lib/hooks'
 import { Text } from '@/shared/ui/common/typography/Text'
 import { PageSection } from '@/shared/ui/project/PageSection'
 
@@ -53,7 +54,46 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBarProps) => {
         }
     }, [])
 
-    const handleClick = (e: MouseEvent<HTMLAnchorElement>, anchor: string) => {
+    const isMobile = useIsMobile()
+
+    const BAR_OFFSET = isMobile ? 20 : 40
+
+    const rectMap = useMemo(() => {
+        if (typeof document === 'undefined') return {}
+
+        const elements = document.querySelectorAll('[data-anchor-element]')
+
+        const rectMap = Array.from(elements).reduce<Record<string, DOMRect>>((acc, curr) => {
+            const key = (curr.getAttribute('href') ?? '').slice(1)
+
+            acc[key] = curr.getBoundingClientRect()
+
+            return acc
+        }, {})
+
+        return rectMap
+    }, [])
+
+    useEffect(() => {
+        const getSwiperApi = () => swiperRef.current
+
+        const handleScrollIntoView = () => {
+            const swiperApi = getSwiperApi()
+
+            if (!activeLink || !swiperApi) return
+
+            swiperApi.translateTo(-Math.abs(rectMap[activeLink].x - BAR_OFFSET), 100)
+            swiperApi.update()
+        }
+
+        window.addEventListener('scrollend', handleScrollIntoView)
+
+        return () => {
+            window.removeEventListener('scrollend', handleScrollIntoView)
+        }
+    }, [BAR_OFFSET, activeLink, api, rectMap])
+
+    const handleClick = (anchor: string) => {
         api.setActive(anchor)
     }
 
@@ -75,7 +115,7 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBarProps) => {
                     <Swiper
                         direction={'horizontal'}
                         slidesPerView={'auto'}
-                        freeMode={true}
+                        freeMode
                         modules={[FreeMode]}
                         allowTouchMove={true}
                         grabCursor={true}
@@ -99,11 +139,12 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBarProps) => {
                             {anchors.map((anchor) => (
                                 <a
                                     key={anchor.link}
+                                    data-anchor-element
                                     href={`#${anchor.link}`}
                                     className={cn(styles.anchor, {
                                         [styles.anchor_active]: activeLink === anchor.link,
                                     })}
-                                    onClick={(e) => handleClick(e, anchor.link)}
+                                    onClick={() => handleClick(anchor.link)}
                                 >
                                     <Text type="pM" className={styles.text}>
                                         {anchor.name}
