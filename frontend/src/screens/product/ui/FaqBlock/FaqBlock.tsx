@@ -1,4 +1,4 @@
-import { useTranslate } from '@/shared/lib/translate'
+import { useTranslate } from '@/services/translation'
 import { PageSection } from '@/shared/ui/project/PageSection'
 
 import styles from './index.module.scss'

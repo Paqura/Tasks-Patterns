@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
+import { TLocale } from '@/services/translation'
 import { getApi } from '@/shared/lib/adminApi'
-import { TLocale } from '@/shared/lib/i18n'
 
 export type TPartnershipRequestBody = {
     address?: string

@@ -7,8 +7,7 @@ import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 
 import { useAnchors } from '@/shared/lib/anchors'
 import { PAGE_SECTIONS_ANCHORS_ELEMENT_ID } from '@/shared/lib/constants'
-import { useObserver } from '@/shared/lib/helpers'
-import { useIsMobile } from '@/shared/lib/hooks'
+import { useIsMobile, useObserver } from '@/shared/lib/hooks'
 import { Text } from '@/shared/ui/common/typography/Text'
 import { PageSection } from '@/shared/ui/project/PageSection'
 

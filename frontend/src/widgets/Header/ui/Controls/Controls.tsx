@@ -3,8 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
 // import { Question } from '@/widgets/Header/components/Controls/components/icons/Question'
-import { TLocale, defaultLocale, locales } from '@/shared/lib/i18n'
-import { useLocale } from '@/shared/lib/translate'
+import { TLocale, defaultLocale, locales, useLocale } from '@/services/translation'
 import { Dropdown } from '@/shared/ui/common/Dropdown'
 
 import styles from './index.module.scss'

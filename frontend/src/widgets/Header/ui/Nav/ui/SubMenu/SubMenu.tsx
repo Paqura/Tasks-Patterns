@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 
-import { useTranslate } from '@/shared/lib/translate'
+import { useTranslate } from '@/services/translation'
 import { Button } from '@/shared/ui/common/Button'
 import { Text } from '@/shared/ui/common/typography/Text'
 import { TNavSubItem } from '@/types'

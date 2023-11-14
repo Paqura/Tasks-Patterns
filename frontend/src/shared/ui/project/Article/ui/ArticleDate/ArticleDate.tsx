@@ -1,5 +1,5 @@
+import { useLocale } from '@/services/translation'
 import { formatDate } from '@/shared/lib/date'
-import { useLocale } from '@/shared/lib/translate'
 import { Text } from '@/shared/ui/common/typography/Text'
 
 import styles from './index.module.scss'

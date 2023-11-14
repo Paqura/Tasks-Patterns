@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
+import { useTranslate } from '@/services/translation'
 import { CONTACTS_SECTION_ID } from '@/shared/lib/constants'
-import { useTranslate } from '@/shared/lib/translate'
 import { Button } from '@/shared/ui/common/Button'
 import { Heading } from '@/shared/ui/common/typography/Heading'
 import { Text } from '@/shared/ui/common/typography/Text'

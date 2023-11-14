@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
 
 import { SearchScreen, TSearchScreenProps } from '@/screens/search'
+import { getSearchResponse, getSearchString } from '@/services/meilisearch'
 import { getApi } from '@/shared/lib/adminApi'
-import { getSearchResponse, getSearchString } from '@/shared/lib/meilisearchApi'
 import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
 import { mapSearchResponseServerData } from '@/shared/lib/serverDataMappers/search'

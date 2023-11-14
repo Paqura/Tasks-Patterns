@@ -1,4 +1,4 @@
-import { useTranslate } from '@/shared/lib/translate'
+import { useTranslate } from '@/services/translation'
 import { CardsSlider } from '@/shared/ui/common/CardsSlider'
 import { Link } from '@/shared/ui/common/Link'
 import { PageSection } from '@/shared/ui/project/PageSection'

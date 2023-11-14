@@ -1,7 +1,7 @@
 import { SearchResponse } from 'meilisearch'
 
 import { TSearchResultItem } from '@/screens/search/ui/SearchResultsList'
-import { highlightPreTag } from '@/shared/lib/meilisearchApi'
+import { highlightPreTag } from '@/services/meilisearch'
 
 type TObject = Record<string, unknown>
 

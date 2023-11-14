@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react'
 import { useController } from 'react-hook-form'
 import { ValidationValueMessage } from 'react-hook-form/dist/types/validator'
 
-import { TTranslateFn, useTranslate } from '@/shared/lib/translate'
+import { TTranslateFn, useTranslate } from '@/services/translation'
 import { validateEmail } from '@/shared/lib/validation/validateEmail'
 import { validatePhoneNumber } from '@/shared/lib/validation/validatePhoneNumber'
 import { validateRequired } from '@/shared/lib/validation/validateRequired'

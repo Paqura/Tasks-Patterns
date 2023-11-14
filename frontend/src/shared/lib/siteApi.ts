@@ -5,8 +5,7 @@ import { TPartnershipRequestBody } from '@/pages/api/contacts/partnership'
 import { TPilotApplicationRequestBody } from '@/pages/api/contacts/pilot-application'
 import { TSpecialPageInviteRequestBody } from '@/pages/api/contacts/specialPage'
 import { TWebinarRegistrationRequestBody } from '@/pages/api/webinar/registration/[slug]'
-
-import { TLocale } from './i18n'
+import { TLocale } from '@/services/translation'
 
 const getClient = () => {
     return axios.create({

@@ -2,7 +2,7 @@ import { Listbox } from '@headlessui/react'
 import cn from 'classnames'
 import { useController } from 'react-hook-form'
 
-import { useTranslate } from '@/shared/lib/translate'
+import { useTranslate } from '@/services/translation'
 import { validateRequired } from '@/shared/lib/validation/validateRequired'
 import { InputError } from '@/shared/ui/common/InputError'
 

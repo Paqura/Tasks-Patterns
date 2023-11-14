@@ -1,5 +1,5 @@
 import { TFileData } from '@/screens/analyticArticle'
-import { useTranslate } from '@/shared/lib/translate'
+import { useTranslate } from '@/services/translation'
 import { CardsSlider } from '@/shared/ui/common/CardsSlider'
 import { Heading } from '@/shared/ui/common/typography/Heading'
 import { Article } from '@/shared/ui/project/Article'

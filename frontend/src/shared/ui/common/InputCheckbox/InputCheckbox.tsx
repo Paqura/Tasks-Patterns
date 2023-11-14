@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { useController } from 'react-hook-form'
 
-import { useTranslate } from '@/shared/lib/translate'
+import { useTranslate } from '@/services/translation'
 import { validateRequired } from '@/shared/lib/validation/validateRequired'
 import { Text } from '@/shared/ui/common/typography/Text'
 

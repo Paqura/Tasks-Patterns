@@ -2,8 +2,8 @@ import map from 'lodash/map'
 import { useState } from 'react'
 import * as tsPattern from 'ts-pattern'
 
+import { useLocale } from '@/services/translation'
 import { postSpecialPageInviteRequest } from '@/shared/lib/siteApi'
-import { useLocale } from '@/shared/lib/translate'
 import { PageLayout, TSeo } from '@/shared/ui/project/PageLayout'
 
 import styles from './index.module.scss'

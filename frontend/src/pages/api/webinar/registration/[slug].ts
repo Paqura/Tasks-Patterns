@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
+import { TLocale } from '@/services/translation'
 import { TStrapiApi, getApi } from '@/shared/lib/adminApi'
-import { TLocale } from '@/shared/lib/i18n'
 import { TPublicationState, getPublicationStateFromQuery } from '@/shared/lib/publicationState'
 
 export type TWebinarRegistrationRequestBody = {

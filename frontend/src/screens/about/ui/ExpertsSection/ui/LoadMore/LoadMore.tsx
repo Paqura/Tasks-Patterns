@@ -1,8 +1,8 @@
 import cn from 'classnames'
 import { useState } from 'react'
 
+import { useTranslate } from '@/services/translation'
 import { useIsMobile } from '@/shared/lib/hooks'
-import { useTranslate } from '@/shared/lib/translate'
 import { Button } from '@/shared/ui/common/Button'
 
 import styles from './index.module.scss'

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { defaultNS, TLocale, TLocaleResource } from '.'
+import { defaultNS, TLocale, TLocaleResource } from './createTranslator'
 
 declare module 'i18next' {
     // eslint-disable-next-line @typescript-eslint/consistent-type-definitions

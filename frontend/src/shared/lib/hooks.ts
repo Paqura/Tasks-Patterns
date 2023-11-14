@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useState } from 'react'
+import { Dispatch, MutableRefObject, RefObject, SetStateAction, useEffect, useState } from 'react'
 
 import { EScreenEdges } from '@/types'
 
@@ -8,15 +8,16 @@ export const useOutsideClick = (
     callback: () => void,
 ) => {
     useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
+        const handleClickOutside = (event: MouseEvent) => {
             if (ref.current && !ref.current.contains(event.target as Node)) {
                 callback()
             }
         }
 
-        if (conditionFlag) {
-            document.addEventListener('mousedown', handleClickOutside)
-        }
+        if (!conditionFlag) return
+
+        document.addEventListener('mousedown', handleClickOutside)
+
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
@@ -53,4 +54,37 @@ export const useIsMobile = () => {
     }, [])
 
     return isMobile
+}
+
+export const useObserver = (
+    ref: RefObject<HTMLDivElement>,
+    callback: Dispatch<SetStateAction<boolean>>,
+    isFloat = true,
+) => {
+    useEffect(() => {
+        if (!isFloat || !ref.current) {
+            return
+        }
+        let observer = new IntersectionObserver(
+            (entries) => {
+                if (!entries[0]) {
+                    return
+                }
+                if (entries[0].intersectionRatio > 0) {
+                    callback(false)
+                } else {
+                    callback(true)
+                }
+            },
+            {
+                threshold: 0.3,
+                root: window.document,
+            },
+        )
+        observer.observe(ref.current)
+
+        return () => {
+            observer.disconnect()
+        }
+    }, [ref, callback, isFloat])
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { useLocale } from '@/services/translation'
 import { CONTACTS_SECTION_ID } from '@/shared/lib/constants'
 import { scrollToSection } from '@/shared/lib/scrollToSection'
 import {
@@ -7,7 +8,6 @@ import {
     postPartnershipRequest,
     postPilotApplicationRequest,
 } from '@/shared/lib/siteApi'
-import { useLocale } from '@/shared/lib/translate'
 import { CardsSlider } from '@/shared/ui/common/CardsSlider'
 import { Heading } from '@/shared/ui/common/typography/Heading'
 import { Text } from '@/shared/ui/common/typography/Text'

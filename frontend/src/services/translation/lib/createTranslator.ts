@@ -19,6 +19,7 @@ type TLocaleConfig = {
     abbr: string
     sources: TLocaleResource
 }
+
 export type TLocaleResources = { [key in TLocale]: TLocaleConfig }
 
 export const locales: TLocaleResources = {
@@ -44,3 +45,7 @@ i18n.init({
 export const createTranslator = (locale: TLocale) => {
     return i18n.cloneInstance({ lng: locale })
 }
+
+export type TTranslator = typeof i18n
+
+export type TTranslateFn = TTranslator['t']

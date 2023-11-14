@@ -1,20 +1,22 @@
-import { NAV_ELEMENT_ID, PAGE_SECTIONS_ANCHORS_ELEMENT_ID, CONTACTS_SECTION_ID } from './constants'
+import { CONTACTS_SECTION_ID, NAV_ELEMENT_ID, PAGE_SECTIONS_ANCHORS_ELEMENT_ID } from './constants'
+
+const getElementHeightById = (id: string) => document.getElementById(id)?.offsetHeight || 0
 
 export const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
-    if (element) {
-        const headerHeight = document.getElementById(NAV_ELEMENT_ID)?.offsetHeight || 0
-        const barHeight =
-            document.getElementById(PAGE_SECTIONS_ANCHORS_ELEMENT_ID)?.offsetHeight || 0
 
-        const elementOffsetTop = element.offsetTop - (headerHeight + barHeight)
-        const scrollContainer = window
+    if (!element) return
 
-        scrollContainer?.scrollTo({
-            top: elementOffsetTop,
-            behavior: 'smooth',
-        })
-    }
+    const headerHeight = getElementHeightById(NAV_ELEMENT_ID)
+    const barHeight = getElementHeightById(PAGE_SECTIONS_ANCHORS_ELEMENT_ID)
+
+    const elementOffsetTop = element.offsetTop - (headerHeight + barHeight)
+    const scrollContainer = window
+
+    scrollContainer?.scrollTo({
+        top: elementOffsetTop,
+        behavior: 'smooth',
+    })
 }
 
 export const scrollToContacts = () => scrollToSection(CONTACTS_SECTION_ID)

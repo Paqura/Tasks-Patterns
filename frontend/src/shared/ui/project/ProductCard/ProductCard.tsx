@@ -2,7 +2,7 @@ import cn from 'classnames'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-import { useTranslate } from '@/shared/lib/translate'
+import { useTranslate } from '@/services/translation'
 import { Link } from '@/shared/ui/common/Link'
 import { Heading } from '@/shared/ui/common/typography/Heading'
 import { Text } from '@/shared/ui/common/typography/Text'

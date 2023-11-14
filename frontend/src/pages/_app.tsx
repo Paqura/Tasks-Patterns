@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 
-import { TranslationProvider } from '@/shared/lib/translate'
+import { TranslationProvider } from '@/services/translation'
 import '@/styles/globals.scss'
 
 export default function App({ Component, pageProps }: AppProps) {

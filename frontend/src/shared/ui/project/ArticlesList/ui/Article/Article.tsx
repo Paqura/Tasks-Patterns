@@ -1,8 +1,8 @@
 import cn from 'classnames'
 import Image from 'next/image'
 
+import { useLocale, useTranslate } from '@/services/translation'
 import { formatDate } from '@/shared/lib/date'
-import { useLocale, useTranslate } from '@/shared/lib/translate'
 import { Link } from '@/shared/ui/common/Link'
 import { Heading } from '@/shared/ui/common/typography/Heading'
 import { Text } from '@/shared/ui/common/typography/Text'
