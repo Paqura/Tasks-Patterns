@@ -1,3 +1,4 @@
+import throttle from 'lodash/throttle'
 import { Dispatch, MutableRefObject, RefObject, SetStateAction, useEffect, useState } from 'react'
 
 import { EScreenEdges } from '@/types'
@@ -24,36 +25,32 @@ export const useOutsideClick = (
     }, [conditionFlag, ref, callback])
 }
 
-export const useIsDesktopSmall = () => {
-    const [isDesktopSmall, setIsDesktopSmall] = useState(false)
+export const useMedia = () => {
+    const [media, setMedia] = useState({
+        isMobile: false,
+        isDesktopSmall: false,
+        isDesktopWide: false,
+    })
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsDesktopSmall(window.innerWidth <= EScreenEdges.desktopSmall)
-        }
+        const THROTTLE_TIME = 300
+
+        const handleResize = throttle(() => {
+            setMedia({
+                isMobile: window.innerWidth <= EScreenEdges.mobile,
+                isDesktopSmall: window.innerWidth <= EScreenEdges.desktopSmall,
+                isDesktopWide: window.innerWidth > EScreenEdges.desktopSmall,
+            })
+        }, THROTTLE_TIME)
+
         window.addEventListener('resize', handleResize)
+
         handleResize()
 
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
-    return isDesktopSmall
-}
-
-export const useIsMobile = () => {
-    const [isMobile, setIsMobile] = useState(false)
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= EScreenEdges.mobile)
-        }
-        window.addEventListener('resize', handleResize)
-        handleResize()
-
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
-
-    return isMobile
+    return media
 }
 
 export const useObserver = (

@@ -1,5 +1,5 @@
 import { PageAnchorsContextProvider } from '@/shared/lib/anchors'
-import { useIsDesktopSmall } from '@/shared/lib/hooks'
+import { useMedia } from '@/shared/lib/hooks'
 import { Text } from '@/shared/ui/common/typography/Text'
 import { AnchorBar } from '@/shared/ui/project/AnchorBar'
 import { Article } from '@/shared/ui/project/Article'
@@ -26,7 +26,7 @@ export type TAnalyticArticleScreenData = {
 export type TAnalyticArticleScreenProps = TAnalyticArticleScreenData
 
 export const AnalyticArticleScreen = (props: TAnalyticArticleScreenProps) => {
-    const isDesktopSmall = useIsDesktopSmall()
+    const { isDesktopSmall } = useMedia()
     const regExp = new RegExp(/#+|=|<h[0-9]>|<\/h[0-9]>/g)
 
     const sections = props.analyticArticleData.articleText

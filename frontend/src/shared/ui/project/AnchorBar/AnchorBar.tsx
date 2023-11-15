@@ -7,7 +7,7 @@ import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 
 import { useAnchors } from '@/shared/lib/anchors'
 import { PAGE_SECTIONS_ANCHORS_ELEMENT_ID } from '@/shared/lib/constants'
-import { useIsMobile, useObserver } from '@/shared/lib/hooks'
+import { useMedia, useObserver } from '@/shared/lib/hooks'
 import { Text } from '@/shared/ui/common/typography/Text'
 import { PageSection } from '@/shared/ui/project/PageSection'
 
@@ -53,7 +53,7 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBarProps) => {
         }
     }, [])
 
-    const isMobile = useIsMobile()
+    const { isMobile } = useMedia()
 
     const BAR_OFFSET = isMobile ? 20 : 40
 

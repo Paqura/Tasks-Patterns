@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 
 import { NAV_ELEMENT_ID } from '@/shared/lib/constants'
-import { useIsMobile, useOutsideClick } from '@/shared/lib/hooks'
+import { useMedia, useOutsideClick } from '@/shared/lib/hooks'
 import { Logo } from '@/shared/ui/project/Logo'
 import { TNavItem } from '@/types'
 
@@ -44,7 +44,7 @@ export const Header = ({ data }: THeaderProps) => {
         handleToggleNav(false)
     })
 
-    const isMobile = useIsMobile()
+    const { isMobile } = useMedia()
 
     return (
         <>

@@ -1,7 +1,7 @@
 import chunk from 'lodash/chunk'
 import { CSSProperties } from 'react'
 
-import { useIsDesktopSmall } from '@/shared/lib/hooks'
+import { useMedia } from '@/shared/lib/hooks'
 import { AutoCarousel } from '@/shared/ui/common/AutoCarousel'
 import { Heading } from '@/shared/ui/common/typography/Heading'
 import { Text } from '@/shared/ui/common/typography/Text'
@@ -13,7 +13,7 @@ import { ClientCard } from './ui/ClientCard'
 const SLIDES_BY = {
     desktopSmall: 4,
     desktopWide: 6,
-}
+} as const
 
 export type TClient = {
     logo: TImage
@@ -31,7 +31,7 @@ type TClientsProps = { data: TClientsData }
 export const Clients = ({ data }: TClientsProps) => {
     const { clientsList: clients, title, description } = data
 
-    const isDesktopSmall = useIsDesktopSmall()
+    const { isDesktopSmall } = useMedia()
 
     const clientsPerSlide = isDesktopSmall ? SLIDES_BY.desktopSmall : SLIDES_BY.desktopWide
     const clientsListChunks = chunk(clients, clientsPerSlide)

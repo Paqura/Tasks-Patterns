@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { useState } from 'react'
 
 import { useTranslate } from '@/services/translation'
-import { useIsMobile } from '@/shared/lib/hooks'
+import { useMedia } from '@/shared/lib/hooks'
 import { Button } from '@/shared/ui/common/Button'
 
 import styles from './index.module.scss'
@@ -14,7 +14,7 @@ type TLoadMoreProps<T> = {
 }
 
 export function LoadMore<T>({ items, overlayExtraClassName, render }: TLoadMoreProps<T>) {
-    const isMobile = useIsMobile()
+    const { isMobile } = useMedia()
 
     const [loadMore, setLoadMore] = useState<boolean>(false)
     const translate = useTranslate()
