@@ -7,12 +7,14 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
+        "test": "vitest",
         "typecheck": "tsc --noEmit",
         "style-lint": "stylelint \"src/**/*.scss\"",
         "check-all": "yarn lint && yarn style-lint && yarn typecheck"
     },
     "dependencies": {
         "@headlessui/react": "1.7.17",
+        "@testing-library/user-event": "14.5.1",
         "axios": "1.6.1",
         "classnames": "2.3.2",
         "i18next": "23.6.0",
@@ -32,8 +34,8 @@
         "typescript": "5.2.2"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "6.10.0",
-        "@typescript-eslint/parser": "6.10.0",
+        "@testing-library/jest-dom": "6.1.4",
+        "@testing-library/react": "14.1.0",
         "@types/body-scroll-lock": "3.1.2",
         "@types/lodash": "4.14.201",
         "@types/marked": "5.0.2",
@@ -42,11 +44,17 @@
         "@types/react": "18.2.37",
         "@types/react-dom": "18.2.15",
         "@types/react-text-mask": "5.4.14",
+        "@typescript-eslint/eslint-plugin": "6.10.0",
+        "@typescript-eslint/parser": "6.10.0",
+        "@vitejs/plugin-react": "4.1.1",
+        "@vitest/ui": "0.34.6",
         "eslint": "8.53.0",
         "eslint-config-next": "13.3.0",
         "eslint-config-prettier": "9.0.0",
         "eslint-plugin-import": "2.29.0",
         "eslint-plugin-prettier": "5.0.1",
+        "jsdom": "22.1.0",
+        "next-router-mock": "0.9.10",
         "postcss-scss": "4.0.9",
         "prettier": "3.0.3",
         "stylelint": "15.11.0",
@@ -55,6 +63,8 @@
         "stylelint-config-recommended": "13.0.0",
         "stylelint-declaration-block-no-ignored-properties": "2.7.0",
         "stylelint-order": "6.0.3",
-        "stylelint-scss": "5.3.1"
+        "stylelint-scss": "5.3.1",
+        "vitest": "0.34.6",
+        "vitest-dom": "0.1.1"
     }
 }

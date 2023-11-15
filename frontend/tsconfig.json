@@ -28,6 +28,7 @@
         "../admin/types/generated/contentTypes.d.ts"
     ],
     "include": [
+        "./setupTest.ts",
         "next-env.d.ts",
         "**/*.ts",
         "**/*.tsx",

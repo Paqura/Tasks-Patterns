@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: '18.x'
+          node-version: "18.x"
 
       - name: Install admin dependencies
         run: cd admin && yarn install --frozen-lockfile
@@ -19,11 +19,13 @@ jobs:
         run: cd frontend && yarn install --frozen-lockfile && yarn cache clean
 
       - name: Run eslint
-        run:  cd frontend && yarn lint
-      
-      - name: Run stylelint
-        run:  cd frontend && yarn style-lint
-      
-      - name: Run typecheck
-        run:  cd frontend && yarn typecheck
+        run: cd frontend && yarn lint
 
+      - name: Run stylelint
+        run: cd frontend && yarn style-lint
+
+      - name: Run typecheck
+        run: cd frontend && yarn typecheck
+
+      - name: Run test
+        run: cd frontend && yarn test
