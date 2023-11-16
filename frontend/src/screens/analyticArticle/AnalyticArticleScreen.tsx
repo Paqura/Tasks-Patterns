@@ -47,7 +47,7 @@ export const AnalyticArticleScreen = (props: TAnalyticArticleScreenProps) => {
                     <Article.Header
                         title={props.analyticArticleData.title}
                         topic={props.analyticArticleData.topic}
-                        image={null}
+                        image={props.analyticArticleData.image}
                     />
 
                     {isDesktopSmall && <AnchorBar anchors={tableOfContent} />}

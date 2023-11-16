@@ -1,3 +1,5 @@
+import { TImage } from '@/types'
+
 export type TFileData = {
     name: string
     title: string
@@ -19,4 +21,5 @@ export type TAnalyticArticleData = {
     title: string
     topic: string
     titleOfHelpfulFiles: string
+    image: TImage | null
 }

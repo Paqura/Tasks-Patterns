@@ -1,7 +1,7 @@
 import { GetAttributesValues, MediaAttributeContent } from '@admin/general-schemas'
 
 import { TAnalyticArticleData, TArticleSection } from '@/screens/analyticArticle'
-import { mapFilesServerData } from '@/shared/lib/serverDataMappers/media'
+import { mapFilesServerData, mapImageMediaFile } from '@/shared/lib/serverDataMappers/media'
 
 const mapArticleSectionsServerData = (
     article: GetAttributesValues<'article-section.article-section'>[],
@@ -32,5 +32,6 @@ export const mapArticleServerData = (
         title: serverArticleData?.title || '',
         topic: serverArticleData?.topic || '',
         titleOfHelpfulFiles: serverArticleData?.titleOfHelpfulFiles || '',
+        image: mapImageMediaFile(serverArticleData?.previewImage),
     }
 }

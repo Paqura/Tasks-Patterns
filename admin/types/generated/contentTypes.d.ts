@@ -834,6 +834,12 @@ export interface ApiAnalyticArticleAnalyticArticle extends Schema.CollectionType
           localized: true;
         };
       }>;
+    previewImage: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
