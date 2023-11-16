@@ -11,6 +11,7 @@ export const mapAnyQuestionsServerData = (
         selectProductOptions: getSelectProductOptionsServerData(products),
         title: serverData?.title || '',
         description: serverData?.description || '',
+        recipientEmail: serverData?.recipientEmail,
         feedback: {
             title: serverData?.feedback?.title || '',
             description: serverData?.feedback?.description || '',

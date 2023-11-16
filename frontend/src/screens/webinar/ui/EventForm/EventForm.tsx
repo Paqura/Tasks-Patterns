@@ -31,6 +31,7 @@ export const EventForm = (props: TEventFormProps) => {
     const context = useForm({
         shouldFocusError: false,
     })
+
     const locale = useLocale()
 
     const onSubmit = async (data: TFormFields) => {
@@ -43,6 +44,7 @@ export const EventForm = (props: TEventFormProps) => {
                 companyName: data.companyName,
                 companyPosition: data.companyPosition,
                 locale: locale,
+                recipientEmail: props.eventConfigData.recipientEmail,
             })
 
             if (isSuccess) {

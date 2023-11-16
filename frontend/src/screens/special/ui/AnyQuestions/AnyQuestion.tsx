@@ -15,6 +15,7 @@ export type TAnyQuestionsData = {
     description: string
 
     feedback: TFormData
+    recipientEmail: string | undefined
 }
 
 type TAnyQuestionsProps = {
@@ -35,6 +36,7 @@ export const AnyQuestions = ({
     const [isCompleted, setIsCompleted] = useState(false)
 
     const { handleFeedbackSend } = useSendFeedback({
+        recipientEmail: anyQuestionData.recipientEmail,
         onSuccess: () => {
             setIsCompleted(true)
             scrollToSection(sectionId)

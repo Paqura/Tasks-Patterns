@@ -9,6 +9,7 @@ export type TFeedbackRequestBody = {
     phone: string
     comment: string
     locale: TLocale
+    recipientEmail: string | undefined
 }
 
 type TFeedbackRequest = Omit<NextApiRequest, 'body'> & {
@@ -18,7 +19,7 @@ type TFeedbackRequest = Omit<NextApiRequest, 'body'> & {
 export default async function handler(req: TFeedbackRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
-            const { fullName, email, phone, comment, locale } = req.body
+            const { fullName, email, phone, comment, locale, recipientEmail } = req.body
 
             const api = getApi(locale)
             const response = await api.createFeedbackRequest({
@@ -26,6 +27,7 @@ export default async function handler(req: TFeedbackRequest, res: NextApiRespons
                 fullName,
                 phone,
                 comment,
+                recipientEmail,
             })
 
             res.status(response.status).json({})

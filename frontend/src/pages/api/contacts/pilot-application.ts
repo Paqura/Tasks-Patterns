@@ -11,6 +11,7 @@ export type TPilotApplicationRequestBody = {
     phone?: string
     comment?: string
     locale: TLocale
+    recipientEmail: string | undefined
 }
 
 type TPilotApplicationRequest = Omit<NextApiRequest, 'body'> & {
@@ -20,7 +21,16 @@ type TPilotApplicationRequest = Omit<NextApiRequest, 'body'> & {
 export default async function handler(req: TPilotApplicationRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
-            const { product, fullName, companyName, email, phone, comment, locale } = req.body
+            const {
+                product,
+                fullName,
+                companyName,
+                email,
+                phone,
+                comment,
+                locale,
+                recipientEmail,
+            } = req.body
 
             const api = getApi(locale)
 
@@ -32,6 +42,7 @@ export default async function handler(req: TPilotApplicationRequest, res: NextAp
                 email,
                 phone,
                 comment,
+                recipientEmail,
             })
 
             res.status(response.status).json({})

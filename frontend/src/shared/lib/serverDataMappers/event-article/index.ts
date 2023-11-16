@@ -21,6 +21,8 @@ export type TEventConfigData = {
     calendarTitle: string
     calendarDescription: string
     calendarButton: string
+
+    recipientEmail: string | undefined
 }
 
 export type TEventArticleData = TNewsArticleData
@@ -95,5 +97,6 @@ export const mapWebinarConfigServerData = (
         calendarTitle: serverWebinarConfigData?.calendarTitle || '',
         calendarDescription: serverWebinarConfigData?.calendarDescription || '',
         calendarButton: serverWebinarConfigData?.calendarButton || '',
+        recipientEmail: serverWebinarConfigData?.recipientEmail,
     }
 }

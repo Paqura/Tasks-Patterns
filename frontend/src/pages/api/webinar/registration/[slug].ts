@@ -11,6 +11,7 @@ export type TWebinarRegistrationRequestBody = {
     companyName?: string
     companyPosition?: string
     locale: TLocale
+    recipientEmail?: string
 }
 
 type TWebinarRegistrationRequest = Omit<NextApiRequest, 'body'> & {
@@ -38,7 +39,8 @@ export default async function handler(req: TWebinarRegistrationRequest, res: Nex
     const { slug } = req.query
     if (req.method === 'POST' && slug && typeof slug === 'string') {
         try {
-            const { fullName, email, phone, companyName, companyPosition, locale } = req.body
+            const { fullName, email, phone, companyName, companyPosition, locale, recipientEmail } =
+                req.body
 
             const api = getApi(locale)
             const { eventName, eventDate, isEvent, eventLink } = await getWebinarData(
@@ -66,6 +68,7 @@ export default async function handler(req: TWebinarRegistrationRequest, res: Nex
                 eventDate: new Date(eventDate),
                 eventName,
                 eventLink,
+                recipientEmail,
             })
 
             res.status(response.status).json({})

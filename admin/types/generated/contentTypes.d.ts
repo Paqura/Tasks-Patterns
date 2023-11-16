@@ -958,6 +958,12 @@ export interface ApiAnyQuestionAnyQuestion extends Schema.SingleType {
           localized: true;
         };
       }>;
+    recipientEmail: Attribute.Email &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::any-question.any-question', 'oneToOne', 'admin::user'> &
@@ -1159,6 +1165,12 @@ export interface ApiFeedbackRequestFeedbackRequest extends Schema.CollectionType
       }>;
     comment: Attribute.Text &
       Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    recipientEmail: Attribute.Email &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1626,6 +1638,12 @@ export interface ApiPartnershipRequestPartnershipRequest extends Schema.Collecti
           localized: true;
         };
       }>;
+    recipientEmail: Attribute.Email &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1701,6 +1719,12 @@ export interface ApiPilotApplicationRequestPilotApplicationRequest extends Schem
         };
       }>;
     comment: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    recipientEmail: Attribute.Email &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -2111,6 +2135,12 @@ export interface ApiWebinarConfigWebinarConfig extends Schema.SingleType {
         };
       }> &
       Attribute.DefaultTo<'Add to my calendar'>;
+    recipientEmail: Attribute.Email &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::webinar-config.webinar-config', 'oneToOne', 'admin::user'> &
@@ -2191,6 +2221,12 @@ export interface ApiWebinarRequestWebinarRequest extends Schema.CollectionType {
       }>;
     eventLink: Attribute.String &
       Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    recipientEmail: Attribute.Email &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

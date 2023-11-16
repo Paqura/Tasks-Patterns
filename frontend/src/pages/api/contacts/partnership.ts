@@ -11,6 +11,7 @@ export type TPartnershipRequestBody = {
     phone?: string
     comment?: string
     locale: TLocale
+    recipientEmail: string | undefined
 }
 
 type TPartnershipRequest = Omit<NextApiRequest, 'body'> & {
@@ -20,7 +21,16 @@ type TPartnershipRequest = Omit<NextApiRequest, 'body'> & {
 export default async function handler(req: TPartnershipRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
-            const { address, fullName, companyName, email, phone, comment, locale } = req.body
+            const {
+                address,
+                fullName,
+                companyName,
+                email,
+                phone,
+                comment,
+                locale,
+                recipientEmail,
+            } = req.body
 
             const api = getApi(locale)
             const response = await api.createPartnershipRequest({
@@ -30,6 +40,7 @@ export default async function handler(req: TPartnershipRequest, res: NextApiResp
                 email,
                 phone,
                 comment,
+                recipientEmail,
             })
 
             res.status(response.status).json({})

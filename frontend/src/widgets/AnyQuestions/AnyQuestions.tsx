@@ -30,6 +30,7 @@ export type TAnyQuestionsData = {
     partnership: TCommonFormData
     pilotApplication: TCommonFormData
     selectProductOptions: TSelectProductOptions
+    recipientEmail: string | undefined
 }
 
 type TAnyQuestionsProps = {
@@ -45,8 +46,15 @@ export const AnyQuestions = ({
     selectedProduct,
     anyQuestionData,
 }: TAnyQuestionsProps) => {
-    const { title, description, feedback, partnership, pilotApplication, selectProductOptions } =
-        anyQuestionData
+    const {
+        title,
+        description,
+        feedback,
+        partnership,
+        pilotApplication,
+        selectProductOptions,
+        recipientEmail,
+    } = anyQuestionData
     const [tab, setTab] = useState<TTypeForm>('feedback')
     const [isCompleted, setIsCompleted] = useState<boolean>(false)
     const locale = useLocale()
@@ -61,6 +69,7 @@ export const AnyQuestions = ({
                     phone: data.phone || '',
                     comment: data.comment || '',
                     locale,
+                    recipientEmail,
                 })
                 break
             case 'partnership':
@@ -72,6 +81,7 @@ export const AnyQuestions = ({
                     companyName: data.companyName || '',
                     comment: data.comment,
                     locale,
+                    recipientEmail,
                 })
                 break
             case 'pilotApplication':
@@ -83,6 +93,7 @@ export const AnyQuestions = ({
                     companyName: data.companyName || '',
                     comment: data.comment,
                     locale,
+                    recipientEmail,
                 })
                 break
         }
