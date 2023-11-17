@@ -93,6 +93,10 @@
                     {
                         "pattern": "./*.css",
                         "group": "index"
+                    },
+                    {
+                        "pattern": "../**",
+                        "group": "index"
                     }
                 ],
                 "groups": ["builtin", "external", "parent", "sibling", "index"],

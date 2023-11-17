@@ -1,7 +1,7 @@
-import { PageSection } from '../PageSection'
-
 import { Article, TArticlePreviewData } from './ui/Article'
 import { Pagination, TPaginationData } from './ui/Pagination'
+
+import { PageSection } from '../PageSection'
 
 export type TArticlesListData = {
     articles: TArticlePreviewData[]

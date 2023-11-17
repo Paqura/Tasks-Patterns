@@ -1,6 +1,6 @@
 import { useLocale } from '@/services/translation'
 import { postFeedbackRequest } from '@/shared/lib/siteApi'
-// eslint-disable-next-line import/order
+
 import { TFormFields } from '../ui/Form'
 
 type TUseSendFeedback = {
