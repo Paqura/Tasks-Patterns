@@ -14,6 +14,9 @@ type TSelectProps<TValueType> = {
     required?: boolean
     className?: string
     options: TSelectOption<TValueType>[]
+    dataTestIds?: Partial<{
+        toggle: string
+    }>
 }
 
 export type TSelectOption<TValueType> = {
@@ -27,6 +30,7 @@ export function Select<TValueType>({
     className,
     required,
     options,
+    dataTestIds,
 }: TSelectProps<TValueType>) {
     const fieldName = `${name}` as const
     const translate = useTranslate()
@@ -52,6 +56,7 @@ export function Select<TValueType>({
             <div className={cn(styles.select, className)}>
                 <Listbox value={controllerProps.value} onChange={handleChange}>
                     <Listbox.Button
+                        data-testid={dataTestIds?.toggle}
                         className={(props) => {
                             return cn(styles.selectInput, {
                                 [styles.selectInput_filled]: Boolean(selectedPerson),
@@ -70,6 +75,7 @@ export function Select<TValueType>({
                             <Listbox.Option
                                 key={index}
                                 value={option}
+                                data-testid={`product-select-${index}`}
                                 className={({ active }) =>
                                     cn(styles.option, { [styles.option_active]: Boolean(active) })
                                 }

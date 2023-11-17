@@ -1,5 +1,4 @@
 import cn from 'classnames'
-import { useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import { Button } from '@/shared/ui/common/Button'
@@ -7,177 +6,154 @@ import { Input } from '@/shared/ui/common/Input'
 import { InputCheckbox } from '@/shared/ui/common/InputCheckbox'
 import { Select, TSelectOption } from '@/shared/ui/common/Select'
 import { Textarea } from '@/shared/ui/common/Textarea'
-import { FormSuccess } from '@/shared/ui/project/FormSuccess'
 
 import styles from './index.module.scss'
 
-export type TCommonFormData = {
+export type TPilotAppFormData = {
     title: string
     description: string
+    fieldProduct: string
+    fieldCompanyName?: string
     fieldName: string
     fieldPhone: string
     fieldEmail: string
-    fieldProduct?: string
-    fieldCompanyName?: string
-    fieldAddress?: string
+    fieldComment: string
     checkboxConsentsTerms: string
     checkboxSubscription: string
     buttonSubmit: string
     successTitle: string
     successDescription: string
-    fieldComment: string
+}
+
+export type TPilotAppFormFields = {
+    fullName: string
+    phone: string
+    email: string
+    comment: string
+    companyName: string
+    product: string
+    subscription: boolean
+    consentsTerms: boolean
 }
 
 export type TSelectProductOptions = TSelectOption<string>[]
 
-export type TTypeForm = 'feedback' | 'partnership' | 'pilotApplication'
+export type TPilotAppFormOutput = TPilotAppFormFields
 
-export type TFormFields = {
-    product?: string
-    fullName?: string
-    email?: string
-    phone?: string
-    companyName?: string
-    address?: string
-    comment?: string
-}
-
-type TCommonFormProps = {
-    type: TTypeForm
-    feedback: TCommonFormData
-    partnership: TCommonFormData
-    pilotApplication: TCommonFormData
+type TPilotAppFormProps = {
+    data: TPilotAppFormData
+    selectedProduct: string | undefined
     selectProductOptions: TSelectProductOptions
-    selectedProduct?: string
-    onSubmit: (data: TFormFields) => void
-    isCompleted: boolean
+    onSubmit: (output: TPilotAppFormOutput) => Promise<void>
 }
 
-export const CommonForm = ({
-    type,
-    feedback,
-    partnership,
-    pilotApplication,
-    selectProductOptions,
-    selectedProduct,
+export const PilotAppForm = ({
+    data,
     onSubmit,
-    isCompleted,
-}: TCommonFormProps) => {
-    const context = useForm({
+    selectProductOptions = [],
+    selectedProduct = '',
+}: TPilotAppFormProps) => {
+    const context = useForm<TPilotAppFormFields>({
         shouldFocusError: false,
         defaultValues: {
+            fullName: '',
+            phone: '',
+            email: '',
             product: selectedProduct,
+            comment: '',
+            companyName: '',
+            consentsTerms: false,
+            subscription: false,
         },
     })
 
-    const labels = useMemo(() => {
-        switch (type) {
-            case 'feedback':
-                return feedback
-            case 'partnership':
-                return partnership
-            case 'pilotApplication':
-                return pilotApplication
-        }
-    }, [feedback, partnership, pilotApplication, type])
-
-    if (isCompleted) {
-        return <FormSuccess title={labels.successTitle} description={labels.successDescription} />
+    const handleSubmit = async (data: TPilotAppFormOutput) => {
+        await onSubmit(data)
+        context.reset()
     }
 
     return (
         <FormProvider {...context}>
-            <form onSubmit={context.handleSubmit(onSubmit)}>
+            <form onSubmit={context.handleSubmit(handleSubmit)}>
                 <div className={styles.fields}>
-                    <div
-                        className={cn(styles.field, styles.fullWidth, {
-                            [styles.hidden]: type !== 'pilotApplication',
-                        })}
-                    >
+                    <div className={cn(styles.field, styles.fullWidth)}>
                         <Select
+                            dataTestIds={{
+                                toggle: 'product-toggle',
+                            }}
                             name={'product'}
                             options={selectProductOptions}
-                            required={type === 'pilotApplication'}
-                            placeholder={labels.fieldProduct}
+                            required
+                            placeholder={data.fieldProduct}
                         />
                     </div>
-                    <div
-                        className={cn(styles.field, {
-                            [styles.fullWidth]: type === 'feedback',
-                        })}
-                    >
+
+                    <div className={cn(styles.field)}>
                         <Input
                             type="text"
                             name={'fullName'}
                             autoComplete={'name'}
                             required
-                            placeholder={labels.fieldName}
+                            placeholder={data.fieldName}
                             maxLength={250}
                         />
                     </div>
-                    <div className={cn(styles.field, { [styles.hidden]: type === 'feedback' })}>
+
+                    <div className={cn(styles.field)}>
                         <Input
                             type="text"
                             name={'companyName'}
                             autoComplete={'organization'}
-                            required={type !== 'feedback'}
-                            placeholder={labels.fieldCompanyName}
+                            required
+                            placeholder={data.fieldCompanyName}
                             maxLength={250}
                         />
                     </div>
+
                     <div className={styles.field}>
                         <Input
                             type="tel"
                             name={'phone'}
                             autoComplete={'tel'}
-                            placeholder={labels.fieldPhone}
+                            placeholder={data.fieldPhone}
                             maxLength={20}
                         />
                     </div>
+
                     <div className={styles.field}>
                         <Input
                             type="email"
                             name={'email'}
                             autoComplete={'email'}
                             required
-                            placeholder={labels.fieldEmail}
+                            placeholder={data.fieldEmail}
                             maxLength={250}
                         />
                     </div>
-                    <div
-                        className={cn(styles.field, styles.fullWidth, {
-                            [styles.hidden]: type !== 'partnership',
-                        })}
-                    >
-                        <Input
-                            type="text"
-                            name={'address'}
-                            autoComplete={'url'}
-                            placeholder={labels.fieldAddress}
-                            maxLength={250}
-                        />
-                    </div>
+
                     <div className={cn(styles.field, styles.fullWidth)}>
                         <Textarea
                             name={'comment'}
-                            required={type === 'feedback'}
-                            placeholder={labels.fieldComment}
+                            required
+                            placeholder={data.fieldComment}
                             maxLength={1000}
                         />
                     </div>
                 </div>
+
                 <div className={styles.agrees}>
                     <InputCheckbox
                         name={'consentsTerms'}
                         required
-                        title={labels.checkboxConsentsTerms}
+                        title={data.checkboxConsentsTerms}
                     />
                     <InputCheckbox
                         name={'subscription'}
                         required
-                        title={labels.checkboxSubscription}
+                        title={data.checkboxSubscription}
                     />
                 </div>
+
                 <Button
                     size={'m'}
                     type={'submit'}
@@ -185,7 +161,7 @@ export const CommonForm = ({
                     disabled={context.formState.isSubmitting}
                     loading={context.formState.isSubmitting}
                 >
-                    {labels.buttonSubmit}
+                    {data.buttonSubmit}
                 </Button>
             </form>
         </FormProvider>

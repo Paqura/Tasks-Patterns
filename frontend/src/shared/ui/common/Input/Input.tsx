@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useController } from 'react-hook-form'
 import { ValidationValueMessage } from 'react-hook-form/dist/types/validator'
 
@@ -50,6 +50,7 @@ export const Input = ({
     const validators = useMemo(() => createValidators(translate), [translate])
 
     const controller = useController({
+        defaultValue: '',
         name: fieldName,
         rules: {
             required: validateRequired(translate)(required),
@@ -60,9 +61,8 @@ export const Input = ({
 
     const controllerProps = controller.field
 
-    const handleBlur = (event: React.FormEvent<HTMLInputElement>) => {
+    const handleBlur = () => {
         setIsFocused(false)
-        controllerProps.onChange(event.currentTarget.value.trim())
         controllerProps.onBlur()
     }
 
@@ -93,12 +93,10 @@ export const Input = ({
                 type={'text'}
                 autoFocus={autofocus}
                 autoComplete={autoComplete}
-                defaultValue={''}
                 maxLength={maxLength}
                 onFocus={handleFocus}
                 {...controllerProps}
                 onBlur={handleBlur}
-                value={controllerProps.value || ''}
             />
             {errorMessage && <InputError>{errorMessage}</InputError>}
         </label>

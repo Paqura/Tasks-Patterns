@@ -22,7 +22,10 @@ export const CardRadio = ({
     onChange,
 }: TCardRadioProps) => {
     return (
-        <label className={cn(styles.container, { [styles.checked]: checked })}>
+        <label
+            data-testid={`form-tab-${value}`}
+            className={cn(styles.container, { [styles.checked]: checked })}
+        >
             <input name={name} type={'radio'} value={value} checked={checked} onChange={onChange} />
             <Text className={styles.title} type={'postscript'}>
                 {title}
