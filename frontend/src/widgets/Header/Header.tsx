@@ -9,6 +9,8 @@ import styles from './index.module.scss'
 import { Nav } from './ui/Nav'
 import { NavMobile } from './ui/NavMobile'
 
+import logoImage from 'public/images/logo/logoDesktop.svg'
+
 export type THeaderData = {
     navItems: TNavItem[]
     searchInputPlaceholder: string
@@ -50,7 +52,8 @@ export const Header = ({ data }: THeaderProps) => {
         <>
             {isNavOpen && <div className={styles.overlay} />}
             <header ref={headerRef} className={styles.header} id={NAV_ELEMENT_ID}>
-                <Logo href="/" image={{ src: '', alt: '' }} />
+                <div>{logoImage && <Logo image={logoImage} href="/" />}</div>
+
                 {isMobile ? (
                     <NavMobile
                         items={navItems}
