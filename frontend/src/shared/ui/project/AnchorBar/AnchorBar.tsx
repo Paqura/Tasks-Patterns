@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import { FreeMode } from 'swiper/modules'
@@ -12,6 +12,29 @@ import { Text } from '@/shared/ui/common/typography/Text'
 import { PageSection } from '@/shared/ui/project/PageSection'
 
 import styles from './index.module.scss'
+
+type TAnchorMapKey = string
+
+type TAnchorStructure = {
+    map: Record<TAnchorMapKey, DOMRect> | null
+    keys: TAnchorMapKey[]
+}
+
+const getRectMap = () => {
+    if (typeof document === 'undefined') return {}
+
+    const elements = document.querySelectorAll('[data-anchor-element]')
+
+    const rectMap = Array.from(elements).reduce<Record<string, DOMRect>>((acc, curr) => {
+        const key = (curr.getAttribute('href') ?? '').slice(1)
+
+        acc[key] = curr.getBoundingClientRect()
+
+        return acc
+    }, {})
+
+    return rectMap
+}
 
 export type TAnchorLink = {
     name: string
@@ -57,29 +80,33 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBarProps) => {
 
     const BAR_OFFSET = isMobile ? 20 : 40
 
-    const rectMap = useMemo(() => {
-        if (typeof document === 'undefined') return {}
-
-        const elements = document.querySelectorAll('[data-anchor-element]')
-
-        const rectMap = Array.from(elements).reduce<Record<string, DOMRect>>((acc, curr) => {
-            const key = (curr.getAttribute('href') ?? '').slice(1)
-
-            acc[key] = curr.getBoundingClientRect()
-
-            return acc
-        }, {})
-
-        return rectMap
-    }, [])
+    const defaultRectMap = useRef<TAnchorStructure>({
+        map: null,
+        keys: [],
+    })
 
     useEffect(() => {
+        const rectMap = defaultRectMap.current?.map ?? getRectMap()
+
+        const hasRectMap = Object.keys(rectMap).length !== 0
+
+        if (!hasRectMap) return
+
+        if (!defaultRectMap.current.map) {
+            defaultRectMap.current.map = rectMap
+            defaultRectMap.current.keys = Object.keys(rectMap)
+        }
+
         const getSwiperApi = () => swiperRef.current
 
         const handleScrollIntoView = () => {
             const swiperApi = getSwiperApi()
 
             if (!activeLink || !swiperApi) return
+
+            const isExpectedLink = defaultRectMap.current.keys.includes(activeLink)
+
+            if (!isExpectedLink) return
 
             swiperApi.translateTo(-Math.abs(rectMap[activeLink].x - BAR_OFFSET), 100)
             swiperApi.update()
@@ -90,7 +117,7 @@ export const AnchorBar = ({ anchors, isFloat = true }: TAnchorBarProps) => {
         return () => {
             window.removeEventListener('scrollend', handleScrollIntoView)
         }
-    }, [BAR_OFFSET, activeLink, api, rectMap])
+    }, [BAR_OFFSET, activeLink, api])
 
     const handleClick = (anchor: string) => {
         api.setActive(anchor)
