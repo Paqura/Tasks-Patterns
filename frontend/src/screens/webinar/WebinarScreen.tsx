@@ -32,7 +32,7 @@ export const WebinarScreen = (props: TWebinarScreenProps) => {
     return (
         <PageLayout seo={props.seo} headerData={props.headerData} footerData={props.footerData}>
             <Article.Header
-                image={props?.eventArticleData?.image ?? { src: '' }}
+                image={props?.eventArticleData?.image}
                 title={props.eventArticleData.title}
                 topic={props.eventArticleData.topic}
             />
