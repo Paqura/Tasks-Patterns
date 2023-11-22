@@ -121,7 +121,6 @@ export const PartnershipForm = ({ data, onSubmit }: TPartnershipFormProps) => {
                     <div className={cn(styles.field, styles.fullWidth)}>
                         <Textarea
                             name={'comment'}
-                            required
                             placeholder={data.fieldComment}
                             maxLength={1000}
                         />
