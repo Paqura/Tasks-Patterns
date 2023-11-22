@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { useMemo, useState } from 'react'
+import { FormEvent, useMemo, useState } from 'react'
 import { useController } from 'react-hook-form'
 import { ValidationValueMessage } from 'react-hook-form/dist/types/validator'
 
@@ -61,8 +61,10 @@ export const Input = ({
 
     const controllerProps = controller.field
 
-    const handleBlur = () => {
+    const handleBlur = (event: FormEvent<HTMLInputElement>) => {
         setIsFocused(false)
+        controllerProps.onChange(event.currentTarget.value.trim())
+
         controllerProps.onBlur()
     }
 
