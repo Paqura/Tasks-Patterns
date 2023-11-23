@@ -13,6 +13,7 @@
         "check-all": "yarn lint && yarn style-lint && yarn typecheck"
     },
     "dependencies": {
+        "@af-utils/scrollend-polyfill": "0.0.9",
         "@headlessui/react": "1.7.17",
         "@testing-library/user-event": "14.5.1",
         "axios": "1.6.1",

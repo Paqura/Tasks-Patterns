@@ -1,3 +1,4 @@
+import '@af-utils/scrollend-polyfill'
 import cn from 'classnames'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import 'swiper/css'
