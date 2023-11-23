@@ -6,10 +6,14 @@ module.exports = {
 
     const { result } = event;
 
-    try{
+    try {
       const entity = await strapi.db.query('api::email-template.email-template').findOne({});
-      const templateAdmin = await strapi.db.query('api::email-template.email-template').load(entity, 'webinar', {});
-      const templateUser = await strapi.db.query('api::email-template.email-template').load(entity, 'webinarUser', {});
+      const templateAdmin = await strapi.db
+        .query('api::email-template.email-template')
+        .load(entity, 'webinar', {});
+      const templateUser = await strapi.db
+        .query('api::email-template.email-template')
+        .load(entity, 'webinarUser', {});
 
       const params = {
         fullName: result.fullName,
@@ -28,7 +32,7 @@ module.exports = {
 
       await strapi.plugins['email'].services.email.sendTemplatedEmail(
         {
-          to: process.env.REQUESTS_EMAIL,
+          to: result.recipientEmail ?? process.env.REQUESTS_EMAIL,
         },
         templateAdmin,
         params
@@ -41,9 +45,9 @@ module.exports = {
         templateUser,
         params
       );
-    } catch(err) {
+    } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
     }
-  }
+  },
 };

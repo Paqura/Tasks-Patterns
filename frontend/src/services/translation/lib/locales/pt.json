@@ -1,0 +1,13 @@
+{
+    "navigation.jumpBtn": "Ir para a seção",
+    "productCard.readMoreBtn": "Saber mais",
+    "product.pilotRequestBtn": "Solicite um piloto",
+    "product.faqLoadMoreBtn": "Carregue mais",
+    "product.viewAllProductsBtn": "Ver tudo",
+    "articlesList.continueReadingBtn": "continue lendo",
+    "helpfulFiles.heading": "Arquivos para download",
+    "validation.required": "Campo obrigatório",
+    "validation.phoneNumber": "Apenas dígitos e espaços",
+    "validation.email": "name@example.com",
+    "aboutUs.expertsLoadMoreBtn": "Carregue mais"
+}

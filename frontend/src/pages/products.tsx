@@ -1,14 +1,14 @@
 import { GetServerSideProps } from 'next'
 
-import { AllProductsPage, TAllProductsPageData } from '@/components/AllProductsPage'
-import { getApi } from '@/utils/adminApi'
-import { mapAllProductsPageServerData } from '@/utils/serverDataMappers/allProducts'
-import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapProductCardServerData } from '@/utils/serverDataMappers/product/product-card'
+import { ProductsScreen, TProductsScreenProps } from '@/screens/products'
+import { getApi } from '@/shared/lib/adminApi'
+import { mapAllProductsPageServerData } from '@/shared/lib/serverDataMappers/allProducts'
+import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { mapProductCardServerData } from '@/shared/lib/serverDataMappers/product/product-card'
 
-export type TServerSideProps = TAllProductsPageData
+export type TServerSideProps = TProductsScreenProps
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async (params) => {
     const api = getApi(params.locale)
@@ -45,7 +45,7 @@ type TProps = TServerSideProps
 
 export default function Products(props: TProps) {
     return (
-        <AllProductsPage
+        <ProductsScreen
             seo={props.seo}
             headerData={props.headerData}
             footerData={props.footerData}

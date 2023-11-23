@@ -1,0 +1,12 @@
+@import '@/styles/media';
+@import '@/styles/offsets';
+
+.dateWrap {
+    @include media_breakpoint_small_desktop {
+        margin-bottom: 20px;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-bottom: 16px;
+    }
+}

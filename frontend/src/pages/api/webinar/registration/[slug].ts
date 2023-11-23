@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { TStrapiApi, getApi } from '@/utils/adminApi'
-import { TLocale } from '@/utils/i18n'
-import { TPublicationState, getPublicationStateFromQuery } from '@/utils/publicationState'
+import { TLocale } from '@/services/translation'
+import { TStrapiApi, getApi } from '@/shared/lib/adminApi'
+import { TPublicationState, getPublicationStateFromQuery } from '@/shared/lib/publicationState'
 
 export type TWebinarRegistrationRequestBody = {
     fullName: string
@@ -11,6 +11,7 @@ export type TWebinarRegistrationRequestBody = {
     companyName?: string
     companyPosition?: string
     locale: TLocale
+    recipientEmail?: string
 }
 
 type TWebinarRegistrationRequest = Omit<NextApiRequest, 'body'> & {
@@ -20,7 +21,7 @@ type TWebinarRegistrationRequest = Omit<NextApiRequest, 'body'> & {
 const getWebinarData = async (
     slug: string,
     api: TStrapiApi,
-    publicationState: TPublicationState
+    publicationState: TPublicationState,
 ) => {
     const response = await api.fetchNewsArticle(slug, publicationState)
 
@@ -38,13 +39,14 @@ export default async function handler(req: TWebinarRegistrationRequest, res: Nex
     const { slug } = req.query
     if (req.method === 'POST' && slug && typeof slug === 'string') {
         try {
-            const { fullName, email, phone, companyName, companyPosition, locale } = req.body
+            const { fullName, email, phone, companyName, companyPosition, locale, recipientEmail } =
+                req.body
 
             const api = getApi(locale)
             const { eventName, eventDate, isEvent, eventLink } = await getWebinarData(
                 slug,
                 api,
-                getPublicationStateFromQuery(req.query)
+                getPublicationStateFromQuery(req.query),
             )
 
             if (!isEvent || !eventName || !eventDate || !eventLink) {
@@ -66,6 +68,7 @@ export default async function handler(req: TWebinarRegistrationRequest, res: Nex
                 eventDate: new Date(eventDate),
                 eventName,
                 eventLink,
+                recipientEmail,
             })
 
             res.status(response.status).json({})

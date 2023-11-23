@@ -50,6 +50,6 @@ export default ({ env }) => {
           },
         },
       }
-      : undefined,
+      : { enabled: false },
   };
 };

@@ -1,0 +1,47 @@
+@import '@/styles/media';
+@import '@/styles/offsets';
+
+.cardsListWrapper {
+    @include subsection-above-offset;
+
+    &_cutted {
+        margin-bottom: calc(var(--section-card-padding-bottom) * -1);
+        padding-bottom: var(--section-card-padding-bottom);
+        max-height: 696px;
+
+        @include media_breakpoint_normal_desktop {
+            max-height: 666px;
+        }
+
+        @include media_breakpoint_mobile {
+            max-height: 686px;
+        }
+    }
+}
+
+.cardsList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    list-style: none;
+    gap: 20px;
+
+    @include media_breakpoint_small_desktop {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include media_breakpoint_mobile {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        width: 100%;
+    }
+}
+
+.cardsListItem {
+    position: relative;
+    display: block;
+
+    @include media_breakpoint_mobile {
+        min-width: 244px;
+    }
+}

@@ -1,0 +1,18 @@
+@import '@/styles/media';
+@import '@/styles/offsets';
+
+.content {
+    @include anchor-section-scroll-offset;
+
+    &:not(:first-of-type) {
+        margin-top: 40px;
+    }
+}
+
+.title {
+    margin-bottom: 24px;
+
+    @include media_breakpoint_small_desktop {
+        margin-bottom: 16px;
+    }
+}

@@ -1,0 +1,38 @@
+@import '@/styles/media.scss';
+@import '@/styles/offsets.scss';
+
+.section {
+    @include anchor-section-scroll-offset;
+}
+
+.contentWrapper {
+    position: relative;
+    z-index: 1;
+    padding: 80px 120px;
+    box-sizing: border-box;
+    border-radius: 16px;
+
+    @include section-card-paddings;
+
+    @include media_breakpoint_mobile {
+        border-radius: 12px;
+    }
+}
+
+.mode_light {
+    background-color: var(--color-light-gray-ui);
+}
+
+.mode_dark {
+    background-color: var(--color-gray-8x);
+}
+
+.animation {
+    transition: transform 1s;
+    transform: scale(0.9);
+    will-change: transform;
+}
+
+.animationReveal {
+    transform: scale(1);
+}

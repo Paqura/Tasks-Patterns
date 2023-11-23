@@ -1,0 +1,46 @@
+@import "@/styles/media.scss";
+@import "@/styles/offsets.scss";
+
+.card {
+    box-sizing: border-box;
+    background-color: var(--color-white);
+
+    border-radius: 12px;
+
+    @include subcard-paddings;
+
+    @include media_breakpoint_small_desktop {
+        width: 360px;
+        min-width: 360px;
+    }
+
+    @include media_breakpoint_mobile {
+        width: 244px;
+        min-width: 244px;
+    }
+}
+
+.title {
+    margin-top: 12px;
+}
+
+.description {
+    margin-top: 12px;
+}
+
+.icon {
+    position: relative;
+    overflow: hidden;
+    width: 52px;
+    height: 52px;
+
+    & img {
+        width: auto;
+        height: 100%;
+    }
+
+    @include media_breakpoint_mobile {
+        width: 30px;
+        height: 30px;
+    }
+}
