@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { getApi } from '@/utils/adminApi'
-import { TLocale } from '@/utils/i18n'
+import { TLocale } from '@/services/translation'
+import { getApi } from '@/shared/lib/adminApi'
 
 export type TSpecialPageInviteRequestBody = {
     fullName: string

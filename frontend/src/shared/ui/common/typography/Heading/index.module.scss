@@ -1,0 +1,99 @@
+@import '@/styles/media.scss';
+
+.base {
+    mark {
+        color: var(--color-red-ui);
+        background-color: initial;
+    }
+}
+
+@mixin heading_base_styles {
+    font-family: 'Biform', sans-serif;
+    font-weight: 400;
+    line-height: 1.2em;
+}
+
+@mixin heading_level_1 {
+    font-size: 72px;
+
+    @include heading_base_styles;
+
+    @include media_breakpoint_mobile {
+        font-size: 38px;
+    }
+}
+
+@mixin heading_level_2 {
+    font-size: 40px;
+
+    @include heading_base_styles;
+
+    @include media_breakpoint_mobile {
+        font-size: 30px;
+    }
+}
+
+@mixin heading_level_3 {
+    font-size: 24px;
+
+    @include heading_base_styles;
+
+    @include media_breakpoint_mobile {
+        font-size: 20px;
+    }
+}
+
+.level {
+    &_1 {
+        @include heading_level_1;
+    }
+
+    &_2 {
+        @include heading_level_2;
+    }
+
+    &_3 {
+        @include heading_level_3;
+    }
+}
+
+@mixin heading_theme_light_1 {
+    color: var(--color-black-ui);
+}
+
+@mixin heading_theme_light_2 {
+    color: var(--color-black-ui);
+}
+
+@mixin heading_theme_light_3 {
+    color: var(--color-black-ui);
+}
+
+.theme {
+    &_light {
+        &__level_1 {
+            @include heading_theme_light_3;
+        }
+
+        &__level_2 {
+            @include heading_theme_light_3;
+            color: var(--color-black-ui);
+        }
+
+        &__level_3 {
+            @include heading_theme_light_3;
+        }
+    }
+
+    &_dark {
+        &__level_1 {
+            color: var(--color-white);
+        }
+        &__level_2 {
+            color: var(--color-white);
+        }
+        &__level_3 {
+            color: var(--color-white);
+        }
+    }
+}

@@ -1,5 +1,5 @@
-import { ErrorPage } from '@/components/ErrorPage'
+import { Error500Screen } from '@/screens/error500'
 
 export default function Page500() {
-    return <ErrorPage errorData={{ title: '500', description: 'Internal server error</p>' }} />
+    return <Error500Screen errorData={{ title: '500', description: 'Internal server error</p>' }} />
 }

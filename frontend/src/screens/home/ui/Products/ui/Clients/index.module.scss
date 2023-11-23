@@ -1,0 +1,84 @@
+@import '@/styles/media.scss';
+@import '@/styles/offsets.scss';
+
+.block {
+    display: flex;
+
+    @include media_breakpoint_mobile {
+        display: block;
+    }
+}
+
+.textColumn {
+    margin-right: 50px;
+    width: 270px;
+    width: 100%;
+    min-width: 270px;
+    flex: 0;
+
+    @include media_breakpoint_normal_desktop {
+        margin-right: 84px;
+        width: 282px;
+        min-width: 282px;
+    }
+
+    @include media_breakpoint_small_desktop {
+        margin-right: 40px;
+        width: 282px;
+        min-width: 282px;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-right: 0;
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+.listColumn {
+    flex: 1;
+    overflow: hidden;
+}
+
+.listItem {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    max-height: 336px;
+    gap: 20px;
+
+    @include media_breakpoint_small_desktop {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include media_breakpoint_mobile {
+        gap: 12px;
+        margin-top: 32px;
+        max-height: 264px;
+    }
+}
+
+.title {
+    max-width: 564px;
+
+    @include media_breakpoint_small_desktop {
+        max-width: 470px;
+    }
+
+    @include media_breakpoint_mobile {
+        max-width: 100%;
+    }
+}
+
+.description {
+    margin-top: 24px;
+
+    @include media_breakpoint_small_desktop {
+        max-width: 470px;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-top: 16px;
+        max-width: 100%;
+    }
+}

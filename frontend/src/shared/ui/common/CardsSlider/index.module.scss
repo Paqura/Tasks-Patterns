@@ -1,0 +1,53 @@
+@import '../../../../styles/media';
+@import '../../../../styles/decorators';
+
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    @include media_breakpoint_mobile {
+        display: block;
+    }
+}
+
+.scrollArea {
+    overflow-x: auto;
+
+    @include media_breakpoint_no_touch_devices {
+        @include hide-scrollbar;
+    }
+
+    @include media_breakpoint_touch_devices {
+        padding-bottom: 12px;
+    }
+}
+
+.controlsBlock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    transform: translateY(-100%);
+    justify-content: flex-end;
+    gap: 32px;
+
+    @include media_breakpoint_mobile {
+        position: relative;
+        left: 0;
+        margin-bottom: 20px;
+        transform: none;
+        justify-content: flex-start;
+    }
+}
+
+.extraControls {
+    display: flex;
+    align-items: center;
+}
+
+.moveButtons {
+    @include media_breakpoint_touch_devices {
+        display: none;
+    }
+}

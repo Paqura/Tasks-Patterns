@@ -1,16 +1,16 @@
 import { GetServerSideProps } from 'next'
 
-import EventArticlePage, { TEventArticlePageData } from '@/components/EventArticlePage'
-import { getApi } from '@/utils/adminApi'
-import { getPublicationStateFromQuery } from '@/utils/publicationState'
+import { TWebinarScreenProps, WebinarScreen } from '@/screens/webinar'
+import { getApi } from '@/shared/lib/adminApi'
+import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
 import {
     mapEventArticleServerData,
     mapWebinarConfigServerData,
-} from '@/utils/serverDataMappers/event-article'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
+} from '@/shared/lib/serverDataMappers/event-article'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
 
-export type TServerSideProps = TEventArticlePageData
+export type TServerSideProps = TWebinarScreenProps
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
@@ -79,11 +79,10 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
         },
     }
 }
-type TProps = TServerSideProps
 
-export default function EventArticleItem(props: TProps) {
+export default function Webinar(props: TServerSideProps) {
     return (
-        <EventArticlePage
+        <WebinarScreen
             seo={props.seo}
             headerData={props.headerData}
             footerData={props.footerData}

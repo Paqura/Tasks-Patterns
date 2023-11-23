@@ -1,13 +1,13 @@
 import { GetServerSideProps } from 'next'
 
-import { AboutPage, TAboutPageData } from '@/components/AboutPage'
-import { getApi } from '@/utils/adminApi'
-import { mapAboutPageServerData } from '@/utils/serverDataMappers/about'
-import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
+import { AboutScreen, TAboutScreenData } from '@/screens/about'
+import { getApi } from '@/shared/lib/adminApi'
+import { mapAboutPageServerData } from '@/shared/lib/serverDataMappers/about'
+import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
 
-export type TServerSideProps = TAboutPageData
+export type TServerSideProps = TAboutScreenData
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async (params) => {
     const api = getApi(params.locale)
@@ -44,7 +44,7 @@ type TProps = TServerSideProps
 
 export default function About(props: TProps) {
     return (
-        <AboutPage
+        <AboutScreen
             seo={props.seo}
             headerData={props.headerData}
             headingSectionData={props.headingSectionData}

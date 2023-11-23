@@ -1,13 +1,13 @@
 import { GetServerSideProps } from 'next'
 
-import { NewsPage, TNewsPageData } from '@/components/NewsPage'
-import { getApi } from '@/utils/adminApi'
-import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapImageMediaFile } from '@/utils/serverDataMappers/media'
+import { NewsScreen, TNewsScreenData, TNewsScreenProps } from '@/screens/news'
+import { getApi } from '@/shared/lib/adminApi'
+import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { mapImageMediaFile } from '@/shared/lib/serverDataMappers/media'
 
-export type TServerSideProps = TNewsPageData
+export type TServerSideProps = TNewsScreenProps
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
     query,
@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         description: newsPage?.description || '',
     }
 
-    const articlesList: TNewsPageData['articlesListData']['articles'] =
+    const articlesList: TNewsScreenData['articlesListData']['articles'] =
         news?.map((article) => {
             const baseUrl = !!article.event ? 'webinar' : 'news'
 
@@ -70,11 +70,9 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
     }
 }
 
-type TProps = TServerSideProps
-
-export default function News(props: TProps) {
+export default function News(props: TServerSideProps) {
     return (
-        <NewsPage
+        <NewsScreen
             seo={props.seo}
             headerData={props.headerData}
             footerData={props.footerData}

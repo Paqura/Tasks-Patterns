@@ -716,7 +716,7 @@ export interface ShareTest extends Schema.Component {
   attributes: {};
 }
 
-declare module '@strapi/strapi' {
+declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'about.achievements-item': AboutAchievementsItem;

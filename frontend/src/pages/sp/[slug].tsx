@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next'
 
-import { SpecialPage, TSpecialPageProps } from '@/components/SpecialPage'
-import { getApi } from '@/utils/adminApi'
-import { getPublicationStateFromQuery } from '@/utils/publicationState'
-import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
-import { mapSpecialPageServerData } from '@/utils/serverDataMappers/special'
+import { SpecialScreen, TSpecialScreenProps } from '@/screens/special'
+import { getApi } from '@/shared/lib/adminApi'
+import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
+import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
+import { mapSpecialPageServerData } from '@/shared/lib/serverDataMappers/special'
 
-export type TServerSideProps = TSpecialPageProps
+export type TServerSideProps = TSpecialScreenProps
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     locale,
@@ -48,7 +48,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
 
 export default function Special(props: TServerSideProps) {
     return (
-        <SpecialPage
+        <SpecialScreen
             seo={props.seo}
             specialPageData={props.specialPageData}
             anyQuestionsData={props.anyQuestionsData}

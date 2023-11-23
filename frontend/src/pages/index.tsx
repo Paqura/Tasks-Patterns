@@ -1,13 +1,13 @@
 import { GetServerSideProps } from 'next'
 
-import { HomePage, THomePageData } from '@/components/HomePage'
-import { getApi } from '@/utils/adminApi'
-import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapMainPageServerData } from '@/utils/serverDataMappers/home'
+import { HomeScreen, THomeScreenProps } from '@/screens/home'
+import { getApi } from '@/shared/lib/adminApi'
+import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { mapMainPageServerData } from '@/shared/lib/serverDataMappers/home'
 
-export type TServerSideProps = THomePageData
+export type TServerSideProps = THomeScreenProps
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async (params) => {
     const api = getApi(params.locale)
@@ -58,11 +58,9 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async (p
     }
 }
 
-type TProps = TServerSideProps
-
-export default function Home(props: TProps) {
+export default function Home(props: TServerSideProps) {
     return (
-        <HomePage
+        <HomeScreen
             seo={props.seo}
             headerData={props.headerData}
             footerData={props.footerData}

@@ -17,7 +17,8 @@
         "baseUrl": "./",
         "paths": {
             "@/*": ["./src/*"],
-            "@admin/*": ["../admin/*"]
+            "@admin/*": ["../admin/*"],
+            "react": ["node_modules/@types/react"]
         },
         "noImplicitAny": true
     },
@@ -27,6 +28,7 @@
         "../admin/types/generated/contentTypes.d.ts"
     ],
     "include": [
+        "./setupTest.ts",
         "next-env.d.ts",
         "**/*.ts",
         "**/*.tsx",

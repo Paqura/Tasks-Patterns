@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next'
 
-import { NotFoundPage, TNotFoundPageData } from '@/components/NotFoundPage'
-import { getApi } from '@/utils/adminApi'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapNotFoundServerData } from '@/utils/serverDataMappers/notFound'
+import { Error404Screen, TError404ScreenProps } from '@/screens/error404'
+import { getApi } from '@/shared/lib/adminApi'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { mapNotFoundServerData } from '@/shared/lib/serverDataMappers/notFound'
 
-export type TServerSideProps = TNotFoundPageData
+export type TServerSideProps = TError404ScreenProps
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async (params) => {
     const api = getApi(params.locale)
@@ -33,11 +33,9 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async (p
     }
 }
 
-type TProps = TServerSideProps
-
-export default function NotFound(props: TProps) {
+export default function NotFound(props: TServerSideProps) {
     return (
-        <NotFoundPage
+        <Error404Screen
             seo={props.seo}
             headerData={props.headerData}
             footerData={props.footerData}

@@ -1,0 +1,29 @@
+@import "@/styles/media.scss";
+
+.title {
+  margin-bottom: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-gray-6x);
+
+  @include media_breakpoint_small_desktop {
+    margin-bottom: 20px;
+  }
+
+  @include media_breakpoint_mobile {
+    margin-bottom: 12px;
+  }
+}
+
+.list_item {
+  display: block;
+  max-width: max-content;
+
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  @include media_hover {
+    color: var(--color-red-ui)
+  }
+}

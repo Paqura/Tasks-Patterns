@@ -1,0 +1,69 @@
+@import '@/styles/media.scss';
+@import '@/styles/decorators.scss';
+
+.card {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  width: 280px;
+  min-width: 280px;
+  background-color: var(--color-white);
+  border-radius: 8px;
+
+  @include media_breakpoint_small_desktop {
+    width: 276px;
+    min-width: 276px;
+  }
+
+  @include media_breakpoint_mobile {
+    width: 236px;
+    min-width: 236px;
+  }
+}
+
+.imageWrapper {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  padding: 12px 20px 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  @include media_breakpoint_mobile {
+    padding: 20px 16px;
+  }
+}
+
+.date {
+  padding-bottom: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-gray-4x);
+
+  @include media_breakpoint_mobile {
+    text-transform: uppercase;
+  }
+}
+
+.text {
+  @include slice-text(3);
+
+  @include media_breakpoint_mobile {
+    @include slice-text(4);
+  }
+}

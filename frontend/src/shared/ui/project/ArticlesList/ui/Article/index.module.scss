@@ -1,0 +1,129 @@
+@import '@/styles/media.scss';
+
+.article {
+    --vertical-padding: 40px;
+
+    padding-bottom: var(--vertical-padding);
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 40px;
+
+    &:not(:first-of-type) {
+        padding-top: var(--vertical-padding);
+    }
+
+    &:not(:last-of-type) {
+        border-bottom: 1px solid var(--color-gray-ui);
+    }
+
+    @include media_breakpoint_small_desktop {
+        grid-template-rows: auto 1fr;
+        row-gap: 16px;
+    }
+
+    @include media_breakpoint_mobile {
+        --vertical-padding: 20px;
+
+        display: block;
+    }
+}
+
+.date {
+    color: var(--color-gray-6x);
+
+    grid-column: 1 / span 4;
+
+    @include media_breakpoint_small_desktop {
+        grid-row: 1 / span 1;
+        grid-column: 1 / span 8;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-bottom: 10px;
+    }
+
+    .hasImage & {
+        grid-column: 1 / span 2;
+
+        @include media_breakpoint_small_desktop {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 6;
+        }
+    }
+}
+
+.content {
+    grid-column: 5 / span 5;
+
+    @include media_breakpoint_small_desktop {
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 8;
+    }
+
+    .hasImage & {
+        grid-column: 3 / span 5;
+
+        @include media_breakpoint_small_desktop {
+            grid-row: 2 / span 1;
+            grid-column: 1 / span 6;
+        }
+    }
+}
+
+.imageWrapper {
+    justify-self: end;
+    align-self: start;
+
+    grid-row: 1;
+    grid-column: 8 / 13;
+
+    @include media_breakpoint_small_desktop {
+        grid-row: 1 / span 2;
+        grid-column: 7 / 13;
+    }
+
+    @include media_breakpoint_mobile {
+        margin-bottom: 16px;
+    }
+}
+
+.image {
+    display: block;
+
+    width: 389px;
+    height: 264px;
+
+    border-radius: 12px;
+    object-fit: cover;
+
+    @include media_breakpoint_small_desktop {
+        width: 432px;
+        height: 292px;
+    }
+
+    @include media_breakpoint_mobile {
+        width: 100%;
+        height: auto;
+        max-height: 292px;
+
+        border-radius: 8px;
+    }
+}
+
+.title {
+    margin-bottom: 16px;
+
+    @include media_breakpoint_mobile {
+        margin-bottom: 10px;
+    }
+}
+
+.description {
+    margin-bottom: 32px;
+    color: var(--color-gray-6x);
+
+    @include media_breakpoint_mobile {
+        margin-bottom: 40px;
+    }
+}

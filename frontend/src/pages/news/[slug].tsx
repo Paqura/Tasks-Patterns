@@ -1,14 +1,14 @@
 import { GetServerSideProps } from 'next'
 
-import NewsArticlePage, { TNewsArticlePageData } from '@/components/NewsArticlePage'
-import { getApi } from '@/utils/adminApi'
-import { getPublicationStateFromQuery } from '@/utils/publicationState'
-import { mapAnyQuestionsServerData } from '@/utils/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/utils/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/utils/serverDataMappers/header'
-import { mapNewsArticleServerData } from '@/utils/serverDataMappers/news-article'
+import { NewsArticleScreen, TNewsArticleScreenProps } from '@/screens/newsArticle'
+import { getApi } from '@/shared/lib/adminApi'
+import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
+import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
+import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
+import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { mapNewsArticleServerData } from '@/shared/lib/serverDataMappers/news-article'
 
-export type TServerSideProps = TNewsArticlePageData
+export type TServerSideProps = TNewsArticleScreenProps
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: string }> = async ({
     params,
@@ -65,7 +65,7 @@ type TProps = TServerSideProps
 
 export default function NewsArticleItem(props: TProps) {
     return (
-        <NewsArticlePage
+        <NewsArticleScreen
             seo={props.seo}
             headerData={props.headerData}
             footerData={props.footerData}

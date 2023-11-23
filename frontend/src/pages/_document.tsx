@@ -1,12 +1,12 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document'
 
-import { YaMetrika } from '@/components/YaMetrica'
+import { YaMetric } from '@/services/yaMetric'
 
 export default function Document() {
     return (
         <Html lang="en">
             <Head>
-                <YaMetrika />
+                <YaMetric />
             </Head>
             <body>
                 <Main />
