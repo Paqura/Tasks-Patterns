@@ -15,6 +15,7 @@
     "dependencies": {
         "@af-utils/scrollend-polyfill": "0.0.9",
         "@headlessui/react": "1.7.17",
+        "@radix-ui/react-dropdown-menu": "2.0.6",
         "@testing-library/user-event": "14.5.1",
         "axios": "1.6.1",
         "classnames": "2.3.2",

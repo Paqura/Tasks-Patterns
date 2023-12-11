@@ -1,8 +1,8 @@
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import cn from 'classnames'
-import { PropsWithChildren, ReactNode, useRef } from 'react'
+import { Fragment, PropsWithChildren, ReactNode } from 'react'
 
 import styles from './index.module.scss'
-import { Popover } from './ui/Popover'
 
 type TDropdownProps<TValueType> = {
     open: boolean
@@ -31,34 +31,32 @@ export const Dropdown = <TValueType,>({
     dropdownOffset = 0,
     openInPortal,
 }: PropsWithChildren<TDropdownProps<TValueType>>) => {
-    const containerRef = useRef<HTMLDivElement>(null)
-    const dropdownRef = useRef<HTMLDivElement>(null)
+    const ContentWrapper = openInPortal ? DropdownMenu.Portal : Fragment
 
     return (
-        <div className={cn(styles.dropdown, classes?.root)} ref={containerRef}>
-            {children}
-            <Popover
-                visible={open}
-                anchor={containerRef}
-                childContent={dropdownRef}
-                directions={['bottom-right', 'bottom-left']}
-                offset={dropdownOffset}
-                isPortal={openInPortal}
-            >
-                <div className={cn(styles.dropdownList, classes?.list)} ref={dropdownRef}>
+        <DropdownMenu.Root open={open} modal={false}>
+            <DropdownMenu.Trigger asChild>{children}</DropdownMenu.Trigger>
+
+            <ContentWrapper>
+                <DropdownMenu.DropdownMenuContent
+                    sideOffset={dropdownOffset}
+                    side="bottom"
+                    align="end"
+                    className={cn(styles.list, classes?.list)}
+                >
                     {options.map((option, idx) => {
                         return (
-                            <div
+                            <DropdownMenu.Item
                                 key={idx}
                                 className={styles.option}
                                 onClick={() => onSelect?.(option.value)}
                             >
                                 {renderOption ? renderOption(option) : option.label}
-                            </div>
+                            </DropdownMenu.Item>
                         )
                     })}
-                </div>
-            </Popover>
-        </div>
+                </DropdownMenu.DropdownMenuContent>
+            </ContentWrapper>
+        </DropdownMenu.Root>
     )
 }

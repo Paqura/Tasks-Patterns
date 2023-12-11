@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, forwardRef } from 'react'
 
 import styles from './index.module.scss'
 
@@ -11,25 +11,21 @@ type TButtonProps = {
     onClick: () => void
 }
 
-export const Button = ({
-    className,
-    isActive = false,
-    size = 'm',
-    hasBorder = true,
-    onClick,
-    children,
-}: PropsWithChildren<TButtonProps>) => {
-    return (
-        <button
-            type="button"
-            className={cn(className, styles.button, {
-                [styles.active]: isActive,
-                [styles.sizeL]: size === 'l',
-                [styles.hasBorder]: hasBorder,
-            })}
-            onClick={onClick}
-        >
-            {children}
-        </button>
-    )
-}
+export const Button = forwardRef<HTMLButtonElement, PropsWithChildren<TButtonProps>>(
+    ({ className, isActive = false, size = 'm', hasBorder = true, onClick, children }, ref) => {
+        return (
+            <button
+                ref={ref}
+                type="button"
+                className={cn(className, styles.button, {
+                    [styles.active]: isActive,
+                    [styles.sizeL]: size === 'l',
+                    [styles.hasBorder]: hasBorder,
+                })}
+                onClick={onClick}
+            >
+                {children}
+            </button>
+        )
+    },
+)

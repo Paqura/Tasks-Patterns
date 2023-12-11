@@ -102,12 +102,11 @@ export const Controls = ({ searchInputPlaceholder, isMobileMode, onToggle }: TCo
                             )}
                             open={activeControl === 'language'}
                             classes={{
-                                root: styles.buttonWrapper,
                                 list: cn(styles.popover, {
                                     [styles.popover_mobile]: isMobileMode,
                                 }),
                             }}
-                            dropdownOffset={isMobileMode ? 8 : 0}
+                            dropdownOffset={8}
                             openInPortal={!isMobileMode}
                         >
                             <Button

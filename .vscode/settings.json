@@ -9,9 +9,9 @@
   "stylelint.validate": ["css", "less", "postcss", "scss"],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": true,
-    "source.fixAll": true
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit"
   },
   "scssFormatter.singleQuote": true,
   "javascript.preferences.importModuleSpecifier": "project-relative",

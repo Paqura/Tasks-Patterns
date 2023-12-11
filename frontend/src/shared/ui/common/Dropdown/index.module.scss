@@ -1,10 +1,6 @@
 @import '../typography/Text/index.module.scss';
 
-.dropdown {
-    position: relative;
-}
-
-.dropdownList {
+.list {
     padding: 16px;
     background: var(--color-white);
     outline: none;
