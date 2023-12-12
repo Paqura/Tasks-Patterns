@@ -6,6 +6,7 @@ import { Logo } from '@/shared/ui/project/Logo'
 import { TNavItem } from '@/types'
 
 import styles from './index.module.scss'
+import { HeaderProvider } from './lib/context'
 import { Nav } from './ui/Nav'
 import { NavMobile } from './ui/NavMobile'
 
@@ -29,17 +30,18 @@ export const Header = ({ data }: THeaderProps) => {
     const handleToggleNav = (isOpen: boolean) => {
         setIsNavOpen(isOpen)
 
-        const element = document.body
-        if (element) {
-            element.style.overflowY = isOpen ? 'hidden' : ''
-        }
+        // const element = document.body
+
+        // if (element) {
+        //     element.style.overflowY = isOpen ? 'hidden' : ''
+        // }
     }
 
     useEffect(() => {
-        const element = document.body
-        return () => {
-            element.style.overflowY = ''
-        }
+        // const element = document.body
+        // return () => {
+        //     element.style.overflowY = ''
+        // }
     }, [])
 
     useOutsideClick(isNavOpen, headerRef, () => {
@@ -49,19 +51,21 @@ export const Header = ({ data }: THeaderProps) => {
     const { isMobile } = useMedia()
 
     return (
-        <>
+        <HeaderProvider isMobile={isMobile}>
             {isNavOpen && <div className={styles.overlay} />}
             <header ref={headerRef} className={styles.header} id={NAV_ELEMENT_ID}>
                 <div>{logoImage && <Logo image={logoImage} href="/" />}</div>
 
-                {isMobile ? (
+                {isMobile && (
                     <NavMobile
                         items={navItems}
                         searchInputPlaceholder={searchInputPlaceholder}
                         isOpen={isNavOpen}
                         onToggle={handleToggleNav}
                     />
-                ) : (
+                )}
+
+                {!isMobile && (
                     <Nav
                         items={navItems}
                         searchInputPlaceholder={searchInputPlaceholder}
@@ -69,6 +73,6 @@ export const Header = ({ data }: THeaderProps) => {
                     />
                 )}
             </header>
-        </>
+        </HeaderProvider>
     )
 }

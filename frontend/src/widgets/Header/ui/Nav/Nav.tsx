@@ -19,7 +19,7 @@ export const Nav = ({ items, searchInputPlaceholder, onToggle }: TNavProps) => {
                 ))}
             </nav>
 
-            <Controls searchInputPlaceholder={searchInputPlaceholder} isMobileMode={false} />
+            <Controls searchInputPlaceholder={searchInputPlaceholder} />
         </>
     )
 }

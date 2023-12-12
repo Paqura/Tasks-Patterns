@@ -1,0 +1,30 @@
+.popover {
+    border-top: 1px solid var(--color-gray-2x);
+
+    &_mobile {
+        background-color: var(--color-light-gray-ui);
+        border-radius: 4px;
+    }
+}
+
+
+.languageValue {
+    font-family: 'TT Positive', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+
+    .mobileMode & {
+        font-size: 16px;
+    }
+}
+
+.buttonWrapper {
+    display: inline-flex;
+    height: 100%;
+    align-items: center;
+
+    .mobileMode & {
+        height: auto;
+    }
+}

@@ -22,30 +22,31 @@ export const NavMobile = ({ items, searchInputPlaceholder, isOpen, onToggle }: T
     }
 
     return (
-        <div className={styles.wrapper}>
-            <button className={styles.button} onClick={handleClick}>
-                <Image src={isOpen ? close : burger} alt={isOpen ? 'Close' : 'Open'} />
-            </button>
+        <>
+            <div className={styles.wrapper}>
+                <button className={styles.button} onClick={handleClick}>
+                    <Image src={isOpen ? close : burger} alt={isOpen ? 'Close' : 'Open'} />
+                </button>
 
-            {isOpen && (
-                <nav className={styles.nav}>
-                    <Controls
-                        searchInputPlaceholder={searchInputPlaceholder}
-                        isMobileMode={true}
-                        onToggle={onToggle}
-                    />
+                {isOpen && (
+                    <nav className={styles.nav}>
+                        <Controls
+                            searchInputPlaceholder={searchInputPlaceholder}
+                            onToggle={onToggle}
+                        />
 
-                    <div className={styles.nav_list}>
-                        {items.map((navItem) => (
-                            <NavMobileItem
-                                key={navItem.title}
-                                navItem={navItem}
-                                onClick={handleClick}
-                            />
-                        ))}
-                    </div>
-                </nav>
-            )}
-        </div>
+                        <div className={styles.nav_list}>
+                            {items.map((navItem) => (
+                                <NavMobileItem
+                                    key={navItem.title}
+                                    navItem={navItem}
+                                    onClick={handleClick}
+                                />
+                            ))}
+                        </div>
+                    </nav>
+                )}
+            </div>
+        </>
     )
 }
