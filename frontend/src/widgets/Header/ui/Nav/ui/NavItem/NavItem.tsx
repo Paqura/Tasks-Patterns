@@ -61,6 +61,7 @@ export const NavItem = ({ navItem, onToggle }: TNavItemProps) => {
             >
                 <Text type="pM">{title}</Text>
             </NextLink>
+
             {isItemActive && isSubItemsExist && (
                 <SubMenu subItems={subItems} anchor={link} onClick={deactivateItem} />
             )}

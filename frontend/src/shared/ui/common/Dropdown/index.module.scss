@@ -1,6 +1,7 @@
 @import '../typography/Text/index.module.scss';
 
 .list {
+    z-index: 10;
     padding: 16px;
     background: var(--color-white);
     outline: none;

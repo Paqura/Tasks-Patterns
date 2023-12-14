@@ -6,7 +6,7 @@ import { Logo } from '@/shared/ui/project/Logo'
 import { TNavItem } from '@/types'
 
 import styles from './index.module.scss'
-import { HeaderProvider } from './lib/context'
+import { HeaderProvider, useHeaderContext } from './lib/context'
 import { Nav } from './ui/Nav'
 import { NavMobile } from './ui/NavMobile'
 
@@ -21,6 +21,15 @@ type THeaderProps = {
     data: THeaderData
 }
 
+const Overlay = () => {
+    const { activeControl, isNavOpen, resetActiveControl } = useHeaderContext()
+
+    if (isNavOpen || activeControl !== null)
+        return <div className={styles.overlay} onClick={resetActiveControl} />
+
+    return null
+}
+
 export const Header = ({ data }: THeaderProps) => {
     const { navItems, searchInputPlaceholder } = data
 
@@ -30,18 +39,18 @@ export const Header = ({ data }: THeaderProps) => {
     const handleToggleNav = (isOpen: boolean) => {
         setIsNavOpen(isOpen)
 
-        // const element = document.body
+        const element = document.body
 
-        // if (element) {
-        //     element.style.overflowY = isOpen ? 'hidden' : ''
-        // }
+        if (element) {
+            element.style.overflowY = isOpen ? 'hidden' : ''
+        }
     }
 
     useEffect(() => {
-        // const element = document.body
-        // return () => {
-        //     element.style.overflowY = ''
-        // }
+        const element = document.body
+        return () => {
+            element.style.overflowY = ''
+        }
     }, [])
 
     useOutsideClick(isNavOpen, headerRef, () => {
@@ -51,8 +60,8 @@ export const Header = ({ data }: THeaderProps) => {
     const { isMobile } = useMedia()
 
     return (
-        <HeaderProvider isMobile={isMobile}>
-            {isNavOpen && <div className={styles.overlay} />}
+        <HeaderProvider isMobile={isMobile} isNavOpen={isNavOpen}>
+            <Overlay />
             <header ref={headerRef} className={styles.header} id={NAV_ELEMENT_ID}>
                 <div>{logoImage && <Logo image={logoImage} href="/" />}</div>
 

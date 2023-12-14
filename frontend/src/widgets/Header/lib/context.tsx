@@ -10,6 +10,7 @@ type THeaderContext = {
     activeControl: TControlType | null
 
     isMobile: boolean
+    isNavOpen: boolean
 
     setActiveControl: (control: TControlType) => void
     resetActiveControl: VoidFunction
@@ -19,6 +20,7 @@ type THeaderContext = {
 const context = createContext<THeaderContext>({
     isMobile: false,
     activeControl: null,
+    isNavOpen: false,
     setActiveControl: notImplemented,
     toggleActiveControl: notImplemented,
     resetActiveControl: notImplemented,
@@ -26,15 +28,21 @@ const context = createContext<THeaderContext>({
 
 type THeaderContextProps = {
     isMobile: boolean
+    isNavOpen: boolean
 }
 
-export const HeaderProvider = ({ children, isMobile }: PropsWithChildren<THeaderContextProps>) => {
+export const HeaderProvider = ({
+    children,
+    isMobile,
+    isNavOpen,
+}: PropsWithChildren<THeaderContextProps>) => {
     const [activeControl, setActiveControl] = useState<TControlType | null>(null)
 
     const contextValues = useMemo<THeaderContext>(
         () => ({
             activeControl,
             isMobile,
+            isNavOpen,
 
             setActiveControl,
             resetActiveControl: () => setActiveControl(null),
@@ -42,7 +50,7 @@ export const HeaderProvider = ({ children, isMobile }: PropsWithChildren<THeader
                 setActiveControl((prev) => (prev === control ? null : control))
             },
         }),
-        [activeControl, isMobile],
+        [activeControl, isMobile, isNavOpen],
     )
 
     return <context.Provider value={contextValues}>{children}</context.Provider>

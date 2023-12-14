@@ -30,7 +30,7 @@ export const LocaleDropdown = ({ options }: TLocaleDropdownProps) => {
                     [styles.popover_mobile]: isMobile,
                 }),
             }}
-            dropdownOffset={8}
+            dropdownOffset={isMobile ? 8 : 14}
             openInPortal={!isMobile}
         >
             <Button
