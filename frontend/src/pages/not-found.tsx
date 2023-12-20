@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { Error404Screen, TError404ScreenProps } from '@/screens/error404'
-import { getApi } from '@/shared/lib/adminApi'
+import { getApi } from '@/services/strapi/api'
 import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
 import { mapNotFoundServerData } from '@/shared/lib/serverDataMappers/notFound'

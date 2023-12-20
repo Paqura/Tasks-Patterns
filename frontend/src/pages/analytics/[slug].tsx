@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { AnalyticArticleScreen, TAnalyticArticleScreenProps } from '@/screens/analyticArticle'
-import { getApi } from '@/shared/lib/adminApi'
+import { getApi } from '@/services/strapi/api'
 import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
 import { mapArticleServerData } from '@/shared/lib/serverDataMappers/analytic-article'
 import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'

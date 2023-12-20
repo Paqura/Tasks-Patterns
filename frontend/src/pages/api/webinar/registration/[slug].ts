@@ -1,18 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { TLocale } from '@/services/translation'
-import { TStrapiApi, getApi } from '@/shared/lib/adminApi'
+import { TWebinarRegistrationRequestBody } from '@/screens/webinar/lib/webinarRequest'
+import { TStrapiApi, getApi } from '@/services/strapi/api'
 import { TPublicationState, getPublicationStateFromQuery } from '@/shared/lib/publicationState'
-
-export type TWebinarRegistrationRequestBody = {
-    fullName: string
-    email: string
-    phone?: string
-    companyName?: string
-    companyPosition?: string
-    locale: TLocale
-    recipientEmail?: string
-}
 
 type TWebinarRegistrationRequest = Omit<NextApiRequest, 'body'> & {
     body: TWebinarRegistrationRequestBody
@@ -37,46 +27,51 @@ const getWebinarData = async (
 
 export default async function handler(req: TWebinarRegistrationRequest, res: NextApiResponse) {
     const { slug } = req.query
-    if (req.method === 'POST' && slug && typeof slug === 'string') {
-        try {
-            const { fullName, email, phone, companyName, companyPosition, locale, recipientEmail } =
-                req.body
 
-            const api = getApi(locale)
-            const { eventName, eventDate, isEvent, eventLink } = await getWebinarData(
-                slug,
-                api,
-                getPublicationStateFromQuery(req.query),
-            )
+    const isCorrectRequest = req.method === 'POST' && typeof slug === 'string'
 
-            if (!isEvent || !eventName || !eventDate || !eventLink) {
-                res.status(405).send({ message: 'Bad event' })
-                return
-            }
+    if (!isCorrectRequest) {
+        return res.status(500).send({ message: 'Bad request' })
+    }
 
-            if (new Date(eventDate).getTime() < new Date().getTime()) {
-                res.status(405).send({ message: 'Event is completed' })
-                return
-            }
+    const { fullName, email, phone, companyName, companyPosition, locale, recipientEmail } =
+        req.body
 
-            const response = await api.createWebinarRequest({
-                companyName,
-                companyPosition,
-                email,
-                fullName,
-                phone,
-                eventDate: new Date(eventDate),
-                eventName,
-                eventLink,
-                recipientEmail,
-            })
+    try {
+        const api = getApi(locale)
 
-            res.status(response.status).json({})
-        } catch (e) {
-            res.status(500).send({ message: 'Bad request' })
+        const { eventName, eventDate, isEvent, eventLink } = await getWebinarData(
+            slug,
+            api,
+            getPublicationStateFromQuery(req.query),
+        )
+
+        const isBadEvent = !isEvent || !eventName || !eventDate || !eventLink
+
+        if (isBadEvent) {
+            return res.status(405).send({ message: 'Bad event' })
         }
-    } else {
-        // TODO: Fix message
+
+        const isEventCompleted = new Date(eventDate).getTime() < new Date().getTime()
+
+        if (isEventCompleted) {
+            return res.status(405).send({ message: 'Event is completed' })
+        }
+
+        const response = await api.createWebinarRequest({
+            companyName,
+            companyPosition,
+            email,
+            fullName,
+            phone,
+            eventDate: new Date(eventDate),
+            eventName,
+            eventLink,
+            recipientEmail,
+        })
+
+        res.status(response.status).json({})
+    } catch (e) {
         res.status(500).send({ message: 'Bad request' })
     }
 }

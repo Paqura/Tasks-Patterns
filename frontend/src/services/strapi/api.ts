@@ -1,50 +1,8 @@
 import { GetAttributesValues, Response, ResponseCollection } from '@admin/general-schemas'
-import axios from 'axios'
-import { stringify } from 'qs'
 
-import { TPublicationState, getUrlWithPublicationState } from './publicationState'
+import { TPublicationState, getUrlWithPublicationState } from '@/shared/lib/publicationState'
 
-export const paramsSerializer = (params: Record<string, unknown>) =>
-    stringify(params, {
-        arrayFormat: 'brackets',
-    })
-
-const getClient = (params: Record<string, unknown> = {}) => {
-    const baseURL = process.env.NEXT_PUBLIC_ADMIN_API_URL
-
-    if (!baseURL) {
-        throw new Error('NEXT_PUBLIC_ADMIN_API_URL is empty')
-    }
-
-    const axiosInstance = axios.create({
-        baseURL: baseURL,
-        withCredentials: true,
-        paramsSerializer,
-
-        headers: {
-            'Content-Type': 'application/json',
-            ...(process.env.ADMIN_API_KEY
-                ? { Authorization: `bearer ${process.env.ADMIN_API_KEY}` }
-                : {}),
-        },
-
-        params: {
-            populate: 'deep',
-            ...params,
-        },
-    })
-
-    // Добавляем аттрибут locale к запросам на сохранение сущностей.
-    axiosInstance.interceptors.request.use((config) => {
-        if (config.method === 'post' && config.data?.data && !config.data.data.locale) {
-            config.data.data.locale = params.locale
-        }
-
-        return config
-    })
-
-    return axiosInstance
-}
+import { getClient } from './client'
 
 export const getApi = (locale?: string) => {
     const client = getClient(locale ? { locale } : {})
@@ -202,6 +160,17 @@ export const getApi = (locale?: string) => {
             return response.data.data?.attributes
         },
 
+        fetchSpecialPage: async (slug: string, publicationState: TPublicationState) => {
+            try {
+                const response = await client.get<Response<'api::sp.sp'>>(
+                    getUrlWithPublicationState(`/api/sps/${slug}`, publicationState),
+                )
+                return response.data.data?.attributes
+            } catch {
+                return null
+            }
+        },
+
         createWebinarRequest: async (
             data: GetAttributesValues<'api::webinar-request.webinar-request'>,
         ) => {
@@ -212,6 +181,7 @@ export const getApi = (locale?: string) => {
                 },
             )
         },
+
         createPilotRequest: async (
             data: GetAttributesValues<'api::pilot-application-request.pilot-application-request'>,
         ) => {
@@ -221,6 +191,7 @@ export const getApi = (locale?: string) => {
                 data,
             })
         },
+
         createPartnershipRequest: async (
             data: GetAttributesValues<'api::partnership-request.partnership-request'>,
         ) => {
@@ -231,6 +202,7 @@ export const getApi = (locale?: string) => {
                 },
             )
         },
+
         createFeedbackRequest: async (
             data: GetAttributesValues<'api::feedback-request.feedback-request'>,
         ) => {
@@ -240,17 +212,6 @@ export const getApi = (locale?: string) => {
                     data,
                 },
             )
-        },
-
-        fetchSpecialPage: async (slug: string, publicationState: TPublicationState) => {
-            try {
-                const response = await client.get<Response<'api::sp.sp'>>(
-                    getUrlWithPublicationState(`/api/sps/${slug}`, publicationState),
-                )
-                return response.data.data?.attributes
-            } catch {
-                return null
-            }
         },
 
         createSpecialPageInviteRequest: async (

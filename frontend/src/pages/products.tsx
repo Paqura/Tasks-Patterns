@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { ProductsScreen, TProductsScreenProps } from '@/screens/products'
-import { getApi } from '@/shared/lib/adminApi'
+import { getApi } from '@/services/strapi/api'
 import { mapAllProductsPageServerData } from '@/shared/lib/serverDataMappers/allProducts'
 import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'

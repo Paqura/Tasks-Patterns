@@ -2,14 +2,15 @@ import { useState } from 'react'
 
 import { useLocale } from '@/services/translation'
 import { scrollToSection } from '@/shared/lib/scrollToSection'
+import { TFeedbackFormOutput } from '@/widgets/AnyQuestions/ui/FeedbackForm'
+import { TPartnershipFormOutput } from '@/widgets/AnyQuestions/ui/PartnershipForm'
+import { TPilotAppFormOutput } from '@/widgets/AnyQuestions/ui/PilotAppForm'
+
 import {
     postFeedbackRequest,
     postPartnershipRequest,
     postPilotApplicationRequest,
-} from '@/shared/lib/siteApi'
-import { TFeedbackFormOutput } from '@/widgets/AnyQuestions/ui/FeedbackForm'
-import { TPartnershipFormOutput } from '@/widgets/AnyQuestions/ui/PartnershipForm'
-import { TPilotAppFormOutput } from '@/widgets/AnyQuestions/ui/PilotAppForm'
+} from './feedback'
 
 type THandleSubmit = {
     sectionId: string
@@ -58,7 +59,7 @@ export const useHandleFormSend = ({ sectionId, recipientEmail }: THandleSubmit) 
     }
 
     const handlePartnershipSubmit = async (data: TPartnershipFormOutput) => {
-        const isSuccess = await await postPartnershipRequest({
+        const isSuccess = await postPartnershipRequest({
             address: data.address,
             fullName: data.fullName || '',
             email: data.email || '',

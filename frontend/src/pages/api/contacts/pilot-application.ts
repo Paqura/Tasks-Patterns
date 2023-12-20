@@ -1,55 +1,36 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { TLocale } from '@/services/translation'
-import { getApi } from '@/shared/lib/adminApi'
-
-export type TPilotApplicationRequestBody = {
-    product: string
-    fullName: string
-    companyName: string
-    email: string
-    phone?: string
-    comment?: string
-    locale: TLocale
-    recipientEmail: string | undefined
-}
+import { getApi } from '@/services/strapi/api'
+import { TPilotApplicationRequestBody } from '@/widgets/AnyQuestions/lib/feedback'
 
 type TPilotApplicationRequest = Omit<NextApiRequest, 'body'> & {
     body: TPilotApplicationRequestBody
 }
 
 export default async function handler(req: TPilotApplicationRequest, res: NextApiResponse) {
-    if (req.method === 'POST') {
-        try {
-            const {
-                product,
-                fullName,
-                companyName,
-                email,
-                phone,
-                comment,
-                locale,
-                recipientEmail,
-            } = req.body
+    if (req.method !== 'POST') {
+        return res.status(500).send({ message: 'Bad request' })
+    }
 
-            const api = getApi(locale)
+    try {
+        const { product, fullName, companyName, email, phone, comment, locale, recipientEmail } =
+            req.body
 
-            // TODO CHECK PRODUCT IN DB
-            const response = await api.createPilotRequest({
-                product,
-                fullName,
-                companyName,
-                email,
-                phone,
-                comment,
-                recipientEmail,
-            })
+        const api = getApi(locale)
 
-            res.status(response.status).json({})
-        } catch (e) {
-            res.status(500).send({ message: 'Bad request' })
-        }
-    } else {
+        // TODO CHECK PRODUCT IN DB
+        const response = await api.createPilotRequest({
+            product,
+            fullName,
+            companyName,
+            email,
+            phone,
+            comment,
+            recipientEmail,
+        })
+
+        res.status(response.status).json({})
+    } catch (e) {
         res.status(500).send({ message: 'Bad request' })
     }
 }

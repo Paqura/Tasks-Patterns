@@ -1,53 +1,42 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { TLocale } from '@/services/translation'
-import { getApi } from '@/shared/lib/adminApi'
-
-export type TSpecialPageInviteRequestBody = {
-    fullName: string
-    email: string
-    company: string
-    message: string
-    recipientEmail: string
-    emailTemplateName: string
-    slug: string
-    locale: TLocale
-}
+import { TSpecialPageInviteRequestBody } from '@/screens/special/lib/invite'
+import { getApi } from '@/services/strapi/api'
 
 type TSpecialPageInviteRequest = Omit<NextApiRequest, 'body'> & {
     body: TSpecialPageInviteRequestBody
 }
 
 export default async function handler(req: TSpecialPageInviteRequest, res: NextApiResponse) {
-    if (req.method === 'POST') {
-        try {
-            const {
-                fullName,
-                email,
-                company,
-                message,
-                recipientEmail,
-                locale,
-                emailTemplateName,
-                slug,
-            } = req.body
+    if (req.method !== 'POST') {
+        return res.status(500).send({ message: 'Bad request' })
+    }
 
-            const api = getApi(locale)
-            const response = await api.createSpecialPageInviteRequest({
-                email,
-                fullName,
-                company,
-                recipientEmail,
-                message,
-                emailTemplateName,
-                pageSlug: slug,
-            })
+    try {
+        const {
+            fullName,
+            email,
+            company,
+            message,
+            recipientEmail,
+            locale,
+            emailTemplateName,
+            slug,
+        } = req.body
 
-            res.status(response.status).json({})
-        } catch (e) {
-            res.status(500).send({ message: 'Bad request' })
-        }
-    } else {
+        const api = getApi(locale)
+        const response = await api.createSpecialPageInviteRequest({
+            email,
+            fullName,
+            company,
+            recipientEmail,
+            message,
+            emailTemplateName,
+            pageSlug: slug,
+        })
+
+        res.status(response.status).json({})
+    } catch (e) {
         res.status(500).send({ message: 'Bad request' })
     }
 }

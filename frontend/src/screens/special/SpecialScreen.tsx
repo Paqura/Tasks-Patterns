@@ -3,10 +3,10 @@ import { useState } from 'react'
 import * as tsPattern from 'ts-pattern'
 
 import { useLocale } from '@/services/translation'
-import { postSpecialPageInviteRequest } from '@/shared/lib/siteApi'
 import { PageLayout, TSeo } from '@/shared/ui/project/PageLayout'
 
 import styles from './index.module.scss'
+import { postSpecialPageInviteRequest } from './lib/invite'
 import type { TSpecialPageData } from './lib/types'
 import { useYaMetricSpecialPage } from './lib/yaMetric'
 import { AnyQuestions, TAnyQuestionsData } from './ui/AnyQuestions'

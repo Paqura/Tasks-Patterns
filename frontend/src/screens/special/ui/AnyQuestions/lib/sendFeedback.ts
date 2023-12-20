@@ -1,5 +1,5 @@
 import { useLocale } from '@/services/translation'
-import { postFeedbackRequest } from '@/shared/lib/siteApi'
+import { postFeedbackRequest } from '@/widgets/AnyQuestions/lib/feedback'
 
 import { TFormFields } from '../ui/Form'
 

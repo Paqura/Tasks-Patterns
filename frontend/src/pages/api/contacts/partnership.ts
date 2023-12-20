@@ -1,18 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { TLocale } from '@/services/translation'
-import { getApi } from '@/shared/lib/adminApi'
-
-export type TPartnershipRequestBody = {
-    address?: string
-    fullName: string
-    companyName: string
-    email: string
-    phone?: string
-    comment?: string
-    locale: TLocale
-    recipientEmail: string | undefined
-}
+import { getApi } from '@/services/strapi/api'
+import { TPartnershipRequestBody } from '@/widgets/AnyQuestions/lib/feedback'
 
 type TPartnershipRequest = Omit<NextApiRequest, 'body'> & {
     body: TPartnershipRequestBody

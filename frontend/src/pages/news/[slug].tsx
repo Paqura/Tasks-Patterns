@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { NewsArticleScreen, TNewsArticleScreenProps } from '@/screens/newsArticle'
-import { getApi } from '@/shared/lib/adminApi'
+import { getApi } from '@/services/strapi/api'
 import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
 import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'

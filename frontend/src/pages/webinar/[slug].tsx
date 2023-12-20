@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { TWebinarScreenProps, WebinarScreen } from '@/screens/webinar'
-import { getApi } from '@/shared/lib/adminApi'
+import { getApi } from '@/services/strapi/api'
 import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
 import {
     mapEventArticleServerData,

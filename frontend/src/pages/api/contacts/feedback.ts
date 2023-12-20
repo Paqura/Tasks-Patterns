@@ -1,40 +1,31 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { TLocale } from '@/services/translation'
-import { getApi } from '@/shared/lib/adminApi'
-
-export type TFeedbackRequestBody = {
-    fullName: string
-    email: string
-    phone: string
-    comment: string
-    locale: TLocale
-    recipientEmail: string | undefined
-}
+import { getApi } from '@/services/strapi/api'
+import { TFeedbackRequestBody } from '@/widgets/AnyQuestions/lib/feedback'
 
 type TFeedbackRequest = Omit<NextApiRequest, 'body'> & {
     body: TFeedbackRequestBody
 }
 
 export default async function handler(req: TFeedbackRequest, res: NextApiResponse) {
-    if (req.method === 'POST') {
-        try {
-            const { fullName, email, phone, comment, locale, recipientEmail } = req.body
+    if (req.method !== 'POST') {
+        return res.status(500).send({ message: 'Bad request' })
+    }
 
-            const api = getApi(locale)
-            const response = await api.createFeedbackRequest({
-                email,
-                fullName,
-                phone,
-                comment,
-                recipientEmail,
-            })
+    try {
+        const { fullName, email, phone, comment, locale, recipientEmail } = req.body
 
-            res.status(response.status).json({})
-        } catch (e) {
-            res.status(500).send({ message: 'Bad request' })
-        }
-    } else {
+        const api = getApi(locale)
+        const response = await api.createFeedbackRequest({
+            email,
+            fullName,
+            phone,
+            comment,
+            recipientEmail,
+        })
+
+        res.status(response.status).json({})
+    } catch (e) {
         res.status(500).send({ message: 'Bad request' })
     }
 }

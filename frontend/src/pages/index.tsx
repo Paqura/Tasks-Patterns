@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 
 import { HomeScreen, THomeScreenProps } from '@/screens/home'
-import { getApi } from '@/shared/lib/adminApi'
+import { getApi } from '@/services/strapi/api'
 import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
 import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
 import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
