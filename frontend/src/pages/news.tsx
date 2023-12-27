@@ -2,10 +2,10 @@ import { GetServerSideProps } from 'next'
 
 import { NewsScreen, TNewsScreenData, TNewsScreenProps } from '@/screens/news'
 import { getApi } from '@/services/strapi/api'
-import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
-import { mapImageMediaFile } from '@/shared/lib/serverDataMappers/media'
+import { mapImageMediaFile } from '@/shared/lib/mappers/strapi'
+import { anyQuestionMapper } from '@/widgets/AnyQuestions'
+import { footerMapper } from '@/widgets/Footer'
+import { headerMapper } from '@/widgets/Header'
 
 export type TServerSideProps = TNewsScreenProps
 
@@ -37,9 +37,9 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         }
     }
 
-    const anyQuestionsData = mapAnyQuestionsServerData(anyQuestions, products)
-    const footerData = mapFooterServerData(footer, products)
-    const headerData = mapHeaderServerData(header)
+    const anyQuestionsData = anyQuestionMapper.toDomain(anyQuestions, products)
+    const footerData = footerMapper.toDomain(footer, products)
+    const headerData = headerMapper.toDomain(header)
     const headingSectionData = {
         title: newsPage?.title || '',
         description: newsPage?.description || '',

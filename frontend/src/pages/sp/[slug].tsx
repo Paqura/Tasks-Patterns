@@ -1,10 +1,9 @@
 import { GetServerSideProps } from 'next'
 
-import { SpecialScreen, TSpecialScreenProps } from '@/screens/special'
+import { SpecialScreen, TSpecialScreenProps, specialMapper } from '@/screens/special'
 import { getApi } from '@/services/strapi/api'
 import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
-import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
-import { mapSpecialPageServerData } from '@/shared/lib/serverDataMappers/special'
+import { anyQuestionMapper } from '@/widgets/AnyQuestions'
 
 export type TServerSideProps = TSpecialScreenProps
 
@@ -33,15 +32,13 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
             notFound: true,
         }
 
-    const anyQuestionsData = mapAnyQuestionsServerData(anyQuestions, allProducts)
-
     return {
         props: {
             seo: config?.seo || {},
 
-            specialPageData: mapSpecialPageServerData(specialData),
+            specialPageData: specialMapper.toDomain(specialData),
             internalError: false,
-            anyQuestionsData,
+            anyQuestionsData: anyQuestionMapper.toDomain(anyQuestions, allProducts),
         },
     }
 }

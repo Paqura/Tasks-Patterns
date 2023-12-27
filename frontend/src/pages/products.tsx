@@ -1,33 +1,32 @@
 import { GetServerSideProps } from 'next'
 
-import { ProductsScreen, TProductsScreenProps } from '@/screens/products'
+import { ProductsScreen, TProductsScreenProps, productsMapper } from '@/screens/products'
 import { getApi } from '@/services/strapi/api'
-import { mapAllProductsPageServerData } from '@/shared/lib/serverDataMappers/allProducts'
-import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
-import { mapProductCardServerData } from '@/shared/lib/serverDataMappers/product/product-card'
+import { anyQuestionMapper } from '@/widgets/AnyQuestions'
+import { footerMapper } from '@/widgets/Footer'
+import { headerMapper } from '@/widgets/Header'
 
 export type TServerSideProps = TProductsScreenProps
 
 export const getServerSideProps: GetServerSideProps<TServerSideProps> = async (params) => {
     const api = getApi(params.locale)
 
-    const [config, header, allProductsPage, products, anyQuestions, footer] = await Promise.all([
-        api.fetchConfig(),
-        api.fetchHeader(),
-        api.fetchAllProductsPage(),
-        api.fetchProducts(),
-        api.fetchAnyQuestions(),
-        api.fetchFooter(),
-    ])
+    const [config, header, allProductsPage, products = [], anyQuestions, footer] =
+        await Promise.all([
+            api.fetchConfig(),
+            api.fetchHeader(),
+            api.fetchAllProductsPage(),
+            api.fetchProducts(),
+            api.fetchAnyQuestions(),
+            api.fetchFooter(),
+        ])
 
-    const { headingSectionData } = mapAllProductsPageServerData(allProductsPage)
+    const { headingSectionData } = productsMapper.heading(allProductsPage)
 
-    const productsData = products?.map(mapProductCardServerData) || []
-    const anyQuestionsData = mapAnyQuestionsServerData(anyQuestions, products)
-    const footerData = mapFooterServerData(footer, products)
-    const headerData = mapHeaderServerData(header)
+    const productsData = productsMapper.toDomain(products)
+    const anyQuestionsData = anyQuestionMapper.toDomain(anyQuestions, products)
+    const footerData = footerMapper.toDomain(footer, products)
+    const headerData = headerMapper.toDomain(header)
 
     return {
         props: {

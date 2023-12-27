@@ -1,4 +1,4 @@
-import { TEventConfigData } from '@/shared/lib/serverDataMappers/event-article'
+import { TEventConfigData } from '../../mappers'
 import { Button } from '@/shared/ui/common/Button'
 import { Heading } from '@/shared/ui/common/typography/Heading'
 import { Text } from '@/shared/ui/common/typography/Text'

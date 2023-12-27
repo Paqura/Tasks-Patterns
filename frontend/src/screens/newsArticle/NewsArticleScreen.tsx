@@ -1,4 +1,3 @@
-import { TNewsArticleData } from '@/shared/lib/serverDataMappers/news-article'
 import { Article } from '@/shared/ui/project/Article'
 import { HelpfulFiles } from '@/shared/ui/project/HelpfulFiles'
 import { MarkdownContent } from '@/shared/ui/project/MarkdownContent'
@@ -9,6 +8,7 @@ import { TFooterData } from '@/widgets/Footer'
 import { THeaderData } from '@/widgets/Header'
 
 import styles from './index.module.scss'
+import { TNewsArticleData } from './mappers'
 
 export type TNewsArticleScreenData = {
     seo: TSeo

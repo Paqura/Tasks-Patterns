@@ -1,12 +1,15 @@
 import { GetServerSideProps } from 'next'
 
-import { AnalyticArticleScreen, TAnalyticArticleScreenProps } from '@/screens/analyticArticle'
+import {
+    AnalyticArticleScreen,
+    TAnalyticArticleScreenProps,
+    analyticMapper,
+} from '@/screens/analyticArticle'
 import { getApi } from '@/services/strapi/api'
 import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
-import { mapArticleServerData } from '@/shared/lib/serverDataMappers/analytic-article'
-import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { anyQuestionMapper } from '@/widgets/AnyQuestions'
+import { footerMapper } from '@/widgets/Footer'
+import { headerMapper } from '@/widgets/Header'
 
 export type TServerSideProps = TAnalyticArticleScreenProps
 
@@ -41,10 +44,10 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
     return {
         props: {
             seo: config?.seo || {},
-            headerData: mapHeaderServerData(header),
-            footerData: mapFooterServerData(footer, products),
-            analyticArticleData: mapArticleServerData(article),
-            anyQuestionsData: mapAnyQuestionsServerData(anyQuestions, products),
+            headerData: headerMapper.toDomain(header),
+            footerData: footerMapper.toDomain(footer, products),
+            analyticArticleData: analyticMapper.toDomain(article),
+            anyQuestionsData: anyQuestionMapper.toDomain(anyQuestions, products),
         },
     }
 }

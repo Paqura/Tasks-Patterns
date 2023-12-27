@@ -1,10 +1,9 @@
 import { GetServerSideProps } from 'next'
 
-import { Error404Screen, TError404ScreenProps } from '@/screens/error404'
+import { Error404Screen, TError404ScreenProps, notFoundMapper } from '@/screens/error404'
 import { getApi } from '@/services/strapi/api'
-import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
-import { mapNotFoundServerData } from '@/shared/lib/serverDataMappers/notFound'
+import { footerMapper } from '@/widgets/Footer'
+import { headerMapper } from '@/widgets/Header'
 
 export type TServerSideProps = TError404ScreenProps
 
@@ -19,9 +18,9 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async (p
         api.fetchProducts(),
     ])
 
-    const footerData = mapFooterServerData(footer, products)
-    const headerData = mapHeaderServerData(header)
-    const errorData = mapNotFoundServerData(notFound)
+    const footerData = footerMapper.toDomain(footer, products)
+    const headerData = headerMapper.toDomain(header)
+    const errorData = notFoundMapper.toDomain(notFound)
 
     return {
         props: {

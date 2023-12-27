@@ -1,11 +1,10 @@
 import { GetServerSideProps } from 'next'
 
-import { AboutScreen, TAboutScreenData } from '@/screens/about'
+import { AboutScreen, TAboutScreenData, aboutMapper } from '@/screens/about'
 import { getApi } from '@/services/strapi/api'
-import { mapAboutPageServerData } from '@/shared/lib/serverDataMappers/about'
-import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { anyQuestionMapper } from '@/widgets/AnyQuestions'
+import { footerMapper } from '@/widgets/Footer'
+import { headerMapper } from '@/widgets/Header'
 
 export type TServerSideProps = TAboutScreenData
 
@@ -20,12 +19,12 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async (p
         api.fetchAnyQuestions(),
         api.fetchFooter(),
     ])
-    const anyQuestionsData = mapAnyQuestionsServerData(anyQuestions, products)
-    const footerData = mapFooterServerData(footer, products)
-    const headerData = mapHeaderServerData(header)
+    const anyQuestionsData = anyQuestionMapper.toDomain(anyQuestions, products)
+    const footerData = footerMapper.toDomain(footer, products)
+    const headerData = headerMapper.toDomain(header)
 
     const { headingSectionData, expertsSectionData, historySectionData } =
-        mapAboutPageServerData(aboutPage)
+        aboutMapper.toDomain(aboutPage)
 
     return {
         props: {

@@ -1,12 +1,11 @@
 import { GetServerSideProps } from 'next'
 
-import { ProductScreen, type TProductData, type TProductScreenProps } from '@/screens/product'
+import { ProductScreen, productMapper, type TProductScreenProps } from '@/screens/product'
 import { getApi } from '@/services/strapi/api'
 import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
-import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
-import { mapProductServerData } from '@/shared/lib/serverDataMappers/product'
+import { anyQuestionMapper } from '@/widgets/AnyQuestions'
+import { footerMapper } from '@/widgets/Footer'
+import { headerMapper } from '@/widgets/Header'
 
 export type TServerSideProps = TProductScreenProps & {
     slug: string
@@ -40,10 +39,10 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { id: stri
         }
     }
 
-    const anyQuestionsData = mapAnyQuestionsServerData(anyQuestions, allProducts)
-    const footerData = mapFooterServerData(footer, allProducts)
-    const headerData = mapHeaderServerData(header)
-    const productData: TProductData = mapProductServerData(product)
+    const anyQuestionsData = anyQuestionMapper.toDomain(anyQuestions, allProducts)
+    const footerData = footerMapper.toDomain(footer, allProducts)
+    const headerData = headerMapper.toDomain(header)
+    const productData = productMapper.toDomain(product)
 
     return {
         props: {

@@ -2,10 +2,10 @@ import { GetServerSideProps } from 'next'
 
 import { AnalyticsScreen, TAnalyticsScreenProps } from '@/screens/analytics'
 import { getApi } from '@/services/strapi/api'
-import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
 import { TArticlePreviewData } from '@/shared/ui/project/ArticlesList/ui/Article'
+import { anyQuestionMapper } from '@/widgets/AnyQuestions'
+import { footerMapper } from '@/widgets/Footer'
+import { headerMapper } from '@/widgets/Header'
 
 export type TServerSideProps = TAnalyticsScreenProps
 
@@ -44,9 +44,9 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         }
     }
 
-    const anyQuestionsData = mapAnyQuestionsServerData(anyQuestions, products)
-    const footerData = mapFooterServerData(footer, products)
-    const headerData = mapHeaderServerData(header)
+    const anyQuestionsData = anyQuestionMapper.toDomain(anyQuestions, products)
+    const footerData = footerMapper.toDomain(footer, products)
+    const headerData = headerMapper.toDomain(header)
 
     const headingSectionData = {
         title: analyticsPage?.title || '',

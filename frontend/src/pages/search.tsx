@@ -1,11 +1,10 @@
 import { GetServerSideProps } from 'next'
 
-import { SearchScreen, TSearchScreenProps } from '@/screens/search'
+import { SearchScreen, TSearchScreenProps, searchMapper } from '@/screens/search'
 import { getSearchResponse, getSearchString } from '@/services/meilisearch'
 import { getApi } from '@/services/strapi/api'
-import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
-import { mapSearchResponseServerData } from '@/shared/lib/serverDataMappers/search'
+import { footerMapper } from '@/widgets/Footer'
+import { headerMapper } from '@/widgets/Header'
 
 export type TServerSideProps = TSearchScreenProps
 
@@ -36,8 +35,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         getSearchResponse(searchString, locale),
     ])
 
-    const footerData = mapFooterServerData(footer, products)
-    const headerData = mapHeaderServerData(header)
+    const footerData = footerMapper.toDomain(footer, products)
+    const headerData = headerMapper.toDomain(header)
 
     const headingSectionData = {
         title: searchPage?.title || '',
@@ -45,7 +44,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         searchQuery: searchResponse?.query || '',
     }
 
-    const searchResults = mapSearchResponseServerData(searchResponse)
+    const searchResults = searchMapper.toDomain(searchResponse)
 
     const searchResultsListData = {
         searchQuery: searchResponse?.query || '',

@@ -1,14 +1,10 @@
 import { GetServerSideProps } from 'next'
 
-import { TWebinarScreenProps, WebinarScreen } from '@/screens/webinar'
+import { TWebinarScreenProps, WebinarScreen, webinarMapper } from '@/screens/webinar'
 import { getApi } from '@/services/strapi/api'
 import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
-import {
-    mapEventArticleServerData,
-    mapWebinarConfigServerData,
-} from '@/shared/lib/serverDataMappers/event-article'
-import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
+import { footerMapper } from '@/widgets/Footer'
+import { headerMapper } from '@/widgets/Header'
 
 export type TServerSideProps = TWebinarScreenProps
 
@@ -48,8 +44,8 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
         }
     }
 
-    const footerData = mapFooterServerData(footer, products)
-    const headerData = mapHeaderServerData(header)
+    const footerData = footerMapper.toDomain(footer, products)
+    const headerData = headerMapper.toDomain(header)
 
     const {
         article,
@@ -59,9 +55,9 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
         isRegistrationFinished,
         slug,
         eventHasAllFormData,
-    } = mapEventArticleServerData(newsItem)
+    } = webinarMapper.toDomain(newsItem)
 
-    const eventConfig = mapWebinarConfigServerData(webinarConfig)
+    const eventConfig = webinarMapper.config(webinarConfig)
 
     return {
         props: {

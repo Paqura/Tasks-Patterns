@@ -1,12 +1,15 @@
 import { GetServerSideProps } from 'next'
 
-import { NewsArticleScreen, TNewsArticleScreenProps } from '@/screens/newsArticle'
+import {
+    NewsArticleScreen,
+    TNewsArticleScreenProps,
+    newsArticleMapper,
+} from '@/screens/newsArticle'
 import { getApi } from '@/services/strapi/api'
 import { getPublicationStateFromQuery } from '@/shared/lib/publicationState'
-import { mapAnyQuestionsServerData } from '@/shared/lib/serverDataMappers/anyQuestions'
-import { mapFooterServerData } from '@/shared/lib/serverDataMappers/footer'
-import { mapHeaderServerData } from '@/shared/lib/serverDataMappers/header'
-import { mapNewsArticleServerData } from '@/shared/lib/serverDataMappers/news-article'
+import { anyQuestionMapper } from '@/widgets/AnyQuestions'
+import { footerMapper } from '@/widgets/Footer'
+import { headerMapper } from '@/widgets/Header'
 
 export type TServerSideProps = TNewsArticleScreenProps
 
@@ -46,10 +49,10 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps, { slug: st
         }
     }
 
-    const anyQuestionsData = mapAnyQuestionsServerData(anyQuestions, products)
-    const footerData = mapFooterServerData(footer, products)
-    const headerData = mapHeaderServerData(header)
-    const newsArticleData = mapNewsArticleServerData(newsItem)
+    const anyQuestionsData = anyQuestionMapper.toDomain(anyQuestions, products)
+    const footerData = footerMapper.toDomain(footer, products)
+    const headerData = headerMapper.toDomain(header)
+    const newsArticleData = newsArticleMapper.toDomain(newsItem)
 
     return {
         props: {
