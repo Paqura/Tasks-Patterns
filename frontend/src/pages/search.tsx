@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps<TServerSideProps> = async ({
         api.fetchFooter(),
         api.fetchProducts(),
         api.fetchSearchPage(),
-        getSearchResponse(searchString),
+        getSearchResponse(searchString, locale),
     ])
 
     const footerData = mapFooterServerData(footer, products)

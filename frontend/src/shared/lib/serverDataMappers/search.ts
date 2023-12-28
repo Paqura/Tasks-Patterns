@@ -86,9 +86,8 @@ const getSearchResultItem = (
     type: string,
     data: TObject,
     slug?: string,
+    locale?: string,
 ): TSearchResultItem | undefined => {
-    const locale = data.locale as string
-
     if (type === 'about-page') {
         return {
             title: String(data.title),
@@ -141,11 +140,11 @@ export const mapSearchResponseServerData = (
         .map((hit) => {
             const { query } = searchResponse
             // @ts-expect-error
-            const { type, slug, data } = hit._formatted
+            const { type, slug, locale, data } = hit._formatted
 
             const flattenedObjData = flattenObj(data)
 
-            return getSearchResultItem(query, type, flattenedObjData, slug)
+            return getSearchResultItem(query, type, flattenedObjData, slug, locale)
         })
         .filter(Boolean) as TSearchResultItem[]
 

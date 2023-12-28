@@ -7,11 +7,21 @@ const commonSettings = {
   },
   settings: {
     searchableAttributes: ['data'],
+    filterableAttributes: ['locale'],
     typoTolerance: {
-      enabled: false
+      enabled: false,
     },
   },
 };
+
+const internalFields = [
+  'id',
+  'createdAt',
+  'updatedAt',
+  'publishedAt',
+  'localizations',
+  '__component',
+];
 
 export const getMeilisearchPluginConfig = (env) => {
   return {
@@ -20,56 +30,73 @@ export const getMeilisearchPluginConfig = (env) => {
     'analytic-article': {
       ...commonSettings,
       transformEntry({ entry }) {
-        const { id, slug, ...rest } = entry;
+        const { id, slug, locale, ...rest } = entry;
 
         return {
           id,
           type: 'analytic-article',
           slug,
-          data: transformData(rest, ['id', 'createdAt', 'updatedAt', 'published', 'files', 'number'])
+          locale,
+          data: transformData(rest, [...internalFields, 'published', 'files', 'number']),
         };
-      }
+      },
     },
     'news-item': {
       ...commonSettings,
       transformEntry({ entry }) {
-        const { id, slug, ...rest } = entry;
+        const { id, slug, locale, ...rest } = entry;
 
-        const type = rest.event ? 'webinars-item' : 'news-item' ;
+        const type = rest.event ? 'webinars-item' : 'news-item';
 
         return {
           id,
           type,
           slug,
-          data: transformData(rest, ['id', 'createdAt', 'updatedAt', 'published', 'files', 'previewImage', 'calendar'])
+          locale,
+          data: transformData(rest, [
+            ...internalFields,
+            'published',
+            'files',
+            'previewImage',
+            'calendar',
+          ]),
         };
-      }
+      },
     },
-    'product': {
+    product: {
       ...commonSettings,
       transformEntry({ entry }) {
-        const { id, slug, ...rest } = entry;
+        const { id, slug, locale, ...rest } = entry;
 
         return {
           id,
           type: 'product',
           slug,
-          data: transformData(rest, ['id', 'createdAt', 'updatedAt', 'order', 'icon', 'bannerImage', '__component', 'sectionId', 'image', 'files'])
+          locale,
+          data: transformData(rest, [
+            ...internalFields,
+            'icon',
+            'bannerImage',
+            'sectionId',
+            'image',
+            'files',
+          ]),
         };
-      }
+      },
     },
     'about-page': {
       ...commonSettings,
       transformEntry({ entry }) {
-        const { id, slug, ...rest } = entry;
+        const { id, slug, locale, ...rest } = entry;
 
         return {
           id,
           type: 'about-page',
           slug,
-          data: transformData(rest, ['id', 'createdAt', 'updatedAt', 'photo'])
+          locale,
+          data: transformData(rest, [...internalFields, 'photo']),
         };
-      }
-    }
+      },
+    },
   };
 };
