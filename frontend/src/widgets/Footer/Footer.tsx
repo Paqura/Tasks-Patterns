@@ -3,11 +3,10 @@ import Image from 'next/image'
 
 import { Heading } from '@/shared/ui/common/typography/Heading'
 import { Text } from '@/shared/ui/common/typography/Text'
+import { TImage } from '@/types'
 
 import styles from './index.module.scss'
 import { NavBlock, TNavBlockData } from './ui/NavBlock'
-
-import logo from '/public/images/logo.svg'
 
 export type TFooterData = {
     title: string
@@ -15,6 +14,7 @@ export type TFooterData = {
     products: TNavBlockData
     company: TNavBlockData
     social: TNavBlockData
+    logoImage: TImage | null
 }
 
 type TFooterProps = {
@@ -51,7 +51,17 @@ export const Footer = ({ className, footerData }: TFooterProps) => {
                 </nav>
             </div>
 
-            <Image src={logo} alt="Positive Technologies" className={styles.logo} />
+            {footerData.logoImage && (
+                <div>
+                    <Image
+                        className={styles.logo}
+                        src={footerData.logoImage?.src}
+                        alt={footerData.logoImage?.alt ?? ''}
+                        width={footerData.logoImage?.width}
+                        height={footerData.logoImage?.height}
+                    />
+                </div>
+            )}
         </footer>
     )
 }

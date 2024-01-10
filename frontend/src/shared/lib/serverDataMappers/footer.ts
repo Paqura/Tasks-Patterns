@@ -3,6 +3,8 @@ import { GetAttributesValues } from '@admin/general-schemas'
 import { TFooterNavItem } from '@/types'
 import { TFooterData } from '@/widgets/Footer'
 
+import { mapImageMediaFile } from './media'
+
 const mapNavItems = (items: GetAttributesValues<'footer.nav-block-item'>[]): TFooterNavItem[] =>
     items.map((item) => ({
         name: item?.name || '',
@@ -36,5 +38,6 @@ export const mapFooterServerData = (
             title: serverFooterData?.social?.title || '',
             navItems: mapNavItems(serverFooterData?.social?.items || []),
         },
+        logoImage: mapImageMediaFile(serverFooterData?.logoImage),
     }
 }

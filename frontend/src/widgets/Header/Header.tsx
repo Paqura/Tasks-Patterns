@@ -3,16 +3,15 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { NAV_ELEMENT_ID } from '@/shared/lib/constants'
 import { useMedia, useOutsideClick } from '@/shared/lib/hooks'
 import { Logo } from '@/shared/ui/project/Logo'
-import { TNavItem } from '@/types'
+import { TImage, TNavItem } from '@/types'
 
 import styles from './index.module.scss'
 import { HeaderProvider, useHeaderContext } from './lib/context'
 import { Nav } from './ui/Nav'
 import { NavMobile } from './ui/NavMobile'
 
-import logoImage from 'public/images/logo/logoDesktop.svg'
-
 export type THeaderData = {
+    logoImage: TImage | null
     navItems: TNavItem[]
     searchInputPlaceholder: string
 }
@@ -31,7 +30,7 @@ const Overlay = () => {
 }
 
 export const Header = ({ data }: THeaderProps) => {
-    const { navItems, searchInputPlaceholder } = data
+    const { navItems, searchInputPlaceholder, logoImage } = data
 
     const [isNavOpen, setIsNavOpen] = useState(false)
     const headerRef = useRef<HTMLElement | null>(null) as MutableRefObject<HTMLElement>

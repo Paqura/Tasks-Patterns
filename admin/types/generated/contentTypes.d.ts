@@ -1260,6 +1260,12 @@ export interface ApiFooterFooter extends Schema.SingleType {
           localized: true;
         };
       }>;
+    logoImage: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::footer.footer', 'oneToOne', 'admin::user'> &
@@ -1302,6 +1308,12 @@ export interface ApiHeaderHeader extends Schema.SingleType {
         };
       }> &
       Attribute.DefaultTo<'Search on ptsecurity.com'>;
+    logoImage: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::header.header', 'oneToOne', 'admin::user'> &
