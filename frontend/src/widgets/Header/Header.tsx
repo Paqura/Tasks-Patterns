@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react'
 
 import { NAV_ELEMENT_ID } from '@/shared/lib/constants'
 import { useMedia, useOutsideClick } from '@/shared/lib/hooks'
@@ -21,9 +21,9 @@ type THeaderProps = {
 }
 
 const Overlay = () => {
-    const { activeControl, isNavOpen, resetActiveControl } = useHeaderContext()
+    const { activeControl, isNavOpen, isMobile, resetActiveControl } = useHeaderContext()
 
-    if (isNavOpen || activeControl !== null)
+    if (!isMobile && (isNavOpen || activeControl !== null))
         return <div className={styles.overlay} onClick={resetActiveControl} />
 
     return null
@@ -35,7 +35,7 @@ export const Header = ({ data }: THeaderProps) => {
     const [isNavOpen, setIsNavOpen] = useState(false)
     const headerRef = useRef<HTMLElement | null>(null) as MutableRefObject<HTMLElement>
 
-    const handleToggleNav = (isOpen: boolean) => {
+    const handleToggleNav = useCallback((isOpen: boolean) => {
         setIsNavOpen(isOpen)
 
         const element = document.body
@@ -43,7 +43,7 @@ export const Header = ({ data }: THeaderProps) => {
         if (element) {
             element.style.overflowY = isOpen ? 'hidden' : ''
         }
-    }
+    }, [])
 
     useEffect(() => {
         const element = document.body
