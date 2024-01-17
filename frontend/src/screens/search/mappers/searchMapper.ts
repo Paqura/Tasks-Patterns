@@ -1,59 +1,15 @@
 import { SearchResponse } from 'meilisearch'
+import { P, match } from 'ts-pattern'
 
 import { TSearchResultItem } from '@/screens/search/ui/SearchResultsList'
 import { highlightPreTag } from '@/services/meilisearch'
+import { getPlainObjectWithDotNotation } from '@/shared/lib/getPlainObjectWithDotNotation'
 
 type TObject = Record<string, unknown>
 
-const isObject = (value: unknown): value is TObject => {
-    return typeof value === 'object' && value !== null && !Array.isArray(value)
-}
+const regex = new RegExp(highlightPreTag, 'g')
 
-const flattenObj = (obj: TObject): TObject => {
-    const result: TObject = {}
-
-    for (const [key, value] of Object.entries(obj)) {
-        if (isObject(value)) {
-            const flattenedObj = flattenObj(value)
-
-            for (const [innerKey, innerValue] of Object.entries(flattenedObj)) {
-                result[`${key}.${innerKey}`] = innerValue
-            }
-
-            continue
-        }
-
-        if (Array.isArray(value)) {
-            for (let i = 0; i < value.length; i++) {
-                if (!isObject(value[i]) && !Array.isArray(value[i])) {
-                    result[`${key}[${i}]`] = value[i]
-
-                    continue
-                }
-
-                const isArray = Array.isArray(value[i])
-                const flattenedObj = flattenObj(value[i])
-
-                for (const [innerKey, innerValue] of Object.entries(flattenedObj)) {
-                    if (isArray) {
-                        result[`${key}[${i}][${innerKey}]`] = innerValue
-                    } else {
-                        result[`${key}[${i}].${innerKey}`] = innerValue
-                    }
-                }
-            }
-
-            continue
-        }
-
-        result[key] = value
-    }
-
-    return result
-}
-
-const getDescription = (
-    query: string,
+export const getDescription = (
     data: TObject,
     replacement: { from: string; to: string },
 ): string => {
@@ -63,14 +19,17 @@ const getDescription = (
     let resultKey = ''
 
     const entries = Object.entries(data)
-    for (const [key, value] of entries) {
-        if (typeof value === 'string') {
-            const higlightsCount = value.match(new RegExp(highlightPreTag, 'g'))?.length || 0
 
-            if (higlightsCount > maxCount) {
-                maxCount = higlightsCount
-                resultKey = key
-            }
+    for (const [key, value] of entries) {
+        if (typeof value !== 'string') {
+            continue
+        }
+
+        const highlightsCount = value.match(regex)?.length || 0
+
+        if (highlightsCount > maxCount) {
+            maxCount = highlightsCount
+            resultKey = key
         }
     }
 
@@ -81,70 +40,75 @@ const getDescription = (
     return String(data[resultKey] || entries[0]?.[1] || '')
 }
 
-const getSearchResultItem = (
-    query: string,
-    type: string,
-    data: TObject,
-    slug?: string,
-    locale?: string,
-): TSearchResultItem | undefined => {
-    if (type === 'about-page') {
-        return {
+type TSearchResultType =
+    | 'about-page'
+    | 'analytic-article'
+    | 'news-item'
+    | 'webinars-item'
+    | 'product'
+
+type TGetSearchResultItem = {
+    type: TSearchResultType
+    data: TObject
+    slug?: string
+    locale?: string
+}
+
+const getSearchResultItem = ({
+    data,
+    type,
+    locale,
+    slug,
+}: TGetSearchResultItem): TSearchResultItem | null =>
+    match(type)
+        .with('about-page', () => ({
             title: String(data.title),
-            description: getDescription(query, data, { from: 'title', to: 'description' }),
+            description: getDescription(data, { from: 'title', to: 'description' }),
             href: '/about',
             locale: locale,
-        }
-    }
-
-    if (type === 'analytic-article') {
-        return {
+        }))
+        .with('analytic-article', () => ({
             title: String(data.title),
-            description: getDescription(query, data, { from: 'title', to: 'topic' }),
+            description: getDescription(data, { from: 'title', to: 'topic' }),
             href: `/analytics/${slug}`,
             locale: locale,
-        }
-    }
-
-    if (type === 'news-item' || type === 'webinars-item') {
-        const href = type === 'webinars-item' ? `/webinar/${slug}` : `/news/${slug}`
-
-        return {
+        }))
+        .with(P.union('news-item', 'webinars-item'), (currentType) => ({
             title: String(data.title),
-            description: getDescription(query, data, { from: 'title', to: 'topic' }),
-            href: href,
+            description: getDescription(data, { from: 'title', to: 'topic' }),
+            href: currentType === 'webinars-item' ? `/webinar/${slug}` : `/news/${slug}`,
             locale: locale,
-        }
-    }
-
-    if (type === 'product') {
-        return {
+        }))
+        .with('product', () => ({
             title: String(data.title),
-            description: getDescription(query, data, { from: 'title', to: 'subtitle' }),
+            description: getDescription(data, { from: 'title', to: 'subtitle' }),
             href: `/products/${slug}`,
             locale: locale,
-        }
-    }
-
-    return undefined
-}
+        }))
+        .otherwise(() => null)
 
 export const toDomain = (searchResponse?: SearchResponse | null): TSearchResultItem[] => {
     if (!searchResponse) {
         return []
     }
 
-    const searchResults = searchResponse.hits
-        .map((hit) => {
-            const { query } = searchResponse
-            // @ts-expect-error
-            const { type, slug, locale, data } = hit._formatted
+    return searchResponse.hits.reduce<TSearchResultItem[]>((acc, hit) => {
+        // @ts-expect-error
+        const { type, slug, locale, data } = hit._formatted
 
-            const flattenedObjData = flattenObj(data)
+        const flattenedObjData = getPlainObjectWithDotNotation(data)
 
-            return getSearchResultItem(query, type, flattenedObjData, slug, locale)
+        const searchResult = getSearchResultItem({
+            type,
+            data: flattenedObjData,
+            slug,
+            locale,
         })
-        .filter(Boolean) as TSearchResultItem[]
 
-    return searchResults
+        if (searchResult) {
+            acc.push(searchResult)
+        }
+
+        return acc
+    }, [])
 }
