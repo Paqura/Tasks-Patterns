@@ -36,7 +36,7 @@ export const HistorySection = ({ data }: THistorySectionProps) => {
                 </Text>
             </div>
 
-            <CardsSlider scrollAreaClassName={styles.historyBlockScrollArea}>
+            <CardsSlider classes={{ scrollArea: styles.historyBlockScrollArea }}>
                 {historyItems.map((historyItem, index) => (
                     <HistoryItem key={index} data={historyItem} />
                 ))}

@@ -21,7 +21,7 @@ export const ImagedCardsGridBlock = ({ data, sectionId, number }: TImagedCardsGr
         <PageSection.Card mode={'light'} sectionId={sectionId}>
             <PageSection.Header number={number} title={data.title} description={data.description} />
 
-            <CardsSlider scrollAreaClassName={styles.cardsListScrollArea}>
+            <CardsSlider classes={{ scrollArea: styles.cardsListScrollArea }}>
                 <ul className={styles.cardsList}>
                     {data.items.map((item) => (
                         <li key={item.title} className={styles.cardsListItem}>

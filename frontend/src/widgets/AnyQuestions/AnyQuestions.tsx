@@ -100,8 +100,10 @@ export const AnyQuestions = ({
                     <>
                         <CardsSlider
                             hideControls
-                            className={styles.radioGroupWrapper}
-                            scrollAreaClassName={styles.radioGroup}
+                            classes={{
+                                root: styles.radioGroupWrapper,
+                                scrollArea: styles.radioGroup,
+                            }}
                         >
                             <CardRadio
                                 title={feedback.title}

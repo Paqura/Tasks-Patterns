@@ -9,6 +9,11 @@ import styles from './index.module.scss'
 
 import { Button } from '../Button'
 
+const SIDE_OFFSET = {
+    mobile: 8,
+    otherwise: 14,
+}
+
 type TLocaleDropdownProps = {
     options: TDropdownItem<TLocale>[]
 }
@@ -30,7 +35,9 @@ export const LocaleDropdown = ({ options }: TLocaleDropdownProps) => {
                     [styles.popover_mobile]: isMobile,
                 }),
             }}
-            dropdownOffset={isMobile ? 8 : 14}
+            placement={{
+                sideOffset: isMobile ? SIDE_OFFSET.mobile : SIDE_OFFSET.otherwise,
+            }}
             openInPortal={!isMobile}
         >
             <Button

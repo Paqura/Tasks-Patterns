@@ -64,7 +64,7 @@ export const ExpertsSection = ({ data }: TExpertsSectionProps) => {
                         render={(itemsToRender) => (
                             <CardsSlider
                                 hideControls
-                                scrollAreaClassName={styles.employeeCardsList}
+                                classes={{ scrollArea: styles.employeeCardsList }}
                             >
                                 {itemsToRender.map(({ photo, name, roles }, index) => (
                                     <EmployeeCard
@@ -94,7 +94,7 @@ export const ExpertsSection = ({ data }: TExpertsSectionProps) => {
                         render={(itemsToRender) => (
                             <CardsSlider
                                 hideControls
-                                scrollAreaClassName={styles.employeeCardsList}
+                                classes={{ scrollArea: styles.employeeCardsList }}
                             >
                                 {itemsToRender.map(({ photo, name, roles }, index) => (
                                     <EmployeeCard

@@ -53,7 +53,7 @@ export const Statistics = ({ data }: TStatisticsProps) => {
                 {title}
             </Text>
 
-            <CardsSlider hideControls scrollAreaClassName={styles.cardsScrollArea}>
+            <CardsSlider hideControls classes={{ scrollArea: styles.cardsScrollArea }}>
                 <ul className={styles.values}>
                     <li className={cn(styles.value, styles.value_big)}>
                         <StatisticValueCard {...data.first} />

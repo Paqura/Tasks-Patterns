@@ -43,7 +43,7 @@ export const ProductCard = ({ className, data }: TProductCardProps) => {
                 </Text>
             </div>
 
-            <Link href={productUrl} type="m" className={styles.link}>
+            <Link href={productUrl} type="m" classes={{ root: styles.link }}>
                 <span className={styles.linkText}>{translate('productCard.readMoreBtn')}</span>
             </Link>
         </div>

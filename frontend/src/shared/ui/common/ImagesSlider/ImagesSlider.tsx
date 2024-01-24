@@ -1,15 +1,15 @@
 import cn from 'classnames'
 import Image from 'next/image'
-import { useState } from 'react'
 import 'swiper/css'
 import { Controller } from 'swiper/modules'
-import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { SliderButtons } from '@/shared/ui/common/SliderButtons'
+import { SliderButtons, getDisableStatus } from '@/shared/ui/common/SliderButtons'
 import { Text } from '@/shared/ui/common/typography/Text'
 import { TImage } from '@/types'
 
 import styles from './index.module.scss'
+import { useImagesSlider } from './lib/useImagesSlider'
 
 export type TSlide = { image: TImage; caption?: string }
 
@@ -19,8 +19,13 @@ type TImagesSliderProps = {
 }
 
 export const ImagesSlider = ({ classes, slides }: TImagesSliderProps) => {
-    const [controlledSwiper, setControlledSwiper] = useState<SwiperClass | null>(null)
-    const [activeSlideIndex, setActiveSlideIndex] = useState<number>(0)
+    const {
+        activeSlideIndex,
+        controlledSwiper,
+        handleControlClick,
+        setActiveSlideIndex,
+        setControlledSwiper,
+    } = useImagesSlider()
 
     const hasControls = slides.length > 1
 
@@ -29,11 +34,12 @@ export const ImagesSlider = ({ classes, slides }: TImagesSliderProps) => {
             {hasControls && (
                 <div className={styles.controlsBlock}>
                     <SliderButtons
-                        className={styles.moveButtons}
-                        disableLeft={activeSlideIndex === 0}
-                        disableRight={activeSlideIndex >= slides.length - 1}
-                        onLeftClick={() => controlledSwiper?.slidePrev()}
-                        onRightClick={() => controlledSwiper?.slideNext()}
+                        classes={{ root: styles.moveButtons }}
+                        disable={getDisableStatus({
+                            next: activeSlideIndex >= slides.length - 1,
+                            prev: activeSlideIndex === 0,
+                        })}
+                        onClick={handleControlClick}
                     />
                 </div>
             )}
@@ -71,7 +77,9 @@ export const ImagesSlider = ({ classes, slides }: TImagesSliderProps) => {
                                                 onClick={() => {
                                                     if (isNext) {
                                                         controlledSwiper?.slideNext()
-                                                    } else if (isPrev) {
+                                                    }
+
+                                                    if (isPrev) {
                                                         controlledSwiper?.slidePrev()
                                                     }
                                                 }}

@@ -38,7 +38,7 @@ export const Articles = ({ data }: TArticlesProps) => {
                     </Link>
                 </div>
 
-                <CardsSlider hideControls scrollAreaClassName={styles.listScrollArea}>
+                <CardsSlider hideControls classes={{ scrollArea: styles.listScrollArea }}>
                     <ul className={styles.list}>
                         {showedArticles.map((article, index) => (
                             <li key={index} className={styles.listItem}>

@@ -7,25 +7,22 @@ import { useTypographyTheme } from '@/shared/ui/common/typography/TypographyThem
 import styles from './index.module.scss'
 
 export type TLinkProps = {
-    className?: string
+    classes?: TClasses<'root'>
     type: 'm' | 's'
 } & LinkProps
 
-export const Link = ({
-    children,
-    className,
-    type,
-    ...otherProps
-}: PropsWithChildren<TLinkProps>) => {
+export const Link = ({ children, classes, type, ...otherProps }: PropsWithChildren<TLinkProps>) => {
     const theme = useTypographyTheme()
 
     return (
         <NextLink
             className={cn(
-                styles.link,
+                styles.root,
                 styles[`type_${type}`],
-                { [styles[`theme_${theme}`]]: !!theme },
-                className,
+                {
+                    [styles[`theme_${theme}`]]: Boolean(theme),
+                },
+                classes?.root,
             )}
             {...otherProps}
         >

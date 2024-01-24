@@ -38,7 +38,7 @@ export const Heading = ({
     })
 
     return React.createElement(
-        `h${level}` as React.ElementType,
+        `h${level}`,
         {
             className: classNames,
         },

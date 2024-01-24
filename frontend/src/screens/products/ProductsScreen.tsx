@@ -28,7 +28,7 @@ export const ProductsScreen: React.FC<TProductsScreenProps> = (props) => {
 
             <PageSection>
                 <TypographyTheme theme="dark">
-                    <CardsSlider hideControls scrollAreaClassName={styles.cardsList}>
+                    <CardsSlider hideControls classes={{ scrollArea: styles.cardsList }}>
                         {props.products.map((product, key) => {
                             return (
                                 <ProductCard

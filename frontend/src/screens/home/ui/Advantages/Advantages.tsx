@@ -36,7 +36,12 @@ export const Advantages = ({ data, number }: TAdvantagesProps) => {
         <PageSection.Card mode="dark" sectionId={sectionId}>
             <PageSection.Header title={title} description={description} number={number} />
 
-            <CardsSlider hideControls scrollAreaClassName={styles.advantagesList}>
+            <CardsSlider
+                hideControls
+                classes={{
+                    scrollArea: styles.advantagesList,
+                }}
+            >
                 <AdvantageCard data={expertiseCard} type="expertise" />
                 <AdvantageCard data={customerServiceCard} type="customer-service" />
                 <AdvantageCard data={trackRecordCard} type="track-record" />

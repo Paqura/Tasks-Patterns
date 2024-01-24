@@ -28,8 +28,10 @@ export const News = ({ data, number }: TNewsProps) => {
                         {allNewsLinkText}
                     </Link>
                 }
-                className={styles.newsList}
-                scrollAreaClassName={styles.newsListScrollArea}
+                classes={{
+                    root: styles.newsList,
+                    scrollArea: styles.newsListScrollArea,
+                }}
             >
                 {news.map((newsItem, index) => (
                     <NewsCard key={index} {...newsItem} />

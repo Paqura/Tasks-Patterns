@@ -34,7 +34,7 @@ export const TasksBlock = ({ data, sectionId }: TTasksBlockProps) => {
             </Text>
 
             {data.tasks && data.tasks.length > 0 && (
-                <CardsSlider scrollAreaClassName={styles.tasksListScrollArea}>
+                <CardsSlider classes={{ scrollArea: styles.tasksListScrollArea }}>
                     <ul className={styles.tasksList}>
                         {data.tasks.map((task) => (
                             <li key={task.title} className={styles.taksListItem}>
@@ -49,7 +49,7 @@ export const TasksBlock = ({ data, sectionId }: TTasksBlockProps) => {
                 <div className={styles.statistics}>
                     <Heading level={2}>{data.statistics.title}</Heading>
 
-                    <CardsSlider scrollAreaClassName={styles.statisticsListScrollArea}>
+                    <CardsSlider classes={{ scrollArea: styles.statisticsListScrollArea }}>
                         <ul className={styles.statisticsList}>
                             {data.statistics.values.map((stat, index) => (
                                 <li key={index} className={styles.statisticsListItem}>

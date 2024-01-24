@@ -13,14 +13,14 @@ type TTextareaProps = {
     name: string
     required?: boolean
     autoFocus?: boolean
-    className?: string
+    classes?: TClasses<'root' | 'textarea'>
     maxLength?: number
 }
 
 export const Textarea = ({
     placeholder,
     name,
-    className,
+    classes,
     autoFocus,
     required,
     maxLength,
@@ -51,13 +51,17 @@ export const Textarea = ({
     const errorMessage = isFocused ? null : controller.fieldState.error?.message
 
     return (
-        <label className={styles.container}>
+        <label className={cn(styles.container, classes?.root)}>
             <textarea
                 id={fieldName}
-                className={cn(styles.textarea, className, {
-                    [styles.textarea_error]: Boolean(errorMessage),
-                    [styles.textarea_filled]: Boolean(controllerProps.value),
-                })}
+                className={cn(
+                    styles.textarea,
+                    {
+                        [styles.textarea_error]: Boolean(errorMessage),
+                        [styles.textarea_filled]: Boolean(controllerProps.value),
+                    },
+                    classes?.textarea,
+                )}
                 placeholder={placeholder}
                 autoFocus={autoFocus}
                 maxLength={maxLength}

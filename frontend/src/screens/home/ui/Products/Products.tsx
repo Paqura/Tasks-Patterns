@@ -25,8 +25,10 @@ export const Products = ({ data, number }: TProductsProps) => {
         <PageSection.Card mode="dark" sectionId={sectionId}>
             <PageSection.Header title={title} description={description} number={number} />
             <CardsSlider
-                className={styles.productsList}
-                scrollAreaClassName={styles.productsScrollArea}
+                classes={{
+                    root: styles.productsList,
+                    scrollArea: styles.productsScrollArea,
+                }}
                 controls={
                     <Link type="s" href={'/products'}>
                         {allProductsLinkText}

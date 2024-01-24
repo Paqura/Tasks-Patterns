@@ -1,5 +1,6 @@
 import { Listbox } from '@headlessui/react'
 import cn from 'classnames'
+import { ReactNode } from 'react'
 import { useController } from 'react-hook-form'
 
 import { useTranslate } from '@/services/translation'
@@ -8,12 +9,32 @@ import { InputError } from '@/shared/ui/common/InputError'
 
 import styles from './index.module.scss'
 
+type TSelectClasses = TClasses<
+    | 'root'
+    | 'select'
+    | 'trigger'
+    | 'triggerLabel'
+    | 'arrowIcon'
+    | 'option'
+    | 'optionLabel'
+    | 'optionCheckIcon'
+>
+
 type TSelectProps<TValueType> = {
     placeholder?: string
     name: string
     required?: boolean
-    className?: string
+    classes?: TSelectClasses
+
     options: TSelectOption<TValueType>[]
+
+    components?: Partial<{
+        triggerIcon: ReactNode
+        triggerLabel: (option?: TSelectOption<TValueType>) => ReactNode
+        optionLabel: (option: TSelectOption<TValueType>) => ReactNode
+        optionCheckIcon: ReactNode
+    }>
+
     dataTestIds?: Partial<{
         toggle: string
     }>
@@ -27,10 +48,11 @@ export type TSelectOption<TValueType> = {
 export function Select<TValueType>({
     placeholder,
     name,
-    className,
+    classes,
     required,
     options,
     dataTestIds,
+    components,
 }: TSelectProps<TValueType>) {
     const fieldName = `${name}` as const
     const translate = useTranslate()
@@ -45,31 +67,41 @@ export function Select<TValueType>({
 
     const errorMessage = controller.fieldState.error?.message
     const selectedItemValue = controllerProps.value
-    const selectedPerson = options.find((p) => p.value === selectedItemValue)
 
     const handleChange = (option: TSelectOption<TValueType>) => {
         controllerProps.onChange(option.value)
     }
 
+    const selectedItem = options.find(({ value }) => value === selectedItemValue)
+    const triggerLabel = selectedItem?.label || placeholder
+
     return (
-        <div className={styles.container}>
-            <div className={cn(styles.select, className)}>
+        <div className={cn(styles.root, classes?.root)}>
+            <div className={cn(styles.select, classes?.select)}>
                 <Listbox value={controllerProps.value} onChange={handleChange}>
                     <Listbox.Button
                         data-testid={dataTestIds?.toggle}
                         className={(props) => {
-                            return cn(styles.selectInput, {
-                                [styles.selectInput_filled]: Boolean(selectedPerson),
-                                [styles.selectInput_error]: Boolean(errorMessage),
-                                [styles.selectInput_opened]: props.open,
-                            })
+                            return cn(
+                                styles.trigger,
+                                {
+                                    [styles.trigger_filled]: Boolean(selectedItem),
+                                    [styles.trigger_error]: Boolean(errorMessage),
+                                    [styles.trigger_opened]: props.open,
+                                },
+                                classes?.trigger,
+                            )
                         }}
                     >
-                        <span className={styles.inputContent}>
-                            {selectedPerson?.label || placeholder}
+                        <span className={cn(styles.triggerLabel, classes?.triggerLabel)}>
+                            {components?.triggerLabel?.(selectedItem) ?? triggerLabel}
                         </span>
-                        <span className={styles.arrowIcon} />
+
+                        {components?.triggerIcon ?? (
+                            <span className={cn(styles.arrowIcon, classes?.arrowIcon)} />
+                        )}
                     </Listbox.Button>
+
                     <Listbox.Options className={styles.options}>
                         {options.map((option, index) => (
                             <Listbox.Option
@@ -77,14 +109,31 @@ export function Select<TValueType>({
                                 value={option}
                                 data-testid={`product-select-${index}`}
                                 className={({ active }) =>
-                                    cn(styles.option, { [styles.option_active]: Boolean(active) })
+                                    cn(
+                                        styles.option,
+                                        { [styles.option_active]: Boolean(active) },
+                                        classes?.option,
+                                    )
                                 }
                             >
                                 <>
-                                    <span className={styles.optionLabel}>{option.label}</span>
-                                    {option.value === controllerProps.value ? (
-                                        <span className={styles.optionCheckIcon} />
-                                    ) : null}
+                                    {components?.optionLabel?.(option) ?? (
+                                        <span
+                                            className={cn(styles.optionLabel, classes?.optionLabel)}
+                                        >
+                                            {option.label}
+                                        </span>
+                                    )}
+
+                                    {option.value === controllerProps.value &&
+                                        (components?.optionCheckIcon ?? (
+                                            <span
+                                                className={cn(
+                                                    styles.optionCheckIcon,
+                                                    classes?.optionCheckIcon,
+                                                )}
+                                            />
+                                        ))}
                                 </>
                             </Listbox.Option>
                         ))}

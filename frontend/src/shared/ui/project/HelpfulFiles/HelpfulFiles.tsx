@@ -23,7 +23,7 @@ export const HelpfulFiles = ({ title, files }: THelpfulFilesProps) => {
                     {title}
                 </Heading>
 
-                <CardsSlider hideControls scrollAreaClassName={styles.attachmentsWrap}>
+                <CardsSlider hideControls classes={{ scrollArea: styles.attachmentsWrap }}>
                     {files.map((attach, idx: number) => {
                         return <Attachment key={idx} src={attach.url} title={attach.title} />
                     })}

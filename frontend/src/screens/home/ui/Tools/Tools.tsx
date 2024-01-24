@@ -25,7 +25,7 @@ export const Tools = ({ data, number }: TToolsProps) => {
         <PageSection.Card mode="light" sectionId="tools">
             <PageSection.Header title={title} description={description} number={number} />
 
-            <CardsSlider scrollAreaClassName={styles.toolsList}>
+            <CardsSlider classes={{ scrollArea: styles.toolsList }}>
                 <ToolCard type="assessment" data={assessmentCard} />
                 <ToolCard type="compliance" data={complianceCard} />
                 <ToolCard type="monitoring" data={monitoringCard} />

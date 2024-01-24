@@ -30,5 +30,5 @@ export const Text = ({ type, className, children }: TTextProps) => {
         return child
     })
 
-    return <p className={classNames}>{sanitizedContent}</p>
+    return <div className={classNames}>{sanitizedContent}</div>
 }

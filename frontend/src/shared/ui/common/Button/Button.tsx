@@ -54,6 +54,7 @@ export const Button = ({
         return (
             <>
                 <span>{content}</span>
+
                 {size === 'm' && withIcon && (
                     <Image className={styles.arrow} src={arrowIcon} alt="" />
                 )}

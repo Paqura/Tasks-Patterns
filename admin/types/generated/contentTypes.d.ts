@@ -1325,6 +1325,38 @@ export interface ApiHeaderHeader extends Schema.SingleType {
   };
 }
 
+export interface ApiLocaleSwitcherLocaleSwitcher extends Schema.SingleType {
+  collectionName: 'locale_switchers';
+  info: {
+    singularName: 'locale-switcher';
+    pluralName: 'locale-switchers';
+    displayName: 'LocaleSwitcher';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    en: Attribute.Boolean & Attribute.DefaultTo<true>;
+    es: Attribute.Boolean & Attribute.DefaultTo<true>;
+    pt: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::locale-switcher.locale-switcher',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::locale-switcher.locale-switcher',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMainPageMainPage extends Schema.SingleType {
   collectionName: 'main_pages';
   info: {
@@ -2300,6 +2332,7 @@ declare module '@strapi/types' {
       'api::feedback-request.feedback-request': ApiFeedbackRequestFeedbackRequest;
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;
+      'api::locale-switcher.locale-switcher': ApiLocaleSwitcherLocaleSwitcher;
       'api::main-page.main-page': ApiMainPageMainPage;
       'api::news-item.news-item': ApiNewsItemNewsItem;
       'api::news-page.news-page': ApiNewsPageNewsPage;

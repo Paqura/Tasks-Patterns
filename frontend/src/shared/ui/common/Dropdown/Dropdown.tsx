@@ -4,16 +4,26 @@ import { Fragment, PropsWithChildren, ReactNode } from 'react'
 
 import styles from './index.module.scss'
 
+type TSide = 'bottom' | 'top' | 'right' | 'left'
+type TAlign = 'center' | 'end' | 'start'
+
+type TPlacement = {
+    sideOffset: number
+    side: TSide
+    align: TAlign
+}
+
 type TDropdownProps<TValueType> = {
     open: boolean
     openInPortal?: boolean
-    dropdownOffset?: number
+
+    placement?: Partial<TPlacement>
 
     options: TDropdownItem<TValueType>[]
     renderOption?: (option: TDropdownItem<TValueType>) => ReactNode
     onSelect?: (value: TValueType) => void
 
-    classes?: TClasses<'root' | 'list'>
+    classes?: TClasses<'root' | 'list' | 'option'>
 }
 
 export type TDropdownItem<TValueType> = {
@@ -28,7 +38,7 @@ export const Dropdown = <TValueType,>({
     renderOption,
     children,
     open,
-    dropdownOffset = 0,
+    placement,
     openInPortal,
 }: PropsWithChildren<TDropdownProps<TValueType>>) => {
     const ContentWrapper = openInPortal ? DropdownMenu.Portal : Fragment
@@ -39,16 +49,16 @@ export const Dropdown = <TValueType,>({
 
             <ContentWrapper>
                 <DropdownMenu.DropdownMenuContent
-                    sideOffset={dropdownOffset}
-                    side="bottom"
-                    align="end"
+                    sideOffset={placement?.sideOffset}
+                    side={placement?.side ?? 'bottom'}
+                    align={placement?.align ?? 'end'}
                     className={cn(styles.list, classes?.list)}
                 >
                     {options.map((option, idx) => {
                         return (
                             <DropdownMenu.Item
                                 key={idx}
-                                className={styles.option}
+                                className={cn(styles.option, classes?.option)}
                                 onClick={() => onSelect?.(option.value)}
                             >
                                 {renderOption ? renderOption(option) : option.label}

@@ -27,8 +27,10 @@ export const OtherProductsBlock = ({ data, sectionId, number }: TOtherProductsBl
             <PageSection.Header title={title} description={description} number={number} />
 
             <CardsSlider
-                className={styles.productsList}
-                scrollAreaClassName={styles.productsScrollArea}
+                classes={{
+                    root: styles.productsList,
+                    scrollArea: styles.productsScrollArea,
+                }}
                 controls={
                     <Link type="s" href={'/products'}>
                         {translate('product.viewAllProductsBtn')}
