@@ -1,6 +1,5 @@
-import { PageAnchorsContextProvider } from '@/shared/lib/anchors'
 import { CONTACTS_SECTION_ID } from '@/shared/lib/constants'
-import { AnchorBar, TAnchorLink } from '@/shared/ui/project/AnchorBar'
+import { AnchorBar, PageAnchorsContextProvider, TAnchorLink } from '@/shared/ui/project/AnchorBar'
 import { PageLayout, TSeo } from '@/shared/ui/project/PageLayout'
 import { AnyQuestions, TAnyQuestionsData } from '@/widgets/AnyQuestions'
 import { TFooterData } from '@/widgets/Footer'

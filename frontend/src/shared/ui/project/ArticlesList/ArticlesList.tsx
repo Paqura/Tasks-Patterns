@@ -28,7 +28,9 @@ export const ArticlesList = ({ data, withImage }: TArticlesListProps) => {
                 />
             ))}
 
-            <Pagination page={data.pagination.page} pageCount={data.pagination.pageCount} />
+            {data.pagination.pageCount > 1 && (
+                <Pagination page={data.pagination.page} pageCount={data.pagination.pageCount} />
+            )}
         </PageSection.Card>
     )
 }

@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { PropsWithChildren, useEffect, useRef } from 'react'
 
-import { useAnchors } from '@/shared/lib/anchors'
+import { useAnchors } from '../../../AnchorBar'
 import { TypographyTheme } from '@/shared/ui/common/typography/TypographyTheme'
 import { PageSection } from '@/shared/ui/project/PageSection'
 
@@ -13,8 +13,7 @@ type TCardProps = {
     mode?: TCardMode
     sectionId?: string
     hasAnimation?: boolean
-    sectionClassName?: string
-    contentClassName?: string
+    classes?: TClasses<'root' | 'content'>
 }
 
 export const Card = ({
@@ -22,8 +21,7 @@ export const Card = ({
     mode = 'light',
     sectionId,
     hasAnimation = true,
-    sectionClassName,
-    contentClassName,
+    classes,
 }: PropsWithChildren<TCardProps>) => {
     const { api: anchorsApi } = useAnchors()
 
@@ -75,7 +73,7 @@ export const Card = ({
     return (
         <PageSection
             sectionId={sectionId}
-            className={cn(styles.section, sectionClassName)}
+            className={cn(styles.section, classes?.root)}
             ref={sectionRef}
         >
             <div
@@ -86,7 +84,7 @@ export const Card = ({
                     {
                         [styles.animation]: hasAnimation,
                     },
-                    contentClassName,
+                    classes?.content,
                 )}
             >
                 <TypographyTheme theme={mode}>{children}</TypographyTheme>

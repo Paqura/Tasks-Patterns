@@ -18,10 +18,12 @@ export const SectionThemed = ({ id, theme, children }: PropsWithChildren<TSectio
         <PageSection.Card
             mode={mode}
             sectionId={id}
-            sectionClassName={cn(styles.card, {
-                [styles.transparentLight]: theme === 'transparent-light',
-                [styles.transparentDark]: theme === 'transparent-dark',
-            })}
+            classes={{
+                root: cn(styles.card, {
+                    [styles.transparentLight]: theme === 'transparent-light',
+                    [styles.transparentDark]: theme === 'transparent-dark',
+                }),
+            }}
         >
             {children}
         </PageSection.Card>

@@ -14,6 +14,7 @@ export type THelpfulFilesProps = {
 
 export const HelpfulFiles = ({ title, files }: THelpfulFilesProps) => {
     const translate = useTranslate()
+
     return (
         <Article.Layout className={styles.helpfulFiles}>
             <Article.LayoutRightColumn>
@@ -24,9 +25,9 @@ export const HelpfulFiles = ({ title, files }: THelpfulFilesProps) => {
                 </Heading>
 
                 <CardsSlider hideControls classes={{ scrollArea: styles.attachmentsWrap }}>
-                    {files.map((attach, idx: number) => {
-                        return <Attachment key={idx} src={attach.url} title={attach.title} />
-                    })}
+                    {files.map((attach, idx) => (
+                        <Attachment key={idx} src={attach.url} title={attach.title} />
+                    ))}
                 </CardsSlider>
             </Article.LayoutRightColumn>
         </Article.Layout>

@@ -1,10 +1,11 @@
 import cn from 'classnames'
 import Image from 'next/image'
 
-import { useAnchors } from '@/shared/lib/anchors'
 import { Text } from '@/shared/ui/common/typography/Text'
 
 import arrowRight2 from '/public/images/common/arrow-right-2.svg'
+
+import { useAnchors } from '@/shared/ui/project/AnchorBar'
 
 import styles from './index.module.scss'
 

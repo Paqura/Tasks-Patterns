@@ -1,7 +1,6 @@
-import { PageAnchorsContextProvider } from '@/shared/lib/anchors'
 import { useMedia } from '@/shared/lib/hooks'
 import { Text } from '@/shared/ui/common/typography/Text'
-import { AnchorBar } from '@/shared/ui/project/AnchorBar'
+import { AnchorBar, PageAnchorsContextProvider } from '@/shared/ui/project/AnchorBar'
 import { Article } from '@/shared/ui/project/Article'
 import { HelpfulFiles } from '@/shared/ui/project/HelpfulFiles'
 import { PageLayout, TSeo } from '@/shared/ui/project/PageLayout'

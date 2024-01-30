@@ -19,7 +19,7 @@ type TFilesBlockProps = {
 
 export const FilesBlock = ({ data, sectionId, number }: TFilesBlockProps) => {
     return (
-        <PageSection.Card mode={'light'} sectionId={sectionId} contentClassName={styles.block}>
+        <PageSection.Card mode={'light'} sectionId={sectionId} classes={{ content: styles.block }}>
             <PageSection.Header title={data.title} description={data.description} number={number} />
 
             <PageSection.Grid>

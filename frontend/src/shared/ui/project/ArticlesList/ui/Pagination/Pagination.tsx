@@ -14,16 +14,10 @@ export type TPaginationData = {
 export type TPaginationProps = TPaginationData
 
 export const Pagination = ({ page, pageCount }: TPaginationProps) => {
-    const showPagination = pageCount > 1
-
     const { showLeftDots, showRightDots, leftNumbers, rightNumbers } = getPaginationParams(
         page,
         pageCount,
     )
-
-    if (!showPagination) {
-        return null
-    }
 
     return (
         <div className={styles.pagination}>

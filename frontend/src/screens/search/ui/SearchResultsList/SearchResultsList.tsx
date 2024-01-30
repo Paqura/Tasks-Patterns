@@ -29,7 +29,7 @@ export const SearchResultsList = ({ hasNoResults, data }: TSearchResultsListProp
     const { searchQuery, searchResults, noResultsBlockTitle, noResultsBlockDescription } = data
 
     return (
-        <PageSection.Card mode="light" contentClassName={styles.section}>
+        <PageSection.Card mode="light" classes={{ content: styles.section }}>
             <div className={styles.list}>
                 {hasNoResults ? (
                     <div className={styles.noResultsBlock}>

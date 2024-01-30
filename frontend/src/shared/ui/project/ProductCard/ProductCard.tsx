@@ -23,11 +23,11 @@ export type TProductCardProps = {
 }
 
 export const ProductCard = ({ className, data }: TProductCardProps) => {
-    const { icon, title, description, href } = data
-    const productUrl = `/products/${href}`
-
     const router = useRouter()
     const translate = useTranslate()
+
+    const { icon, title, description, href } = data
+    const productUrl = `/products/${href}`
 
     return (
         <div className={cn(styles.card, className)} onClick={() => router.push(productUrl)}>

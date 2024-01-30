@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 
 import { TArticleSection } from '@/screens/analyticArticle/types'
-import { useAnchors } from '@/shared/lib/anchors'
 import { Heading } from '@/shared/ui/common/typography/Heading'
+import { useAnchors } from '@/shared/ui/project/AnchorBar'
 import { MarkdownContent } from '@/shared/ui/project/MarkdownContent'
 
 import styles from './index.module.scss'

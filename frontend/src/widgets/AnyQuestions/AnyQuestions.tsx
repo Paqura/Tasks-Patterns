@@ -77,7 +77,9 @@ export const AnyQuestions = ({
         <PageSection.Card
             mode="light"
             sectionId={sectionId}
-            contentClassName={styles.container}
+            classes={{
+                content: styles.container,
+            }}
             hasAnimation={hasAnimation}
         >
             <div className={styles.heading}>
