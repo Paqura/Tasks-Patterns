@@ -16,7 +16,7 @@ export const MarkdownContent = ({ children, className, mode = 'light' }: TMarkdo
         <div
             className={cn(styles.content, styles[`content_mode_${mode}`], className)}
             dangerouslySetInnerHTML={{
-                __html: marked.parse(children),
+                __html: marked.parse(children) as unknown as TrustedHTML,
             }}
         />
     )

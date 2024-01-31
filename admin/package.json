@@ -1,49 +1,50 @@
 {
   "name": "pts_admin",
-  "private": true,
   "version": "0.1.0",
+  "private": true,
   "description": "A Strapi application",
-  "scripts": {
-    "start": "strapi start",
-    "build": "strapi build",
-    "develop:meilisearch": "docker run -it --rm -p 7700:7700 getmeili/meilisearch:latest meilisearch --master-key=LCtzumTUyvEzE5eXmHkmxdKLrDNx4ZZMq_q5AUtLSi0 --no-analytics",
-    "develop:database": "docker compose -f ./database/docker-compose.yml up",
-    "develop:strapi": "strapi develop",
-    "generate-types": "strapi ts:generate-types --verbose "
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "6.10.0",
-    "@typescript-eslint/parser": "6.10.0",
-    "eslint": "8.53.0",
-    "typescript": "5.2.2"
-  },
-  "dependencies": {
-    "@_sh/strapi-plugin-ckeditor": "2.0.4",
-    "@strapi/plugin-i18n": "4.15.2",
-    "@strapi/plugin-users-permissions": "4.15.2",
-    "@strapi/provider-email-nodemailer": "4.15.2",
-    "@strapi/provider-upload-aws-s3": "4.15.2",
-    "@strapi/strapi": "4.15.2",
-    "isomorphic-dompurify": "1.9.0",
-    "pg": "8.11.3",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^5.2.0",
-    "strapi-plugin-import-export-entries": "1.21.1",
-    "strapi-plugin-meilisearch": "0.10.0",
-    "strapi-plugin-populate-deep": "3.0.1",
-    "styled-components": "^5.2.1",
-    "util": "0.12.5"
-  },
+  "license": "MIT",
   "author": {
     "name": "A Strapi developer"
   },
-  "strapi": {
-    "uuid": "5e9f3daa-bb8d-4195-8515-73d280c5b8c8"
+  "scripts": {
+    "build": "strapi build",
+    "develop:database": "docker compose -f ./database/docker-compose.yml up",
+    "develop:meilisearch": "docker run -it --rm -p 7700:7700 getmeili/meilisearch:latest meilisearch --master-key=LCtzumTUyvEzE5eXmHkmxdKLrDNx4ZZMq_q5AUtLSi0 --no-analytics",
+    "develop:strapi": "strapi develop",
+    "generate-types": "strapi ts:generate-types --verbose ",
+    "start": "strapi start"
+  },
+  "dependencies": {
+    "@_sh/strapi-plugin-ckeditor": "2.1.0",
+    "@strapi/plugin-i18n": "4.19.0",
+    "@strapi/plugin-users-permissions": "4.19.0",
+    "@strapi/provider-email-nodemailer": "4.19.0",
+    "@strapi/provider-upload-aws-s3": "4.19.0",
+    "@strapi/strapi": "4.19.0",
+    "isomorphic-dompurify": "2.3.0",
+    "pg": "8.11.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.2.0",
+    "sharp": "0.33.2",
+    "strapi-plugin-import-export-entries": "1.23.1",
+    "strapi-plugin-meilisearch": "0.10.0",
+    "strapi-plugin-populate-deep": "3.0.1",
+    "styled-components": "5.2.1",
+    "util": "0.12.5"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "6.20.0",
+    "@typescript-eslint/parser": "6.20.0",
+    "eslint": "8.56.0",
+    "typescript": "5.3.3"
   },
   "engines": {
     "node": ">=14.19.1 <=18.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "strapi": {
+    "uuid": "5e9f3daa-bb8d-4195-8515-73d280c5b8c8"
+  }
 }

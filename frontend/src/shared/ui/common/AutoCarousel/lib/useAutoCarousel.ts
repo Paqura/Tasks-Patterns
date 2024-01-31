@@ -1,9 +1,9 @@
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useAutoCarousel = () => {
     const [animationStarted, setAnimationStarted] = useState(false)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         setTimeout(() => {
             requestAnimationFrame(() => {
                 setAnimationStarted(true)

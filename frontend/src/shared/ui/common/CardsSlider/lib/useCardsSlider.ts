@@ -1,5 +1,5 @@
 import debounce from 'lodash/debounce'
-import { RefObject, useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import { RefObject, useCallback, useEffect, useState } from 'react'
 
 import type { TClickDirection } from '@/shared/ui/common/SliderButtons'
 
@@ -46,7 +46,7 @@ export const useCardsSlider = (containerRef: RefObject<HTMLDivElement>) => {
         }
     }, [calculateButtonsState, containerRef])
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         calculateButtonsState(containerRef.current?.scrollLeft || 0)
     }, [calculateButtonsState, containerRef])
 

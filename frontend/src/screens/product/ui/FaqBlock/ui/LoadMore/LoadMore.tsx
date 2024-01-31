@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import debounce from 'lodash/debounce'
-import { PropsWithChildren, useLayoutEffect, useRef, useState } from 'react'
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 
 import { Button } from '@/shared/ui/common/Button'
 import { useTypographyTheme } from '@/shared/ui/common/typography/TypographyTheme'
@@ -18,7 +18,7 @@ export const LoadMore = ({ children, classes, btnText }: PropsWithChildren<TLoad
     const [showCutter, setShowCutter] = useState<boolean>(false)
     const containerRef = useRef<HTMLDivElement>(null)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const handleResize = () => {
             if (containerRef.current) {
                 setShowCutter(containerRef.current.scrollHeight > containerRef.current.clientHeight)
